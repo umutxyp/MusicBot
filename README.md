@@ -14,4 +14,3 @@ This project was created for you to create your own music bot, adapted to run on
 <br>
 Umut Bayraktar Youtube: <a href="https://www.youtube.com/UmutBayraktarYT">Subscribe</a><br>
 Code Share Discord: <a href="https://discord.gg/6XGqdgE">Join</a><br>
-VİA: <a href="https://github.com/ZerioDev">ZerioDev</a>
