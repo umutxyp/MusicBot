@@ -1,5 +1,5 @@
 module.exports = {
-        TOKEN: '', //your discord bot token
+        TOKEN: '', //write your discord bot token
         px: '!',
         playing: 'Umut Bayraktar ❤️ Music Bot',
 
@@ -9,7 +9,8 @@ module.exports = {
             roleName: 'DJ', //WRITE WHAT THE NAME OF THE DJ ROLE WILL BE, THEY CAN USE IT ON YOUR SERVER
             commands: ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume'] //Please don't touch
         },
-        maxVol: 250, //You can specify the maximum volume level.
+        selfDeaf: false, //IF YOU WANT TO DEAF THE BOT, set false to true.
+        maxVol: 100, //You can specify the maximum volume level.
         loopMessage: false, //Please don't touch
         discordPlayer: {
             ytdlOptions: {
