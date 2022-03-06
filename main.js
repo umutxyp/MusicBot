@@ -8,8 +8,7 @@ let client = new Client({
         Intents.FLAGS.GUILD_MEMBERS,
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.GUILD_VOICE_STATES
-    ],
-    disableMentions: 'everyone',
+    ]
 });
 
 client.config = require('./config');
@@ -35,33 +34,26 @@ readdirSync('./commands/').forEach(dirs => {
     };
 });
 
-player.on('error', (queue, error) => {
-    console.log(`There was a problem with the song queue => ${error.message}`);
-});
-
-player.on('connectionError', (queue, error) => {
-    console.log(`I'm having trouble connecting => ${error.message}`);
-});
 
 player.on('trackStart', (queue, track) => {
     if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
-    queue.metadata.send(`🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧`);
+    queue.metadata.send({ content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧` });
 });
 
 player.on('trackAdd', (queue, track) => {
-    queue.metadata.send(`**${track.title}** added to playlist. ✅`);
+    queue.metadata.send({ content: `**${track.title}** added to playlist. ✅` });
 });
 
 player.on('botDisconnect', (queue) => {
-    queue.metadata.send('Someone from the audio channel Im connected to kicked me out, the whole playlist has been cleared! ❌');
+    queue.metadata.send({ content: 'Someone from the audio channel Im connected to kicked me out, the whole playlist has been cleared! ❌' });
 });
 
 player.on('channelEmpty', (queue) => {
-    queue.metadata.send('I left the audio channel because there is no one on my audio channel. ❌');
+    queue.metadata.send({ content: 'I left the audio channel because there is no one on my audio channel. ❌' });
 });
 
 player.on('queueEnd', (queue) => {
-    queue.metadata.send('All play queue finished, I think you can listen to some more music. ✅');
+    queue.metadata.send({ content: 'All play queue finished, I think you can listen to some more music. ✅' });
 });
 
 
