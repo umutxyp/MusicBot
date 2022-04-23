@@ -53,9 +53,13 @@ player.on('channelEmpty', (queue) => {
 });
 
 player.on('queueEnd', (queue) => {
-    queue.metadata.send({ content: 'All play queue finished, I think you can listen to some more music. ✅' });
+    if(client.config.opt.voiceConfig.leaveOnTimer.status === true) {
+        setTimeout(() => {
+            if(queue.connection) queue.connection.disconnect();
+        }, client.config.opt.voiceConfig.leaveOnTimer.time);
+    }
+    queue.metadata.send({ content: 'All play queue finished, I think you can listen to some more music. ✅' })
 });
-
 
 
 if(client.config.TOKEN){
