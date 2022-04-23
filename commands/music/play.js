@@ -17,6 +17,8 @@ if (!args[0]) return message.channel.send({ content: `${message.author}, Write t
         if (!res || !res.tracks.length) return message.channel.send({ content: `${message.author}, No results found! ❌` });
 
         const queue = await client.player.createQueue(message.guild, {
+                leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
+                autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
             metadata: message.channel
         });
 
@@ -28,17 +30,6 @@ if (!args[0]) return message.channel.send({ content: `${message.author}, Write t
         }
 
         await message.channel.send({ content: `Your ${res.playlist ? 'Playlist' : 'Track'} Loading... 🎧` });
-
-if(client.config.opt.selfDeaf === false) {
-let channel = message.member.voice.channel;
-const { joinVoiceChannel } = require('@discordjs/voice');
-const connection = joinVoiceChannel({
-   channelId: channel.id,
-   guildId: channel.guild.id,
-   adapterCreator: channel.guild.voiceAdapterCreator,
-   selfDeaf: false
-});
-}
 
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
 
