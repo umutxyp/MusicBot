@@ -11,7 +11,7 @@ module.exports = {
         },
             
         selfDeaf: false, //IF YOU WANT TO DEAF THE BOT, set false to true.
-        selfDeafTimeout:{
+        voiceChannelLeave:{
                 status: true, //If this variable is "true", the bot will leave the channel a certain time after the music ends.
                 time: 5000, //1000 = 1 second
         },
