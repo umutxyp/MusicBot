@@ -1,7 +1,7 @@
 # Discord.js v13 Music Bot
 This project was created for you to create your own music bot, adapted to run on a virtual computer or on your own computer, **Github.com** is a privately published discord music bot project.<br><br>
 <h1>Music Bot Installation Guide</h1><hr>
-<h1><a href="https://youtu.be/CenYq-UtNno">VİDEO GUIDE</a></h1>
+<h1><a href="https://youtu.be/rsfLHi2u-Bo">VİDEO GUIDE</a></h1>
 <b>1 |</b> Download the project from <b>github.com</b> to your computer, transfer it from the zip file to a regular file and write your discord bot token in the section that says <b>TOKEN</b> in the <b>config.js</b> file.<br><br>
 <b>2 |</b> Download and install the latest version of Node.js on your computer, run as administrator after installation.<br><br>
 <b>3 |</b> Download the coding editor named Visual studio code.<br><br>
