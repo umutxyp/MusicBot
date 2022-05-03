@@ -44,10 +44,6 @@ player.on('trackAdd', (queue, track) => {
     queue.metadata.send({ content: `**${track.title}** added to playlist. ✅` });
 });
 
-player.on('botDisconnect', (queue) => {
-    queue.metadata.send({ content: 'Someone from the audio channel Im connected to kicked me out, the whole playlist has been cleared! ❌' });
-});
-
 player.on('channelEmpty', (queue) => {
     queue.metadata.send({ content: 'I left the audio channel because there is no one on my audio channel. ❌' });
 });
