@@ -1,9 +1,12 @@
+const { MessageEmbed } = require("discord.js")
 module.exports = (client, message) => {
-    if (message.author.bot || message.channel.type === 'dm') return;
 
-    const prefix = client.config.px;
+if(message.author.bot) return;
+if(!message.guild) return
 
-    if (message.content.indexOf(prefix) !== 0) return;
+const prefix = client.config.px;
+
+if(message.content.indexOf(prefix) !== 0) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -13,11 +16,21 @@ module.exports = (client, message) => {
     const DJ = client.config.opt.DJ;
 
     if (cmd && DJ.enabled && DJ.commands.includes(cmd.name)) {
-        const roleDJ = message.guild.roles.cache.find(x => x.name === DJ.roleName);
+        const roleDJ = message.guild.roles.cache.find(x => x.name === DJ.roleName)
+        if(!message.member.permissions.has("MANAGE_GUILD")){
+            if(!message.member.roles.cache.has(roleDJ?.id)){
 
-        if (!message.member.roles.cache.has(roleDJ.id)) {
-            return message.channel.send({ content: `${message.author}, This command is set only for those with the ${DJ.roleName} role. ❌` });
+            const embed = new MessageEmbed()
+            .setColor('BLUE')
+            .setTitle(client.user.username)
+            .setThumbnail(client.user.displayAvatarURL())
+            .setDescription("To use some of the music commands in this bot, you must create and own a role named **DJ** on your server. Users without this role cannot use the "+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
+            .addField("Invite Bot", `**[Add Me](https://bit.ly/3kbzi7b)**` ,true)
+            .setTimestamp()
+            .setFooter({ text: 'Music Bot - by Umut Bayraktar ❤️', iconURL:message.author.avatarURL({ dynamic: true }) });
+            return message.channel.send({ content: `${message.author}`, embeds: [embed]}).catch(e => { })
         }
+    }
     }
 
     if (cmd && cmd.voiceChannel) {
