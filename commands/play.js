@@ -34,9 +34,10 @@ module.exports = {
             await client.player.deleteQueue(interaction.guild.id);
             return interaction.reply({ content: `I can't join audio channel. ❌`, ephemeral: true });
         }
-        res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
 
+        await interaction.reply({ content: `Your ${res.playlist ? 'Playlist' : 'Track'} Loading... 🎧` });
+         
+        res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
         if (!queue.playing) await queue.play();
-        await interaction.channel.send({ content: `Your ${res.playlist ? 'Playlist' : 'Track'} Loading... 🎧` });
     },
 };
