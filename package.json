@@ -1,5 +1,5 @@
 {
-  "name": "music-bot-v3",
+  "name": "music-bot-v4",
   "main": "main.js",
   "author": "Umut Bayraktar",
   "description": "Discord.js V13 Compatible Umut Bayraktar Youtube Private Music Bot Codes for Shared on GitHub!",
@@ -9,8 +9,9 @@
   "dependencies": {
     "@discordjs/voice": "^0.8.0",
     "discord-player": "^5.2.0",
+    "discord-sync-commands-v14": "^2.0.0",
     "discord.js": "^13.6.0",
-    "express": "^4.17.2",
+    "express": "^4.18.1",
     "ffmpeg-static": "^4.4.0",
     "ms": "^3.0.0-canary.1",
     "opusscript": "^0.0.8"
