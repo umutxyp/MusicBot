@@ -35,7 +35,7 @@ module.exports = {
             return interaction.reply({ content: `I can't join audio channel. ❌`, ephemeral: true });
         }
 
-        await interaction.reply({ content: `Your ${res.playlist ? 'Playlist' : 'Track'} Loading... 🎧` });
+        await interaction.channel.send({ content: `Your ${res.playlist ? 'Playlist' : 'Track'} Loading... 🎧` });
          
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
         if (!queue.playing) await queue.play();
