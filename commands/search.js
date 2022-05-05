@@ -23,7 +23,9 @@ if (!name) return interaction.reply({ content: `Please enter a valid song name. 
         if (!res || !res.tracks.length) return interaction.reply({ content: `No search results found. ❌`, ephemeral: true }).catch(e => { })
 
         const queue = await client.player.createQueue(interaction.guild, {
-            metadata: interaction.channel
+            leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
+                autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
+                metadata: interaction.channel
         });
 
         const embed = new MessageEmbed();
