@@ -28,6 +28,8 @@ module.exports = {
                 metadata: interaction.channel
         });
 
+      await interaction.channel.send({ content: `Your ${res.playlist ? 'Playlist' : 'Track'} Loading... 🎧` });
+
         try {
             if (!queue.connection) await queue.connect(interaction.member.voice.channel)
         } catch {
@@ -35,8 +37,6 @@ module.exports = {
             return interaction.reply({ content: `I can't join audio channel. ❌`, ephemeral: true });
         }
 
-        await interaction.channel.send({ content: `Your ${res.playlist ? 'Playlist' : 'Track'} Loading... 🎧` });
-         
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
         if (!queue.playing) await queue.play();
     },
