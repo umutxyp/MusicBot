@@ -11,6 +11,7 @@ let client = new Client({
     ]
 });
 
+client.db = require("orio.db")
 client.config = require('./config');
 client.player = new Player(client, client.config.opt.discordPlayer);
 const player = client.player
