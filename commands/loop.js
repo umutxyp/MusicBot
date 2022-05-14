@@ -8,9 +8,11 @@ module.exports = {
 
     run: async (client, interaction) => {
         const queue = client.player.getQueue(interaction.guild.id);
-
+let cmds = client.db.get("loop"+interaction.user.id)
 if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
+if(cmds) return interaction.reply({ content: `You already have an active command here. ❌`, ephemeral: true }).catch(e => { })
 
+await client.db.set("loop"+interaction.user.id, "loop")
 let button = new MessageActionRow().addComponents(
     new MessageButton()
     .setLabel("Loop")
@@ -42,6 +44,7 @@ let button = new MessageActionRow().addComponents(
             }
             })
             col.on('end', async(button) => {
+                await client.db.delete("loop"+interaction.user.id)
                  button = new MessageActionRow().addComponents(
                     new MessageButton()
                     .setStyle("SUCCESS")
