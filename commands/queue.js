@@ -19,7 +19,7 @@ module.exports = {
 
         embed.setColor('BLUE');
         embed.setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }));
-        embed.setTitle(`Server Music List - ${interaction.guild.name} ${methods[queue.repeatMode]}`);
+        embed.setTitle(`Server Music List - ${interaction.guild.name}`);
 
         const tracks = queue.tracks.map((track, i) => `**${i + 1}** - ${track.title} | ${track.author} (Started by <@${track. requestedBy.id}>)`);
 
