@@ -1,5 +1,4 @@
-# Discord.js v13 Slash Commands Music Bot
-# Astra Music 
+# Astra Music Discord.js v13 Slash Commands Music Bot
 Add Astra Bot: https://bit.ly/3LIb7Zv<br>
 This project was created for you to create your own music bot, adapted to run on a virtual computer or on your own computer, **Github.com** is a privately published discord music bot project. This music bot is made with slash commands<br><br>
 <h1>Music Bot Installation Guide</h1><hr>
