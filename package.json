@@ -1,8 +1,8 @@
 {
-  "name": "music-bot-v4",
+  "name": "astra-music",
   "main": "main.js",
   "author": "Umut Bayraktar",
-  "description": "Discord.js V13 Compatible Umut Bayraktar Youtube Private Music Bot Codes for Shared on GitHub!",
+  "description": "Open Source Codes of Astra Music Bot.",
   "scripts": {
     "start": "node main.js"
   },
@@ -13,6 +13,7 @@
     "discord.js": "^13.6.0",
     "express": "^4.18.1",
     "ffmpeg-static": "^4.4.0",
+    "mongoose": "^6.3.4",
     "ms": "^3.0.0-canary.1",
     "opusscript": "^0.0.8",
     "orio.db": "^3.1.1"
