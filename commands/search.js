@@ -24,8 +24,8 @@ if (!name) return interaction.reply({ content: `Please enter a valid song name. 
 
         const queue = await client.player.createQueue(interaction.guild, {
             leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
-                autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
-                metadata: interaction.channel
+            autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
+            metadata: interaction.channel
         });
 
         const embed = new MessageEmbed();
