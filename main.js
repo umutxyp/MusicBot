@@ -9,7 +9,7 @@ let client = new Client({
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.GUILD_VOICE_STATES
     ]
-});
+})
 
 client.db = require("orio.db")
 client.db.deleteAll()
@@ -17,8 +17,20 @@ client.config = require('./config');
 client.player = new Player(client, client.config.opt.discordPlayer);
 const player = client.player
 
-const synchronizeSlashCommands = require('discord-sync-commands-v14');
+const mongoose = require("mongoose");
+var database = require("./DATABASE/mongodb.js");
+mongoose.connect(client.config.mongoDB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+    }).then(() => {
+        console.log(`Connected MongoDB`);
+    }).catch((err) => {
+        return console.log("MongoDB Error: " + err);
+    })
 
+client.mdb = database
+
+const synchronizeSlashCommands = require('discord-sync-commands-v14');
 client.commands = new Collection();
 fs.readdir("./commands/", (_err, files) => {
     files.forEach((file) => {
