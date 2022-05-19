@@ -1,7 +1,7 @@
 module.exports = {
         TOKEN: '', //write your discord bot token
         playing: 'Umut Bayraktar ❤️ Music Bot',
-
+        mongoDB: "" //write your mongoDB url.
  opt: {
         DJ: {
             enabled: false, //IF YOU WANT ONLY DJS TO USE IT, set false to true.
