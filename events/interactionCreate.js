@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-module.exports = (client, int) => {
+module.exports = async (client, int) => {
 
 if(!int.guild) return
 
@@ -13,22 +13,25 @@ if(!int.guild) return
     })
 
     const DJ = client.config.opt.DJ;
-
-    if (cmd && DJ.enabled && DJ.commands.includes(int.commandName)) {
-        const roleDJ = int.guild.roles.cache.find(x => x.name === DJ.roleName)
+    let djRolefind = await client.mdb.findOne({ guildID: int.guild.id }).catch(e => { });
+   let djRole = djRolefind && djRolefind.djRole
+    if(djRole){
+    if (cmd && DJ.commands.includes(int.commandName)) {
+        const roleDJ = int.guild.roles.cache.get(djRole)
         if(!int.member.permissions.has("MANAGE_GUILD")){
-            if(!int.member.roles.cache.has(roleDJ?.id)){
+            if(roleDJ && !int.member.roles.cache.has(roleDJ)){
 
             const embed = new MessageEmbed()
             .setColor('BLUE')
             .setTitle(client.user.username)
             .setThumbnail(client.user.displayAvatarURL())
-            .setDescription("To use some of the music commands in this bot, you must create and own a role named **DJ** on your server. Users without this role cannot use the "+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
-            .addField("Invite Bot", `**[Add Me](https://bit.ly/3kbzi7b)**` ,true)
+            .setDescription("You must have the <@&"+djRole+">(DJ) role set on this server to use this command. Users without this role cannot use the "+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
+            .addField("Invite Bot", `**[Add Me](https://bit.ly/3LIb7Zv) | [Support](https://discord.gg/ST89uArTdh) | [Website](https://astramusic.vercel.app) | [Source Code](https://github.com/1umutda/MusicBot)**` ,true)
             .setTimestamp()
             .setFooter({ text: 'Music Bot - by Umut Bayraktar ❤️', iconURL:int.user.displayAvatarURL({ dynamic: true }) });
             return int.reply({ content: `${int.user}`, embeds: [embed], ephemeral: true}).catch(e => { })
         }
+    }
     }
     }
 
