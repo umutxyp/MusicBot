@@ -4,7 +4,6 @@ module.exports = {
     name: 'stats',
     options: [],
     run: async (client, interaction) => {
-
         let button = new MessageActionRow().addComponents(
             new MessageButton()
             .setStyle("SUCCESS")
@@ -24,7 +23,7 @@ module.exports = {
                 .setDescription(`> **Guilds: \`${client.guilds.cache.size}\`**
 > **Users: \`${Math.ceil(client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString("tr-TR"))}.000\`**
 > **Channels: \`${client.channels.cache.size}\`**`)
-                .addField("Invite Bot", `**[Add Me](https://bit.ly/3kbzi7b)**` ,true)
+.addField("Invite Bot", `**[Add Me](https://bit.ly/3LIb7Zv) | [Support](https://discord.gg/ST89uArTdh) | [Website](https://astramusic.vercel.app) | [Source Code](https://github.com/1umutda/MusicBot)**` ,true)
                 interaction.reply({embeds:[embed], components:[button]}).then(async Message => {
                     
                     const filter = i =>  i.user.id === interaction.user.id
@@ -44,7 +43,7 @@ module.exports = {
                         .setDescription(`> **Guilds: \`${client.guilds.cache.size}\`**
 > **Users: \`${Math.ceil(client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString("tr-TR"))}.000\`**
 > **Channels: \`${client.channels.cache.size}\`**`)
-                        .addField("Invite Bot", `**[Add Me](https://bit.ly/3kbzi7b)**` ,true)
+.addField("Invite Bot", `**[Add Me](https://bit.ly/3LIb7Zv) | [Support](https://discord.gg/ST89uArTdh) | [Website](https://astramusic.vercel.app) | [Source Code](https://github.com/1umutda/MusicBot)**` ,true)
                               
                         await interaction.editReply({embeds: [embedd]}).catch(e => { });
                         button.reply({content: "> **✅ Success:** Bot statistics updated!", ephemeral: true}).catch(e => { });
@@ -81,7 +80,7 @@ module.exports = {
                         .setDescription(`> **Guilds: \`${client.guilds.cache.size}\`**
 > **Users: \`${Math.ceil(client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString("tr-TR"))}.000\`**
 > **Channels: \`${client.channels.cache.size}\`**`)
-                        .addField("Invite Bot", `**[Add Me](https://bit.ly/3kbzi7b)**` ,true)
+.addField("Invite Bot", `**[Add Me](https://bit.ly/3LIb7Zv) | [Support](https://discord.gg/ST89uArTdh) | [Website](https://astramusic.vercel.app) | [Source Code](https://github.com/1umutda/MusicBot)**` ,true)
                               
                         await interaction.editReply({embeds: [embedd], components:[button]}).catch(e => { });
                     })
