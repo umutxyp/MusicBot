@@ -19,7 +19,8 @@ if(!int.guild) return
     if (cmd && DJ.commands.includes(int.commandName)) {
         const roleDJ = int.guild.roles.cache.get(djRole)
         if(!int.member.permissions.has("MANAGE_GUILD")){
-            if(roleDJ && !int.member.roles.cache.has(roleDJ)){
+        if(roleDJ){
+        if(!int.member.roles.cache.has(roleDJ.id)){
 
             const embed = new MessageEmbed()
             .setColor('BLUE')
@@ -31,6 +32,7 @@ if(!int.guild) return
             .setFooter({ text: 'Music Bot - by Umut Bayraktar ❤️', iconURL:int.user.displayAvatarURL({ dynamic: true }) });
             return int.reply({ content: `${int.user}`, embeds: [embed], ephemeral: true}).catch(e => { })
         }
+    }
     }
     }
     }
