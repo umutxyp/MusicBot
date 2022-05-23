@@ -1,8 +1,7 @@
 # Astra Music Discord.js v13 Slash Commands Music Bot
 <h1>Add Astra Bot: https://bit.ly/3LIb7Zv</h1><br>
 It's time to listen to music on your discord server with a completely free and advanced interface. Music bot Astra that supports playing music on many platforms that will make your server feel special.<br><br>
-<h1>Music Bot Installation Guide</h1><hr>
-<h1><a href="https://youtu.be/p0zYWT_XPKU">VİDEO GUIDE</a></h1>
+<h1><a href="https://youtu.be/p0zYWT_XPKU">Astra Setup</a></h1>
 <b>1 |</b> Download the project from <b>github.com</b> to your computer, transfer it from the zip file to a regular file and write your discord bot token in the section that says <b>TOKEN</b> in the <b>config.js</b> file.<br><br>
 <b>2 |</b> Download and install the latest version of Node.js on your computer, run as administrator after installation.<br><br>
 <b>3 |</b> Download the coding editor named Visual studio code.<br><br>
