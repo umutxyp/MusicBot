@@ -12,37 +12,62 @@ if(!int.guild) return
         ephemeral: true
     })
 
+
     const DJ = client.config.opt.DJ;
-    let djRolefind = await client.mdb.findOne({ guildID: int.guild.id }).catch(e => { });
-   let djRole = djRolefind && djRolefind.djRole
-    if(djRole){
-    if (cmd && DJ.commands.includes(int.commandName)) {
-        const roleDJ = int.guild.roles.cache.get(djRole)
-        if(!int.member.permissions.has("MANAGE_GUILD")){
-        if(roleDJ){
-        if(!int.member.roles.cache.has(roleDJ.id)){
+    if (cmd && ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume', 'nowplaying', 'save', 'search', 'time'].includes(int.commandName)) {
+        const fetch = require("node-fetch"); // import node-fetch module
+        const url = `https://top.gg/api/bots/${client.user.id}/check?userId=${int.user.id}`; // api endpoint
+        
+        fetch(url, { method: "GET", headers: { 
+            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2NDk5NTg4NDIzNDQ0ODk4NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNjUzMzE2NTU4fQ.D0cEuMzNTKZOBJc1QBIzPyBHa8Vf3Gl5BWgZiTptVO8" }
+        }).then(async(res) => res.text()).then(async(json) => {
+            var isVoted = JSON.parse(json).voted;
+            if (isVoted == 0) {
+                const embed = new MessageEmbed()
+                .setColor('BLUE')
+                .setTitle(client.user.username)
+                .setThumbnail(client.user.displayAvatarURL())
+                .setDescription("Hello, in order to use the discord bot commands mentioned below, you need to vote on the **top.gg** site for the Astra bot to develop and grow faster. Each vote is valid for 12 hours, during which time you can continue to use these commands.\n[**VOTE ASTRA**](https://top.gg/bot/964995884234448987/vote)\n"+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
+                .setTimestamp()
+                .setFooter({ text: 'Music Bot - by Umut Bayraktar ❤️', iconURL: int.user.displayAvatarURL({ dynamic: true }) })
+                return int.reply({ embeds: [embed], ephemeral: true})
+            } else {
 
-            const embed = new MessageEmbed()
-            .setColor('BLUE')
-            .setTitle(client.user.username)
-            .setThumbnail(client.user.displayAvatarURL())
-            .setDescription("You must have the <@&"+djRole+">(DJ) role set on this server to use this command. Users without this role cannot use the "+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
-            .addField("Invite Bot", `**[Add Me](https://bit.ly/3LIb7Zv) | [Support](https://discord.gg/ST89uArTdh) | [Website](https://astramusic.vercel.app) | [Source Code](https://github.com/1umutda/MusicBot)**` ,true)
-            .setTimestamp()
-            .setFooter({ text: 'Music Bot - by Umut Bayraktar ❤️', iconURL:int.user.displayAvatarURL({ dynamic: true }) });
-            return int.reply({ content: `${int.user}`, embeds: [embed], ephemeral: true}).catch(e => { })
+                if (cmd && DJ.commands.includes(int.commandName)) {
+                    let djRolefind = await client.mdb.findOne({ guildID: int.guild.id }).catch(e => { });
+                    let djRole = djRolefind && djRolefind.djRole
+                     if(djRole){
+                  const roleDJ = int.guild.roles.cache.get(djRole)
+                  if(!int.member.permissions.has("MANAGE_GUILD")){
+                      if(roleDJ){
+                      if(!int.member.roles.cache.has(roleDJ.id)){
+          
+                      const embed = new MessageEmbed()
+                      .setColor('BLUE')
+                      .setTitle(client.user.username)
+                      .setThumbnail(client.user.displayAvatarURL())
+                      .setDescription("You must have the <@&"+djRole+">(DJ) role set on this server to use this command. Users without this role cannot use the "+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
+                      .addField("Invite Bot", `**[Add Me](https://bit.ly/3LIb7Zv) | [Vote](https://top.gg/bot/964995884234448987/vote) | [Support](https://discord.gg/ST89uArTdh) | [Website](https://astramusic.vercel.app) | [Source Code](https://github.com/1umutda/MusicBot)**` ,true)
+                      .setTimestamp()
+                      .setFooter({ text: 'Music Bot - by Umut Bayraktar ❤️', iconURL:int.user.displayAvatarURL({ dynamic: true }) });
+                      return int.reply({ content: `${int.user}`, embeds: [embed], ephemeral: true}).catch(e => { })
+                  }}}}
+                }
+        
+            if (cmd && cmd.voiceChannel) {
+                if (!int.member.voice.channel) return int.reply({ content: `You are not connected to an audio channel. ❌`, ephemeral: true});
+                if (int.guild.me.voice.channel && int.member.voice.channel.id !== int.guild.me.voice.channel.id) return int.reply({ content: `You are not on the same audio channel as me. ❌`, ephemeral: true});
+            }
+            cmd.run(client, int)
+            }
+          })
+    } else {
+        if (cmd && cmd.voiceChannel) {
+            if (!int.member.voice.channel) return int.reply({ content: `You are not connected to an audio channel. ❌`, ephemeral: true});
+            if (int.guild.me.voice.channel && int.member.voice.channel.id !== int.guild.me.voice.channel.id) return int.reply({ content: `You are not on the same audio channel as me. ❌`, ephemeral: true});
         }
-    }
-    }
-    }
-    }
-
-    if (cmd && cmd.voiceChannel) {
-        if (!int.member.voice.channel) return int.reply({ content: `You are not connected to an audio channel. ❌`, ephemeral: true});
-        if (int.guild.me.voice.channel && int.member.voice.channel.id !== int.guild.me.voice.channel.id) return int.reply({ content: `You are not on the same audio channel as me. ❌`, ephemeral: true});
-    }
-
-    cmd.run(client, int)
+        cmd.run(client, int)    
+}
     }
 
     if (int.isButton()){
