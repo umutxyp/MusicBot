@@ -11,8 +11,7 @@ let client = new Client({
     ]
 })
 
-client.db = require("orio.db")
-client.db.deleteAll()
+client.db = require("croxydb")
 client.config = require('./config');
 client.player = new Player(client, client.config.opt.discordPlayer);
 const player = client.player
@@ -41,7 +40,7 @@ fs.readdir("./commands/", (_err, files) => {
             name: commandName,
             ...props
         });
-        console.log(`👌 Yüklendi slash komutu: ${commandName}`);
+        console.log(`👌 Loadded Slash Command: ${commandName}`);
     });
     synchronizeSlashCommands(client, client.commands.map((c) => ({
         name: c.name,
@@ -58,7 +57,7 @@ fs.readdir("./events", (_err, files) => {
       if (!file.endsWith(".js")) return;
       const event = require(`./events/${file}`);
       let eventName = file.split(".")[0];
-      console.log(`👌 Event Yüklendi: ${eventName}`);
+      console.log(`👌 Loadded Event: ${eventName}`);
       client.on(eventName, event.bind(null, client));
       delete require.cache[require.resolve(`./events/${file}`)];
   });
@@ -95,3 +94,9 @@ console.log("The Bot Token You Entered Into Your Project Is Incorrect Or Your Bo
 } else {
 console.log("Please Write Your Bot Token Opposite The Token In The config.js File In Your Project!")
 }
+
+setTimeout(() => {
+if(client.db.all()){
+    client.db.deleteAll()
+    }
+}, 5000)
