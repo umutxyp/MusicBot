@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@discordjs/voice": "^0.8.0",
+    "croxydb": "^0.0.7",
     "discord-player": "^5.2.0",
     "discord-sync-commands-v14": "^2.0.0",
     "discord.js": "^13.6.0",
@@ -15,8 +16,7 @@
     "ffmpeg-static": "^4.4.0",
     "mongoose": "^6.3.4",
     "ms": "^3.0.0-canary.1",
-    "opusscript": "^0.0.8",
-    "orio.db": "^3.1.1"
+    "opusscript": "^0.0.8"
   },
   "engines": {
     "node": "16.x"
