@@ -65,27 +65,38 @@ fs.readdir("./events", (_err, files) => {
 
 
 player.on('trackStart', (queue, track) => {
+    if(queue){
     if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
+        if(queue.metadata){
     queue.metadata.send({ content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧` }).catch(e => { })
+        }}
 });
 
 player.on('trackAdd', (queue, track) => {
+    if(queue){
+        if(queue.metadata){
     queue.metadata.send({ content: `**${track.title}** added to playlist. ✅` }).catch(e => { })
+        }}
 });
 
 player.on('channelEmpty', (queue) => {
+    if(queue){
+        if(queue.metadata){
     queue.metadata.send({ content: 'I left the audio channel because there is no one on my audio channel. ❌' }).catch(e => { })
+        }}
 });
 
 player.on('queueEnd', (queue) => {
     if(client.config.opt.voiceConfig.leaveOnTimer.status === true) {
+        if(queue){
         setTimeout(() => {
             if(queue.connection) queue.connection.disconnect();
         }, client.config.opt.voiceConfig.leaveOnTimer.time);
     }
+        if(queue.metadata){
     queue.metadata.send({ content: 'All play queue finished, I think you can listen to some more music. ✅' }).catch(e => { })
+        }}
 });
-
 
 if(client.config.TOKEN){
 client.login(client.config.TOKEN).catch(e => {
