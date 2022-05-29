@@ -3,7 +3,7 @@
 <h3>ADD ASTRA BOT: https://bit.ly/3PHDjyC</h3>
 <h3>VOTE ASTRA: https://bit.ly/3LYzaDe</h3>
 <h3>ASTRA SETUP VIDEO: https://youtu.be/p0zYWT_XPKU</h3>
-<h3>ASTRA WEBSITE: https://astramusic.vercel.app</h3>
+<h3>ASTRA WEBSITE: https://astrabot.vercel.app/</h3>
 <h3>UMUT BAYRAKTAR YOUTUBE: https://www.youtube.com/UmutBayraktarYT</h3>
 <h3>CODE SHARE DISCORD: https://discord.gg/6XGqdgE</h3>
 <hr>
