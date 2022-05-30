@@ -10,7 +10,7 @@ if(!int.guild) return
     if (!cmd) return void int.reply({
         content: `Command \`${int.commandName}\` not found.`,
         ephemeral: true
-    })
+    }).catch(e => {})
 
 
     const DJ = client.config.opt.DJ;
@@ -32,7 +32,7 @@ if(!int.guild) return
                 .setDescription("Hello, in order to use the discord bot commands mentioned below, you need to vote on the **top.gg** site for the Astra bot to develop and grow faster. Each vote is valid for 12 hours, during which time you can continue to use these commands.\n[**VOTE ASTRA**](https://top.gg/bot/964995884234448987/vote)\n"+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
                 .setTimestamp()
                 .setFooter({ text: 'Music Bot - by Umut Bayraktar ❤️', iconURL: int.user.displayAvatarURL({ dynamic: true }) })
-                return int.reply({ embeds: [embed], ephemeral: true})
+                return int.reply({ embeds: [embed], ephemeral: true}).catch(e => {})
             } else {
 
                 if (cmd && DJ.commands.includes(int.commandName)) {
@@ -57,8 +57,8 @@ if(!int.guild) return
                 }
         
             if (cmd && cmd.voiceChannel) {
-                if (!int.member.voice.channel) return int.reply({ content: `You are not connected to an audio channel. ❌`, ephemeral: true});
-                if (int.guild.me.voice.channel && int.member.voice.channel.id !== int.guild.me.voice.channel.id) return int.reply({ content: `You are not on the same audio channel as me. ❌`, ephemeral: true});
+                if (!int.member.voice.channel) return int.reply({ content: `You are not connected to an audio channel. ❌`, ephemeral: true}).catch(e => {})
+                if (int.guild.me.voice.channel && int.member.voice.channel.id !== int.guild.me.voice.channel.id) return int.reply({ content: `You are not on the same audio channel as me. ❌`, ephemeral: true}).catch(e => {})
             }
             cmd.run(client, int)
             }
@@ -87,8 +87,8 @@ if(!int.guild) return
           }}}}
         }
         if (cmd && cmd.voiceChannel) {
-            if (!int.member.voice.channel) return int.reply({ content: `You are not connected to an audio channel. ❌`, ephemeral: true});
-            if (int.guild.me.voice.channel && int.member.voice.channel.id !== int.guild.me.voice.channel.id) return int.reply({ content: `You are not on the same audio channel as me. ❌`, ephemeral: true});
+            if (!int.member.voice.channel) return int.reply({ content: `You are not connected to an audio channel. ❌`, ephemeral: true}).catch(e => {})
+            if (int.guild.me.voice.channel && int.member.voice.channel.id !== int.guild.me.voice.channel.id) return int.reply({ content: `You are not on the same audio channel as me. ❌`, ephemeral: true}).catch(e => {})
         }
         cmd.run(client, int)    
 
@@ -99,7 +99,7 @@ if(!int.guild) return
     switch (int.customId) {
         case 'saveTrack': {
        if (!queue || !queue.playing){
-       return int.reply({ content: `No music currently playing. ❌`, ephemeral: true, components: [] });
+       return int.reply({ content: `No music currently playing. ❌`, ephemeral: true }).catch(e => {})
        } else {
           const embed = new MessageEmbed()
           .setColor('BLUE')
@@ -122,7 +122,7 @@ if(!int.guild) return
         break
         case 'time': {
             if (!queue || !queue.playing){
-                return int.reply({ content: `No music currently playing. ❌`, ephemeral: true, components: [] });
+                return int.reply({ content: `No music currently playing. ❌`, ephemeral: true }).catch(e => {})
                 } else {
 
             const progress = queue.createProgressBar();
