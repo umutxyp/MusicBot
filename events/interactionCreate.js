@@ -29,7 +29,7 @@ if(!int.guild) return
                 .setColor('BLUE')
                 .setTitle(client.user.username)
                 .setThumbnail(client.user.displayAvatarURL())
-                .setDescription("Hello, in order to use the discord bot commands mentioned below, you need to vote on the **top.gg** site for the Astra bot to develop and grow faster. Each vote is valid for 12 hours, during which time you can continue to use these commands.\n[**VOTE ASTRA**](https://top.gg/bot/964995884234448987/vote)\n"+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
+                .setDescription("Hello, in order to use the discord bot commands mentioned below, you need to vote on the **top.gg** site for the Astra bot to develop and grow faster. Each vote is valid for 12 hours, during which time you can continue to use these commands.\n[**VOTE ASTRA**](https://top.gg/bot/924325576095973426/vote)\n"+client.config.opt.DJ.commands.map(astra => '`'+astra+'`').join(", "))
                 .setTimestamp()
                 .setFooter({ text: 'Music Bot - by Umut Bayraktar ❤️', iconURL: int.user.displayAvatarURL({ dynamic: true }) })
                 return int.reply({ embeds: [embed], ephemeral: true}).catch(e => {})
