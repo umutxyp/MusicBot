@@ -15,13 +15,13 @@ if(!int.guild) return
 
     const DJ = client.config.opt.DJ;
 
-    /*
+    
     if (cmd && ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume', 'nowplaying', 'save', 'search', 'time'].includes(int.commandName)) {
         const fetch = require("node-fetch"); // import node-fetch module
         const url = `https://top.gg/api/bots/${client.user.id}/check?userId=${int.user.id}`; // api endpoint
         
         fetch(url, { method: "GET", headers: { 
-            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2NDk5NTg4NDIzNDQ0ODk4NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNjUzMzE2NTU4fQ.D0cEuMzNTKZOBJc1QBIzPyBHa8Vf3Gl5BWgZiTptVO8" }
+            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyNDMyNTU3NjA5NTk3MzQyNiIsImJvdCI6dHJ1ZSwiaWF0IjoxNjU0MjcyMjgyfQ.EtAWi-Fv0YEW7izDxkCcGlryWelxQl5K4Z1jUf547WY" }
         }).then(async(res) => res.text()).then(async(json) => {
             var isVoted = JSON.parse(json).voted;
             if (isVoted == 0) {
@@ -64,7 +64,7 @@ if(!int.guild) return
             }
           })
     } else {
-        */
+        
 
         if (cmd && DJ.commands.includes(int.commandName)) {
             let djRolefind = await client.mdb.findOne({ guildID: int.guild.id }).catch(e => { });
@@ -93,6 +93,7 @@ if(!int.guild) return
         cmd.run(client, int)    
 
     }
+}
 
     if (int.isButton()){
         const queue = client.player.getQueue(int.guildId);
