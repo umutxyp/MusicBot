@@ -16,7 +16,7 @@ if(!int.guild) return
     const DJ = client.config.opt.DJ;
 
     
-    if (cmd && ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume', 'nowplaying', 'save', 'search', 'time'].includes(int.commandName)) {
+    if (cmd && ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume', 'nowplaying', 'save', 'search', 'time','lyrics'].includes(int.commandName)) {
         const fetch = require("node-fetch"); // import node-fetch module
         const url = `https://top.gg/api/bots/${client.user.id}/check?userId=${int.user.id}`; // api endpoint
         
