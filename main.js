@@ -98,6 +98,13 @@ player.on('queueEnd', (queue) => {
         }}
 });
 
+player.on("connectionError",  (queue) => {
+    if(queue){
+        if(queue.metadata){
+    queue.metadata.send({ content: 'Im having trouble trying to connect to the voice channel. ❌' }).catch(e => { })
+        }}
+})
+
 if(client.config.TOKEN){
 client.login(client.config.TOKEN).catch(e => {
 console.log("The Bot Token You Entered Into Your Project Is Incorrect Or Your Bot's INTENTS Are OFF!")
