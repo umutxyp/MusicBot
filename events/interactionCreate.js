@@ -21,7 +21,8 @@ if(!int.guild) return
         const url = `https://top.gg/api/bots/${client.user.id}/check?userId=${int.user.id}`; // api endpoint
         
         fetch(url, { method: "GET", headers: { 
-            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyNDMyNTU3NjA5NTk3MzQyNiIsImJvdCI6dHJ1ZSwiaWF0IjoxNjU0MjcyMjgyfQ.EtAWi-Fv0YEW7izDxkCcGlryWelxQl5K4Z1jUf547WY" }
+            Authorization: client.config.dblToken
+         }
         }).then(async(res) => res.text()).then(async(json) => {
             var isVoted = JSON.parse(json).voted;
             if (isVoted == 0) {
