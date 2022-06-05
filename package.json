@@ -16,7 +16,9 @@
     "ffmpeg-static": "^4.4.1",
     "geniuslyricfinder": "^1.0.4",
     "mongoose": "^6.3.5",
-    "opusscript": "^0.0.8"
+    "node-fetch": "^3.2.5",
+    "opusscript": "^0.0.8",
+    "topgg-autoposter": "^2.0.1"
   },
   "engines": {
     "node": "16.x"
