@@ -3,12 +3,8 @@ module.exports = async (client, oldState, newState) => {
     if(oldState.channelId && !newState.channelId){
    const queue = client.player?.getQueue(newState.guild.id)
    if(queue){
-     if(queue.playing){
-     if(queue.metadata){
-    queue.metadata.send({ content: 'Someone from the audio channel Im connected to kicked me out, the whole playlist has been cleared! ❌' }).catch(e => {})
-     }
+    queue.metadata.send({ content: "Sorry I left the audio channel. I hope someone didn't kick me off the channel. 😔" });
     client.player?.deleteQueue(queue.metadata.guild.id)
-}
 }
     }
   }
