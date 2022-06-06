@@ -12,7 +12,7 @@ let cmds = client.db.get("loop."+interaction.user.id+interaction.guild.id+intera
 if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
 if(cmds) return interaction.reply({ content: `You already have an active command here. ❌\nhttps://discord.com/channels/${interaction.guild.id}/${interaction.channel.id}`, ephemeral: true }).catch(e => { })
 
-await client.db.set("loop."+interaction.user.id+interaction.guild.id+interaction.channel.id)
+await client.db.set("loop."+interaction.user.id+interaction.guild.id+interaction.channel.id, "active")
 
 let button = new MessageActionRow().addComponents(
     new MessageButton()
