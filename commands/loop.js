@@ -12,7 +12,7 @@ let cmds = client.db.get("loop."+interaction.user.id+interaction.guild.id+intera
 if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
 if(cmds) return interaction.reply({ content: `You already have an active command here. ❌\nhttps://discord.com/channels/${interaction.guild.id}/${interaction.channel.id}/${cmds}`, ephemeral: true }).catch(e => { })
 
-await client.db.set("loop."+interaction.user.id+interaction.guild.id+interaction.channel.id, interaction.message.id)
+
 let button = new MessageActionRow().addComponents(
     new MessageButton()
     .setLabel("Loop")
@@ -27,6 +27,7 @@ let button = new MessageActionRow().addComponents(
             .setFooter({ text: 'Astra Bot - by Umut Bayraktar ❤️', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
         interaction.reply({ embeds: [embed], components:[button]}).then(async Message => {
 
+            await client.db.set("loop."+interaction.user.id+interaction.guild.id+interaction.channel.id, Message.id)
 
             const filter = i =>  i.user.id === interaction.user.id
             let col = await interaction.channel.createMessageComponentCollector({filter, time: 60000 });
