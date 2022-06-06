@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageButton, MessageEmbed, MessageActionRow } = require('discord.js');
 
 module.exports = {
     description: "It shows you the playlist.",
@@ -7,30 +7,145 @@ module.exports = {
     voiceChannel: true,
 
     run: async (client, interaction) => {
+        let cmds = client.db.get("queue."+interaction.user.id+interaction.guild.id+interaction.channel.id)
         const queue = client.player.getQueue(interaction.guild.id);
-
- 
         if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
-
         if (!queue.tracks[0]) return interaction.reply({ content: `No music in queue after current. ❌`, ephemeral: true }).catch(e => { })
+        if(cmds) return interaction.reply({ content: `You already have an active command here. ❌\nhttps://discord.com/channels/${interaction.guild.id}/${interaction.channel.id}`, ephemeral: true }).catch(e => { })
+       
+        
+        await client.db.set("queue."+interaction.user.id+interaction.guild.id+interaction.channel.id, "active")
 
-        const embed = new MessageEmbed();
-        const methods = ['🔁', '🔂'];
+const trackl = []
+queue.tracks.map(async (track, i) => { 
+trackl.push({
+            title: track.title,
+            author: track.author,
+            requestedBy:{
+            id: track.requestedBy.id
+            },
+            url: track.url,
+            duration: track.duration
+})
+})
+        
+        const backId = "emojiBack"
+        const forwardId = "emojiForward"
+        const backButton = new MessageButton({
+        style: "SECONDARY",
+        emoji: "⬅️",
+        customId: backId
+        });
+        
+        const deleteButton = new MessageButton({
+            style: "SECONDARY",
+            emoji: "❌",
+            customId: "close"
+            });
 
-        embed.setColor('BLUE');
-        embed.setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }));
-        embed.setTitle(`Server Music List - ${interaction.guild.name}`);
+        const forwardButton = new MessageButton({
+        style: "SECONDARY",
+        emoji: "➡️",
+        customId: forwardId
+        });
 
-        const tracks = queue.tracks.map((track, i) => `**${i + 1}** - ${track.title} | ${track.author} (Started by <@${track. requestedBy.id}>)`);
+    
+        let kaçtane = 4
+        let page = 1
+        let a = trackl.length / kaçtane
+        let b = `${a +1}`
+        let toplam = b.charAt(0)
+        
+        const generateEmbed = async (start) => {
+        let sayı = page === 1 ? 1: page * kaçtane - kaçtane + 1
+        const current = trackl.slice(start, start + kaçtane)
+         return new MessageEmbed()
+        .setTitle(`Server Music List - ${interaction.guild.name}`)
+        .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
+        .setColor('BLUE')
+        .setDescription(`Currently Playing: \`${queue.current.title}\``)
+        .addFields(await Promise.all(current.map(async (data) => ({
+        name: `\`${sayı++}\` ↷`,
+        value: `${data.title} | ${data.author} (Started by <@${data.requestedBy.id}>)`,
+        inline: false
+        }))))
+        .setFooter({text: `Page ${page} / ${toplam}` })
+        }
 
-        const songs = queue.tracks.length;
-        const nextSongs = songs > 5 ? `And **${songs - 5}** Other Song...` : `There are **${songs}** Songs in the List.`;
+        const canFitOnOnePage = trackl.length <= kaçtane
 
-        embed.setDescription(`Currently Playing: \`${queue.current.title}\`\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs }`);
+          await interaction.reply({
+              embeds: [await generateEmbed(0)],
+              components: canFitOnOnePage
+                ? []
+                : [new MessageActionRow({ components: [deleteButton, forwardButton] })],
+            }).catch(e => { })
 
-        embed.setTimestamp();
-        embed.setFooter({text: 'by Umut Bayraktar ❤️', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
+            console.log(interaction)
 
-        interaction.reply({ embeds: [embed] }).catch(e => { })
-    },
-};
+            if (canFitOnOnePage) return
+            const filter = i =>  i.user.id === interaction.user.id
+            const collector = interaction.channel.createMessageComponentCollector({filter, time: 10000});
+        
+         
+            let currentIndex = 0
+            collector.on("collect", async (button) => {
+              if(button.customId === backId) {
+                  page--
+              }
+              if(button.customId === forwardId) {
+                  page++
+              }
+        
+              button.customId === backId
+                ? (currentIndex -= kaçtane)
+                : (currentIndex += kaçtane)
+        
+              await interaction.editReply({
+                embeds: [await generateEmbed(currentIndex)],
+                components: [
+                  new MessageActionRow({
+                    components: [
+                      ...(currentIndex ? [backButton] : []),
+                      deleteButton,
+                      ...(currentIndex + kaçtane < trackl.length ? [forwardButton] : []),
+                    ],
+                  }),
+                ],
+              }).catch(e => { })
+              await button.deferUpdate();
+            })
+
+            collector.on("end", async (button) => {
+              
+                    await client.db.delete("queue."+interaction.user.id+interaction.guild.id+interaction.channel.id)
+
+                    button = new MessageActionRow().addComponents(
+                        new MessageButton()
+                        .setStyle("SECONDARY")
+                        .setEmoji("⬅️")
+                        .setCustomId(backId)
+                        .setDisabled(true),
+                        new MessageButton()
+                        .setStyle("SECONDARY")
+                        .setEmoji("❌")
+                        .setCustomId("close")
+                        .setDisabled(true),
+                        new MessageButton()
+                        .setStyle("SECONDARY")
+                        .setEmoji("➡️")
+                        .setCustomId(forwardId)
+                        .setDisabled(true))
+
+                    const embed = new MessageEmbed()
+                    .setTitle(`Server Music List - Time Ended!`)
+                    .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
+                    .setColor('BLUE')
+                    .setDescription(`Your time has expired to use this command, you can type \`/queue\` to use the command again.`)
+                    .setFooter({text: `Astra Bot - by Umut Bayraktar ❤️` })
+                    return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
+                
+            })
+        
+    }}
+
