@@ -50,7 +50,7 @@ trackl.push({
         });
 
     
-        let kaçtane = 4
+        let kaçtane = 8
         let page = 1
         let a = trackl.length / kaçtane
         let b = `${a +1}`
@@ -63,12 +63,10 @@ trackl.push({
         .setTitle(`Server Music List - ${interaction.guild.name}`)
         .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
         .setColor('BLUE')
-        .setDescription(`Currently Playing: \`${queue.current.title}\``)
-        .addFields(await Promise.all(current.map(async (data) => ({
-        name: `\`${sayı++}\` ↷`,
-        value: `${data.title} | ${data.author} (Started by <@${data.requestedBy.id}>)`,
-        inline: false
-        }))))
+        .setDescription(`Currently Playing: \`${queue.current.title}\`
+        ${await Promise.all(current.map(data => 
+            `\n\`${sayı++}\` | [${data.title}](${data.url}) | **${data.author}** (Started by <@${data.requestedBy.id}>)`
+        ))}`)
         .setFooter({text: `Page ${page} / ${toplam}` })
         }
 
@@ -81,13 +79,20 @@ trackl.push({
                 : [new MessageActionRow({ components: [deleteButton, forwardButton] })],
             }).catch(e => { })
 
+      
             if (canFitOnOnePage) return
             const filter = i =>  i.user.id === interaction.user.id
-            const collector = interaction.channel.createMessageComponentCollector({filter, time: 10000});
+            const collector = interaction.channel.createMessageComponentCollector({filter, time: 120000});
         
          
             let currentIndex = 0
             collector.on("collect", async (button) => {
+                if(button.customId === "close") {
+                    collector.stop()
+                    await client.db.delete("queue."+interaction.user.id+interaction.guild.id+interaction.channel.id)
+                    return button.reply({ content: `Command has been canceled. ✅`, ephemeral: true }).catch(e => { })
+                } else {
+
               if(button.customId === backId) {
                   page--
               }
@@ -112,6 +117,7 @@ trackl.push({
                 ],
               }).catch(e => { })
               await button.deferUpdate();
+            }
             })
 
             collector.on("end", async (button) => {
