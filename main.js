@@ -98,10 +98,10 @@ player.on('queueEnd', (queue) => {
         }}
 });
 
-player.on("connectionError",  (queue) => {
+player.on("error",  (queue, error) => {
     if(queue){
         if(queue.metadata){
-    queue.metadata.send({ content: 'Im having trouble trying to connect to the voice channel. ❌' }).catch(e => { })
+            queue.metadata.send({ content: 'Im having trouble trying to connect to the voice channel. ❌ | `'+error+"`" }).catch(e => { })
         }}
 })
 
