@@ -81,8 +81,6 @@ trackl.push({
                 : [new MessageActionRow({ components: [deleteButton, forwardButton] })],
             }).catch(e => { })
 
-            console.log(interaction)
-
             if (canFitOnOnePage) return
             const filter = i =>  i.user.id === interaction.user.id
             const collector = interaction.channel.createMessageComponentCollector({filter, time: 10000});
