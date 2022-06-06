@@ -39,7 +39,7 @@ let button = new MessageActionRow().addComponents(
                 case 'loop':
                     if (queue.repeatMode === 1) return interaction.reply({ content: `You should disable loop mode of existing music first **(/loop)** ❌`, ephemeral: true }).catch(e => { })
                     const success = queue.setRepeatMode(queue.repeatMode === 0 ? QueueRepeatMode.QUEUE : QueueRepeatMode.OFF);
-                     interaction.editReply({ content: success ? `Loop Mode: **${queue.repeatMode === 0 ? 'Inactive' : 'Active'}**, The whole sequence will repeat non-stop 🔁` : `Something went wrong. ❌`}).catch(e => { }).catch(e => { });
+                     interaction.editReply({ content: success ? `Loop Mode: **${queue.repeatMode === 0 ? 'Inactive' : 'Active'}**, The whole sequence will repeat non-stop 🔁` : `Something went wrong. ❌`}).catch(e => { })
                     await button.deferUpdate();
                 break
             }
