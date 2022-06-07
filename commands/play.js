@@ -31,7 +31,7 @@ module.exports = {
         });
      
         try {
-            if (!queue.connection) await queue.connect(interaction.member.voice.channel)
+            if (!interaction.guild.me.voice.channelID) await queue.connect(interaction.member.voice.channel)
         } catch {
             await client.player.deleteQueue(interaction.guild.id);
             return interaction.reply({ content: `I can't join audio channel. ❌`, ephemeral: true }).catch(e => { })
