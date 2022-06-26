@@ -29,7 +29,7 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .setTimestamp()
         .setDescription(`${progress} (**${timestamp.progress}**%)`)
-        .setFooter({ text: 'Music Bot Commands - by Umut Bayraktar ❤️', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
+        .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
         interaction.reply({ embeds: [embed], components: [row]}).catch(e => { })
     },
 };
