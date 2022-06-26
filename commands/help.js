@@ -15,9 +15,8 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .setDescription("It's time to listen to music on your discord server with a completely free and advanced interface. Music bot Astra that supports playing music on many platforms that will make your server feel special")
         .addField(`Available - ${commands.size} Commands`, commands.map(x => `\`/${x.name}\``).join(' | '))
-        .addField("Invite Bot", `**[Add Me](https://bit.ly/3PHDjyC) | [Vote](https://bit.ly/3LYzaDe) | [Support](https://discord.gg/ST89uArTdh) | [Website](https://astrabot.vercel.app/) | [Source Code](https://github.com/1umutda/MusicBot)**` ,true)
         .setTimestamp()
-        .setFooter({ text: 'Music Bot Commands - by Umut Bayraktar ❤️', iconURL:interaction.user.displayAvatarURL({ dynamic: true }) })
+        .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
         interaction.reply({ embeds: [embed] }).catch(e => { })
     },
 };
