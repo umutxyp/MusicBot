@@ -20,7 +20,7 @@ module.exports = {
   .addField(`Saved Server`, `\`${interaction.guild.name}\``)
   .addField(`Requested By`, `${queue.current.requestedBy}`)
   .setTimestamp()
-  .setFooter({ text: 'Music Bot Commands - by Umut Bayraktar ❤️', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
+  .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
   interaction.user.send({ embeds: [embed] }).then(() => {
     interaction.reply({ content: `I sent the name of the music via private message. ✅`, ephemeral: true }).catch(e => { })
         }).catch(error => {
