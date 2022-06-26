@@ -38,7 +38,7 @@ if (!name) return interaction.reply({ content: `Please enter a valid song name. 
         embed.setDescription(`${maxTracks.map((track, i) => `**${i + 1}**. ${track.title} | \`${track.author}\``).join('\n')}\n\nChoose a song from **1** to **${maxTracks.length}** write send or write **cancel** and cancel selection.⬇️`)
 
         embed.setTimestamp();
-        embed.                    .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
+        embed.setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
 
         interaction.reply({ embeds: [embed] }).catch(e => { })
 
