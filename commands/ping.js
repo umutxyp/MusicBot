@@ -15,9 +15,8 @@ module.exports = {
                 .addField(`Message Ping`, `\`${Date.now() - start}ms\` 🛰️`)
                 .addField(`Message Latency`, `\`${last - start}ms\` 🛰️`)
                 .addField(`API Latency`, `\`${Math.round(client.ws.ping)}ms\` 🛰️`)
-                .addField("Invite Bot", `**[Add Me](https://bit.ly/3PHDjyC) | [Vote](https://bit.ly/3LYzaDe) | [Support](https://discord.gg/ST89uArTdh) | [Website](https://astramusic.vercel.app) | [Source Code](https://github.com/1umutda/MusicBot)**` ,true)
                 .setTimestamp()
-                .setFooter({ text: 'Music Bot Commands - by Umut Bayraktar ❤️', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
+                .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
             interaction.editReply({ embeds: [embed] }).catch(e => { });
         })
     },
