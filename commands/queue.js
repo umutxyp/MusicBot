@@ -146,7 +146,7 @@ trackl.push({
                     .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
                     .setColor('BLUE')
                     .setDescription(`Your time has expired to use this command, you can type \`/queue\` to use the command again.`)
-                    .setFooter({text: `Astra Bot - by Umut Bayraktar ❤️` })
+                    .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
                     return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
                 
             })
