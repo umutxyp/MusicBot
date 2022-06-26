@@ -1,8 +1,5 @@
-# Astra Music Discord.js v13 Slash Commands Music Bot
+# Discord.js v13 Slash Commands Music Bot
 <br>
-<h3>ASTRA WEBSITE: https://astrabot.vercel.app/</h3>
-<h3>ASTRA WEBSITE SOURCE CODE: https://github.com/1umutda/AstraBot-Website</h3>
-<h3>UMUT BAYRAKTAR YOUTUBE: https://www.youtube.com/UmutBayraktarYT</h3>
 <h3>CODE SHARE DISCORD: https://discord.gg/6XGqdgE</h3>
 <hr>
 <h3>
