@@ -2,7 +2,6 @@ module.exports = {
         TOKEN: '', //write your discord bot token
         playing: '❤️ Astra Music',
         mongoDB: "", //write your mongoDB url.
-        dblToken: "", //write your top.gg token.
  opt: {
         DJ: { 
                 commands: ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume'] //Please don't touch
