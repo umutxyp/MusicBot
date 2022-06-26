@@ -25,7 +25,7 @@ let button = new MessageActionRow().addComponents(
             .setTitle('Loop System')
             .setDescription(`**${queue.current.title}** is now looping.`)
             .setTimestamp()
-            .setFooter({ text: 'Astra Bot - by Umut Bayraktar ❤️', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
+            .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
         interaction.reply({ embeds: [embed], components:[button]}).then(async Message => {
 
             const filter = i =>  i.user.id === interaction.user.id
@@ -57,7 +57,7 @@ let button = new MessageActionRow().addComponents(
                     .setTitle('Loop System - Ended')
                     .setDescription(`Your time is up to choose.`)
                     .setTimestamp()
-                    .setFooter({ text: 'Astra Bot - by Umut Bayraktar ❤️', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
+                    .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
                       
                 await interaction.editReply({embeds: [embed], components:[button]}).catch(e => { });
             })
