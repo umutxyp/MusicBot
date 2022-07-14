@@ -1,5 +1,6 @@
 # Discord.js v13 Slash Commands Music Bot
-<h3>CODE SHARE DISCORD: https://discord.gg/6XGqdgE</h3>
+<h3>DISCORD: https://discord.gg/Fy4WmSThRZ</h3>
+<h3>YOUTUBE: https://bit.ly/3zgizYR</h3>
 <hr>
 <h3>
 Discord Developers: https://discord.dev<br>
