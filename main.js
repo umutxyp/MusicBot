@@ -105,13 +105,11 @@ player.on("error",  (queue, error) => {
         }}
 })
 
-if(client.config.TOKEN){
-client.login(client.config.TOKEN).catch(e => {
+
+client.login(client.config.TOKEN || process.env.TOKEN).catch(e => {
 console.log("The Bot Token You Entered Into Your Project Is Incorrect Or Your Bot's INTENTS Are OFF!")
 })
-} else {
-console.log("Please Write Your Bot Token Opposite The Token In The config.js File In Your Project!")
-}
+
 
 setTimeout(() => {
 if(client.db.all()){
