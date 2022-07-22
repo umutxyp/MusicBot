@@ -1,26 +1,23 @@
 {
-  "name": "astra-music",
-  "main": "index.js",
-  "author": "Umut Bayraktar",
-  "description": "Open Source Codes of Astra Music Bot.",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "@discordjs/voice": "^0.10.0",
-    "croxydb": "^0.0.7",
-    "discord-player": "^5.2.2",
-    "discord-sync-commands-v14": "^2.0.0",
-    "discord.js": "^13.8.0",
-    "express": "^4.18.1",
-    "ffmpeg": "^0.0.4",
-    "ffmpeg-static": "^4.4.1",
-    "http": "0.0.1-security",
-    "mongoose": "^6.3.5",
-    "node-fetch": "^3.2.5",
-    "opusscript": "^0.0.8"
-  },
-  "engines": {
-    "node": "16.x"
-  }
+    "name": "musicbot-v14",
+    "version": "7.0.0",
+    "description": "discord.js v14 music bıt. for slash commands",
+    "main": "index.js",
+    "dependencies": {
+        "@discordjs/builders": "^1.0.0",
+        "@discordjs/voice": "^0.11.0",
+        "croxydb": "^0.0.7",
+        "discord-player": "^5.3.0-dev.2",
+        "discord.js": "^14.0.2",
+        "express": "^4.18.1",
+        "ffmpeg": "^0.0.4",
+        "ffmpeg-static": "^5.0.2",
+        "http": "^0.0.1-security",
+        "opusscript": "^0.0.8"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "UmutBayraktar",
+    "license": "ISC"
 }
