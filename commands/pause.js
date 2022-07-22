@@ -1,16 +1,16 @@
 module.exports = {
-    description: "Stops playing the currently playing music.",
-    name: 'pause',
-    options: [],
-    voiceChannel: true,
+name: "pause",
+description: "Stops playing the currently playing music.",
+permissions: "SEND_MESSAGES",
+options: [],
+run: async (client, interaction) => {
 
-    run: async (client, interaction) => {
-        const queue = client.player.getQueue(interaction.guild.id);
+const queue = client.player.getQueue(interaction.guild.id);
 
-       if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
+if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
 
-        const success = queue.setPaused(true);
+const success = queue.setPaused(true);
 
-        return interaction.reply({ content: success ? `The currently playing music named **${queue.current.title}** has stopped ✅` : `Something went wrong. ❌` }).catch(e => { })
-    },
-};
+return interaction.reply({ content: success ? `The currently playing music named **${queue.current.title}** has stopped ✅` : `Something went wrong. ❌` }).catch(e => { })
+},
+}
