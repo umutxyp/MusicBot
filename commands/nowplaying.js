@@ -1,42 +1,39 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 module.exports = {
-    description: "Provides information about the music being played.",
-    name: 'nowplaying',
-    options: [],
-    voiceChannel: true,
+name: "nowplaying",
+description: "Provides information about the music being played.",
+permissions: "SEND_MESSAGES",
+options: [],
+run: async (client, interaction) => {
+const queue = client.player.getQueue(interaction.guild.id);
 
-    run: async (client, interaction) => {
-        const queue = client.player.getQueue(interaction.guild.id);
+if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
 
- if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
+const track = queue.current;
 
-        const track = queue.current;
+const embed = new EmbedBuilder();
+embed.setColor('007fff');
+embed.setThumbnail(track.thumbnail);
+embed.setTitle(track.title)
 
-        const embed = new MessageEmbed();
+const methods = ['disabled', 'track', 'queue'];
 
-        embed.setColor('BLUE');
-        embed.setThumbnail(track.thumbnail);
-        embed.setTitle(track.title)
-
-        const methods = ['disabled', 'track', 'queue'];
-
-        const timestamp = queue.getPlayerTimestamp();
+const timestamp = queue.getPlayerTimestamp();
 const trackDuration = timestamp.progress == 'Forever' ? 'Endless (Live)' : track.duration;
 
-        embed.setDescription(`Audio **%${queue.volume}**\nDuration **${trackDuration}**\nURL: ${track.url}\nLoop Mode **${methods[queue.repeatMode]}**\n${track. requestedBy}`);
+embed.setDescription(`Audio **%${queue.volume}**\nDuration **${trackDuration}**\nURL: ${track.url}\nLoop Mode **${methods[queue.repeatMode]}**\n${track. requestedBy}`);
 
-        embed.setTimestamp();
-        embed.setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
+embed.setTimestamp();
+embed.setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
 
-        const saveButton = new MessageButton();
+const saveButton = new ButtonBuilder();
+saveButton.setLabel('Save Song');
+saveButton.setCustomId('saveTrack');
+saveButton.setStyle(ButtonStyle.Success);
 
-        saveButton.setLabel('Save Song');
-        saveButton.setCustomId('saveTrack');
-        saveButton.setStyle('SUCCESS');
+const row = new ActionRowBuilder().addComponents(saveButton);
 
-        const row = new MessageActionRow().addComponents(saveButton);
-
-        interaction.reply({ embeds: [embed], components: [row] }).catch(e => { })
-    },
+interaction.reply({ embeds: [embed], components: [row] }).catch(e => { })
+},
 };
