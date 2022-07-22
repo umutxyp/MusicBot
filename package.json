@@ -1,10 +1,10 @@
 {
   "name": "astra-music",
-  "main": "main.js",
+  "main": "index.js",
   "author": "Umut Bayraktar",
   "description": "Open Source Codes of Astra Music Bot.",
   "scripts": {
-    "start": "node main.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "@discordjs/voice": "^0.10.0",
