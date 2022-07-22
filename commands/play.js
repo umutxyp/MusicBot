@@ -21,15 +21,21 @@ module.exports = {
         });
 
         if (!res || !res.tracks.length) return interaction.reply({ content: `No results found! ❌`, ephemeral: true }).catch(e => { })
-
+        
         interaction.reply({ content: `Your Music(s) Loading... 🎧` }).catch(e => {})
-
+        
         const queue = await client.player.createQueue(interaction.guild, {
+               ytdlOptions: {
+                filter: 'audioonly',
+                highWaterMark: 1 << 30,
+                dlChunkSize: 0,
+            },
                 leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
                 autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
                 metadata: interaction.channel
         });
-     
+
+        
         try {
             if (!interaction.guild.me.voice.channelID) await queue.connect(interaction.member.voice.channel)
         } catch {
