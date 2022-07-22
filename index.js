@@ -1,65 +1,50 @@
+const { Client, GatewayIntentBits } = require('discord.js');
 const { Player } = require('discord-player');
-const { Client, Intents, Collection } = require('discord.js');
+const config = require("./config")
+const TOKEN = config.TOKEN || process.env.TOKEN;
 const fs = require('fs');
-
-let client = new Client({
+const client = new Client({
 intents: [
-Intents.FLAGS.GUILDS,
-Intents.FLAGS.GUILD_MEMBERS,
-Intents.FLAGS.GUILD_MESSAGES,
-Intents.FLAGS.GUILD_VOICE_STATES
-]
+GatewayIntentBits.Guilds, // for guild related things
+GatewayIntentBits.GuildMembers, // for guild members related things
+GatewayIntentBits.GuildIntegrations, // for discord Integrations
+GatewayIntentBits.GuildVoiceStates, // for voice related things
+GatewayIntentBits.GuildMessages, // for guild messages things
+GatewayIntentBits.GuildMessageTyping, // for message typing things
+GatewayIntentBits.MessageContent // enable if you need message content things
+],
 })
 
-client.db = require("croxydb")
-client.config = require('./config');
+client.config = config;
 client.player = new Player(client, client.config.opt.discordPlayer);
 const player = client.player
-
-const mongoose = require("mongoose");
-var database = require("./DATABASE/mongodb.js");
-mongoose.connect(client.config.mongoDB, {
-useNewUrlParser: true,
-useUnifiedTopology: true
-}).then(() => {
-console.log(`Connected MongoDB`);
-}).catch((err) => {
-return console.log("MongoDB Error: " + err);
-})
-
-client.mdb = database
-
-const synchronizeSlashCommands = require('discord-sync-commands-v14');
-client.commands = new Collection();
-fs.readdir("./commands/", (_err, files) => {
-files.forEach((file) => {
-if (!file.endsWith(".js")) return;
-let props = require(`./commands/${file}`);
-let commandName = file.split(".")[0];
-client.commands.set(commandName, {
-name: commandName,
-...props
-});
-console.log(`👌 Loadded Slash Command: ${commandName}`);
-});
-synchronizeSlashCommands(client, client.commands.map((c) => ({
-name: c.name,
-description: c.description,
-options: c.options,
-type: 'CHAT_INPUT'
-})), {
-debug: false
-});
-});
 
 fs.readdir("./events", (_err, files) => {
 files.forEach((file) => {
 if (!file.endsWith(".js")) return;
 const event = require(`./events/${file}`);
 let eventName = file.split(".")[0];
-console.log(`👌 Loadded Event: ${eventName}`);
+console.log(`Loadded Event: ${eventName}`);
 client.on(eventName, event.bind(null, client));
 delete require.cache[require.resolve(`./events/${file}`)];
+});
+});
+
+client.commands = [];
+fs.readdir(config.commandsDir, (err, files) => {
+if (err) throw err;
+files.forEach(async (f) => {
+try {
+let props = require(`${config.commandsDir}/${f}`);
+client.commands.push({
+name: props.name,
+description: props.description,
+options: props.options
+});
+console.log(`Loaded command: ${props.name}`);
+} catch (err) {
+console.log(err);
+}
 });
 });
 
@@ -105,22 +90,13 @@ queue.metadata.send({ content: 'Im having trouble trying to connect to the voice
 }}
 })
 
-
-player.on("botDisconnect", (queue) => {
-queue.metadata.send({ content: "❌ | I was manually disconnected from the voice channel, clearing queue!" }).catch(e => { })
-});
-
-
-client.login(client.config.TOKEN || process.env.TOKEN).catch(e => {
+if(TOKEN){
+client.login(TOKEN).catch(e => {
 console.log("The Bot Token You Entered Into Your Project Is Incorrect Or Your Bot's INTENTS Are OFF!")
 })
-
-
-setTimeout(() => {
-if(client.db.all()){
-client.db.deleteAll()
+} else {
+console.log("Please Write Your Bot Token Opposite The Token In The config.js or env File In Your Project!")
 }
-}, 5000)
 
 const express = require("express");
 const app = express();
@@ -129,4 +105,3 @@ app.get("/", (request, response) => {
 response.sendStatus(200);
 });
 app.listen(process.env.PORT);
-
