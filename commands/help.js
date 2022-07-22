@@ -1,22 +1,24 @@
-const { MessageEmbed } = require('discord.js');
-
+const { EmbedBuilder } = require('discord.js')
 module.exports = {
-    showHelp: false,
-    description: "It helps you to get information about bot and commands.",
-    name: 'help',
-    options: [],
+name: "help",
+description: "It helps you to get information about bot and commands.",
+permissions: "SEND_MESSAGES",
+options: [],
+showHelp: false,
+run: async (client, interaction) => {
 
-    run: async (client, interaction) => {
-        const commands = client.commands.filter(x => x.showHelp !== false);
+const commands = client.commands.filter(x => x.showHelp !== false);
 
-        const embed = new MessageEmbed()
-        .setColor('BLUE')
-        .setTitle(client.user.username)
-        .setThumbnail(client.user.displayAvatarURL())
-        .setDescription("It's time to listen to music on your discord server with a completely free and advanced interface. Music bot Astra that supports playing music on many platforms that will make your server feel special")
-        .addField(`Available - ${commands.size} Commands`, commands.map(x => `\`/${x.name}\``).join(' | '))
-        .setTimestamp()
-        .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
-        interaction.reply({ embeds: [embed] }).catch(e => { })
-    },
+const embed = new EmbedBuilder()
+.setColor('007fff')
+.setTitle(client.user.username)
+.setThumbnail(client.user.displayAvatarURL())
+.setDescription("It's time to listen to music on your discord server with a completely free and advanced interface. Music bot that supports playing music on many platforms that will make your server feel special. Create your own music bot: https://github.com/umutxyp/MusicBot")
+.addFields([
+    { name: `Bot Commands`, value: commands.map(x => `\`/${x.name}\``).join(' | ') }
+])
+.setTimestamp()
+.setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
+interaction.reply({ embeds: [embed] }).catch(e => { })
+},
 };
