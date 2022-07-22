@@ -1,16 +1,15 @@
 module.exports = {
-    description: "Music stops playing.",
-    name: 'stop',
-    options: [],
-    voiceChannel: true,
+name: "stop",
+description: "Plays the previous music again.",
+permissions: "SEND_MESSAGES",
+options: [],
+run: async (client, interaction) => {
+const queue = client.player.getQueue(interaction.guild.id);
 
-    run: async (client, interaction) => {
-        const queue = client.player.getQueue(interaction.guild.id);
+if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
 
-        if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
+queue.destroy();
 
-        queue.destroy();
-
-        interaction.reply({ content: `The music playing on this server has been turned off, see you next time ✅` }).catch(e => { })
-    },
+interaction.reply({ content: `The music playing on this server has been turned off, see you next time ✅` }).catch(e => { })
+},
 };
