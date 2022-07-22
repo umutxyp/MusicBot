@@ -1,23 +1,24 @@
-const Discord = require('discord.js');
+const { EmbedBuilder } = require('discord.js')
 module.exports = {
-    description: "It helps you to get information about the speed of the bot.",
-    name: 'ping',
-    options: [],
+name: "ping",
+description: "It helps you to get information about the speed of the bot.",
+permissions: "SEND_MESSAGES",
+options: [],
+run: async (client, interaction) => {
 
-    run: async (client, interaction) => {
-        const start = Date.now();
-        interaction.reply('Pong!').then(async() => {
-        let last = Date.now();
-            const embed = new Discord.MessageEmbed()
-                .setColor('BLUE')
-                .setTitle(client.user.username + " - Pong!")
-                .setThumbnail(client.user.displayAvatarURL())
-                .addField(`Message Ping`, `\`${Date.now() - start}ms\` 🛰️`)
-                .addField(`Message Latency`, `\`${last - start}ms\` 🛰️`)
-                .addField(`API Latency`, `\`${Math.round(client.ws.ping)}ms\` 🛰️`)
-                .setTimestamp()
-                .setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
-            interaction.editReply({ embeds: [embed] }).catch(e => { });
-        })
-    },
+const start = Date.now();
+const embed = new EmbedBuilder()
+.setColor('007fff')
+.setTitle(client.user.username + " - Pong!")
+.setThumbnail(client.user.displayAvatarURL())
+.addFields([
+{ name: `Message Ping`, value: `\`${Date.now() - start}ms\` 🛰️` },
+{ name: `Message Latency`, value: `\`${Date.now() - start}ms\` 🛰️` },
+{ name: `API Latency`, value: `\`${Math.round(client.ws.ping)}ms\` 🛰️` }
+])
+.setTimestamp()
+.setFooter({text: `Code Share - by Umut Bayraktar ❤️` })
+interaction.reply({ embeds: [embed] }).catch(e => { });
+
+},
 };
