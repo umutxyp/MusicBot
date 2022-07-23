@@ -3,7 +3,7 @@ const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('
 module.exports = {
 name: "nowplaying",
 description: "Provides information about the music being played.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
 const queue = client.player.getQueue(interaction.guild.id);
