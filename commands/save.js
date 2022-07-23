@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
 name: "save",
 description: "It sends and saves the played music to you via dm box.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
 const queue = client.player.getQueue(interaction.guild.id);
