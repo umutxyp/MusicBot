@@ -1,7 +1,7 @@
 module.exports = {
 name: "resume",
 description: "Restarts paused music.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
 const queue = client.player.getQueue(interaction.guild.id);
