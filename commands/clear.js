@@ -1,7 +1,7 @@
 module.exports = {
 name: "clear",
 description: "Clears the music queue.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
 const queue = client.player.getQueue(interaction.guild.id);
