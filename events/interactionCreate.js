@@ -18,7 +18,7 @@ if (props && DJ.commands.includes(interaction.commandName)) {
 let djRole = await db.get(`dj-${interaction.guild.id}`)
 if(djRole){
 const roleDJ = interaction.guild.roles.cache.get(djRole)
-if(!interaction.member.permissions.has("MANAGE_GUILD")){
+if(!interaction.member.permissions.has("0x0000000000000020")){
 if(roleDJ){
 if(!interaction.member.roles.cache.has(roleDJ.id)){
 
