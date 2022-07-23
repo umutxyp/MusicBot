@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js')
 module.exports = {
 name: "ping",
 description: "It helps you to get information about the speed of the bot.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
 
