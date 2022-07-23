@@ -1,7 +1,7 @@
 module.exports = {
 name: "pause",
 description: "Stops playing the currently playing music.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
 
