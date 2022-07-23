@@ -3,7 +3,7 @@ const db = require("croxydb");
 module.exports = {
 name: "queue",
 description: "It shows you the playlist.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
 
