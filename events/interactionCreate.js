@@ -12,7 +12,7 @@ files.forEach(async (f) => {
 let props = require(`.${config.commandsDir}/${f}`);
 if (interaction.commandName.toLowerCase() === props.name.toLowerCase()) {
 try {
-if(interaction.member.permissions.has(props?.permissions || "SEND_MESSAGES")){
+if(interaction.member.permissions.has(props?.permissions || "0x0000000000000800")){
 const DJ = client.config.opt.DJ;
 if (props && DJ.commands.includes(interaction.commandName)) {
 let djRole = await db.get(`dj-${interaction.guild.id}`)
