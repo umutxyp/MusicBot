@@ -2,7 +2,7 @@ const { ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
 name: "filter",
 description: "Adds audio filter to ongoing music.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [{
 name: 'filtre',
 description: 'Type the filter you want to apply. (bassboost, 8D, nightcore)',
