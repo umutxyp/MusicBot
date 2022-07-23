@@ -3,7 +3,7 @@ const { QueryType } = require('discord-player');
 module.exports = {
 name: "search",
 description: "Used for your music search",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [{
     name: 'name',
     description: 'Type the name of the music you want to play.',
