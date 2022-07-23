@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js')
 module.exports = {
 name: "help",
 description: "It helps you to get information about bot and commands.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [],
 showHelp: false,
 run: async (client, interaction) => {
