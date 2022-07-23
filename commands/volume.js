@@ -3,7 +3,7 @@ const maxVol = require("../config.js").opt.maxVol;
 module.exports = {
 name: "volume",
 description: "Allows you to adjust the music volume.",
-permissions: "SEND_MESSAGES",
+permissions: "0x0000000000000800",
 options: [{
 name: 'volume',
 description: 'Type the number to adjust the volume.',
