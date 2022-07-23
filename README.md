@@ -1,6 +1,6 @@
 # Discord.js v14 Slash Commands Music Bot
+<h3>SETUP YOUTUBE: https://youtu.be/LQ24tdW5d8k</h3>
 <h3>DISCORD: https://discord.gg/Fy4WmSThRZ</h3>
-<h3>YOUTUBE: https://youtu.be/LQ24tdW5d8k</h3>
 <hr>
 <h3>
 Fork Replit: https://replit.com/<br>
