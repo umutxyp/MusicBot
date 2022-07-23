@@ -3,7 +3,7 @@ const db = require('croxydb');
 module.exports = {
 name: "dj",
 description: "Allows you to set or reset the DJ role.",
-permissions: "MANAGE_GUILD",
+permissions: "0x0000000000000020",
 options: [{
 name: "set",
 description: "Allows you to select a DJ role.",
