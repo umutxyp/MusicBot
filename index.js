@@ -98,6 +98,12 @@ console.log("The Bot Token You Entered Into Your Project Is Incorrect Or Your Bo
 console.log("Please Write Your Bot Token Opposite The Token In The config.js or env File In Your Project!")
 }
 
+setTimeout(async() => {
+  const db = require("croxydb")
+  await db.delete("queue")
+  await db.delete("loop")
+}, 2000)
+
 const express = require("express");
 const app = express();
 const http = require("http");
