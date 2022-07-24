@@ -1,5 +1,5 @@
 const { QueueRepeatMode } = require('discord-player');
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, Message } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const db = require("croxydb");
 module.exports = {
   name: "loop",
