@@ -1,7 +1,7 @@
 {
     "name": "musicbot-v14",
     "version": "7.0.0",
-    "description": "discord.js v14 music bıt. for slash commands",
+    "description": "discord.js v14 music bot. for slash commands",
     "main": "index.js",
     "dependencies": {
         "@discordjs/builders": "^1.0.0",
