@@ -19,5 +19,8 @@
         "start": "node index.js"
     },
     "author": "UmutBayraktar",
-    "license": "ISC"
+    "license": "ISC",
+    "engines": {
+    "node": "17.x"
+  }
 }
