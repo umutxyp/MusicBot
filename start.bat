@@ -2,5 +2,5 @@ echo off
 color 1
 cls
 :a
-node main.js
+node index.js
 goto a
