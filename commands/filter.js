@@ -11,6 +11,12 @@ required: true
 }],
 run: async (client, interaction) => {
 
+/*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This command is temporarily under maintenance. Please don't use it for a while or your bot may not work.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 const queue = client.player.getQueue(interaction.guild.id);
 
 if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
@@ -34,5 +40,8 @@ filtersUpdated[filter] = queue.getFiltersEnabled().includes(filter) ? false : tr
 await queue.setFilters(filtersUpdated);
 
 interaction.reply({ content: `Applied: **${filter}**, Filter Status: **${queue.getFiltersEnabled().includes(filter) ? 'Active' : 'Inactive'}** ✅\n **Remember, if the music is long, the filter application time may be longer accordingly.**` }).catch(e => { })
+
+*/
+
 },
 };
