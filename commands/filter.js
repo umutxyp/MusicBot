@@ -18,7 +18,7 @@ const filtre = interaction.options.getString('filtre')
 
 if (!filtre) return interaction.reply({ content: `Please enter a valid filter name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
 
-const filters = ["bassboost","8d","nightcore"];
+const filters = ["bassboost","8D","nightcore","mono","karaoke"];
 //other filters: https://discord-player.js.org/docs/main/master/typedef/AudioFilters 
   
 queue.getFiltersEnabled().map(x => filters.push(x));
