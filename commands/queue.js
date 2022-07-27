@@ -78,10 +78,8 @@ ${await Promise.all(current.map(data =>
       fetchReply: true
     }).then(async Message => {
       await db.set("queue." + interaction.user.id + interaction.guild.id + interaction.channel.id, Message.id)
-    }).catch(e => { })
+   
 
-
-    if (canFitOnOnePage) return
     const filter = i => i.user.id === interaction.user.id
     const collector = interaction.channel.createMessageComponentCollector({ filter, time: 120000 });
 
@@ -151,6 +149,7 @@ ${await Promise.all(current.map(data =>
       return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
     })
-
+  }).catch(e => { })
+  
   }
 }
