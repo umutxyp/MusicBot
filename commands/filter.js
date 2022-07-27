@@ -1,47 +1,34 @@
 const { ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
-name: "filter",
-description: "Adds audio filter to ongoing music.",
-permissions: "0x0000000000000800",
-options: [{
-name: 'filtre',
-description: 'Type the filter you want to apply. (bassboost, 8D, nightcore)',
-type: ApplicationCommandOptionType.String,
-required: true
-}],
-run: async (client, interaction) => {
+  name: "filter",
+  description: "Adds audio filter to ongoing music.",
+  permissions: "0x0000000000000800",
+  options: [{
+    name: 'filtre',
+    description: 'Type the filter you want to apply. (bassboost, 8D, nightcore, mono, karaoke)',
+    type: ApplicationCommandOptionType.String,
+    required: true
+  }],
+  run: async (client, interaction) => {
 
-/*
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-This command is temporarily under maintenance. Please don't use it for a while or your bot may not work.
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const queue = client.player.getQueue(interaction.guild.id);
 
+    if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
+    const filtre = interaction.options.getString('filtre')
 
-const queue = client.player.getQueue(interaction.guild.id);
+    if (!filtre) return interaction.reply({ content: `Please enter a valid filter name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
 
-if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
-const filtre = interaction.options.getString('filtre')
-
-if (!filtre) return interaction.reply({ content: `Please enter a valid filter name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
-
+    
 const filters = ["bassboost","8D","nightcore","mono","karaoke"];
 //other filters: https://discord-player.js.org/docs/main/master/typedef/AudioFilters 
-  
-queue.getFiltersEnabled().map(x => filters.push(x));
-queue.getFiltersDisabled().map(x => filters.push(x));
 
 const filter = filters.find((x) => x.toLowerCase() === filtre.toLowerCase());
 
 if (!filter) return interaction.reply({ content: `I couldn't find a filter with your name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
 const filtersUpdated = {};
-
-filtersUpdated[filter] = queue.getFiltersEnabled().includes(filter) ? false : true;
-
+filtersUpdated[filter] = queue["_activeFilters"].includes(filter) ? false : true;
 await queue.setFilters(filtersUpdated);
 
-interaction.reply({ content: `Applied: **${filter}**, Filter Status: **${queue.getFiltersEnabled().includes(filter) ? 'Active' : 'Inactive'}** ✅\n **Remember, if the music is long, the filter application time may be longer accordingly.**` }).catch(e => { })
-
-*/
-
+interaction.reply({ content: `Applied: **${filter}**, Filter Status: **${queue["_activeFilters"].includes(filter) ? 'Active' : 'Inactive'}** ✅\n **Remember, if the music is long, the filter application time may be longer accordingly.**` }).catch(e => { })
 },
 };
