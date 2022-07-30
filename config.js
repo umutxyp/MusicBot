@@ -1,6 +1,6 @@
 const token = require('./token.js');
 module.exports = {
-    TOKEN: token.botToken, //write your discord bot token
+    TOKEN: token.botToken,
     status: '🎵 music.help',
     commandsDir: './commands', //Please don't touch,
 
@@ -15,7 +15,7 @@ module.exports = {
 
             leaveOnTimer: { //The leaveOnEnd variable must be "false" to use this system.
                 status: true, //If this variable is "true", the bot will leave the channel when the bot is offline.
-                time: 10000, //1000 = 1 second
+                time: 259200000, //1000 = 1 second
             }
         },
 
