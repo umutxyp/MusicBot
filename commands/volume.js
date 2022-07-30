@@ -24,6 +24,6 @@ module.exports = {
 
         const success = queue.setVolume(vol);
 
-        return interaction.reply({ content: success ? `Volume changed: **%${vol}**/**${maxVol}** 🔊` : `Something went wrong. ❌` }).catch(e => { })
+        return interaction.reply({ content: success ? `Volume changed: **${vol}**/**${maxVol}** 🔊` : `Something went wrong. ❌` }).catch(e => { })
     },
 };
