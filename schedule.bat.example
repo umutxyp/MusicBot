@@ -1,0 +1,5 @@
+:: this file is to be used if you set this up with Windows Task Scheduler, rename this file to schedule.bat
+:: if you need to change your driver letter, do that first. Example:
+DRIVELETTER:
+cd DRIVELETTER:\YOUR\BOT\DIRECTORY
+node index.js
