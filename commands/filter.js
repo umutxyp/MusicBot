@@ -18,17 +18,17 @@ module.exports = {
 
     if (!filtre) return interaction.reply({ content: `Please enter a valid filter name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
 
-    
-const filters = ["bassboost","8D","nightcore","mono","karaoke"];
-//other filters: https://discord-player.js.org/docs/main/master/typedef/AudioFilters 
 
-const filter = filters.find((x) => x.toLowerCase() === filtre.toLowerCase());
+    const filters = ["bassboost", "8D", "nightcore", "mono", "karaoke"];
+    //other filters: https://discord-player.js.org/docs/main/master/typedef/AudioFilters 
 
-if (!filter) return interaction.reply({ content: `I couldn't find a filter with your name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
-const filtersUpdated = {};
-filtersUpdated[filter] = queue["_activeFilters"].includes(filter) ? false : true;
-await queue.setFilters(filtersUpdated);
+    const filter = filters.find((x) => x.toLowerCase() === filtre.toLowerCase());
 
-interaction.reply({ content: `Applied: **${filter}**, Filter Status: **${queue["_activeFilters"].includes(filter) ? 'Active' : 'Inactive'}** ✅\n **Remember, if the music is long, the filter application time may be longer accordingly.**` }).catch(e => { })
-},
+    if (!filter) return interaction.reply({ content: `I couldn't find a filter with your name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
+    const filtersUpdated = {};
+    filtersUpdated[filter] = queue["_activeFilters"].includes(filter) ? false : true;
+    await queue.setFilters(filtersUpdated);
+
+    interaction.reply({ content: `Applied: **${filter}**, Filter Status: **${queue["_activeFilters"].includes(filter) ? 'Active' : 'Inactive'}** ✅\n **Remember, if the music is long, the filter application time may be longer accordingly.**` }).catch(e => { })
+  },
 };

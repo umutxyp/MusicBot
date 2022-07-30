@@ -78,78 +78,78 @@ ${await Promise.all(current.map(data =>
       fetchReply: true
     }).then(async Message => {
       await db.set("queue." + interaction.user.id + interaction.guild.id + interaction.channel.id, Message.id)
-   
-
-    const filter = i => i.user.id === interaction.user.id
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 120000 });
 
 
-    let currentIndex = 0
-    collector.on("collect", async (button) => {
-      if (button.customId === "close") {
-        collector.stop()
+      const filter = i => i.user.id === interaction.user.id
+      const collector = interaction.channel.createMessageComponentCollector({ filter, time: 120000 });
+
+
+      let currentIndex = 0
+      collector.on("collect", async (button) => {
+        if (button.customId === "close") {
+          collector.stop()
+          await db.delete("queue." + interaction.user.id + interaction.guild.id + interaction.channel.id)
+          return button.reply({ content: `Command has been canceled. ✅`, ephemeral: true }).catch(e => { })
+        } else {
+
+          if (button.customId === backId) {
+            page--
+          }
+          if (button.customId === forwardId) {
+            page++
+          }
+
+          button.customId === backId
+            ? (currentIndex -= kaçtane)
+            : (currentIndex += kaçtane)
+
+          await interaction.editReply({
+            embeds: [await generateEmbed(currentIndex)],
+            components: [
+              new ActionRowBuilder({
+                components: [
+                  ...(currentIndex ? [backButton] : []),
+                  deleteButton,
+                  ...(currentIndex + kaçtane < trackl.length ? [forwardButton] : []),
+                ],
+              }),
+            ],
+          }).catch(e => { })
+          await button.deferUpdate();
+        }
+      })
+
+      collector.on("end", async (button) => {
+
         await db.delete("queue." + interaction.user.id + interaction.guild.id + interaction.channel.id)
-        return button.reply({ content: `Command has been canceled. ✅`, ephemeral: true }).catch(e => { })
-      } else {
 
-        if (button.customId === backId) {
-          page--
-        }
-        if (button.customId === forwardId) {
-          page++
-        }
+        button = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji("⬅️")
+            .setCustomId(backId)
+            .setDisabled(true),
+          new ButtonBuilder()
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji("❌")
+            .setCustomId("close")
+            .setDisabled(true),
+          new ButtonBuilder()
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji("➡️")
+            .setCustomId(forwardId)
+            .setDisabled(true))
 
-        button.customId === backId
-          ? (currentIndex -= kaçtane)
-          : (currentIndex += kaçtane)
+        const embed = new EmbedBuilder()
+          .setTitle(`Server Music List - Time Ended!`)
+          .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
+          .setColor('007fff')
+          .setDescription(`Your time has expired to use this command, you can type \`/queue\` to use the command again.`)
+          .setFooter({ text: `Code Share - by Umut Bayraktar ❤️` })
+        return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
-        await interaction.editReply({
-          embeds: [await generateEmbed(currentIndex)],
-          components: [
-            new ActionRowBuilder({
-              components: [
-                ...(currentIndex ? [backButton] : []),
-                deleteButton,
-                ...(currentIndex + kaçtane < trackl.length ? [forwardButton] : []),
-              ],
-            }),
-          ],
-        }).catch(e => { })
-        await button.deferUpdate();
-      }
-    })
+      })
+    }).catch(e => { })
 
-    collector.on("end", async (button) => {
-
-      await db.delete("queue." + interaction.user.id + interaction.guild.id + interaction.channel.id)
-
-      button = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setStyle(ButtonStyle.Secondary)
-          .setEmoji("⬅️")
-          .setCustomId(backId)
-          .setDisabled(true),
-        new ButtonBuilder()
-          .setStyle(ButtonStyle.Secondary)
-          .setEmoji("❌")
-          .setCustomId("close")
-          .setDisabled(true),
-        new ButtonBuilder()
-          .setStyle(ButtonStyle.Secondary)
-          .setEmoji("➡️")
-          .setCustomId(forwardId)
-          .setDisabled(true))
-
-      const embed = new EmbedBuilder()
-        .setTitle(`Server Music List - Time Ended!`)
-        .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
-        .setColor('007fff')
-        .setDescription(`Your time has expired to use this command, you can type \`/queue\` to use the command again.`)
-        .setFooter({ text: `Code Share - by Umut Bayraktar ❤️` })
-      return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
-
-    })
-  }).catch(e => { })
-  
   }
 }
