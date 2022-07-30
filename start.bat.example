@@ -1,4 +1,3 @@
-:: this file is to be used if you are running the bot normally, rename this file to start.bat
 echo off
 color 1
 cls
