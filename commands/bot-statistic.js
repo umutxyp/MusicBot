@@ -63,7 +63,7 @@ module.exports = {
 **`)
               .setColor(Colors.Green)
               .setTimestamp()
-            await interaction.editReply({ content: "**<:tickYes:315009125694177281> Data Updated.**", embeds: [embed2] }).catch(err => { })
+            await interaction.editReply({ content: "**✔️ Data Updated.**", embeds: [embed2] }).catch(err => { })
             await button.deferUpdate().catch(e => { })
           }
         }
