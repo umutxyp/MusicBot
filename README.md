@@ -9,6 +9,7 @@
 - Run `npm install`.
 - Rename `token-example.js` to `token.js`
 - Replace `YOUR TOKEN HERE` with your bot token from the Discord Developer Portal. (see the setup video above for how to set up a Discord bot and get your token)
+- Other bot login: write to .env file is TOKEN=YOUR BOT TOKEN
 - Then, you can either [run the bot normally](#run-normally) or you can [set it up in Windows Task Scheduler](#set-up-in-windows-task-scheduler).
 
 ### Notes on Discord Bot Setup
