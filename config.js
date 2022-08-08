@@ -1,6 +1,5 @@
-const token = require('./token.js');
 module.exports = {
-    TOKEN: token.botToken,
+    TOKEN: "",
     ownerID: "", //write your discord user id.
     botInvite: "", //write your discord bot invite.
     status: '❤️ Umut Bayraktar',
