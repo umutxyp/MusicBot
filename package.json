@@ -13,7 +13,8 @@
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^5.0.2",
     "http": "^0.0.0",
-    "opusscript": "^0.0.8"
+    "opusscript": "^0.0.8",
+    "@discordjs/rest": "^1.0.1"
   },
   "scripts": {
     "start": "node index.js"
@@ -21,6 +22,6 @@
   "author": "UmutBayraktar",
   "license": "ISC",
   "engines": {
-    "node": "17.x"
+    "node": "16.x"
   }
 }
