@@ -15,7 +15,7 @@
         "ffmpeg-static": "^5.0.2",
         "http": "^0.0.1-security",
         "opusscript": "^0.0.8",
-        "ytdl-core": "https://github.com/GreepTheSheep/node-ytdl-core"
+        "ytdl-core": "4.10.0"
     },
     "scripts": {
         "start": "node index.js"
