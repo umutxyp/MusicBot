@@ -9,12 +9,14 @@
 - Run `npm install`.
 - Bot login: write to .env file is `TOKEN=YOUR BOT TOKEN` or: write config.js file to your bot token.
 
+
 ## NOTE: IF THE BOT IS WORKING, RESPONDING TO COMMANDS BUT NO SOUND, FOLLOW THESE STEPS:
 Enter the page of your project that you opened on -replit.com.
 - Click on the one that says shell from the boxes that say console and shell above the opened box at the bottom right.
 - Type npm uni ytdl-core
 - Type npm i ytdl-core@4.10.0
 - Turn off and on the bot from the button that says "Stop" or "Run" in the middle of the replit screen
+
 
 ### Notes on Discord Bot Setup
 - Make sure to enable all intents in the Discord Developer Portal
