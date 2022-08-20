@@ -8,7 +8,7 @@ module.exports = {
 
         if (!queue || !queue.playing) return interaction.reply({ content: `No music currently playing. ❌`, ephemeral: true }).catch(e => { })
 
-        if (!queue.tracks[0]) return interaction.reply({ content: `There is already no music in queue after the current one ❌`, ephemeral: true }).catch(e => { })
+        if (!queue.tracks[0]) return interaction.reply({ content: `The queue is empty. ❌`, ephemeral: true }).catch(e => { })
 
         await queue.clear();
 
