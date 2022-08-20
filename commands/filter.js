@@ -24,7 +24,7 @@ module.exports = {
 
     const filter = filters.find((x) => x.toLowerCase() === filtre.toLowerCase());
 
-    if (!filter) return interaction.reply({ content: `I couldn't find a filter with your name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
+    if (!filter) return interaction.reply({ content: `I couldn't find a filter with that name. ❌\n\`bassboost, 8D, nightcore\``, ephemeral: true }).catch(e => { })
     const filtersUpdated = {};
     filtersUpdated[filter] = queue["_activeFilters"].includes(filter) ? false : true;
     await queue.setFilters(filtersUpdated);
