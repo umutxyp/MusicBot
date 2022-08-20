@@ -38,6 +38,6 @@ module.exports = {
 
         await interaction.reply({ content: `<@${interaction.member.id}>, Your Music(s) Loading... 🎧` }).catch(e => { })
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
-        if (!queue.playing) await queue.play()
+        if (!queue.playing) await queue.play(track)
     },
 };
