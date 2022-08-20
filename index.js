@@ -53,9 +53,7 @@ player.on('trackStart', (queue, track) => {
   if (queue) {
     if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
     if (queue.metadata) {
-      queue.metadata.send({ content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧` }).catch(e => {
-        console.error(e);
-      });
+      queue.metadata.send({ content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧` }).catch(e => { });
     }
   }
 });
