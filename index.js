@@ -53,7 +53,7 @@ player.on('trackStart', (queue, track) => {
   if (queue) {
     if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
     if (queue.metadata) {
-      queue.metadata.send({ content: `🎵 Music started playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧` }).catch(e => { });
+      queue.metadata.send({ content: `🎵 Now playing: **${track.title}** -> Channel: **${queue.connection.channel.name}** 🎧` }).catch(e => { });
     }
   }
 });
@@ -69,7 +69,7 @@ player.on('trackAdd', (queue, track) => {
 player.on('channelEmpty', (queue) => {
   if (queue) {
     if (queue.metadata) {
-      queue.metadata.send({ content: `I left the audio channel because there is no one in my audio channel. ❌` }).catch(e => { })
+      queue.metadata.send({ content: `I disconnected because there is no one left in my channel. ❌` }).catch(e => { })
     }
   }
 });
@@ -86,7 +86,7 @@ player.on('queueEnd', (queue) => {
       }, client.config.opt.voiceConfig.leaveOnTimer.time);
     }
     if (queue.metadata) {
-      queue.metadata.send({ content: `All play queue finished, I think you can listen to some more music. ✅` }).catch(e => { })
+      queue.metadata.send({ content: `Queue is empty. You can play some more music. ✅` }).catch(e => { })
     }
   }
 });
@@ -94,7 +94,7 @@ player.on('queueEnd', (queue) => {
 player.on("error", (queue, error) => {
   if (queue) {
     if (queue.metadata) {
-      queue.metadata.send({ content: `I'm having trouble trying to connect to the voice channel. ❌ | ${error}` }).catch(e => { })
+      queue.metadata.send({ content: `I'm having trouble connecting to the voice channel. ❌ | ${error}` }).catch(e => { })
     }
   }
 })
