@@ -10,6 +10,6 @@ module.exports = {
 
         const success = queue.setPaused(false);
 
-        return interaction.reply({ content: success ? `**${queue.current.title}**, The song continues to play. ✅` : `Something went wrong. ❌ It's like you haven't stopped the music before.` }).catch(e => { })
+        return interaction.reply({ content: success ? `**${queue.current.title}**, Track resumed! ✅` : `Something went wrong. ❌ It's like you haven't stopped the music before.` }).catch(e => { })
     },
 };
