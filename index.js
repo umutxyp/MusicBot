@@ -1,7 +1,6 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const { Player } = require('discord-player');
 const config = require("./config")
-const TOKEN = config.TOKEN || process.env.TOKEN;
 const fs = require('fs');
 const client = new Client({
   intents: [
@@ -99,12 +98,14 @@ player.on("error", (queue, error) => {
   }
 })
 
-if (TOKEN) {
-  client.login(TOKEN).catch(e => {
+if (config.TOKEN || process.env.TOKEN) {
+  client.login(config.TOKEN || process.env.TOKEN).catch(e => {
     console.log("The Bot Token You Entered Into Your Project Is Incorrect Or Your Bot's INTENTS Are OFF!")
   })
 } else {
-  console.log("Please set the bot token in token.js or in your .env file in your project!")
+  setTimeout(() => {
+    console.log("Please set the bot token in token.js or in your .env file in your project!")
+  }, 2000)
 }
 
 setTimeout(async () => {
