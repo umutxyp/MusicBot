@@ -14,8 +14,8 @@ module.exports = {
         .setTitle(client.user.username + " - Pong!")
         .setThumbnail(client.user.displayAvatarURL())
         .addFields([
-          { name: `Message Ping`, value: `\`${Date.now() - start}ms\` 🛰️` },
-          { name: `Message Latency`, value: `\`${end - start}ms\` 🛰️` },
+          { name: `Message Ping`, value: `\`${start - end}ms\` 🛰️` },
+          { name: `Message Latency`, value: `\`${Date.now() - start}ms\` 🛰️` },
           { name: `API Latency`, value: `\`${Math.round(client.ws.ping)}ms\` 🛰️` }
         ])
         .setTimestamp()
