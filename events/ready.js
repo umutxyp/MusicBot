@@ -28,7 +28,7 @@ Turn off and on the bot from the button that says "Stop" or "Run" in the middle 
 
 TR | HATA ÖRNEĞİ: BOT ÇALIŞIYOR, KOMUTLARA YANIT VERİYOR ANCAK SES YOKSA BU ADIMLARI TAKİP EDİN;
 replit.com'da açtığınız projenizin sayfasına giriniz.
-Sağ altta açılan kutunun üzerinde konsol ve kabuk yazan kutulardan kabuk yazana tıklayın.
+Sağ altta açılan kutunun üzerinde console ve shell yazan kutulardan kabuk yazana tıklayın.
 npm uni discord-player yazın
 npm i discord-player@5.3.0-dev.2 yazın
 npm uni ytdl-core yazın
