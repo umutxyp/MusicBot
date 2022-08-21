@@ -33,7 +33,7 @@ npm uni discord-player yazın
 npm i discord-player@5.3.0-dev.2 yazın
 npm uni ytdl-core yazın
 npm i ytdl-core@4.10.0 yazın
-Ekranın ortasındaki "Srop" veya "Run" yazan butondan botu kapatıp açın.`)
+Ekranın ortasındaki "Stop" veya "Run" yazan butondan botu kapatıp açın.`)
     
 client.user.setStatus('ONLINE');
 client.user.setActivity(config.status)
