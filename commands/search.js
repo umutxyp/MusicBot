@@ -66,7 +66,7 @@ module.exports = {
         return interaction.reply({ content: `I can't join audio channel. ❌`, ephemeral: true }).catch(e => { })
       }
 
-      await interaction.reply({ content: `Loading your music call. 🎧` }).catch(e => { })
+      await interaction.reply({ content: `Loading... 🎧` }).catch(e => { })
 
       queue.addTrack(res.tracks[Number(query.content) - 1]);
       if (!queue.playing) await queue.play();

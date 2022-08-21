@@ -3,11 +3,11 @@ const { ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: "play",
-    description: "It helps you start a new music.",
+    description: "Play a track.",
     permissions: "0x0000000000000800",
     options: [{
         name: 'musics',
-        description: 'Type the name of the music you want to play.',
+        description: 'Type the name of the track you want to play.',
         type: ApplicationCommandOptionType.String,
         required: true
     }],
@@ -15,7 +15,7 @@ module.exports = {
     run: async (client, interaction) => {
 
         const name = interaction.options.getString('musics')
-        if (!name) return interaction.reply({ content: `Write the name of the music you want to search. ❌`, ephemeral: true }).catch(e => { })
+        if (!name) return interaction.reply({ content: `Write the name of the track you want to search. ❌`, ephemeral: true }).catch(e => { })
 
         const res = await client.player.search(name, {
             requestedBy: interaction.member,
@@ -33,10 +33,10 @@ module.exports = {
             if (!queue.playing) await queue.connect(interaction.member.voice.channelId)
         } catch {
             await client.player.deleteQueue(interaction.guild.id);
-            return interaction.reply({ content: `I can't join audio channel. ❌`, ephemeral: true }).catch(e => { })
+            return interaction.reply({ content: `I can't join your voice channel. ❌`, ephemeral: true }).catch(e => { })
         }
 
-        await interaction.reply({ content: `<@${interaction.member.id}>, Your Music(s) Loading... 🎧` }).catch(e => { })
+        await interaction.reply({ content: `<@${interaction.member.id}>, Loading ${res.title}... 🎧` }).catch(e => { })
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
         if (!queue.playing) await queue.play()
     },

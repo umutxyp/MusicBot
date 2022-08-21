@@ -10,6 +10,6 @@ module.exports = {
 
         queue.destroy();
 
-        interaction.reply({ content: `The music playing on this server has been turned off, see you next time ✅` }).catch(e => { })
+        interaction.reply({ content: `Music stopped. See you next time! ✅` }).catch(e => { })
     },
 };

@@ -10,7 +10,7 @@ module.exports = {
     let cmds = db.get("queue." + interaction.user.id + interaction.guild.id + interaction.channel.id)
     const queue = client.player.getQueue(interaction.guild.id);
     if (!queue || !queue.playing) return interaction.reply({ content: `There is no music currently playing!. ❌`, ephemeral: true }).catch(e => { })
-    if (!queue.tracks[0]) return interaction.reply({ content: `No music in queue after current. ❌`, ephemeral: true }).catch(e => { })
+    if (!queue.tracks[0]) return interaction.reply({ content: `Queue is empty. ❌`, ephemeral: true }).catch(e => { })
     if (cmds) return interaction.reply({ content: `You already have an active command here. ❌\nhttps://discord.com/channels/${interaction.guild.id}/${interaction.channel.id}/${cmds}`, ephemeral: true }).catch(e => { })
 
 
@@ -63,7 +63,7 @@ module.exports = {
         .setColor('007fff')
         .setDescription(`Currently Playing: \`${queue.current.title}\`
 ${await Promise.all(current.map(data =>
-          `\n\`${sayı++}\` | [${data.title}](${data.url}) | **${data.author}** (Started by <@${data.requestedBy.id}>)`
+          `\n\`${sayı++}\` | [${data.title}](${data.url}) | **${data.author}** (Requested by <@${data.requestedBy.id}>)`
         ))}`)
         .setFooter({ text: `Page ${page} / ${toplam}` })
     }
