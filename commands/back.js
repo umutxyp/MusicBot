@@ -13,6 +13,6 @@ module.exports = {
 
         await queue.back();
 
-        interaction.reply({ content: `Now playing ${queue.previousTracks[1].title}. ✅` }).catch(e => { })
+        interaction.reply({ content: `Now playing **${queue.previousTracks[1].title}**. ✅` }).catch(e => { })
     },
 };
