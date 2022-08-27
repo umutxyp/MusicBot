@@ -8,6 +8,7 @@
 - Added personal playlist creation commands.
 - Added new player features. (config.js)
 - All commands are functionally optimized for discord.js v14.
+- Open music with youtube video link
 
 ## Bot Setup
 
