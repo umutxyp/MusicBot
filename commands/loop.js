@@ -64,8 +64,8 @@ module.exports = {
             await button.deferUpdate();
             break
           case 'close':
-            if (queue.repeatMode === 0){
-               await button.deferUpdate();
+            if (queue.repeatMode === 0) {
+              await button.deferUpdate();
               return interaction.editReply({ content: lang.msg43, ephemeral: true }).catch(e => { })
             }
             const success4 = queue.setRepeatMode(QueueRepeatMode.OFF);
