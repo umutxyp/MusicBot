@@ -1,5 +1,13 @@
 # Discord.js v14 Slash Commands Music Bot
 
+## ABOUT V10 UPDATE
+## news:
+- Event folders have been recreated.
+- The bot's database has been changed to mongodb.
+- Multi language option added.
+- Added personal playlist creation commands.
+- Added new player features. (config.js)
+- All commands are functionally optimized for discord.js v14.
 ## Bot Setup
 
 [Click here for a setup video](https://youtu.be/LQ24tdW5d8k), but these instructions are up to date so make sure to follow them if the video is different.
