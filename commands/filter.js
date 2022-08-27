@@ -20,7 +20,7 @@ if (!filtre) return interaction.reply({ content: lang.msg29, ephemeral: true }).
 
 
 const filters = ["bassboost", "8D", "nightcore", "mono", "karaoke"];
-//other filters: https://discord-player.js.org/docs/main/master/typedef/AudioFilters 
+//other filters: https://discord-player.js.org/docs/main/master/class/AudioFilters
 
 const filter = filters.find((x) => x.toLowerCase() === filtre.toLowerCase());
 
