@@ -122,8 +122,7 @@ module.exports = async (client, interaction) => {
         if (!playlist?.playlist?.filter(p => p.name === name).length > 0) return interaction.reply({ content: `${lang.msg10}`, ephemeral: true }).catch(e => { })
 
         const music_filter = playlist?.musics?.filter(m => m.playlist_name === name && m.music_name === queue.current.title)
-        if (music_filter?.length > 0) return interaction.reply({ content: `${lang.msg11}`, ephemeral: true }).catch(e => { })
-        if (!music_filter2?.length > 0) {
+        if (!music_filter?.length > 0) {
           await db.playlist.updateOne({ userID: interaction.user.id }, {
             $push: {
               musics: {
