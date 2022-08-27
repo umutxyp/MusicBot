@@ -1,7 +1,7 @@
 # Discord.js v14 Slash Commands Music Bot
 
 ## ABOUT V10 UPDATE
-## news:
+## news: 2022 - 27 AUGUST
 - Event folders have been recreated.
 - The bot's database has been changed to mongodb.
 - Multi language option added.
