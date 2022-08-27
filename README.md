@@ -10,7 +10,7 @@
 - Open music with youtube video link
 
 
-## Supported audio playback platforms
+## Supported audio playback platforms:
 - YouTube
 - Spotify 
 - SoundCloud 
@@ -19,6 +19,9 @@
 - Facebook
 - Attachment Links
 
+
+## Custom audio filters:
+8D, bassboost, bassboost_high, bassboost_low,	chorus,	chorus2d,	chorus3d,	compressor,	dim,	earrape, expander, fadein,	flanger,	gate,	haas,	karaoke,	mcompand,	mono, mstlr,	mstrr,	nightcore, normalizer, normalizer2, phaser, pulsator, reverse, softlimiter, subboost, surrounding, treble, tremolo, vaporwave, vibrato
 
 ## Bot Setup
 [Click here for a setup video](https://youtu.be/LQ24tdW5d8k), but these instructions are up to date so make sure to follow them if the video is different.
