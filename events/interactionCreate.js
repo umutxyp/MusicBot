@@ -4,140 +4,146 @@ const { EmbedBuilder, InteractionType, ModalBuilder, TextInputBuilder, TextInput
 const db = require("../mongoDB");
 
 module.exports = async (client, interaction) => {
-let lang = client.language
-if (!interaction.guild) return;
-if (interaction.type === InteractionType.ApplicationCommand) {
-fs.readdir(config.commandsDir, (err, files) => {
-if (err) throw err;
-files.forEach(async (f) => {
-let props = require(`.${config.commandsDir}/${f}`);
-if (interaction.commandName.toLowerCase() === props.name.toLowerCase()) {
-try {
-if (interaction.member.permissions.has(props?.permissions || "0x0000000000000800")) {
-const DJ = client.config.opt.DJ;
-if (props && DJ.commands.includes(interaction.commandName)) {
-let djRole = await db.musicbot.findOne({ guildID: interaction.guild.id }).catch(e => { });
-if (djRole) {
-const roleDJ = interaction.guild.roles.cache.get(djRole.role)
-if (!interaction.member.permissions.has("0x0000000000000020")) {
-if (roleDJ) {
-if (!interaction.member.roles.cache.has(roleDJ.id)) {
+  let lang = client.language
+  if (!interaction.guild) return;
+  if (interaction.type === InteractionType.ApplicationCommand) {
+    fs.readdir(config.commandsDir, (err, files) => {
+      if (err) throw err;
+      files.forEach(async (f) => {
+        let props = require(`.${config.commandsDir}/${f}`);
+        if (interaction.commandName.toLowerCase() === props.name.toLowerCase()) {
+          try {
+            if (interaction.member.permissions.has(props?.permissions || "0x0000000000000800")) {
+              const DJ = client.config.opt.DJ;
+              if (props && DJ.commands.includes(interaction.commandName)) {
+                let djRole = await db.musicbot.findOne({ guildID: interaction.guild.id }).catch(e => { });
+                if (djRole) {
+                  const roleDJ = interaction.guild.roles.cache.get(djRole.role)
+                  if (!interaction.member.permissions.has("0x0000000000000020")) {
+                    if (roleDJ) {
+                      if (!interaction.member.roles.cache.has(roleDJ.id)) {
 
-const embed = new EmbedBuilder()
-.setColor('007fff')
-.setTitle(client.user.username)
-.setThumbnail(client.user.displayAvatarURL())
-.setDescription(lang.embed1.replace("{djRole}", roleDJ.id).replace("{cmdMAP}", client.config.opt.DJ.commands.map(astra => '`' + astra + '`').join(", ")))
-.setTimestamp()
-.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
-return interaction.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
-}
-}
-}
-}
-}
-if (props && props.voiceChannel) {
-if (!interaction.member.voice.channelId) return interaction.reply({ content: `${lang.message1}`, ephemeral: true }).catch(e => { })
-const guild_me = interaction.guild.members.cache.get(client.user.id);
-if (guild_me.voice.channelId) {
-if (guild_me.voice.channelId !== interaction.member.voice.channelId) {
-return interaction.reply({ content: `${lang.message2}`, ephemeral: true }).catch(e => { })
-}
-}
-}
-return props.run(client, interaction);
+                        const embed = new EmbedBuilder()
+                          .setColor('007fff')
+                          .setTitle(client.user.username)
+                          .setThumbnail(client.user.displayAvatarURL())
+                          .setDescription(lang.embed1.replace("{djRole}", roleDJ.id).replace("{cmdMAP}", client.config.opt.DJ.commands.map(astra => '`' + astra + '`').join(", ")))
+                          .setTimestamp()
+                          .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+                        return interaction.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
+                      }
+                    }
+                  }
+                }
+              }
+              if (props && props.voiceChannel) {
+                if (!interaction.member.voice.channelId) return interaction.reply({ content: `${lang.message1}`, ephemeral: true }).catch(e => { })
+                const guild_me = interaction.guild.members.cache.get(client.user.id);
+                if (guild_me.voice.channelId) {
+                  if (guild_me.voice.channelId !== interaction.member.voice.channelId) {
+                    return interaction.reply({ content: `${lang.message2}`, ephemeral: true }).catch(e => { })
+                  }
+                }
+              }
+              return props.run(client, interaction);
 
-} else {
-return interaction.reply({ content: `${lang.message3}: **${props?.permissions}**`, ephemeral: true });
-}
-} catch (e) {
-console.log(e);
-return interaction.reply({ content: `${lang.msg4}...\n\n\`\`\`${e.message}\`\`\``, ephemeral: true });
-}
-}
-});
-});
-}
-
-if (interaction.type === InteractionType.MessageComponent) {
-const queue = client.player.getQueue(interaction.guildId);
-switch (interaction.customId) {
-case 'saveTrack': {
-if (!queue || !queue.playing) {
-return interaction.reply({ content: `${lang.msg5}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-} else {
-
-const Modal = new ModalBuilder()
-.setCustomId("playlistModal")
-.setTitle(lang.msg6)
-
-const PlayList = new TextInputBuilder()
-.setCustomId("playlist")
-.setLabel(lang.msg7)
-.setRequired(true)
-.setStyle(TextInputStyle.Short)
-
-const PlaylistRow = new ActionRowBuilder().addComponents(PlayList);
-
-Modal.addComponents(PlaylistRow)
-
-await interaction.showModal(Modal).catch(e => {})
-}
-}
-break
-case 'time': {
-if (!queue || !queue.playing) {
-return interaction.reply({ content: `${lang.msg5}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-} else {
-
-const progress = queue.createProgressBar();
-const timestamp = queue.getPlayerTimestamp();
-
-if (timestamp.progress == 'Infinity') return interaction.message.edit({ content: `${lang.msg8}`, embeds: [], components: [] }).catch(e => { })
-
-const embed = new EmbedBuilder()
-.setColor('007fff')
-.setTitle(queue.current.title)
-.setThumbnail(client.user.displayAvatarURL())
-.setTimestamp()
-.setDescription(`${progress} (**${timestamp.progress}**%)`)
-.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
-interaction.message.edit({ embeds: [embed] }).catch(e => { })
-interaction.reply({ content: `${lang.msg9}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-}
-}
-}
-}
-
-
-if (interaction.type === InteractionType.ModalSubmit) {
-    switch (interaction.customId) {
-        case 'playlistModal': {
-    const queue = client.player.getQueue(interaction.guildId);
-    if (!queue || !queue.playing) return interaction.reply({ content: `${lang.msg5}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-
-    const name = interaction.fields.getTextInputValue("playlist")
-    
-    const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
-    if(!playlist?.playlist?.filter(p => p.name === name).length > 0) return interaction.reply({ content: `${lang.msg10}`, ephemeral: true }).catch(e => { })
-    
-    const music_filter = playlist?.musics?.filter(m => m.playlist_name === name && m.music_name === queue.current.title)
-    if(music_filter?.length > 0) return interaction.reply({ content: `${lang.msg11}`, ephemeral: true }).catch(e => { })
-    
-    await db.playlist.updateOne({ userID: interaction.user.id }, {
-        $push: {
-        musics: {
-        playlist_name: name,
-        music_name: queue.current.title,
-        music_url: queue.current.url,
-        saveTime: Date.now()
+            } else {
+              return interaction.reply({ content: `${lang.message3}: **${props?.permissions}**`, ephemeral: true });
+            }
+          } catch (e) {
+            console.log(e);
+            return interaction.reply({ content: `${lang.msg4}...\n\n\`\`\`${e.message}\`\`\``, ephemeral: true });
+          }
         }
-        }}, { upsert: true }).catch(e => { })
-    
-        return interaction.reply(`<@${interaction.user.id}>, **${queue.current.title}** ${lang.msg12}`)
+      });
+    });
+  }
+
+  if (interaction.type === InteractionType.MessageComponent) {
+    const queue = client.player.getQueue(interaction.guildId);
+    switch (interaction.customId) {
+      case 'saveTrack': {
+        if (!queue || !queue.playing) {
+          return interaction.reply({ content: `${lang.msg5}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        } else {
+
+          const Modal = new ModalBuilder()
+            .setCustomId("playlistModal")
+            .setTitle(lang.msg6)
+
+          const PlayList = new TextInputBuilder()
+            .setCustomId("playlist")
+            .setLabel(lang.msg7)
+            .setRequired(true)
+            .setStyle(TextInputStyle.Short)
+
+          const PlaylistRow = new ActionRowBuilder().addComponents(PlayList);
+
+          Modal.addComponents(PlaylistRow)
+
+          await interaction.showModal(Modal).catch(e => { })
+        }
+      }
+        break
+      case 'time': {
+        if (!queue || !queue.playing) {
+          return interaction.reply({ content: `${lang.msg5}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        } else {
+
+          const progress = queue.createProgressBar();
+          const timestamp = queue.getPlayerTimestamp();
+
+          if (timestamp.progress == 'Infinity') return interaction.message.edit({ content: `${lang.msg8}`, embeds: [], components: [] }).catch(e => { })
+
+          const embed = new EmbedBuilder()
+            .setColor('007fff')
+            .setTitle(queue.current.title)
+            .setThumbnail(client.user.displayAvatarURL())
+            .setTimestamp()
+            .setDescription(`${progress} (**${timestamp.progress}**%)`)
+            .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+          interaction.message.edit({ embeds: [embed] }).catch(e => { })
+          interaction.reply({ content: `${lang.msg9}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        }
+      }
     }
-    break
-}
-}
+  }
+
+
+  if (interaction.type === InteractionType.ModalSubmit) {
+    switch (interaction.customId) {
+      case 'playlistModal': {
+        const queue = client.player.getQueue(interaction.guildId);
+        if (!queue || !queue.playing) return interaction.reply({ content: `${lang.msg5}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+
+        const name = interaction.fields.getTextInputValue("playlist")
+
+        const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
+        if (!playlist?.playlist?.filter(p => p.name === name).length > 0) return interaction.reply({ content: `${lang.msg10}`, ephemeral: true }).catch(e => { })
+
+        const music_filter = playlist?.musics?.filter(m => m.playlist_name === name && m.music_name === queue.current.title)
+        if (music_filter?.length > 0) return interaction.reply({ content: `${lang.msg11}`, ephemeral: true }).catch(e => { })
+        if (!music_filter2?.length > 0) {
+          await db.playlist.updateOne({ userID: interaction.user.id }, {
+            $push: {
+              musics: {
+                playlist_name: name,
+                music_name: queue.current.title,
+                music_url: queue.current.url,
+                saveTime: Date.now(),
+                duration: queue.current.duration,
+                thumbnail: queue.current.thumbnail,
+                author: queue.current.author
+              }
+            }
+          }, { upsert: true }).catch(e => { })
+          return interaction.reply(`<@${interaction.user.id}>, **${queue.current.title}** ${lang.msg12}`)
+        } else {
+          return interaction.reply(`<@${interaction.user.id}>, **${queue.current.title}** ${lang.msg104}`)
+        }
+      }
+        break
+    }
+  }
 
 }
