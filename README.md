@@ -40,7 +40,7 @@ Enter the page of your project that you opened on -replit.com.
 
 ### Links
 
-- [FİLTER COMMAND OTHER FİLTERS](https://discord-player.js.org/docs/main/master/typedef/AudioFilters)
+- [FİLTER COMMAND OTHER FİLTERS](https://discord-player.js.org/docs/main/master/class/AudioFilters)
 
 - [Fork Replit](https://replit.com/)
 
