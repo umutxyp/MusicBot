@@ -23,7 +23,7 @@ module.exports = async (client) => {
     }).then(async () => {
       console.log(`Connected MongoDB`)
 
-      setTimeout(() => {
+      setTimeout(async () => {
         const db = require("../mongoDB");
         await db.loop.deleteOne()
         await db.queue.deleteOne()
