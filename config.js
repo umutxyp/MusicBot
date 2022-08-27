@@ -27,7 +27,7 @@ cooldown: 20000, //1000 = 1 second
 }
 },
 
-maxVol: 252, //You can specify the maximum volume level.
+maxVol: 150, //You can specify the maximum volume level.
 loopMessage: true,
 
 discordPlayer: {
