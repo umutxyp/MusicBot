@@ -128,7 +128,7 @@ ${current.map(data =>
 
       collector.on("end", async (button) => {
 
-        await db.queue.deleteOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { })
+        await db.queue.deleteOne({ userID: interaction?.user?.id, guildID: interaction?.guild?.id, channelID: interaction?.channel?.id }).catch(e => { })
 
         button = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
