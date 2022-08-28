@@ -298,7 +298,7 @@ module.exports = {
           .setTitle(`${name}`)
           .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
           .setColor('007fff')
-          .setDescription(`${current.map(data =>
+          .setDescription(`${lang.msg119}\n\n${current.map(data =>
             `\n\`${sayı++}\` | [${data.music_name}](${data.music_url}) - <t:${Math.floor(data.saveTime / 1000)}:R>`
           )}`)
           .setFooter({ text: `${lang.msg67} ${page}/${toplam}` })
@@ -401,9 +401,9 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setTitle(lang.msg115)
         .setColor('007fff')
-        .setDescription(`${await Promise.all(playlist?.playlist?.map(data =>
+        .setDescription(`${lang.msg119}\n\n${playlist?.playlist?.map(data =>
           `\n**${number++} |** \`${data.name}\` - **${playlist?.musics?.filter(m => m.playlist_name === data.name)?.length || 0}** ${lang.msg116} (<t:${Math.floor(data.createdTime / 1000)}:R>)`
-        ))}`)
+        )}`)
         .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
       return interaction.reply({ embeds: [embed] }).catch(e => { })
 
@@ -461,7 +461,7 @@ module.exports = {
           .setTitle(lang.msg112)
           .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
           .setColor('007fff')
-          .setDescription(`${current.map(data =>
+          .setDescription(`${lang.msg119}\n\n${current.map(data =>
             `\n**${sayı++} |** \`${data.name}\` - **${data.plays}** plays (<t:${Math.floor(data.createdTime / 1000)}:R>)`
           )}`)
           .setFooter({ text: `${lang.msg67} ${page}/${toplam}` })
