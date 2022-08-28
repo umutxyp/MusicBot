@@ -29,6 +29,6 @@ const filtersUpdated = {};
 filtersUpdated[filter] = queue["_activeFilters"].includes(filter) ? false : true;
 await queue.setFilters(filtersUpdated);
 
-interaction.reply({ content: lang.msg31.replace("{filter}", filter).replace("{status", queue["_activeFilters"].includes(filter) ? '✅' : '❌') }).catch(e => { })
+interaction.reply({ content: lang.msg31.replace("{filter}", filter).replace("{status}", queue["_activeFilters"].includes(filter) ? '✅' : '❌') }).catch(e => { })
 },
 };
