@@ -7,7 +7,6 @@
         "@discord-player/extractor": "^3.0.2",
         "@discordjs/builders": "^1.0.0",
         "@discordjs/rest": "^1.0.1",
-        "croxydb": "^0.0.7",
         "discord-api-types": "^0.37.0",
         "discord-player": "^5.3.0-dev.2",
         "discord.js": "^14.0.2",
