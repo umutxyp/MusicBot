@@ -71,7 +71,6 @@ module.exports = {
             initialVolume: serverdb,
             leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
             leaveOnEmpty: client.config.opt.voiceConfig.leaveOnEmpty.status,
-            leaveOnEmptyCooldown: client.config.opt.voiceConfig.leaveOnEmpty.cooldown,
             autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
             metadata: interaction.channel
           });
@@ -159,7 +158,6 @@ module.exports = {
           initialVolume: serverdb,
           leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
           leaveOnEmpty: client.config.opt.voiceConfig.leaveOnEmpty.status,
-          leaveOnEmptyCooldown: client.config.opt.voiceConfig.leaveOnEmpty.cooldown,
           autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
           metadata: interaction.channel,
           async onBeforeCreateStream(track, source, _queue) {
