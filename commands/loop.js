@@ -6,6 +6,7 @@ module.exports = {
   description: "Turns the music loop mode on or off.",
   permissions: "0x0000000000000800",
   options: [],
+  voiceChannel: true,
   run: async (client, interaction) => {
     let lang = client.language
     if (!client.config.mongodbURL) return interaction.reply({ content: lang.error6, ephemeral: true }).catch(e => { })
