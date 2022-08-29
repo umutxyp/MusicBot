@@ -9,6 +9,7 @@ description: "Type how many songs you want to skip.",
 type: ApplicationCommandOptionType.Number,
 required: false
 }],
+voiceChannel: true,
 run: async (client, interaction) => {
     let lang = client.language
 const queue = client.player.getQueue(interaction.guild.id);
