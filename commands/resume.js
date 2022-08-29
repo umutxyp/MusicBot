@@ -3,6 +3,7 @@ name: "resume",
 description: "Restarts paused music.",
 permissions: "0x0000000000000800",
 options: [],
+voiceChannel: true,
 run: async (client, interaction) => {
 const queue = client.player.getQueue(interaction.guild.id);
 let lang = client.language
