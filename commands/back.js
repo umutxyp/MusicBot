@@ -3,6 +3,7 @@ name: "back",
 description: "Plays the previous track.",
 permissions: "0x0000000000000800",
 options: [],
+  voiceChannel: true,
 run: async (client, interaction) => {
 let lang = client.language
 const queue = client.player.getQueue(interaction.guild.id);
