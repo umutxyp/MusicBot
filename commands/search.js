@@ -10,6 +10,7 @@ description: 'Type the name of the music you want to play.',
 type: ApplicationCommandOptionType.String,
 required: true
 }],
+voiceChannel: true,
 run: async (client, interaction) => {
     let lang = client.language
 const name = interaction.options.getString('name')
