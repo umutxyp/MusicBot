@@ -90,18 +90,18 @@ module.exports = {
                 });
               }
 
-              queue.addTrack(res.tracks[0])
+              queue.addTrack(res?.tracks[0])
             }, 2000)
           })
           try {
-            if (!queue.playing) await queue.connect(interaction.member.voice.channelId)
+            if (!queue.playing) await queue?.connect(interaction.member.voice.channelId)
           } catch {
             await client.player.deleteQueue(interaction.guild.id);
             return interaction.reply({ content: lang.msg55, ephemeral: true }).catch(e => { })
           }
           await interaction.reply({ content: lang.msg56 }).catch(e => { })
           setTimeout(async () => {
-            if (!queue.playing) await queue.play()
+            if (!queue.playing) await queue?.play()
             await interaction.editReply({ content: lang.msg57.replace("{interaction.member.id}", interaction.member.id).replace("{music_filter.length}", music_filter.length) }).catch(e => { })
           }, 5000)
 
@@ -188,7 +188,7 @@ module.exports = {
       }
       let msg = res.playlist ? `<@${interaction.member.id}>, \`${res.playlist.title}\` ${lang.msg61}` : `<@${interaction.member.id}>, **${res.tracks[0].title}** ${lang.msg62}`
       await interaction.reply({ content: msg }).catch(e => { })
-      res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
+      res.playlist ? queue.addTracks(res?.tracks) : queue.addTrack(res?.tracks[0]);
       if (!queue.playing) await queue.play()
     }
   },
