@@ -9,8 +9,8 @@ module.exports = async (client, queue) => {
           };
         }, client.config.opt.voiceConfig.leaveOnTimer.cooldown);
       }
+    }
       if (queue?.metadata) {
         queue?.metadata?.send({ content: `${client.language.msg14}` }).catch(e => { })
       }
     }
-  }
