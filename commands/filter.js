@@ -9,6 +9,7 @@ description: 'Type the filter you want to apply. (bassboost, 8D, nightcore, mono
 type: ApplicationCommandOptionType.String,
 required: true
 }],
+  voiceChannel: true,
 run: async (client, interaction) => {
 let lang = client.language
 const queue = client.player.getQueue(interaction.guild.id);
