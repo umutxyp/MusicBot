@@ -3,6 +3,7 @@ name: "pause",
 description: "Stops playing the currently playing music.",
 permissions: "0x0000000000000800",
 options: [],
+  voiceChannel: true,
 run: async (client, interaction) => {
 
 const queue = client.player.getQueue(interaction.guild.id);
