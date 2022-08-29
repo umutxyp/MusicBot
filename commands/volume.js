@@ -11,6 +11,7 @@ module.exports = {
     type: ApplicationCommandOptionType.Integer,
     required: true
   }],
+  voiceChannel: true,
   run: async (client, interaction) => {
     let lang = client.language
     if (!client.config.mongodbURL) return interaction.reply({ content: lang.error6, ephemeral: true }).catch(e => { })
