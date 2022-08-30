@@ -257,11 +257,34 @@ module.exports = {
       let cmds = await db.playlist_timer.findOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { });
       if (cmds) return interaction.reply({ content: `${lang.msg34}\nhttps://discord.com/channels/${interaction.guild.id}/${interaction.channel.id}/${cmds.messageID}`, ephemeral: true }).catch(e => { })
 
-      const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
-      if (!playlist?.playlist?.filter(p => p.name === name).length > 0) return interaction.reply({ content: lang.msg96, ephemeral: true }).catch(e => { })
+      let trackl
 
-      const trackl = playlist?.musics?.filter(m => m.playlist_name === name)
-      if (!trackl?.length > 0) return interaction.reply({ content: lang.msg111, ephemeral: true }).catch(e => { })
+      const playlist = await db.playlist.find().catch(e => { })
+      if (!playlist?.length > 0) return interaction.reply({ content: lang.msg96, ephemeral: true }).catch(e => { })
+
+      let arr = 0
+      for (let i = 0; i < playlist.length; i++) {
+        if (playlist[i]?.playlist?.filter(p => p.name === name)?.length > 0) {
+
+          let playlist_owner_filter = playlist[i].playlist.filter(p => p.name === name)[0].author
+          let playlist_public_filter = playlist[i].playlist.filter(p => p.name === name)[0].public
+
+          if (playlist_owner_filter !== interaction.member.id) {
+            if (playlist_public_filter === false) {
+              return interaction.reply({ content: lang.msg53, ephemeral: true }).catch(e => { })
+            }
+          }
+
+          trackl = playlist?.musics?.filter(m => m.playlist_name === name)
+          if (!trackl?.length > 0) return interaction.reply({ content: lang.msg111, ephemeral: true }).catch(e => { })
+
+        } else {
+          arr++
+          if (arr === playlist.length) {
+            return interaction.reply({ content: lang.msg58, ephemeral: true }).catch(e => { })
+          }
+        }
+      }
 
       const backId = "emojiBack"
       const forwardId = "emojiForward"
@@ -297,8 +320,8 @@ module.exports = {
         return new EmbedBuilder()
           .setTitle(`${name}`)
           .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
-          .setColor('007fff')
-          .setDescription(`${lang.msg119}\n\n${current.map(data =>
+          .setColor('ffa954')
+          .setDescription(`${lang.msg119}\n${current.map(data =>
             `\n\`${sayı++}\` | [${data.music_name}](${data.music_url}) - <t:${Math.floor(data.saveTime / 1000)}:R>`
           )}`)
           .setFooter({ text: `${lang.msg67} ${page}/${toplam}` })
@@ -383,7 +406,7 @@ module.exports = {
           const embed = new EmbedBuilder()
             .setTitle(`${name}`)
             .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
-            .setColor('007fff')
+            .setColor('ffa954')
             .setDescription(lang.msg118.replace("{name}", name))
             .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
           return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
@@ -400,8 +423,8 @@ module.exports = {
       let number = 1
       const embed = new EmbedBuilder()
         .setTitle(lang.msg115)
-        .setColor('007fff')
-        .setDescription(`${lang.msg119}\n\n${playlist?.playlist?.map(data =>
+        .setColor('ffa954')
+        .setDescription(`${lang.msg119}\n${playlist?.playlist?.map(data =>
           `\n**${number++} |** \`${data.name}\` - **${playlist?.musics?.filter(m => m.playlist_name === data.name)?.length || 0}** ${lang.msg116} (<t:${Math.floor(data.createdTime / 1000)}:R>)`
         )}`)
         .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
@@ -460,8 +483,8 @@ module.exports = {
         return new EmbedBuilder()
           .setTitle(lang.msg112)
           .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
-          .setColor('007fff')
-          .setDescription(`${lang.msg119}\n\n${current.map(data =>
+          .setColor('ffa954')
+          .setDescription(`${lang.msg119}\n${current.map(data =>
             `\n**${sayı++} |** \`${data.name}\` - **${data.plays}** plays (<t:${Math.floor(data.createdTime / 1000)}:R>)`
           )}`)
           .setFooter({ text: `${lang.msg67} ${page}/${toplam}` })
@@ -546,7 +569,7 @@ module.exports = {
           const embed = new EmbedBuilder()
             .setTitle(lang.msg112)
             .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
-            .setColor('007fff')
+            .setColor('ffa954')
             .setDescription(lang.msg113)
             .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
           return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
