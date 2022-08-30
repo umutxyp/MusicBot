@@ -17,6 +17,7 @@ module.exports = {
 • User Count: \`${client.users.cache.size}\`
 • Server Count: \`${client.guilds.cache.size}\`
 • Channel Count: \`${client.channels.cache.size}\`
+• Connected Voice: \`${client?.voice?.adapters?.size || 0}\`
 • Command Count: \`${client.commands.map(c => c.name).length}\`
 • Discord.js Version: \`V14.1.0\`
 • Node.js Version: \`${process.version}\`
@@ -26,7 +27,7 @@ module.exports = {
 • OS: \`${process.platform}\`
 • Invite Bot: [Click](${config.botInvite})
 **`)
-      .setColor(Colors.Green)
+      .setColor("ffa954")
       .setTimestamp()
     return interaction.reply({ embeds: [embed] }).catch(err => { })
   },
