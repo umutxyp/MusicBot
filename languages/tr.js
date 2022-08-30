@@ -139,6 +139,6 @@ msg115: "Senin Oynatma Listelerin",
 msg116: `müzik`,
 msg117: `Herhangi bir oynatma listeniz yok. ❌`,
 msg118: "Bu komutu kullanmak için süreniz doldu, komutu tekrar kullanmak için \`/playlist list {name}\` yazabilirsiniz.",
-msg119: "**/play playlist <liste-ismi>** komutu ile playlistleri dinleyebilirsiniz."
+msg119: "**/play playlist <liste-ismi>** komutu ile playlistleri dinleyebilirsiniz.\nBir listedeki müzikleri görmek için **/playlist list <list-name>** yazın."
 }
 module.exports = language;
