@@ -3,7 +3,9 @@ const { Schema, model } = require("mongoose");
 const musicbot = Schema({
 guildID: String,
 role: String,
-volume: Number
+language: String,
+volume: Number,
+channels: Array
 })
 
 const loop = Schema({
