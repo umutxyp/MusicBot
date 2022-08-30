@@ -13,6 +13,18 @@
 - Added new player features. (config.js)
 - All commands are functionally optimized for discord.js v14.
 - Open music with youtube video link
+- Specify the specific channel in which the command will be used.
+
+
+## About Bot
+- The excitement of listening to non-stop music 24/7.
+- Customizable commands.
+- Chance to set customizable dj role.
+- A chance to loop the music you want so it doesn't end.
+- Create your own playlist. Use it if you want, share it with everyone.
+- Add your favorite music to your playlist with one click and listen later.
+- Open music from dozens of supported audio platforms.
+- Add color to music with special sound filters.
 
 
 ## Supported audio playback platforms:
