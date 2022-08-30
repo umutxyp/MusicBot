@@ -139,6 +139,13 @@ msg115: "Your Playlists",
 msg116: `musics`,
 msg117: `You don't have any playlist. ❌`,
 msg118: "Your time has expired to use this command, you can type \`/playlist list {name}\` to use the command again.",
-msg119: "Use the **/play playlist <list-name>** command to listen to these playlists.\nType **/playlist list <list-name>** to see the music in a list."
+msg119: "Use the **/play playlist <list-name>** command to listen to these playlists.\nType **/playlist list <list-name>** to see the music in a list.",
+msg120: "Please specify a text channel.",
+msg121: "<#{channel}> added to the command usage channel list, now bot command can be used only on the channels in the list.",
+msg122: "There is no data already registered.",
+msg123: "<#{channel}> deleted to the command usage channel list.",
+msg124: "This channel is already on the command usage channel list.",
+msg125: "This channel is not a text channel.",
+msg126: "❌ Here is the list of channels you can command on this server: {channel_filter}"
 }
 module.exports = language;
