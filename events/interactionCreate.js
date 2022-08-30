@@ -13,6 +13,14 @@ module.exports = async (client, interaction) => {
         let props = require(`.${config.commandsDir}/${f}`);
         if (interaction.commandName.toLowerCase() === props.name.toLowerCase()) {
           try {
+            const data = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+            if (data?.channels?.length > 0) {
+              let channel_filter = data?.channels?.filter(x => x.channel === interaction.channel.id)
+              if (!channel_filter?.length > 0){
+                channel_filter = data?.channels?.map(x => `<#${x.channel}>`).join(", ")
+                return interaction.reply({ content: lang.msg126.replace("{channel_filter}", channel_filter), ephemeral: true }).catch(e => { })
+              }
+            }
             if (interaction.member.permissions.has(props?.permissions || "0x0000000000000800")) {
               const DJ = client.config.opt.DJ;
               if (props && DJ.commands.includes(interaction.commandName)) {
