@@ -139,6 +139,6 @@ msg115: "Your Playlists",
 msg116: `musics`,
 msg117: `You don't have any playlist. ❌`,
 msg118: "Your time has expired to use this command, you can type \`/playlist list {name}\` to use the command again.",
-msg119: "Use the **/play playlist <list-name>** command to listen to these playlists."
+msg119: "Use the **/play playlist <list-name>** command to listen to these playlists.\nType **/playlist list <list-name>** to see the music in a list."
 }
 module.exports = language;
