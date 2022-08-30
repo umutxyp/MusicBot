@@ -275,7 +275,7 @@ module.exports = {
             }
           }
 
-          trackl = playlist?.musics?.filter(m => m.playlist_name === name)
+          trackl = await playlist[i]?.musics?.filter(m => m.playlist_name === name)
           if (!trackl?.length > 0) return interaction.reply({ content: lang.msg111, ephemeral: true }).catch(e => { })
 
         } else {
