@@ -5,7 +5,7 @@
 # <a href="https://youtube.com/UmutBayraktarYT"><img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"></a> <a href="https://discord.gg/codes"><img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"></a> <a href="https://facebook.com/umutxyp"><img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white"></a> <a href="https://instagram.com/umutxyp"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a> <a href="https://blog.umut.live"><img src="https://img.shields.io/badge/Blogger-FF5722?style=for-the-badge&logo=blogger&logoColor=white"></a> <a href="https://twitch.com/umutyzx"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white"></a> 
 
 
-## ABOUT V11 UPDATE / news: 2022, 27 AUGUST
+## ABOUT V11 UPDATE / news: 2022, 31 AUGUST
 - Event folders have been recreated.
 - The bot's database has been changed to mongodb.
 - Multi language option added.
