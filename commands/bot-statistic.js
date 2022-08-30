@@ -1,4 +1,4 @@
-const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors } = require("discord.js")
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors, version } = require("discord.js")
 const config = require("../config.js");
 module.exports = {
   name: "statistic",
@@ -19,7 +19,7 @@ module.exports = {
 • Channel Count: \`${client.channels.cache.size}\`
 • Connected Voice: \`${client?.voice?.adapters?.size || 0}\`
 • Command Count: \`${client.commands.map(c => c.name).length}\`
-• Discord.js Version: \`V14.1.0\`
+• Discord.js Version: \`V${version}\`
 • Node.js Version: \`${process.version}\`
 • Operation Time: <t:${Math.floor(Number(Date.now() - client.uptime) / 1000)}:R>
 • Ping: \`${client.ws.ping} MS\`
