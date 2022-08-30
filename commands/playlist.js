@@ -148,6 +148,17 @@ module.exports = {
       const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
       if (!playlist?.playlist?.filter(p => p.name === name).length > 0) return interaction.reply({ content: lang.msg96, ephemeral: true }).catch(e => { })
 
+      const music_filter = playlist?.musics?.filter(m => m.playlist_name === name)
+      if (music_filter?.length > 0){
+        await db.playlist.updateOne({ userID: interaction.user.id }, {
+          $pull: {
+            musics: {
+              playlist_name: name
+            }
+          }
+        }).catch(e => { })
+      }
+
       await interaction.reply({ content: `<@${interaction.member.id}>, ${lang.msg97}` }).catch(e => { })
 
       await db.playlist.updateOne({ userID: interaction.user.id }, {
