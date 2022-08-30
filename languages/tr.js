@@ -139,6 +139,13 @@ msg115: "Senin Oynatma Listelerin",
 msg116: `müzik`,
 msg117: `Herhangi bir oynatma listeniz yok. ❌`,
 msg118: "Bu komutu kullanmak için süreniz doldu, komutu tekrar kullanmak için \`/playlist list {name}\` yazabilirsiniz.",
-msg119: "**/play playlist <liste-ismi>** komutu ile playlistleri dinleyebilirsiniz.\nBir listedeki müzikleri görmek için **/playlist list <list-name>** yazın."
+msg119: "**/play playlist <liste-ismi>** komutu ile playlistleri dinleyebilirsiniz.\nBir listedeki müzikleri görmek için **/playlist list <list-name>** yazın.",
+msg120: "Lütfen bir metin kanalı belirt.",
+msg121: "<#{channel}> isimli kanal komut kullanma kanalı listesine eklendi artık sadece listedeki kanallarda bot komutu kullanılabilecek.",
+msg122: "Zaten kayıtlı bir veri yok.",
+msg123: "<#{channel}> isimli kanal komut kullanma kanalı listesinden silindi.",
+msg124: "Bu kanal zaten kommut kullanma kanalı listesinde var.",
+msg125: "Bu kanal bir metin kanalı değil.",
+msg126: "❌ Bu sunucuda komut kullanabileceğin kanal listesi şudur: {channel_filter}"
 }
 module.exports = language;
