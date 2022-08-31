@@ -44,7 +44,7 @@
 8D, bassboost, bassboost_high, bassboost_low,	chorus,	chorus2d,	chorus3d,	compressor,	dim,	earrape, expander, fadein,	flanger,	gate,	haas,	karaoke,	mcompand,	mono, mstlr,	mstrr,	nightcore, normalizer, normalizer2, phaser, pulsator, reverse, softlimiter, subboost, surrounding, treble, tremolo, vaporwave, vibrato
 
 ## Bot Setup
-[Click here for a setup video](https://youtu.be/LQ24tdW5d8k), but these instructions are up to date so make sure to follow them if the video is different.
+[Click here for a setup video](https://youtu.be/mDKQJeWWvss), but these instructions are up to date so make sure to follow them if the video is different.
 
 - [Install node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-version-manager-to-install-nodejs-and-npm)
 - Clone this repository or download as a zip and extract the contents.
