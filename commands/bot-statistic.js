@@ -1,16 +1,18 @@
-const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, Colors, version } = require("discord.js")
+const { EmbedBuilder, version } = require("discord.js")
 const config = require("../config.js");
+const db = require("../mongoDB");
 module.exports = {
-  name: "statistic",
-  description: "View your bot statistics.",
-  options: [],
-  run: async (client, interaction) => {
-    let lang = client.language
-
-    const embed = new EmbedBuilder()
-      .setTitle(client.user.username + lang.msg19)
-      .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setDescription(`**
+name: "statistic",
+description: "View your bot statistics.",
+options: [],
+run: async (client, interaction) => {
+let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+lang = lang?.language || client.language
+lang = require(`../languages/${lang}.js`);
+const embed = new EmbedBuilder()
+.setTitle(client.user.username + lang.msg19)
+.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+.setDescription(`**
 • Owner: \`${client.users.cache.get(config.ownerID)?.tag || "Undefined"}\`
 • Developer: \`Umut#6070\`
 
@@ -27,8 +29,8 @@ module.exports = {
 • OS: \`${process.platform}\`
 • Invite Bot: [Click](${config.botInvite})
 **`)
-      .setColor("ffa954")
-      .setTimestamp()
-    return interaction.reply({ embeds: [embed] }).catch(err => { })
-  },
+.setColor(client.config.embedColor)
+.setTimestamp()
+return interaction.reply({ embeds: [embed] }).catch(err => { })
+},
 };
