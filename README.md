@@ -77,6 +77,8 @@ Enter the page of your project that you opened on -replit.com.
 
 - [Fork Replit](https://replit.com/)
 
+- [MongoDB](https://mongodb.com)
+
 - [Discord Developers](https://discord.dev)
 
 - [Discord Permission](https://bit.ly/3L4RZpi)
