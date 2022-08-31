@@ -183,7 +183,7 @@ if (!playlist_name) return interaction.reply({ content: lang.msg100, ephemeral: 
 const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
 if (!playlist?.playlist?.filter(p => p.name === playlist_name).length > 0) return interaction.reply({ content: lang.msg96, ephemeral: true }).catch(e => { })
 
-let max_music = 50
+let max_music = 100
 if (playlist?.musics?.filter(m => m.playlist_name === playlist_name).length > max_music) return interaction.reply({ content: lang.msg101.replace("{max_music}", max_music), ephemeral: true }).catch(e => { })
 const res = await client.player.search(name, {
 requestedBy: interaction.member,
@@ -197,16 +197,18 @@ if (res.playlist) {
 res.tracks.map(async t => {
 const music_filter2 = playlist?.musics?.filter(m => m.playlist_name === playlist_name && m.music_name === t.title)
 if (!music_filter2?.length > 0) {
+
 await db.playlist.updateOne({ userID: interaction.user.id }, {
 $push: {
 musics: {
-playlist_name: playlist_name,
-music_name: t.title,
-music_url: t.url,
-saveTime: Date.now(),
-duration: t.duration,
-thumbnail: t.thumbnail,
-author: t.author
+    playlist_name: playlist_name,
+    music_name: t.title,
+    music_url: t.url,
+    saveTime: Date.now(),
+    duration: t.duration,
+    thumbnail: t.thumbnail,
+    author: t.author,
+    source: t.source
 }
 }
 }, { upsert: true }).catch(e => { })
@@ -226,7 +228,8 @@ music_url: res?.tracks[0]?.url,
 saveTime: Date.now(),
 duration: res?.tracks[0]?.duration,
 thumbnail: res?.tracks[0]?.thumbnail,
-author: res?.tracks[0]?.author
+author: res?.tracks[0]?.author,
+source: res?.tracks[0]?.source
 }
 }
 }, { upsert: true }).catch(e => { })
