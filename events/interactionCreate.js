@@ -5,10 +5,7 @@ const db = require("../mongoDB");
 
 module.exports = async (client, interaction) => {
 
-if (!interaction.guild){
-return interaction.reply({ content: "This bot is only for servers and can be used on servers.", ephemeral: true })
-} else {
-let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
 if (interaction.type === InteractionType.ApplicationCommand) {
@@ -18,18 +15,18 @@ files.forEach(async (f) => {
 let props = require(`.${config.commandsDir}/${f}`);
 if (interaction.commandName.toLowerCase() === props.name.toLowerCase()) {
 try {
-const data = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+const data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
 if (data?.channels?.length > 0) {
 let channel_filter = data?.channels?.filter(x => x.channel === interaction.channel.id)
-if (!channel_filter?.length > 0 && !interaction.member.permissions.has("0x0000000000000020")) {
+if (!channel_filter?.length > 0 && !interaction?.member?.permission?.has("0x0000000000000020")) {
 channel_filter = data?.channels?.map(x => `<#${x.channel}>`).join(", ")
 return interaction.reply({ content: lang.msg126.replace("{channel_filter}", channel_filter), ephemeral: true }).catch(e => { })
 }
 }
-if (interaction.member.permissions.has(props?.permissions || "0x0000000000000800")) {
+if (interaction?.member?.permissions?.has(props?.permissions || "0x0000000000000800")) {
 const DJ = client.config.opt.DJ;
 if (props && DJ.commands.includes(interaction.commandName)) {
-let djRole = await db.musicbot.findOne({ guildID: interaction.guild.id }).catch(e => { });
+let djRole = await db.musicbot.findOne({ guildID: interaction?.guild?.id }).catch(e => { });
 if (djRole) {
 const roleDJ = interaction.guild.roles.cache.get(djRole.role)
 if (!interaction.member.permissions.has("0x0000000000000020")) {
@@ -51,9 +48,9 @@ return interaction.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
 }
 if (props && props.voiceChannel) {
 if (!interaction.member.voice.channelId) return interaction.reply({ content: `${lang.message1}`, ephemeral: true }).catch(e => { })
-const guild_me = interaction.guild.members.cache.get(client.user.id);
+const guild_me = interaction?.guild?.members?.cache?.get(client.user.id);
 if (guild_me.voice.channelId) {
-if (guild_me.voice.channelId !== interaction.member.voice.channelId) {
+if (guild_me.voice.channelId !== interaction?.member?.voice?.channelId) {
 return interaction.reply({ content: `${lang.message2}`, ephemeral: true }).catch(e => { })
 }
 }
@@ -61,7 +58,7 @@ return interaction.reply({ content: `${lang.message2}`, ephemeral: true }).catch
 return props.run(client, interaction);
 
 } else {
-return interaction.reply({ content: `${lang.message3}: **${props?.permissions}**`, ephemeral: true });
+return interaction.reply({ content: `${lang.message3}: **${props?.permissions?.replace("0x0000000000000020", "MANAGE GUILD")?.replace("0x0000000000000800", "SEND MESSAGES") || "SEND MESSAGES"}**`, ephemeral: true });
 }
 } catch (e) {
 console.log(e);
@@ -157,5 +154,5 @@ return interaction.reply(`<@${interaction.user.id}>, **${queue.current.title}** 
 break
 }
 }
-}
+
 }
