@@ -6,7 +6,7 @@ const db = require("../mongoDB");
 module.exports = async (client, interaction) => {
 
 if (!interaction.guild){
-return interaction.reply("This bot is only for servers and can be used on servers.")
+return interaction.reply({ content: "This bot is only for servers and can be used on servers.", ephemeral: true })
 } else {
 let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
 lang = lang?.language || client.language
