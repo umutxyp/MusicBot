@@ -1,12 +1,14 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-
+const db = require("../mongoDB");
 module.exports = {
 name: "nowplaying",
 description: "Provides information about the music being played.",
 permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
-    let lang = client.language
+let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+lang = lang?.language || client.language
+lang = require(`../languages/${lang}.js`);
 const queue = client.player.getQueue(interaction.guild.id);
 
 if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
@@ -14,7 +16,7 @@ if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, eph
 const track = queue.current;
 
 const embed = new EmbedBuilder();
-embed.setColor('007fff');
+embed.setColor(client.config.embedColor);
 embed.setThumbnail(track.thumbnail);
 embed.setTitle(track.title)
 
