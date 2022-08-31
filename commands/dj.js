@@ -25,8 +25,9 @@ options: []
 }
 ],
 run: async (client, interaction) => {
-let lang = client.language
-if(!client.config.mongodbURL) return interaction.reply({ content: `${lang.error6}`, ephemeral: true }).catch(e => { })
+let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+lang = lang?.language || client.language
+lang = require(`../languages/${lang}.js`);
 let stp = interaction.options.getSubcommand()
 if (stp === "set") {
 const role = interaction.options.getRole('role')
@@ -43,8 +44,12 @@ return await interaction.reply({ content: lang.msg25.replace("{role}", role.id),
 if (stp === "reset") {
 const data = await db.musicbot.findOne({ guildID: interaction.guild.id }).catch(e => { });
 
-if (data) {
-await db.musicbot.deleteOne({ guildID: interaction.guild.id }).catch(e => { });
+if (data?.role) {
+await db.musicbot.updateOne({ guildID: interaction.guild.id }, {
+$set: {
+role: ""
+}
+}, { upsert: true }).catch(e => { })
 return await interaction.reply({ content: lang.msg27, ephemeral: true }).catch(e => { });
 } else {
 return await interaction.reply({ content: lang.msg28, ephemeral: true }).catch(e => { });
