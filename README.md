@@ -16,7 +16,7 @@
 - Specify the specific channel in which the command will be used.
 - Added changing embed color code from settings file.
 - The /language command added so that the language system can be adjusted for each server.
-- Added detailed information about the specified command to the help command. (/help info <command>
+- Added detailed information about the specified command to the help command. (/help info <command>)
 
 
 ## About Bot
