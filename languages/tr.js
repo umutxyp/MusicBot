@@ -20,7 +20,7 @@ msg10: "Bu ada sahip bir oynatma listeniz zaten yok. ❌",
 msg11: "Bu müzik zaten bu oynatma listesinde var. ❌",
 msg12: "müzik çalma listenize eklendi.",
 error3: "Uygulama [/] komutları yeniden yüklenirken hata oluştu: ",
-error4: "UYARI: Görünüşe göre mongodb url'sini yazmamışsınız? Sorun değil, ancak mongodb url'sini eklemezseniz bazı komutları kullanamazsınız!",
+error4: "UYARI: Görünüşe göre config.js dosyasına geçerli bir mongodb url'sini yazmamışsınız? Eğer bunu yapmazsanız, müzik komutları çalışmayacaktır.",
 error5: `NOT: EĞER BOT ÇALIŞIYOR KOMUTLARA CEVAP VERİYOR ANCAK SES GELMİYOR İSE ŞU ADIMLARI UYGULAYIN:
 replit.com'da açtığınız projenizin sayfasına girin.
 sağ altta açılan kutunun üstünde yer alan console ve shell yazan kutucuklardan shell yazana tıklayın.
@@ -41,7 +41,6 @@ msg21: "**Süreniz Doldu!**",
 msg22: "**✅ Veriler Gündellendi!**",
 msg23: "Çalma kuyruğu boş. ❌",
 msg24: "Bütün çalma listesi temizlendi. 🗑️",
-error6: "Bu komutu kullanabilmek için lütfen mongodbURL'yi config.js dosyasında ayarlayın.",
 msg26: "Bir DJ rolü belirtmezseniz, komutu kullanamazsınız!",
 msg25: "DJ rolü başarıyla <@&{role}> olarak ayarlandı.",
 msg27: "DJ rolü başarıyla silindi.",
@@ -83,7 +82,7 @@ msg59: `Aramak istediğiniz parçanın adını yazın. ❌`,
 msg60: `Arama sonucu bulunamadı! ❌`,
 msg61: "isimli liste playliste eklendi. ✅",
 msg62: "kuyruğa eklendi ✅",
-msg63: `Kuruk boş. ❌`,
+msg63: `Kuyruk boş. ❌`,
 msg64: "Sunucu Müzik Listesi",
 msg65: "Şuanda çalan müzik",
 msg66: "İsteyen",
@@ -146,6 +145,7 @@ msg122: "Zaten kayıtlı bir veri yok.",
 msg123: "<#{channel}> isimli kanal komut kullanma kanalı listesinden silindi.",
 msg124: "Bu kanal zaten kommut kullanma kanalı listesinde var.",
 msg125: "Bu kanal bir metin kanalı değil.",
-msg126: "❌ Bu sunucuda komut kullanabileceğin kanal listesi şudur: {channel_filter}"
+msg126: "❌ Bu sunucuda komut kullanabileceğin kanal listesi şudur: {channel_filter}",
+msg127: "Komut bulunamadı."
 }
 module.exports = language;
