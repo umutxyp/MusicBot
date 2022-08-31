@@ -4,7 +4,9 @@ const { EmbedBuilder, InteractionType, ModalBuilder, TextInputBuilder, TextInput
 const db = require("../mongoDB");
 
 module.exports = async (client, interaction) => {
-
+if (!interaction.guild){
+return interaction.reply({ content: "This bot is only for servers and can be used on servers.", ephemeral: true })
+} else {
 let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
@@ -154,5 +156,5 @@ return interaction.reply(`<@${interaction.user.id}>, **${queue.current.title}** 
 break
 }
 }
-
+}
 }
