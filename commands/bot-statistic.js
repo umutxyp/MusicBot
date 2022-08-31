@@ -5,6 +5,7 @@ module.exports = {
 name: "statistic",
 description: "View your bot statistics.",
 options: [],
+permissions: "0x0000000000000800",
 run: async (client, interaction) => {
 let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
 lang = lang?.language || client.language
