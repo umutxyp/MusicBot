@@ -27,7 +27,7 @@ type: ApplicationCommandOptionType.Subcommand,
 options: [
 {
 name: "name",
-description: "TWrite the name of the playlist you want to create.",
+description: "Write the name of the playlist you want to create.",
 type: ApplicationCommandOptionType.String,
 required: true
 }
