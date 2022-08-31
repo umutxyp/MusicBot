@@ -36,7 +36,7 @@ required: true
 ],
 voiceChannel: true,
 run: async (client, interaction) => {
-let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
 let stp = interaction.options.getSubcommand()
@@ -47,13 +47,13 @@ const playlist = await db.playlist.find().catch(e => { })
 if (!playlist?.length > 0) return interaction.reply({ content: lang.msg52, ephemeral: true }).catch(e => { })
 
 let arr = 0
-for (let i = 0; i < playlist.length; i++) {
+for (let i = 0; i < playlist?.length; i++) {
 if (playlist[i]?.playlist?.filter(p => p.name === playlistw)?.length > 0) {
 
-let playlist_owner_filter = playlist[i].playlist.filter(p => p.name === playlistw)[0].author
-let playlist_public_filter = playlist[i].playlist.filter(p => p.name === playlistw)[0].public
+let playlist_owner_filter = playlist[i]?.playlist?.filter(p => p.name === playlistw)[0].author
+let playlist_public_filter = playlist[i]?.playlist?.filter(p => p.name === playlistw)[0].public
 
-if (playlist_owner_filter !== interaction.member.id) {
+if (playlist_owner_filter !== interaction?.member?.id) {
 if (playlist_public_filter === false) {
 return interaction.reply({ content: lang.msg53, ephemeral: true }).catch(e => { })
 }
@@ -62,13 +62,13 @@ return interaction.reply({ content: lang.msg53, ephemeral: true }).catch(e => { 
 const music_filter = playlist[i]?.musics?.filter(m => m.playlist_name === playlistw)
 if (!music_filter?.length > 0) return interaction.reply({ content: lang.msg54, ephemeral: true }).catch(e => { })
 
-let serverdb = await db.musicbot.findOne({ guildID: interaction.guild.id }).catch(e => { })
+let serverdb = await db.musicbot.findOne({ guildID: interaction?.guild?.id }).catch(e => { })
 if (!serverdb?.volume) {
 serverdb = 100
 } else {
 serverdb = serverdb?.volume
 }
-const queue = await client.player.createQueue(interaction.guild, {
+const queue = await client.player.createQueue(interaction?.guild, {
 initialVolume: serverdb,
 leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
 leaveOnEmpty: client.config.opt.voiceConfig.leaveOnEmpty.status,
