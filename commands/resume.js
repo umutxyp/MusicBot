@@ -1,3 +1,4 @@
+const db = require("../mongoDB");
 module.exports = {
 name: "resume",
 description: "Restarts paused music.",
@@ -6,7 +7,9 @@ options: [],
 voiceChannel: true,
 run: async (client, interaction) => {
 const queue = client.player.getQueue(interaction.guild.id);
-let lang = client.language
+let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+lang = lang?.language || client.language
+lang = require(`../languages/${lang}.js`);
 if (!queue) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
 
 const success = queue.setPaused(false);
