@@ -1,4 +1,4 @@
-const { QueryType } = require('discord-player')
+const { QueryType, Track } = require('discord-player')
 const { ApplicationCommandOptionType } = require('discord.js');
 const playdl = require("play-dl");
 const db = require("../mongoDB");
@@ -27,7 +27,7 @@ type: ApplicationCommandOptionType.Subcommand,
 options: [
 {
 name: "name",
-description: "Write the name of the playlist you want to create.",
+description: "TWrite the name of the playlist you want to create.",
 type: ApplicationCommandOptionType.String,
 required: true
 }
@@ -36,7 +36,7 @@ required: true
 ],
 voiceChannel: true,
 run: async (client, interaction) => {
-let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
+let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
 let stp = interaction.options.getSubcommand()
@@ -47,13 +47,13 @@ const playlist = await db.playlist.find().catch(e => { })
 if (!playlist?.length > 0) return interaction.reply({ content: lang.msg52, ephemeral: true }).catch(e => { })
 
 let arr = 0
-for (let i = 0; i < playlist?.length; i++) {
+for (let i = 0; i < playlist.length; i++) {
 if (playlist[i]?.playlist?.filter(p => p.name === playlistw)?.length > 0) {
 
-let playlist_owner_filter = playlist[i]?.playlist?.filter(p => p.name === playlistw)[0].author
-let playlist_public_filter = playlist[i]?.playlist?.filter(p => p.name === playlistw)[0].public
+let playlist_owner_filter = playlist[i].playlist.filter(p => p.name === playlistw)[0].author
+let playlist_public_filter = playlist[i].playlist.filter(p => p.name === playlistw)[0].public
 
-if (playlist_owner_filter !== interaction?.member?.id) {
+if (playlist_owner_filter !== interaction.member.id) {
 if (playlist_public_filter === false) {
 return interaction.reply({ content: lang.msg53, ephemeral: true }).catch(e => { })
 }
@@ -62,13 +62,13 @@ return interaction.reply({ content: lang.msg53, ephemeral: true }).catch(e => { 
 const music_filter = playlist[i]?.musics?.filter(m => m.playlist_name === playlistw)
 if (!music_filter?.length > 0) return interaction.reply({ content: lang.msg54, ephemeral: true }).catch(e => { })
 
-let serverdb = await db.musicbot.findOne({ guildID: interaction?.guild?.id }).catch(e => { })
+let serverdb = await db.musicbot.findOne({ guildID: interaction.guild.id }).catch(e => { })
 if (!serverdb?.volume) {
 serverdb = 100
 } else {
 serverdb = serverdb?.volume
 }
-const queue = await client.player.createQueue(interaction?.guild, {
+const queue = await client.player.createQueue(interaction.guild, {
 initialVolume: serverdb,
 leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
 leaveOnEmpty: client.config.opt.voiceConfig.leaveOnEmpty.status,
@@ -77,23 +77,21 @@ autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
 metadata: interaction.channel
 });
 
-await music_filter.map(async m => {
-let res
-setTimeout(async () => {
-if (m.music_url.includes("youtube")) {
-res = await client.player.search(m.music_name, {
-requestedBy: interaction.member,
-searchEngine: QueryType.AUTO
-});
-} else {
-res = await client.player.search(m.music_url, {
-requestedBy: interaction.member,
-searchEngine: QueryType.AUTO
-});
-}
 
-queue.addTrack(res?.tracks[0])
-}, 2000)
+await music_filter.map(async m => {
+const track = new Track(client.player, {
+        title: m.music_name,
+        description: m.music_name,
+        author: m.author,
+        url: m.music_url,
+        requestedBy: interaction.user,
+        thumbnail: m.thumbnail,
+        views: 0,
+        duration: m.duration,
+        source: m.source
+})
+
+await queue?.addTrack(track)
 })
 try {
 if (!queue.playing) await queue?.connect(interaction.member.voice.channelId)
@@ -191,6 +189,7 @@ return interaction.reply({ content: lang.msg55, ephemeral: true }).catch(e => { 
 let msg = res.playlist ? `<@${interaction.member.id}>, \`${res.playlist.title}\` ${lang.msg61}` : `<@${interaction.member.id}>, **${res.tracks[0].title}** ${lang.msg62}`
 await interaction.reply({ content: msg }).catch(e => { })
 res.playlist ? queue.addTracks(res?.tracks) : queue.addTrack(res?.tracks[0]);
+console.log(res.tracks[0].raw)
 if (!queue.playing) await queue.play()
 }
 },
