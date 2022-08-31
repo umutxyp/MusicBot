@@ -1,5 +1,6 @@
 const { ApplicationCommandOptionType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { QueryType } = require('discord-player');
+const db = require("../mongoDB");
 module.exports = {
 name: "search",
 description: "Used for your music search",
@@ -12,7 +13,9 @@ required: true
 }],
 voiceChannel: true,
 run: async (client, interaction) => {
-    let lang = client.language
+let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+lang = lang?.language || client.language
+lang = require(`../languages/${lang}.js`);
 const name = interaction.options.getString('name')
 if (!name) return interaction.reply({ content: lang.msg73, ephemeral: true }).catch(e => { })
 
@@ -30,7 +33,7 @@ metadata: interaction.channel
 
     
 const embed = new EmbedBuilder();
-embed.setColor('007fff');
+embed.setColor(client.config.embedColor);
 embed.setTitle(`${lang.msg75}: ${name}`);
 
 const maxTracks = res.tracks.slice(0, 10);
