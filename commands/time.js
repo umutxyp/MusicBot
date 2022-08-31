@@ -1,11 +1,14 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const db = require("../mongoDB");
 module.exports = {
 name: "time",
 description: "Indicates which minute of the music you are playing.",
 permissions: "0x0000000000000800",
 options: [],
 run: async (client, interaction) => {
-    let lang = client.language
+let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+lang = lang?.language || client.language
+lang = require(`../languages/${lang}.js`);
 const queue = client.player.getQueue(interaction.guild.id);
 
 if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
@@ -22,7 +25,7 @@ saveButton.setStyle(ButtonStyle.Success);
 const row = new ActionRowBuilder().addComponents(saveButton);
 
 const embed = new EmbedBuilder()
-.setColor('007fff')
+.setColor(client.config.embedColor)
 .setTitle(queue.current.title)
 .setThumbnail(client.user.displayAvatarURL())
 .setTimestamp()
