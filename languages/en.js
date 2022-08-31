@@ -20,7 +20,7 @@ const language = {
  msg11: "This music is already in this playlist. ❌",
  msg12: "added to your music playlist.",
 error3: "Error reloading application [/] commands: ",
-error4: "WARN: It looks like you didn't write the mongodb url? That's fine, but if you don't add the mongodb url you won't be able to use some commands!",
+error4: "WARN: It looks like you didn't write the mongodb url? If you do not enter a valid mongodb url in the config.js file, you will not be able to use the bot.",
 error5: `ERROR EXAMPLE:IF THE BOT IS WORKING, RESPONDING TO COMMANDS BUT NO SOUND, FOLLOW THESE STEPS;
 Enter the page of your project that you opened on replit.com.
 Click on the one that says shell from the boxes that say console and shell above the opened box at the bottom right.
@@ -41,7 +41,6 @@ msg21: "**Your Time Ended!**",
 msg22: "**✅ Data Updated.**",
 msg23: "The queue is empty. ❌",
 msg24: "The queue has just been cleared. 🗑️",
-error6: "Please set mongodbURL in config.js file to be able to use this command.",
 msg26: "If you don't specify a DJ role, you won't be able to use the command!",
 msg25: "The DJ role is successfully set to <@&{role}>.",
 msg27: "The DJ role is successfully deleted.",
@@ -146,6 +145,7 @@ msg122: "There is no data already registered.",
 msg123: "<#{channel}> deleted to the command usage channel list.",
 msg124: "This channel is already on the command usage channel list.",
 msg125: "This channel is not a text channel.",
-msg126: "❌ Here is the list of channels you can command on this server: {channel_filter}"
+msg126: "❌ Here is the list of channels you can command on this server: {channel_filter}",
+msg127: "Command is not defined."
 }
 module.exports = language;
