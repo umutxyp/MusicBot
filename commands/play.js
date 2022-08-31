@@ -189,7 +189,6 @@ return interaction.reply({ content: lang.msg55, ephemeral: true }).catch(e => { 
 let msg = res.playlist ? `<@${interaction.member.id}>, \`${res.playlist.title}\` ${lang.msg61}` : `<@${interaction.member.id}>, **${res.tracks[0].title}** ${lang.msg62}`
 await interaction.reply({ content: msg }).catch(e => { })
 res.playlist ? queue.addTracks(res?.tracks) : queue.addTrack(res?.tracks[0]);
-console.log(res.tracks[0].raw)
 if (!queue.playing) await queue.play()
 }
 },
