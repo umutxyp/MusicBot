@@ -201,13 +201,14 @@ if (!music_filter2?.length > 0) {
 await db.playlist.updateOne({ userID: interaction.user.id }, {
 $push: {
 musics: {
-    playlist_name: playlist_name,
-    music_name: t.title,
-    music_url: t.url,
-    saveTime: Date.now(),
-    duration: t.duration,
-    thumbnail: t.thumbnail,
-    author: t.author
+playlist_name: playlist_name,
+music_name: t.title,
+music_url: t.url,
+saveTime: Date.now(),
+duration: t.duration,
+thumbnail: t.thumbnail,
+author: t.author,
+source: t.source
 }
 }
 }, { upsert: true }).catch(e => { })
@@ -217,7 +218,6 @@ await interaction.editReply({ content: `<@${interaction.member.id}>, ${lang.msg1
 } else {
 const music_filter = playlist?.musics?.filter(m => m.playlist_name === playlist_name && m.music_name === res?.tracks[0]?.title)
 if (music_filter?.length > 0) return interaction.editReply({ content: lang.msg104, ephemeral: true }).catch(e => { })
-let t = res.tracks[0]
 await db.playlist.updateOne({ userID: interaction.user.id }, {
 $push: {
 musics: {
@@ -227,7 +227,8 @@ music_url: res?.tracks[0]?.url,
 saveTime: Date.now(),
 duration: res?.tracks[0]?.duration,
 thumbnail: res?.tracks[0]?.thumbnail,
-author: res?.tracks[0]?.author
+author: res?.tracks[0]?.author,
+source: res?.tracks[0]?.source
 }
 }
 }, { upsert: true }).catch(e => { })
