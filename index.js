@@ -19,7 +19,7 @@ GatewayIntentBits.GuildVoiceStates, // for voice related things
 client.config = config;
 client.player = new Player(client, client.config.opt.discordPlayer);
 const player = client.player
-player.setMaxListeners(500);
+player.setMaxListeners(250);
 client.language = config.language || "en"
 let lang = require(`./languages/${config.language || "en"}.js`)
 
@@ -52,6 +52,7 @@ fs.readdir(config.commandsDir, (err, files) => {
 if (err) throw err;
 files.forEach(async (f) => {
 try {
+if(f.endsWith(".js")){
 let props = require(`${config.commandsDir}/${f}`);
 client.commands.push({
 name: props.name,
@@ -59,6 +60,7 @@ description: props.description,
 options: props.options
 });
 console.log(`${lang.loadcmd}: ${props.name}`);
+}
 } catch (err) {
 console.log(err);
 }
