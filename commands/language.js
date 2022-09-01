@@ -41,7 +41,7 @@ language: 'tr'
 } 
 }, { upsert: true }).catch(e => { })
 await interaction.editReply({ content: `Botun dili başarıyla türkçe oldu.`, embeds:[], components:[], ephemeral: true }).catch(e => { })
-await button.deferUpdate();
+await button.deferUpdate().catch(e => {})
 await col.stop()
 break
 case 'en':
@@ -51,7 +51,7 @@ language: 'en'
 } 
 }, { upsert: true }).catch(e => { })
 await interaction.editReply({ content: `Bot language successfully changed to english.`, embeds:[], components:[], ephemeral: true }).catch(e => { })
-await button.deferUpdate();
+await button.deferUpdate().catch(e => {})
 await col.stop()
 break
 }
@@ -72,7 +72,7 @@ embed = new EmbedBuilder()
 .setTimestamp()
 .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
 
-await interaction.editReply({ embeds: [embed], components: [buttons] })
+await interaction.editReply({ embeds: [embed], components: [buttons] }).catch(e => {})
 }
 })
 }).catch(e => { })
