@@ -146,6 +146,9 @@ msg123: "<#{channel}> deleted to the command usage channel list.",
 msg124: "This channel is already on the command usage channel list.",
 msg125: "This channel is not a text channel.",
 msg126: "❌ Here is the list of channels you can command on this server: {channel_filter}",
-msg127: "Command is not defined."
+msg127: "Command is not defined.",
+error7: "Please try this command again later. Possible bug reported to bot developers.",
+msg128: "You silenced me while the music was playing. That's why I stopped the music. If you open the mute, I will continue. 😔",
+msg129: "plays"
 }
 module.exports = language;
