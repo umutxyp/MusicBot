@@ -1,5 +1,5 @@
 const config = require("../config.js");
-const fs = require('fs');
+const { EmbedBuilder } = require("discord.js");
 module.exports = async (client) => {
 let lang = client.language
 lang = require(`../languages/${lang}.js`);
@@ -31,6 +31,8 @@ console.log(`${lang.error5}`)
   
 client.user.setStatus('ONLINE');
 client.user.setActivity(config.status)
+client.errorLog = client.channels.cache.get(config.errorLog) ? client.channels.cache.get(config.errorLog) : undefined
+
 
 setTimeout(async () => {
 const db = require("../mongoDB");
