@@ -1,8 +1,8 @@
 module.exports = async (client, queue, error) => {
 if (queue) {
-queue?.destroy();
+queue?.clear();
 if (queue?.metadata) {
-queue?.metadata?.send({ content: `${error} ❌ ` }).catch(e => { })
+queue?.metadata?.send({ content: `**Connection Error:** ${error} ❌ ` }).catch(e => { })
 }
 }
 }
