@@ -19,7 +19,7 @@ GatewayIntentBits.GuildVoiceStates, // for voice related things
 client.config = config;
 client.player = new Player(client, client.config.opt.discordPlayer);
 const player = client.player
-player.setMaxListeners(200);
+player.setMaxListeners(500);
 client.language = config.language || "en"
 let lang = require(`./languages/${config.language || "en"}.js`)
 
