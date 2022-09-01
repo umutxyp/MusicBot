@@ -107,8 +107,9 @@ run: async (client, interaction) => {
 let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
+try {
 
-let stp = interaction.options.getSubcommand()
+    let stp = interaction.options.getSubcommand()
 if (stp === "create") {
 let name = interaction.options.getString('name')
 let public = interaction.options.getBoolean('public')
@@ -133,6 +134,7 @@ $push: {
 playlist: {
 name: name,
 author: interaction.user.id,
+authorTag: interaction.user.tag,
 public: public,
 plays: 0,
 createdTime: Date.now()
@@ -228,7 +230,8 @@ saveTime: Date.now(),
 duration: res?.tracks[0]?.duration,
 thumbnail: res?.tracks[0]?.thumbnail,
 author: res?.tracks[0]?.author,
-source: res?.tracks[0]?.source
+source: res?.tracks[0]?.source,
+raw: res?.tracks[0]?.raw
 }
 }
 }, { upsert: true }).catch(e => { })
@@ -457,7 +460,10 @@ if (cmds) return interaction.reply({ content: `${lang.msg34}\nhttps://discord.co
 let trackl = []
 playlists.map(async data => {
 data.playlist.filter(d => d.public === true).map(async d => {
+let filter = data.musics.filter(m => m.playlist_name === d.name)
+if(filter.length > 0) {
 trackl.push(d)
+}
 })
 })
 if (!trackl?.length > 0) return interaction.reply({ content: lang.msg114, ephemeral: true }).catch(e => { })
@@ -500,7 +506,7 @@ return new EmbedBuilder()
 .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
 .setColor(client.config.embedColor)
 .setDescription(`${lang.msg119}\n${current.map(data =>
-`\n**${sayı++} |** \`${data.name}\` - **${data.plays}** plays (<t:${Math.floor(data.createdTime / 1000)}:R>)`
+`\n**${sayı++} |** \`${data.name}\` By. \`${data.authorTag}\` - **${data.plays}** ${lang.msg129} (<t:${Math.floor(data.createdTime / 1000)}:R>)`
 )}`)
 .setFooter({ text: `${lang.msg67} ${page}/${toplam}` })
 }
@@ -591,10 +597,34 @@ return interaction.editReply({ embeds: [embed], components: [button] }).catch(e 
 
 })
 }).catch(e => { })
-
-
-
 }
 
+} catch (e) {
+    if(client.errorLog){
+let embed = new EmbedBuilder()
+.setColor(config.embedColor)
+.setTimestamp()
+.addFields([
+        { name: "Command", value: `${interaction?.commandName}` },
+        { name: "Error", value: `${e.stack}` },
+        { name: "User", value: `${interaction?.user?.tag} \`(${interaction?.user?.id})\``, inline: true },
+        { name: "Guild", value: `${interaction?.guild?.name} \`(${interaction?.guild?.id})\``, inline: true },
+        { name: "Time", value: `<t:${Math.floor(Date.now()/1000)}:R>`, inline: true },
+        { name: "Command Usage Channel", value: `${interaction?.channel?.name} \`(${interaction?.channel?.id})\``, inline: true },
+        { name: "User Voice Channel", value: `${interaction?.member?.voice?.channel?.name} \`(${interaction?.member?.voice?.channel?.id})\``, inline: true },
+    ])
+    await client.errorLog.send({ embeds: [embed] }).catch(e => { })
+    } else {
+    console.log(`
+    Command: ${interaction?.commandName}
+    Error: ${e}
+    User: ${interaction?.user?.tag} (${interaction?.user?.id})
+    Guild: ${interaction?.guild?.name} (${interaction?.guild?.id})
+    Command Usage Channel: ${interaction?.channel?.name} (${interaction?.channel?.id})
+    User Voice Channel: ${interaction?.member?.voice?.channel?.name} (${interaction?.member?.voice?.channel?.id})
+    `)
+    }
+    return interaction.reply({ content: `${lang.error7}\n\`${e}\``, ephemeral: true }).catch(e => { })
+    }
 },
 };
