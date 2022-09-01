@@ -1,4 +1,4 @@
-const { QueryType, Track } = require('discord-player')
+const { QueryType } = require('discord-player')
 const { ApplicationCommandOptionType } = require('discord.js');
 const playdl = require("play-dl");
 const db = require("../mongoDB");
@@ -62,48 +62,57 @@ return interaction.reply({ content: lang.msg53, ephemeral: true }).catch(e => { 
 const music_filter = playlist[i]?.musics?.filter(m => m.playlist_name === playlistw)
 if (!music_filter?.length > 0) return interaction.reply({ content: lang.msg54, ephemeral: true }).catch(e => { })
 
+await interaction.reply({ content: lang.msg56 }).catch(e => { })
+
 let serverdb = await db.musicbot.findOne({ guildID: interaction.guild.id }).catch(e => { })
 if (!serverdb?.volume) {
 serverdb = 100
 } else {
 serverdb = serverdb?.volume
 }
-const queue = await client.player.createQueue(interaction.guild, {
+
+
+await music_filter.map(async m => {
+const res = await client.player.search(m.music_name, {
+requestedBy: interaction.member,
+searchEngine: QueryType.AUTO
+});
+
+let queue
+if (m.music_url.includes("youtube" || "soundcloud")) {
+queue = await client.player.createQueue(interaction.guild, {
+initialVolume: serverdb,
+leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
+leaveOnEmpty: client.config.opt.voiceConfig.leaveOnEmpty.status,
+autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
+metadata: interaction.channel,
+async onBeforeCreateStream(track, source, _queue) {
+if (source === "youtube") {
+return (await playdl.stream(track.url, { discordPlayerCompatibility: true })).stream;
+}
+}
+})
+} else {
+queue = await client.player.createQueue(interaction.guild, {
 initialVolume: serverdb,
 leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
 leaveOnEmpty: client.config.opt.voiceConfig.leaveOnEmpty.status,
 leaveOnEmptyCooldown: client.config.opt.voiceConfig.leaveOnEmpty.cooldown,
 autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
 metadata: interaction.channel
-});
-
-
-await music_filter.map(async m => {
-const track = new Track(client.player, {
-        title: m.music_name,
-        description: m.music_name,
-        author: m.author,
-        url: m.music_url,
-        requestedBy: interaction.user,
-        thumbnail: m.thumbnail,
-        views: 0,
-        duration: m.duration,
-        source: m.source
 })
+}
 
-await queue?.addTrack(track)
-})
 try {
-if (!queue.playing) await queue?.connect(interaction.member.voice.channelId)
+if (!queue.playing) await queue.connect(interaction.member.voice.channelId)
 } catch {
 await client.player.deleteQueue(interaction.guild.id);
-return interaction.reply({ content: lang.msg55, ephemeral: true }).catch(e => { })
+return interaction.editReply({ content: lang.msg55, ephemeral: true }).catch(e => { })
 }
-await interaction.reply({ content: lang.msg56 }).catch(e => { })
-setTimeout(async () => {
+queue.addTrack(res?.tracks[0])
 if (!queue.playing) await queue?.play()
+})
 await interaction.editReply({ content: lang.msg57.replace("{interaction.member.id}", interaction.member.id).replace("{music_filter.length}", music_filter.length) }).catch(e => { })
-}, 5000)
 
 playlist[i]?.playlist?.filter(p => p.name === playlistw).map(async p => {
 await db.playlist.updateOne({ userID: p.author }, {
@@ -158,6 +167,7 @@ queue = await client.player.createQueue(interaction.guild, {
 initialVolume: serverdb,
 leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
 leaveOnEmpty: client.config.opt.voiceConfig.leaveOnEmpty.status,
+leaveOnEmptyCooldown: client.config.opt.voiceConfig.leaveOnEmpty.cooldown,
 autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
 metadata: interaction.channel,
 async onBeforeCreateStream(track, source, _queue) {
