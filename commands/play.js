@@ -1,5 +1,5 @@
 const { QueryType, Track } = require('discord-player')
-const { ApplicationCommandOptionType } = require('discord.js');
+const { ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
 const playdl = require("play-dl");
 const db = require("../mongoDB");
 module.exports = {
@@ -39,6 +39,8 @@ run: async (client, interaction) => {
 let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
+
+try {
 let stp = interaction.options.getSubcommand()
 if (stp === "playlist") {
 
@@ -68,6 +70,9 @@ serverdb = 100
 } else {
 serverdb = serverdb?.volume
 }
+
+await interaction.reply({ content: lang.msg56 }).catch(e => { })
+
 const queue = await client.player.createQueue(interaction.guild, {
 initialVolume: serverdb,
 leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
@@ -77,9 +82,9 @@ autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
 metadata: interaction.channel
 });
 
-
-await music_filter.map(async m => {
-const track = new Track(client.player, {
+let tracks = []
+music_filter.map(async m => {
+    tracks.push(new Track(client.player, {
         title: m.music_name,
         description: m.music_name,
         author: m.author,
@@ -88,22 +93,19 @@ const track = new Track(client.player, {
         thumbnail: m.thumbnail,
         views: 0,
         duration: m.duration,
-        source: m.source
+        source: m.source,
+        raw: m.raw
+}))
 })
-
-await queue?.addTrack(track)
 try {
 if (!queue.playing) await queue?.connect(interaction.member.voice.channelId)
 } catch {
 await client.player.deleteQueue(interaction.guild.id);
-return interaction.reply({ content: lang.msg55, ephemeral: true }).catch(e => { })
+return interaction.editReply({ content: lang.msg55, ephemeral: true }).catch(e => { })
 }
-if (!queue.playing) await queue?.play()
-})
-await interaction.reply({ content: lang.msg56 }).catch(e => { })
-setTimeout(async () => {
 await interaction.editReply({ content: lang.msg57.replace("{interaction.member.id}", interaction.member.id).replace("{music_filter.length}", music_filter.length) }).catch(e => { })
-}, 5000)
+queue?.addTracks(tracks)
+if (!queue.playing) await queue.play()
 
 playlist[i]?.playlist?.filter(p => p.name === playlistw).map(async p => {
 await db.playlist.updateOne({ userID: p.author }, {
@@ -163,11 +165,8 @@ leaveOnEmptyCooldown: client.config.opt.voiceConfig.leaveOnEmpty.cooldown,
 autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
 metadata: interaction.channel,
 async onBeforeCreateStream(track, source, _queue) {
-// only trap youtube source
 if (source === "youtube") {
-// track here would be youtube track
 return (await playdl.stream(track.url, { discordPlayerCompatibility: true })).stream;
-// we must return readable stream or void (returning void means telling discord-player to look for default extractor)
 }
 }
 })
@@ -193,5 +192,32 @@ await interaction.reply({ content: msg }).catch(e => { })
 res.playlist ? queue.addTracks(res?.tracks) : queue.addTrack(res?.tracks[0]);
 if (!queue.playing) await queue.play()
 }
+} catch (e) {
+    if(client.errorLog){
+let embed = new EmbedBuilder()
+.setColor(config.embedColor)
+.setTimestamp()
+.addFields([
+        { name: "Command", value: `${interaction?.commandName}` },
+        { name: "Error", value: `${e.stack}` },
+        { name: "User", value: `${interaction?.user?.tag} \`(${interaction?.user?.id})\``, inline: true },
+        { name: "Guild", value: `${interaction?.guild?.name} \`(${interaction?.guild?.id})\``, inline: true },
+        { name: "Time", value: `<t:${Math.floor(Date.now()/1000)}:R>`, inline: true },
+        { name: "Command Usage Channel", value: `${interaction?.channel?.name} \`(${interaction?.channel?.id})\``, inline: true },
+        { name: "User Voice Channel", value: `${interaction?.member?.voice?.channel?.name} \`(${interaction?.member?.voice?.channel?.id})\``, inline: true },
+    ])
+    await client.errorLog.send({ embeds: [embed] }).catch(e => { })
+    } else {
+    console.log(`
+    Command: ${interaction?.commandName}
+    Error: ${e}
+    User: ${interaction?.user?.tag} (${interaction?.user?.id})
+    Guild: ${interaction?.guild?.name} (${interaction?.guild?.id})
+    Command Usage Channel: ${interaction?.channel?.name} (${interaction?.channel?.id})
+    User Voice Channel: ${interaction?.member?.voice?.channel?.name} (${interaction?.member?.voice?.channel?.id})
+    `)
+    }
+    return interaction.reply({ content: `${lang.error7}\n\`${e}\``, ephemeral: true }).catch(e => { })
+    }
 },
 };
