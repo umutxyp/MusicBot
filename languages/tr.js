@@ -146,6 +146,9 @@ msg123: "<#{channel}> isimli kanal komut kullanma kanalı listesinden silindi.",
 msg124: "Bu kanal zaten kommut kullanma kanalı listesinde var.",
 msg125: "Bu kanal bir metin kanalı değil.",
 msg126: "❌ Bu sunucuda komut kullanabileceğin kanal listesi şudur: {channel_filter}",
-msg127: "Komut bulunamadı."
+msg127: "Komut bulunamadı.",
+error7: "Lütfen bu komutu daha sonra tekrar deneyin. Olası hata bot geliştiricilerine bildirildi.",
+msg128: "Müzik çalarken beni susturdun. Bu yüzden müziği durdurdum. Eğer mutemi açarsan devam edeceğim. 😔",
+msg129: "oynatma"
 }
 module.exports = language;
