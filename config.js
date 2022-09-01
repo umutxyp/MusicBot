@@ -7,7 +7,8 @@ status: '❤️ codeshare.me',
 commandsDir: './commands', //Please don't touch
 language: "en", //en, tr
 embedColor: "ffa954", //hex color code
-
+errorLog: "", //write your discord error log channel id.
+  
 opt: {
 DJ: {
 commands: ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume'] //Please don't touch
