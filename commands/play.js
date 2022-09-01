@@ -87,20 +87,21 @@ const track = new Track(client.player, {
         requestedBy: interaction.user,
         thumbnail: m.thumbnail,
         views: 0,
-        duration: m.duration
+        duration: m.duration,
+        source: m.source
 })
 
 await queue?.addTrack(track)
-})
 try {
 if (!queue.playing) await queue?.connect(interaction.member.voice.channelId)
 } catch {
 await client.player.deleteQueue(interaction.guild.id);
 return interaction.reply({ content: lang.msg55, ephemeral: true }).catch(e => { })
 }
+if (!queue.playing) await queue?.play()
+})
 await interaction.reply({ content: lang.msg56 }).catch(e => { })
 setTimeout(async () => {
-if (!queue.playing) await queue?.play()
 await interaction.editReply({ content: lang.msg57.replace("{interaction.member.id}", interaction.member.id).replace("{music_filter.length}", music_filter.length) }).catch(e => { })
 }, 5000)
 
@@ -125,6 +126,7 @@ createdTime: p.createdTime
 }
 }, { upsert: true }).catch(e => { })
 })
+
 } else {
 arr++
 if (arr === playlist.length) {
