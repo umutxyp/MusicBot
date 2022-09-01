@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType } = require('discord.js');
+const { ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
 const db = require("../mongoDB");
 module.exports = {
 name: "dj",
@@ -28,7 +28,9 @@ run: async (client, interaction) => {
 let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
-let stp = interaction.options.getSubcommand()
+try {
+
+    let stp = interaction.options.getSubcommand()
 if (stp === "set") {
 const role = interaction.options.getRole('role')
 if (!role) return interaction.reply(lang.msg26).catch(e => { });
@@ -54,7 +56,34 @@ return await interaction.reply({ content: lang.msg27, ephemeral: true }).catch(e
 } else {
 return await interaction.reply({ content: lang.msg28, ephemeral: true }).catch(e => { });
 }
-
 }
+
+} catch (e) {
+    if(client.errorLog){
+let embed = new EmbedBuilder()
+.setColor(config.embedColor)
+.setTimestamp()
+.addFields([
+        { name: "Command", value: `${interaction?.commandName}` },
+        { name: "Error", value: `${e.stack}` },
+        { name: "User", value: `${interaction?.user?.tag} \`(${interaction?.user?.id})\``, inline: true },
+        { name: "Guild", value: `${interaction?.guild?.name} \`(${interaction?.guild?.id})\``, inline: true },
+        { name: "Time", value: `<t:${Math.floor(Date.now()/1000)}:R>`, inline: true },
+        { name: "Command Usage Channel", value: `${interaction?.channel?.name} \`(${interaction?.channel?.id})\``, inline: true },
+        { name: "User Voice Channel", value: `${interaction?.member?.voice?.channel?.name} \`(${interaction?.member?.voice?.channel?.id})\``, inline: true },
+    ])
+    await client.errorLog.send({ embeds: [embed] }).catch(e => { })
+    } else {
+    console.log(`
+    Command: ${interaction?.commandName}
+    Error: ${e}
+    User: ${interaction?.user?.tag} (${interaction?.user?.id})
+    Guild: ${interaction?.guild?.name} (${interaction?.guild?.id})
+    Command Usage Channel: ${interaction?.channel?.name} (${interaction?.channel?.id})
+    User Voice Channel: ${interaction?.member?.voice?.channel?.name} (${interaction?.member?.voice?.channel?.id})
+    `)
+    }
+    return interaction.reply({ content: `${lang.error7}\n\`${e}\``, ephemeral: true }).catch(e => { })
+    }
 },
 };
