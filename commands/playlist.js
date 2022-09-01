@@ -207,8 +207,7 @@ musics: {
     saveTime: Date.now(),
     duration: t.duration,
     thumbnail: t.thumbnail,
-    author: t.author,
-    source: t.source
+    author: t.author
 }
 }
 }, { upsert: true }).catch(e => { })
@@ -228,8 +227,7 @@ music_url: res?.tracks[0]?.url,
 saveTime: Date.now(),
 duration: res?.tracks[0]?.duration,
 thumbnail: res?.tracks[0]?.thumbnail,
-author: res?.tracks[0]?.author,
-source: res?.tracks[0]?.source
+author: res?.tracks[0]?.author
 }
 }
 }, { upsert: true }).catch(e => { })
