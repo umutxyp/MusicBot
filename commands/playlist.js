@@ -328,8 +328,6 @@ customId: forwardId
 let kaçtane = 8
 let page = 1
 let a = trackl.length / kaçtane
-let b = `${a + 1}`
-let toplam = b.charAt(0)
 
 const generateEmbed = async (start) => {
 let sayı = page === 1 ? 1 : page * kaçtane - kaçtane + 1
@@ -342,7 +340,7 @@ return new EmbedBuilder()
 .setDescription(`${lang.msg119}\n${current.map(data =>
 `\n\`${sayı++}\` | [${data.music_name}](${data.music_url}) - <t:${Math.floor(data.saveTime / 1000)}:R>`
 )}`)
-.setFooter({ text: `${lang.msg67} ${page}/${toplam}` })
+.setFooter({ text: `${lang.msg67} ${page}/${Math.floor(a+1)}` })
 }
 
 const canFitOnOnePage = trackl.length <= kaçtane
@@ -494,8 +492,6 @@ customId: forwardId
 let kaçtane = 8
 let page = 1
 let a = trackl.length / kaçtane
-let b = `${a + 1}`
-let toplam = b.charAt(0)
 
 const generateEmbed = async (start) => {
 let sayı = page === 1 ? 1 : page * kaçtane - kaçtane + 1
@@ -508,7 +504,7 @@ return new EmbedBuilder()
 .setDescription(`${lang.msg119}\n${current.map(data =>
 `\n**${sayı++} |** \`${data.name}\` By. \`${data.authorTag}\` - **${data.plays}** ${lang.msg129} (<t:${Math.floor(data.createdTime / 1000)}:R>)`
 )}`)
-.setFooter({ text: `${lang.msg67} ${page}/${toplam}` })
+.setFooter({ text: `${lang.msg67} ${page}/${Math.floor(a+1)}` })
 }
 
 const canFitOnOnePage = trackl.length <= kaçtane
