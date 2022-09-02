@@ -602,7 +602,7 @@ return interaction.editReply({ embeds: [embed], components: [button] }).catch(e 
 } catch (e) {
     if(client.errorLog){
 let embed = new EmbedBuilder()
-.setColor(config.embedColor)
+.setColor(client.config.embedColor)
 .setTimestamp()
 .addFields([
         { name: "Command", value: `${interaction?.commandName}` },
