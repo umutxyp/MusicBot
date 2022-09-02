@@ -124,7 +124,7 @@ try {
     }),
     ],
     }).catch(e => { })
-    await button.deferUpdate();
+    await button.deferUpdate().catch(e => {})
     }
     })
     
