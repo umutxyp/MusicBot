@@ -149,6 +149,7 @@ msg126: "❌ Here is the list of channels you can command on this server: {chann
 msg127: "Command is not defined.",
 error7: "Please try this command again later. Possible bug reported to bot developers.",
 msg128: "You silenced me while the music was playing. That's why I stopped the music. If you open the mute, I will continue. 😔",
-msg129: "plays"
+msg129: "plays",
+msg130: "Please write a valid number."
 }
 module.exports = language;
