@@ -146,6 +146,10 @@ msg123: "<#{channel}> verwijderd uit de lijst met opdrachtgebruikskanalen.",
 msg124: "Dit kanaal staat al op de commando gebruik kanaal lijst.",
 msg125: "Dit kanaal is geen tekstkanaal",
 msg126: "❌ Hier is een lijst van kanalen waar je de commandos kunt gebruiken: {channel_filter}",
-msg127: "Commando niet gedefinieert."
+msg127: "Commando niet gedefinieert.",
+error7: "Probeer deze command later opnieuw. Mogelijke bug gemeld aan botontwikkelaars.",
+msg128: "Je mute me terwijl de muziek speelde. Daarom ben ik gestopt met de muziek. Als je me unmute ga ik verder. 😔",
+msg129: "Spelen",
+msg130: "Schrijf A.U.B een geldig nummer."
 }
 module.exports = language;
