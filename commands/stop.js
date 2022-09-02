@@ -21,7 +21,7 @@ try {
     if(client.errorLog){
 const { EmbedBuilder } = require("discord.js")
 let embed = new EmbedBuilder()
-.setColor(config.embedColor)
+.setColor(client.config.embedColor)
 .setTimestamp()
 .addFields([
         { name: "Command", value: `${interaction?.commandName}` },
