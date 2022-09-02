@@ -116,7 +116,6 @@ name: playlistw
 }
 }, { upsert: true }).catch(e => { })
 
-const user = client.users.fetch(p.author)
 await db.playlist.updateOne({ userID: p.author }, {
 $push: {
 playlist: {
@@ -144,12 +143,6 @@ if (stp === "normal") {
 const name = interaction.options.getString('name')
 if (!name) return interaction.reply({ content: lang.msg59, ephemeral: true }).catch(e => { })
 
-const res = await client.player.search(name, {
-requestedBy: interaction.member,
-searchEngine: QueryType.AUTO
-});
-if (!res || !res.tracks.length) return interaction.reply({ content: lang.msg60, ephemeral: true }).catch(e => { })
-
 
 let serverdb = await db.musicbot.findOne({ guildID: interaction.guild.id }).catch(e => { })
 if (!serverdb?.volume) {
@@ -158,7 +151,7 @@ serverdb = 100
 serverdb = serverdb?.volume
 }
 let queue
-if (res?.playlist?.url?.includes("youtube" || "soundcloud") || res?.tracks[0]?.url?.includes("youtube" || "soundcloud")) {
+if (name.includes("youtube" || "youtu.be" || "soundcloud")) {
 queue = await client.player.createQueue(interaction.guild, {
 initialVolume: serverdb,
 leaveOnEnd: client.config.opt.voiceConfig.leaveOnEnd,
@@ -183,6 +176,13 @@ metadata: interaction.channel
 })
 }
 
+const res = await client.player.search(name, {
+requestedBy: interaction.member,
+searchEngine: QueryType.AUTO
+});
+if (!res || !res.tracks.length) return interaction.reply({ content: lang.msg60, ephemeral: true }).catch(e => { })
+
+    
 try {
 if (!queue.playing) await queue.connect(interaction.member.voice.channelId)
 } catch {
