@@ -55,8 +55,6 @@ try {
     let kaçtane = 8
     let page = 1
     let a = trackl.length / kaçtane
-    let b = `${a + 1}`
-    let toplam = b.charAt(0)
     
     const generateEmbed = async (start) => {
     let sayı = page === 1 ? 1 : page * kaçtane - kaçtane + 1
@@ -70,7 +68,7 @@ try {
     ${current.map(data =>
     `\n\`${sayı++}\` | [${data.title}](${data.url}) | **${data.author}** (${lang.msg66} <@${data.requestedBy.id}>)`
     )}`)
-    .setFooter({ text: `${lang.msg67} ${page}/${toplam}` })
+    .setFooter({ text: `${lang.msg67} ${page}/${Math.floor(a+1)}` })
     }
     
     const canFitOnOnePage = trackl.length <= kaçtane
