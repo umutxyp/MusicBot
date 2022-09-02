@@ -24,7 +24,7 @@ cooldown: 1000000, //1000 = 1 second
 },
 
 leaveOnTimer: { //The leaveOnEnd variable must be "false" to use this system.
-status: true, //If this variable is "true", the bot will leave the channel when the bot is offline.
+status: false, //If this variable is "true", the bot will leave the channel when the bot is offline.
 cooldown: 1000000, //1000 = 1 second
 }
 },
