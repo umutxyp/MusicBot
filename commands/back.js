@@ -10,7 +10,7 @@ let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
 try {
-
+    const queue = client.player.getQueue(interaction.guild.id);
     if (!queue || !queue.playing) return interaction.reply({ content: `${lang.msg5}`, ephemeral: true }).catch(e => { })
     if (!queue.previousTracks[1]) return interaction.reply({ content: `${lang.msg17}`, ephemeral: true }).catch(e => { })
     await queue.back();
