@@ -20,10 +20,14 @@ try {
     const queue = client.player.getQueue(interaction.guild.id);
     if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
     
-    const number = interaction.options.getNumber('number');
+    let number = interaction.options.getNumber('number');
     if (number) {
     if(number > queue.tracks.length) return interaction.reply({ content: lang.msg82, ephemeral: true }).catch(e => { })
-    await queue.skipTo(number);
+    if(1 > number) return interaction.reply({ content: lang.msg130, ephemeral: true }).catch(e => { })
+    if(number === 1) {
+        number = 0;
+    } 
+    await queue.skipTo(number)
     return interaction.reply({ content: `**${queue.current.title}**, ${lang.msg83}` }).catch(e => { })
     } else {
     const success = queue.skip();
