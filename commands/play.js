@@ -116,12 +116,13 @@ name: playlistw
 }
 }, { upsert: true }).catch(e => { })
 
+const user = client.users.fetch(p.author)
 await db.playlist.updateOne({ userID: p.author }, {
 $push: {
 playlist: {
 name: p.name,
 author: p.author,
-authorTag: p.authorTag,
+authorTag: user.username ? user.username+"#"+user.discriminator : p.authorTag,
 public: p.public,
 plays: Number(p.plays) + 1,
 createdTime: p.createdTime
@@ -196,7 +197,7 @@ if (!queue.playing) await queue.play()
 } catch (e) {
     if(client.errorLog){
 let embed = new EmbedBuilder()
-.setColor(config.embedColor)
+.setColor(client.config.embedColor)
 .setTimestamp()
 .addFields([
         { name: "Command", value: `${interaction?.commandName}` },
