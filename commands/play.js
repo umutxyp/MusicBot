@@ -161,7 +161,7 @@ autoSelfDeaf: client.config.opt.voiceConfig.autoSelfDeaf,
 metadata: interaction.channel,
 async onBeforeCreateStream(track, source, _queue) {
 if (source === "youtube") {
-return (await playdl.stream(track.url, { discordPlayerCompatibility: true })).stream;
+await playdl?.stream(track?.url, { discordPlayerCompatibility: true })?.stream
 }
 }
 })
