@@ -121,6 +121,7 @@ $push: {
 playlist: {
 name: p.name,
 author: p.author,
+authorTag: p.authorTag,
 public: p.public,
 plays: Number(p.plays) + 1,
 createdTime: p.createdTime
