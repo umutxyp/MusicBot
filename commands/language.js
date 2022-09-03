@@ -16,11 +16,16 @@ try {
         new ButtonBuilder()
         .setLabel("Türkçe")
         .setCustomId('tr')
-        .setStyle(ButtonStyle.Success),
+        .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
         .setLabel("English")
         .setCustomId('en')
-        .setStyle(ButtonStyle.Success))
+        .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+        .setLabel("Nederlands")
+        .setCustomId('nl')
+        .setStyle(ButtonStyle.Secondary),
+        )
         
         let embed = new EmbedBuilder()
         .setColor(client.config.embedColor)
@@ -41,7 +46,7 @@ try {
         language: 'tr' 
         } 
         }, { upsert: true }).catch(e => { })
-        await interaction.editReply({ content: `Botun dili başarıyla türkçe oldu.`, embeds:[], components:[], ephemeral: true }).catch(e => { })
+        await interaction.editReply({ content: `Botun dili başarıyla türkçe oldu. :flag_tr:`, embeds:[], components:[], ephemeral: true }).catch(e => { })
         await button.deferUpdate().catch(e => {})
         await col.stop()
         break
@@ -51,10 +56,20 @@ try {
         language: 'en' 
         } 
         }, { upsert: true }).catch(e => { })
-        await interaction.editReply({ content: `Bot language successfully changed to english.`, embeds:[], components:[], ephemeral: true }).catch(e => { })
+        await interaction.editReply({ content: `Bot language successfully changed to english. :flag_gb:`, embeds:[], components:[], ephemeral: true }).catch(e => { })
         await button.deferUpdate().catch(e => {})
         await col.stop()
         break
+        case 'nl':
+            await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, { 
+            $set: { 
+            language: 'nl' 
+            } 
+            }, { upsert: true }).catch(e => { })
+            await interaction.editReply({ content: `De taal van de bot was nederlands. :flag_nl:`, embeds:[], components:[], ephemeral: true }).catch(e => { })
+            await button.deferUpdate().catch(e => {})
+            await col.stop()
+            break
         }
         })
         
