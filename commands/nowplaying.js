@@ -12,23 +12,22 @@ lang = require(`../languages/${lang}.js`);
 
 try {
 
-    const queue = client.player.getQueue(interaction.guild.id);
-
+const queue = client.player.getQueue(interaction.guild.id);
 if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
 
-const track = queue.current;
+const track = queue.songs[0];
+if(!track) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
 
 const embed = new EmbedBuilder();
 embed.setColor(client.config.embedColor);
 embed.setThumbnail(track.thumbnail);
-embed.setTitle(track.title)
-
-const methods = ['disabled', 'track', 'queue'];
-
-const timestamp = queue.getPlayerTimestamp();
-const trackDuration = timestamp.progress == 'Forever' ? 'Endless (Live)' : track.duration;
-
-embed.setDescription(`Audio **%${queue.volume}**\nDuration **${trackDuration}**\nURL: ${track.url}\nLoop Mode **${methods[queue.repeatMode]}**\n${track.requestedBy}`);
+embed.setTitle(track.name)
+embed.setDescription(`> Audio \`%${queue.volume}\`
+> Duration \`${track.duration}\`
+> URL: **${track.url}**
+> Loop Mode \`${queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Off'}\`
+> Filter: \`${queue.filters.names.join(', ') || 'Off'}\`
+> By: <@${track.user.id}>`);
 
 embed.setTimestamp();
 embed.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
