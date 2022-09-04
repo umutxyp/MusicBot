@@ -72,7 +72,7 @@ return interaction.reply({ content: "This bot is only for servers and can be use
             });
             }
     }
-
+try {
     if(config.voteManager.status === true && config.voteManager.api_key){
         if(config.voteManager.vote_commands.includes(interaction?.commandName)){
             const topSdk = require("@top-gg/sdk");
@@ -95,6 +95,9 @@ return interaction.reply({ content: "This bot is only for servers and can be use
         } else {
             cmd_loader()
         }
+    } catch(e){
+        cmd_loader()
+    }
 
 
 if (interaction.type === InteractionType.MessageComponent) {
