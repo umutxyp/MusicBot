@@ -21,14 +21,6 @@ const language = {
  msg12: "toegevoegd aan je muziek afspeellijst.",
 error3: "Error met laden van application [/] commands: ",
 error4: "WAARSCHUWING: Het ziet er naar uit dat je geen MongoDB URL hebt geschreven? Als je geen geldige mongodb url invult in het config.js bestand, zal je de bot niet kunnen gebruiken.",
-error5: `ERROR VOORBEELD: ALS DE BOT WERKT EN REAGEERT OP COMMANDOS MAAR ER IS GEEN GELUID, VOLG DEZE STAPPEN;
-Ga naar de pagina van uw project in die u geopend hebt op replit.com.
-Klik op de knop die zegt shell van de knoppen die console en shell zeggen boven de geopende box rechtsonder.
-Typ npm uni discord-player
-Typ npm i discord-player@5.3.0-dev.2
-Typ npm uni ytdl-core
-Typ npm i ytdl-core@4.10.0
-Zet de bot uit en aan met de knop die zegt "Stop" of "Run" in het midden van het replit scherm`,
 msg13: `🎵 Nu aan het spelen: **{track?.title}** -> Kanaal: **{queue?.connection.channel.name}** 🎧`,
 msg14: "De lijst is leeg. Je kunt nog wat muziek spelen, doei... ✅",
 msg15: "Ik heb de verbinding verbroken omdat er niemand meer in mijn kanaal is. ❌",
@@ -45,8 +37,8 @@ msg26: "Als je geen DJ rol specificeert, zul je het commando niet kunnen gebruik
 msg25: "De DJ rol is succesvol ingesteld op <@&{role}>.",
 msg27: "De DJ rol is successvol verwijderd.",
 msg28: "De DJ rol is nog niet ingesteld.",
-msg29: `Voer een geldige filternaam in.❌\n\`basboost, 8D, nightcore, mono, karaoke\``,
-msg30: `Ik kon geen filter vinden met die naam. ❌\n\`basboost, 8D, nightcore, mono, karaoke\``,
+msg29: `Voer een geldige filternaam in.❌\n{filters}`,
+msg30: `Ik kon geen filter vinden met die naam. ❌\n{filters}`,
 msg31: `Toegepast: **{filter}**, Filterstatus: **{status}** **Opgelet, als de muziek lang is, kan de filtertoepassingstijd dienovereenkomstig langer zijn.**`,
 msg32: "Het is tijd om naar muziek te luisteren op je discord server met een volledig gratis en geavanceerde interface. Muziek bot die het afspelen van muziek op vele platformen ondersteunt die je server een speciaal gevoel zal geven. Maak je eigen muziek bot: https://github.com/umutxyp/MusicBot",
 msg33: "Bot Commandos",
@@ -80,8 +72,8 @@ msg57: `<@{interaction.member.id}>, **{music_filter.length}** muzieknummers toeg
 msg58: `Er is geen afspeellijst met deze naam. ❌`,
 msg59: `Schrijf de naam van het nummer dat u wilt zoeken. ❌`,
 msg60: `Geen resultaten gevonden! ❌`,
-msg61: "Naamlijst toegevoegd aan de afspeellijst. ✅",
-msg62: "Toegevoegd aan de wachtrij ✅",
+msg61: "Muziek(s) laden... 🎧",
+msg62: "naamlijst toegevoegd aan de afspeellijst. ✅",
 msg63: `De wachtrij is leeg. ❌`,
 msg64: "Server Muziek Lijst",
 msg65: "Momenteel aan het spelen",
@@ -150,6 +142,7 @@ msg127: "Commando niet gedefinieert.",
 error7: "Probeer deze command later opnieuw. Mogelijke bug gemeld aan botontwikkelaars.",
 msg128: "Je mute me terwijl de muziek speelde. Daarom ben ik gestopt met de muziek. Als je me unmute ga ik verder. 😔",
 msg129: "Spelen",
-msg130: "Schrijf A.U.B een geldig nummer."
+msg130: "Schrijf A.U.B een geldig nummer.",
+msg131: "om de opdrachten in de lijst te gebruiken, moet je op de bot stemmen."
 }
 module.exports = language;
