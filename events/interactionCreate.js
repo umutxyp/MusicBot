@@ -90,6 +90,8 @@ return interaction.reply({ content: "This bot is only for servers and can be use
                     cmd_loader()
                 }
             })
+        } else {
+            cmd_loader()
         }
         } else {
             cmd_loader()
