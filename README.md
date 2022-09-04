@@ -40,7 +40,8 @@
 - Reverbnation
 - Facebook
 - Attachment Links
-
+- TikTok
+- and 730 other platform.
 
 ## Custom audio filters:
 8D, bassboost, bassboost_high, bassboost_low,	chorus,	chorus2d,	chorus3d,	compressor,	dim,	earrape, expander, fadein,	flanger,	gate,	haas,	karaoke,	mcompand,	mono, mstlr,	mstrr,	nightcore, normalizer, normalizer2, phaser, pulsator, reverse, softlimiter, subboost, surrounding, treble, tremolo, vaporwave, vibrato
