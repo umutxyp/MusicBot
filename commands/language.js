@@ -46,7 +46,7 @@ module.exports = {
                   language: 'tr'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `Botun dili başarıyla türkçe oldu. :flag_tr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await interaction.editReply({ content: `Botun dili başarıyla Türkçe oldu. :flag_tr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
@@ -56,7 +56,7 @@ module.exports = {
                   language: 'en'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `Bot language successfully changed to english. :flag_gb:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await interaction.editReply({ content: `Bot language successfully changed to English. :flag_gb:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
@@ -66,7 +66,7 @@ module.exports = {
                   language: 'nl'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `De taal van de bot was nederlands. :flag_nl:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await interaction.editReply({ content: `De taal van de bot is succesvol veranderd naar Nederlands. :flag_nl:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
