@@ -28,10 +28,10 @@ module.exports = {
       if (filters.includes(filtre.toLowerCase())) {
         if (queue.filters.has(filtre)) {
           queue.filters.remove(filtre)
-          return interaction.reply({ content: `${lang.msg31.replace("{filter}", filtre).replace("{status}", "❌")}`, ephemeral: true }).catch(e => { })
+          return interaction.reply({ content: `${lang.msg31.replace("{filter}", filtre).replace("{status}", "❌")}` }).catch(e => { })
         } else {
           queue.filters.add(filtre)
-          return interaction.reply({ content: `${lang.msg31.replace("{filter}", filtre).replace("{status}", "✅")}`, ephemeral: true }).catch(e => { })
+          return interaction.reply({ content: `${lang.msg31.replace("{filter}", filtre).replace("{status}", "✅")}` }).catch(e => { })
         }
       } else {
         const filter = filters.find((x) => x.toLowerCase() === filtre.toLowerCase())
