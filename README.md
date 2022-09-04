@@ -6,6 +6,7 @@
 
 
 ## ABOUT V13.5 UPDATE / news: 2022, 4 SEPTEMBER
+- Added top.gg vote manager settings.
 - Added Dutch language
 - Use distube module
 - Event folders have been recreated.
