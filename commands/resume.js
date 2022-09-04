@@ -12,9 +12,9 @@ lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
 try {
 
-    if (!queue) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
-    const success = queue.setPaused(false);
-    return interaction.reply({ content: success ? `**${queue.current.title}**, ${lang.msg72}` : lang.msg71 }).catch(e => { })
+    if (!queue) return interaction.reply({ content: lang.msg63, ephemeral: true }).catch(e => { })
+    const success = queue.resume();
+    return interaction.reply({ content: success ? `**${queue.songs[0]}**, ${lang.msg72}` : lang.msg71 }).catch(e => { })
 
 } catch (e) {
     if(client.errorLog){
