@@ -1,5 +1,4 @@
 const config = require("../config.js");
-const { EmbedBuilder } = require("discord.js");
 module.exports = async (client) => {
 let lang = client.language
 lang = require(`../languages/${lang}.js`);
@@ -27,7 +26,6 @@ console.log(lang.error3 + err);
 })();
 
 console.log(client.user.username + lang.ready);
-console.log(`${lang.error5}`)
   
 client.user.setStatus('ONLINE');
 client.user.setActivity(config.status)
@@ -50,4 +48,14 @@ console.log("\nMongoDB Error: " + err + "\n\n" + lang.error4)
 console.log(lang.error4)
 }
 
+try {
+function users_fetch() {
+client.guilds.cache.forEach(async (guild) => {
+await guild.members.fetch()
+})
+}
+setInterval(users_fetch, 10000000)
+} catch (err) {
+return
+}
 }
