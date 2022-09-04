@@ -23,7 +23,7 @@ module.exports = {
       embed.setThumbnail(track.thumbnail);
       embed.setTitle(track.name)
       embed.setDescription(`> Audio \`%${queue.volume}\`
-> Duration \`${track.duration}\`
+> Duration \`${track.formattedDuration}\`
 > URL: **${track.url}**
 > Loop Mode \`${queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Off'}\`
 > Filter: \`${queue.filters.names.join(', ') || 'Off'}\`
