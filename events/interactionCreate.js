@@ -3,14 +3,13 @@ const { EmbedBuilder, InteractionType, ModalBuilder, TextInputBuilder, TextInput
 const db = require("../mongoDB");
 const fs = require("fs")
 module.exports = async (client, interaction) => {
-
+    let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
+    lang = lang?.language || client.language
+    lang = require(`../languages/${lang}.js`);
 try {
 if (!interaction.guild){
 return interaction.reply({ content: "This bot is only for servers and can be used on servers.", ephemeral: true })
 } else {
-    let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
-    lang = lang?.language || client.language
-    lang = require(`../languages/${lang}.js`);
 
     function cmd_loader() {
         if (interaction.type === InteractionType.ApplicationCommand) {
