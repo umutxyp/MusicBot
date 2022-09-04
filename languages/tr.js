@@ -21,18 +21,10 @@ msg11: "Bu müzik zaten bu oynatma listesinde var. ❌",
 msg12: "müzik çalma listenize eklendi.",
 error3: "Uygulama [/] komutları yeniden yüklenirken hata oluştu: ",
 error4: "UYARI: Görünüşe göre config.js dosyasına geçerli bir mongodb url'sini yazmamışsınız? Eğer bunu yapmazsanız, müzik komutları çalışmayacaktır.",
-error5: `NOT: EĞER BOT ÇALIŞIYOR KOMUTLARA CEVAP VERİYOR ANCAK SES GELMİYOR İSE ŞU ADIMLARI UYGULAYIN:
-replit.com'da açtığınız projenizin sayfasına girin.
-sağ altta açılan kutunun üstünde yer alan console ve shell yazan kutucuklardan shell yazana tıklayın.
-npm uni discord-player yazın
-npm i discord-player@5.3.0-dev.2 yazın
-npm uni ytdl-core yazın
-npm i ytdl-core@4.10.0 yazın
-replit ekranının ortasında bulunan "Stop" yada "Run" yazan butondan botu kapatıp, açın.`,
 msg13: `🎵 Şuanda çalan: **{track?.title}** -> Kanal: **{queue?.connection.channel.name}** 🎧`,
 msg14: "Kuyruk boş. Biraz daha müzik çalabilirsin, hoşçakal... ✅",
 msg15: "Kanalımda kimse kalmadığı için bağlantıyı kestim. ❌",
-msg16: "Ses kanalına bağlanmada sorun yaşıyorum. ❌Birinin bağlantımı kesmiş gibi? Çok üzgünüm. 😔",
+msg16: "Ses kanalına bağlanmada sorun yaşıyorum. ❌ Birisi bağlantımı kesmiş gibi? Çok üzgünüm. 😔",
 msg17: "Önceki parça yok! ❌",
 msg18: "Şuanda çalan **{queue.previousTracks[1].title}**. ✅",
 msg19: " Bot İstatistikleri",
@@ -45,8 +37,8 @@ msg26: "Bir DJ rolü belirtmezseniz, komutu kullanamazsınız!",
 msg25: "DJ rolü başarıyla <@&{role}> olarak ayarlandı.",
 msg27: "DJ rolü başarıyla silindi.",
 msg28: "DJ rolü henüz belirlenmedi.",
-msg29: `Lütfen geçerli bir filtre adı girin. ❌\n\`bassboost, 8D, nightcore, mono, karaoke\``,
-msg30: `Lütfen geçerli bir filtre adı girin. ❌\n\`bassboost, 8D, nightcore, mono, karaoke\``,
+msg29: `Lütfen geçerli bir filtre adı girin. ❌\n{filters}`,
+msg30: `Lütfen geçerli bir filtre adı girin. ❌\n{filters}`,
 msg31: `Uygulandı: **{filter}**, Filtre Durumu: **{status}**\n **Unutmayın, müzik uzunsa filtre uygulama süresi buna göre daha uzun olabilir.**`,
 msg32: "Tamamen ücretsiz ve gelişmiş bir arayüz ile discord sunucunuzda müzik dinlemenin tam zamanı. Sunucunuzu özel hissettirecek birçok platformda müzik çalmayı destekleyen müzik botu. Kendi müzik botunuzu oluşturun: https://github.com/umutxyp/MusicBot",
 msg33: "Bot Komutları",
@@ -80,8 +72,8 @@ msg57: `<@{interaction.member.id}>, **{music_filter.length}** müzik kuyruğa ek
 msg58: `Bu ada sahip bir oynatma listesi yok. ❌`,
 msg59: `Aramak istediğiniz parçanın adını yazın. ❌`,
 msg60: `Arama sonucu bulunamadı! ❌`,
-msg61: "isimli liste playliste eklendi. ✅",
-msg62: "kuyruğa eklendi ✅",
+msg61: "Müzik(ler) yükleniyor... 🎧",
+msg62: "isimli liste playliste eklendi. ✅",
 msg63: `Kuyruk boş. ❌`,
 msg64: "Sunucu Müzik Listesi",
 msg65: "Şuanda çalan müzik",
@@ -98,7 +90,7 @@ msg75: "Aranan Müzik",
 msg76: "**1** ile **{maxTracks.length}** arasında bir şarkı seçin ⬇️",
 msg77: `Müzik arama isteği iptal edildi. ✅`,
 msg78: `Yükleniyor... 🎧`,
-msg79: "kuruğa eklendi. ✅",
+msg79: "kuyruğa eklendi. ✅",
 msg80: `Şarkı arama süresi doldu ❌`,
 msg81: "İptal",
 msg82: `The number you entered is higher than the amount of songs in the queue. ❌`,
@@ -150,6 +142,7 @@ msg127: "Komut bulunamadı.",
 error7: "Lütfen bu komutu daha sonra tekrar deneyin. Olası hata bot geliştiricilerine bildirildi.",
 msg128: "Müzik çalarken beni susturdun. Bu yüzden müziği durdurdum. Eğer mutemi açarsan devam edeceğim. 😔",
 msg129: "oynatma",
-msg130: "Lütfen geçerli bir sayı yaz."
+msg130: "Lütfen geçerli bir sayı yaz.",
+msg131: "listede yer alan komutları kullanabilmek için bota oy vermen gerekli."
 }
 module.exports = language;
