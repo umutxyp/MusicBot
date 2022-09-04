@@ -16,10 +16,6 @@ module.exports = {
 
       if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
 
-      const progress = queue.createProgressBar();
-      const timestamp = queue.getPlayerTimestamp();
-
-      if (timestamp.progress == 'Infinity') return interaction.reply({ content: lang.msg84, ephemeral: true }).catch(e => { })
 
       const saveButton = new ButtonBuilder();
       saveButton.setLabel(lang.msg86);
@@ -27,12 +23,16 @@ module.exports = {
       saveButton.setStyle(ButtonStyle.Success);
       const row = new ActionRowBuilder().addComponents(saveButton);
 
+      let music_percent = queue.duration / 100;
+      let music_percent2 = queue.currentTime / music_percent;
+      let music_percent3 = Math.round(music_percent2);
+
       const embed = new EmbedBuilder()
         .setColor(client.config.embedColor)
-        .setTitle(queue.current.title)
-        .setThumbnail(client.user.displayAvatarURL())
+        .setTitle(queue.songs[0].name)
+        .setThumbnail(queue.songs[0].thumbnail)
         .setTimestamp()
-        .setDescription(`${progress} (**${timestamp.progress}**%)`)
+        .setDescription(`**${queue.formattedCurrentTime} / ${queue.formattedDuration} (${music_percent3}%)**`)
         .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
       interaction.reply({ embeds: [embed], components: [row] }).catch(e => { })
 
