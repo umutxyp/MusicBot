@@ -19,6 +19,28 @@ files.forEach(async (f) => {
 let props = require(`.${config.commandsDir}/${f}`);
 if (interaction.commandName.toLowerCase() === props.name.toLowerCase()) {
 try {
+if(config.voteManager.status === true){
+if(config.voteManager.api_key){
+if(config.voteManager.vote_commands){
+if(config.voteManager.vote_commands.length > 0){
+if(config.voteManager.vote_commands.includes(interaction.commandName)){
+    const topSdk = require("@top-gg/sdk");
+    let topApi = new topSdk.Api(config.voteManager.api_key, client);
+    topApi?.hasVoted(interaction?.user?.id).then(voted => {
+        if (!voted) {
+            const embed = new EmbedBuilder()
+            .setTitle("Vote "+client.user.username)
+            .setColor(client.config.embedColor)
+  .setDescription(`${config.voteManager.vote_commands.map(cs => `\`${cs}\``).join(", ")} - ${lang.msg131}
+  > ${config.voteManager.vote_url}`)
+  return interaction.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
+        }
+    })
+}
+}
+}
+}
+}
 const data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
 if (data?.channels?.length > 0) {
 let channel_filter = data?.channels?.filter(x => x.channel === interaction.channel.id)
@@ -103,20 +125,19 @@ if (!queue || !queue.playing) {
 return interaction.reply({ content: `${lang.msg5}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
 } else {
 
-const progress = queue.createProgressBar();
-const timestamp = queue.getPlayerTimestamp();
+    let music_percent = queue.duration / 100;
+    let music_percent2 = queue.currentTime / music_percent;
+    let music_percent3 = Math.round(music_percent2);
 
-if (timestamp.progress == 'Infinity') return interaction.message.edit({ content: `${lang.msg8}`, embeds: [], components: [] }).catch(e => { })
-
-const embed = new EmbedBuilder()
-.setColor(client.config.embedColor)
-.setTitle(queue.current.title)
-.setThumbnail(client.user.displayAvatarURL())
-.setTimestamp()
-.setDescription(`${progress} (**${timestamp.progress}**%)`)
-.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
-interaction.message.edit({ embeds: [embed] }).catch(e => { })
-interaction.reply({ content: `${lang.msg9}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+    const embed = new EmbedBuilder()
+    .setColor(client.config.embedColor)
+    .setTitle(queue.songs[0].name)
+    .setThumbnail(queue.songs[0].thumbnail)
+    .setTimestamp()
+    .setDescription(`**${queue.formattedCurrentTime} / ${queue.formattedDuration} (${music_percent3}%)**`)
+    .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+    interaction.message.edit({ embeds: [embed] }).catch(e => { })
+    interaction.reply({ content: `${lang.msg9}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
 }
 }
 }
@@ -134,24 +155,21 @@ const name = interaction.fields.getTextInputValue("playlist")
 const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
 if (!playlist?.playlist?.filter(p => p.name === name).length > 0) return interaction.reply({ content: `${lang.msg10}`, ephemeral: true }).catch(e => { })
 
-const music_filter = playlist?.musics?.filter(m => m.playlist_name === name && m.music_name === queue.current.title)
+const music_filter = playlist?.musics?.filter(m => m.playlist_name === name && m.music_name === queue.songs[0].name)
 if (!music_filter?.length > 0) {
 await db.playlist.updateOne({ userID: interaction.user.id }, {
 $push: {
 musics: {
 playlist_name: name,
-music_name: queue.current.title,
-music_url: queue.current.url,
-saveTime: Date.now(),
-duration: queue.current.duration,
-thumbnail: queue.current.thumbnail,
-author: queue.current.author
+music_name: queue.songs[0].name,
+music_url: queue.songs[0].url,
+saveTime: Date.now()
 }
 }
 }, { upsert: true }).catch(e => { })
-return interaction.reply(`<@${interaction.user.id}>, **${queue.current.title}** ${lang.msg12}`)
+return interaction.reply({ content: `<@${interaction.user.id}>, **${queue.songs[0].name}** ${lang.msg12}`, ephemeral: true }).catch(e => { })
 } else {
-return interaction.reply(`<@${interaction.user.id}>, **${queue.current.title}** ${lang.msg104}`)
+return interaction.reply({ content: `<@${interaction.user.id}>, **${queue.songs[0].name}** ${lang.msg104}`, ephemeral: true }).catch(e => { })
 }
 }
 break
