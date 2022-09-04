@@ -21,14 +21,6 @@ const language = {
  msg12: "added to your music playlist.",
 error3: "Error reloading application [/] commands: ",
 error4: "WARN: It looks like you didn't write the mongodb url? If you do not enter a valid mongodb url in the config.js file, you will not be able to use the bot.",
-error5: `ERROR EXAMPLE:IF THE BOT IS WORKING, RESPONDING TO COMMANDS BUT NO SOUND, FOLLOW THESE STEPS;
-Enter the page of your project that you opened on replit.com.
-Click on the one that says shell from the boxes that say console and shell above the opened box at the bottom right.
-Type npm uni discord-player
-Type npm i discord-player@5.3.0-dev.2
-Type npm uni ytdl-core
-Type npm i ytdl-core@4.10.0
-Turn off and on the bot from the button that says "Stop" or "Run" in the middle of the replit screen`,
 msg13: `🎵 Now playing: **{track?.title}** -> Channel: **{queue?.connection.channel.name}** 🎧`,
 msg14: "Queue is empty. You can play some more music, byebye... ✅",
 msg15: "I disconnected because there is no one left in my channel. ❌",
@@ -45,8 +37,8 @@ msg26: "If you don't specify a DJ role, you won't be able to use the command!",
 msg25: "The DJ role is successfully set to <@&{role}>.",
 msg27: "The DJ role is successfully deleted.",
 msg28: "The DJ role is not already set.",
-msg29: `Please enter a valid filter name. ❌\n\`bassboost, 8D, nightcore, mono, karaoke\``,
-msg30: `I couldn't find a filter with that name. ❌\n\`bassboost, 8D, nightcore, mono, karaoke\``,
+msg29: `Please enter a valid filter name. ❌\n{filters}`,
+msg30: `I couldn't find a filter with that name. ❌\n{filters}`,
 msg31: `Applied: **{filter}**, Filter Status: **{status}**\n **Remember, if the music is long, the filter application time may be longer accordingly.**`,
 msg32: "It's time to listen to music on your discord server with a completely free and advanced interface. Music bot that supports playing music on many platforms that will make your server feel special. Create your own music bot: https://github.com/umutxyp/MusicBot",
 msg33: "Bot Commands",
@@ -80,8 +72,8 @@ msg57: `<@{interaction.member.id}>, Added **{music_filter.length}** tracks to th
 msg58: `There is no playlist with this name. ❌`,
 msg59: `Write the name of the track you want to search. ❌`,
 msg60: `No results found! ❌`,
-msg61: "named list added to the playlist. ✅",
-msg62: "added to queue ✅",
+msg61: "Loading music(s)... 🎧",
+msg62: "named list added to the playlist. ✅",
 msg63: `Queue is empty. ❌`,
 msg64: "Server Music List",
 msg65: "Currently Playing",
@@ -150,6 +142,7 @@ msg127: "Command is not defined.",
 error7: "Please try this command again later. Possible bug reported to bot developers.",
 msg128: "You silenced me while the music was playing. That's why I stopped the music. If you undo the mute, I will continue. 😔",
 msg129: "plays",
-msg130: "Please write a valid number."
+msg130: "Please write a valid number.",
+msg131: "in order to use the commands in the list, you need to vote for the bot."
 }
 module.exports = language;
