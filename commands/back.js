@@ -12,10 +12,12 @@ lang = require(`../languages/${lang}.js`);
 try {
     const queue = client.player.getQueue(interaction.guild.id);
     if (!queue || !queue.playing) return interaction.reply({ content: `${lang.msg5}`, ephemeral: true }).catch(e => { })
-    if (!queue.previousTracks[1]) return interaction.reply({ content: `${lang.msg17}`, ephemeral: true }).catch(e => { })
-    await queue.back();
-    interaction.reply({ content: `${lang.msg18.replace("{queue.previousTracks[1].title}", queue.previousTracks[1].title)}` }).catch(e => { })
-
+try {
+    let song = await queue.previous()
+    interaction.reply({ content: `${lang.msg18.replace("{queue.previousTracks[1].title}", song.name)}` }).catch(e => { })
+} catch (e) {
+    return interaction.reply({ content: `${lang.msg17}`, ephemeral: true }).catch(e => { })
+}
 } catch (e) {
     if(client.errorLog){
 const { EmbedBuilder } = require("discord.js")
