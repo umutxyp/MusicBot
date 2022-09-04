@@ -4,7 +4,6 @@ const musicbot = Schema({
 guildID: String,
 role: String,
 language: String,
-volume: Number,
 channels: Array
 })
 
