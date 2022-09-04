@@ -5,7 +5,7 @@ botInvite: "", //write your discord bot invite.
 mongodbURL: "", //write your mongodb url.
 status: '❤️ codeshare.me',
 commandsDir: './commands', //Please don't touch
-language: "en", //en, tr
+language: "en", //en, tr, nl
 embedColor: "ffa954", //hex color code
 errorLog: "", //write your discord error log channel id.
   
