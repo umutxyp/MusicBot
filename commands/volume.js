@@ -31,11 +31,6 @@ module.exports = {
       if (vol < 0 || vol > maxVol) return interaction.reply({ content: lang.msg89.replace("{maxVol}", maxVol), ephemeral: true }).catch(e => { })
 
       const success = queue.setVolume(vol);
-      await db.musicbot.updateOne({ guildID: interaction.guild.id }, {
-        $set: {
-          volume: vol
-        }
-      }, { upsert: true });
 
       return interaction.reply({ content: success ? `${lang.msg90} **${vol}**/**${maxVol}** 🔊` : lang.msg41 }).catch(e => { })
 
