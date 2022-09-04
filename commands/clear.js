@@ -13,8 +13,8 @@ lang = require(`../languages/${lang}.js`);
 try {
 
   if (!queue || !queue.playing) return interaction.reply({ content: `${lang.msg5}`, ephemeral: true }).catch(e => { })
-  if (!queue.tracks[0]) return interaction.reply({ content: `${lang.msg23}`, ephemeral: true }).catch(e => { })
-  await queue.clear();
+  if (!queue.songs[0]) return interaction.reply({ content: `${lang.msg23}`, ephemeral: true }).catch(e => { })
+  await client.player.deleteQueue(interaction.guild.id);
   interaction.reply({ content: `${lang.msg24}` }).catch(e => { })
 
 } catch (e) {
