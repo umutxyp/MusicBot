@@ -5,37 +5,38 @@ name: "filter",
 description: "Adds audio filter to ongoing music.",
 permissions: "0x0000000000000800",
 options: [{
-name: 'filtre',
-description: 'Type the filter you want to apply. (bassboost, 8D, nightcore, mono, karaoke)',
+name: 'name',
+description: 'Type the filter you want to apply. (use command to see filters)',
 type: ApplicationCommandOptionType.String,
 required: true
 }],
-  voiceChannel: true,
+voiceChannel: true,
 run: async (client, interaction) => {
 let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
 lang = lang?.language || client.language
 lang = require(`../languages/${lang}.js`);
 try {
 
-  const queue = client.player.getQueue(interaction.guild.id);
-
+const queue = client.player.getQueue(interaction.guild.id);
 if (!queue || !queue.playing) return interaction.reply({ content: `${lang.msg5}`, ephemeral: true }).catch(e => { })
-const filtre = interaction.options.getString('filtre')
 
+const filtre = interaction.options.getString('name')
 if (!filtre) return interaction.reply({ content: lang.msg29, ephemeral: true }).catch(e => { })
 
+let filters = ["3d","bassboost","echo","karaoke","nightcore","vaporwave","flanger","gate","haas","reverse","surround","mcompand","phaser","tremolo","earwax"]
 
-const filters = ["bassboost", "8D", "nightcore", "mono", "karaoke"];
-//other filters: https://discord-player.js.org/docs/main/master/class/AudioFilters
-
-const filter = filters.find((x) => x.toLowerCase() === filtre.toLowerCase());
-
-if (!filter) return interaction.reply({ content: lang.msg30, ephemeral: true }).catch(e => { })
-const filtersUpdated = {};
-filtersUpdated[filter] = queue["_activeFilters"].includes(filter) ? false : true;
-await queue.setFilters(filtersUpdated);
-
-interaction.reply({ content: lang.msg31.replace("{filter}", filter).replace("{status}", queue["_activeFilters"].includes(filter) ? '✅' : '❌') }).catch(e => { })
+if (filters.includes(filtre.toLowerCase())) {
+  if (queue.filters.has(filtre)){
+    queue.filters.remove(filtre)
+    return interaction.reply({ content: `${lang.msg31.replace("{filter}", filtre).replace("{status}", "❌")}`, ephemeral: true }).catch(e => { })
+  } else {
+ queue.filters.add(filtre)
+ return interaction.reply({ content: `${lang.msg31.replace("{filter}", filtre).replace("{status}", "✅")}`, ephemeral: true }).catch(e => { })
+  }
+} else {
+const filter = filters.find((x) => x.toLowerCase() === filtre.toLowerCase())
+if (!filter) return interaction.reply({ content: lang.msg30.replace("{filters}", filters.map(mr => `\`${mr}\``).join(", ")), ephemeral: true }).catch(e => { })
+}
 
 } catch (e) {
   if(client.errorLog){
