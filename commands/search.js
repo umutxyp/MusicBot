@@ -21,12 +21,15 @@ module.exports = {
       const name = interaction.options.getString('name')
       if (!name) return interaction.reply({ content: lang.msg73, ephemeral: true }).catch(e => { })
 
-
+try {
       const res = await client.player.search(name, {
         member: interaction.member,
         textChannel: interaction.channel,
         interaction
-      });
+      })
+    } catch(e){
+      return interaction.editReply({ content: lang.msg60 }).catch(e => { })
+    }
 
       if (!res || !res.length || !res.length > 1) return interaction.reply({ content: lang.msg74, ephemeral: true }).catch(e => { })
 
