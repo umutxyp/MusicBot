@@ -1,10 +1,10 @@
-const { Client, GatewayIntentBits, Partials } = require('discord.js');
-const { DisTube } = require('distube')
-const { SpotifyPlugin } = require('@distube/spotify')
-const { SoundCloudPlugin } = require('@distube/soundcloud')
-const { YtDlpPlugin } = require('@distube/yt-dlp')
-const config = require("./config")
-const fs = require('fs');
+const { Client, GatewayIntentBits, Partials } = require("discord.js");
+const { DisTube } = require("distube");
+const { SpotifyPlugin } = require("@distube/spotify");
+const { SoundCloudPlugin } = require("@distube/soundcloud");
+const { YtDlpPlugin } = require("@distube/yt-dlp");
+const config = require("./config");
+const fs = require("fs");
 const client = new Client({
   partials: [
     Partials.Channel, // for text channel
@@ -16,8 +16,8 @@ const client = new Client({
     GatewayIntentBits.GuildMembers, // for guild members related things
     GatewayIntentBits.GuildIntegrations, // for discord Integrations
     GatewayIntentBits.GuildVoiceStates, // for voice related things
-  ]
-})
+  ],
+});
 
 client.config = config;
 client.player = new DisTube(client, {
@@ -30,16 +30,16 @@ client.player = new DisTube(client, {
   emitAddListWhenCreatingQueue: false,
   plugins: [
     new SpotifyPlugin({
-      emitEventsAfterFetching: true
+      emitEventsAfterFetching: true,
     }),
     new SoundCloudPlugin(),
-    new YtDlpPlugin()
-  ]
-})
+    new YtDlpPlugin(),
+  ],
+});
 
-const player = client.player
-client.language = config.language || "en"
-let lang = require(`./languages/${config.language || "en"}.js`)
+const player = client.player;
+client.language = config.language || "en";
+let lang = require(`./languages/${config.language || "en"}.js`);
 
 fs.readdir("./events", (_err, files) => {
   files.forEach((file) => {
@@ -52,18 +52,16 @@ fs.readdir("./events", (_err, files) => {
   });
 });
 
-
 fs.readdir("./events/player", (_err, files) => {
   files.forEach((file) => {
     if (!file.endsWith(".js")) return;
-    const player_events = require(`./events/player/${file}`)
-    let playerName = file.split(".")[0]
-    console.log(`${lang.loadevent}: ${playerName}`)
-    player.on(playerName, player_events.bind(null, client))
-    delete require.cache[require.resolve(`./events/player/${file}`)]
-  })
-})
-
+    const player_events = require(`./events/player/${file}`);
+    let playerName = file.split(".")[0];
+    console.log(`${lang.loadevent}: ${playerName}`);
+    player.on(playerName, player_events.bind(null, client));
+    delete require.cache[require.resolve(`./events/player/${file}`)];
+  });
+});
 
 client.commands = [];
 fs.readdir(config.commandsDir, (err, files) => {
@@ -75,7 +73,7 @@ fs.readdir(config.commandsDir, (err, files) => {
         client.commands.push({
           name: props.name,
           description: props.description,
-          options: props.options
+          options: props.options,
         });
         console.log(`${lang.loadcmd}: ${props.name}`);
       }
@@ -85,15 +83,14 @@ fs.readdir(config.commandsDir, (err, files) => {
   });
 });
 
-
 if (config.TOKEN || process.env.TOKEN) {
-  client.login(config.TOKEN || process.env.TOKEN).catch(e => {
-    console.log(lang.error1)
-  })
+  client.login(config.TOKEN || process.env.TOKEN).catch((e) => {
+    console.log(lang.error1);
+  });
 } else {
   setTimeout(() => {
-    console.log(lang.error2)
-  }, 2000)
+    console.log(lang.error2);
+  }, 2000);
 }
 
 const express = require("express");
