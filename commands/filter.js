@@ -20,9 +20,9 @@ module.exports = {
       const queue = client.player.getQueue(interaction.guild.id);
       if (!queue || !queue.playing) return interaction.reply({ content: `${lang.msg5}`, ephemeral: true }).catch(e => { })
 
-      const filtre = interaction.options.getString('name')
+      let filtre = interaction.options.getString('name')
       if (!filtre) return interaction.reply({ content: lang.msg29, ephemeral: true }).catch(e => { })
-
+filtre = filtre.toLowerCase()
       let filters = ["3d", "bassboost", "echo", "karaoke", "nightcore", "vaporwave", "flanger", "gate", "haas", "reverse", "surround", "mcompand", "phaser", "tremolo", "earwax"]
 
       if (filters.includes(filtre.toLowerCase())) {
