@@ -68,7 +68,7 @@ module.exports = {
             music_filter.map(m => songs.push(m.music_url))
 
             setTimeout(async () => {
-              const playl = await client.player.createCustomPlaylist(songs, {
+              const playl = await client?.player?.createCustomPlaylist(songs, {
                 member: interaction.member,
                 properties: { name: playlistw, source: "custom" },
                 parallel: true
