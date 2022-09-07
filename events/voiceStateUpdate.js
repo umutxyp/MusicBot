@@ -11,7 +11,7 @@ if(queue?.textChannel){
 try {
 await queue?.pause()
 } catch(e){
-
+return 
 }
 await queue?.textChannel?.send({ content: `${lang.msg128}` }).catch(e => { })
 }
@@ -21,7 +21,7 @@ if(queue?.textChannel){
     try {
 await queue.resume();
 } catch(e){
-    
+    return 
 }
 }
 }
