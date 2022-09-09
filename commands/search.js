@@ -20,9 +20,9 @@ module.exports = {
 
       const name = interaction.options.getString('name')
       if (!name) return interaction.reply({ content: lang.msg73, ephemeral: true }).catch(e => { })
-
+let res 
 try {
-      const res = await client.player.search(name, {
+     res = await client.player.search(name, {
         member: interaction.member,
         textChannel: interaction.channel,
         interaction
