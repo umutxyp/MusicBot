@@ -20,9 +20,9 @@ module.exports = {
 
       const name = interaction.options.getString('name')
       if (!name) return interaction.reply({ content: lang.msg73, ephemeral: true }).catch(e => { })
-let res 
+ let res
 try {
-     res = await client.player.search(name, {
+      res = await client.player.search(name, {
         member: interaction.member,
         textChannel: interaction.channel,
         interaction
@@ -67,7 +67,7 @@ try {
           .setStyle(ButtonStyle.Danger)
           .setCustomId('cancel'))
 
-      embed.setDescription(`${maxTracks.map((song, i) => `**${i + 1}**. ${song.name} | \`${song.uploader.name}\``).join('\n')}\n\n${lang.msg76.replace("{maxTracks.length}", maxTracks.length)}`);
+      embed.setDescription(`${maxTracks.map((song, i) => `**${i + 1}**. [${song.name}](${song.url}) | \`${song.uploader.name}\``).join('\n')}\n\n${lang.msg76.replace("{maxTracks.length}", maxTracks.length)}`);
       embed.setTimestamp();
       embed.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
 
