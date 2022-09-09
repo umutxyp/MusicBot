@@ -22,9 +22,7 @@ const client = new Client({
 client.config = config;
 client.player = new DisTube(client, {
   leaveOnStop: config.opt.voiceConfig.leaveOnStop,
-  leaveOnEmpty: config.opt.voiceConfig.leaveOnEmpty.status,
   leaveOnFinish: config.opt.voiceConfig.leaveOnFinish,
-  emptyCooldown: config.opt.voiceConfig.leaveOnEmpty.cooldown,
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
