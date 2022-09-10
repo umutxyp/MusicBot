@@ -187,18 +187,16 @@ if (!playlist?.playlist?.filter(p => p.name === playlist_name).length > 0) retur
 let max_music = client.config.playlistSettings.maxMusic
 if (playlist?.musics?.filter(m => m.playlist_name === playlist_name).length > max_music) return interaction.reply({ content: lang.msg101.replace("{max_music}", max_music), ephemeral: true }).catch(e => { })
 let res 
-if(name.includes("spotify.com")){
-    var Spotify = require('spotify-web-api-js');
-    var s = new Spotify();
-    s.searchTracks(name)
-} else {
- res = await client.player.search(name, {
+try{
+res = await client.player.search(name, {
     member: interaction.member,
     textChannel: interaction.channel,
     interaction
     })
+} catch (e) {
+return interaction.reply({ content: lang.msg74, ephemeral: true }).catch(e => { })
 }
-    if(!res || !res.length || !res.length > 1) return interaction.reply({ content: lang.msg74, ephemeral: true }).catch(e => { })
+if(!res || !res.length || !res.length > 1) return interaction.reply({ content: lang.msg74, ephemeral: true }).catch(e => { })
 
 await interaction.reply({ content: `<@${interaction.member.id}>, ${lang.msg102}` }).catch(e => { })
 
