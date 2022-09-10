@@ -143,6 +143,7 @@ error7: "Probeer deze command later opnieuw. Mogelijke bug gemeld aan botontwikk
 msg128: "Je mute me terwijl de muziek speelde. Daarom ben ik gestopt met de muziek. Als je me unmute ga ik verder. 😔",
 msg129: "Spelen",
 msg130: "Schrijf A.U.B een geldig nummer.",
-msg131: "Om de commando's in de lijst te gebruiken, moet je op de bot stemmen."
+msg131: "om de opdrachten in de lijst te gebruiken, moet je op de bot stemmen.",
+msg132: "Er is nog geen muziek gestopt."
 }
 module.exports = language;
