@@ -143,6 +143,7 @@ error7: "Lütfen bu komutu daha sonra tekrar deneyin. Olası hata bot geliştiri
 msg128: "Müzik çalarken beni susturdun. Bu yüzden müziği durdurdum. Eğer mutemi açarsan devam edeceğim. 😔",
 msg129: "oynatma",
 msg130: "Lütfen geçerli bir sayı yaz.",
-msg131: "listede yer alan komutları kullanabilmek için bota oy vermen gerekli."
+msg131: "listede yer alan komutları kullanabilmek için bota oy vermen gerekli.",
+msg132: "Zaten durdurulmuş müzik yok."
 }
 module.exports = language;
