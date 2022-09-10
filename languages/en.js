@@ -143,6 +143,7 @@ error7: "Please try this command again later. Possible bug reported to bot devel
 msg128: "You silenced me while the music was playing. That's why I stopped the music. If you undo the mute, I will continue. 😔",
 msg129: "plays",
 msg130: "Please write a valid number.",
-msg131: "in order to use the commands in the list, you need to vote for the bot."
+msg131: "in order to use the commands in the list, you need to vote for the bot.",
+msg132: "No music already paused."
 }
 module.exports = language;
