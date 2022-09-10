@@ -1,88 +1,41 @@
 const config = require("../config.js");
-const {
-  EmbedBuilder,
-  InteractionType,
-  ModalBuilder,
-  TextInputBuilder,
-  TextInputStyle,
-  ActionRowBuilder,
-} = require("discord.js");
+const { EmbedBuilder, InteractionType, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
 const db = require("../mongoDB");
-const fs = require("fs");
+const fs = require("fs")
 module.exports = async (client, interaction) => {
-  let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id });
-  lang = lang?.language || client.language;
-  lang = require(`../languages/${lang}.js`);
-  try {
-    if (!interaction.guild) {
-      return interaction.reply({
-        content: "This bot is only for servers and can be used on servers.",
-        ephemeral: true,
-      });
-    } else {
-      function cmd_loader() {
+    let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
+    lang = lang?.language || client.language
+    lang = require(`../languages/${lang}.js`);
+try {
+if (!interaction.guild){
+return interaction.reply({ content: "This bot is only for servers and can be used on servers.", ephemeral: true })
+} else {
+
+    function cmd_loader() {
         if (interaction.type === InteractionType.ApplicationCommand) {
-          fs.readdir(config.commandsDir, (err, files) => {
+            fs.readdir(config.commandsDir, (err, files) => {
             if (err) throw err;
             files.forEach(async (f) => {
-              let props = require(`.${config.commandsDir}/${f}`);
-              if (
-                interaction.commandName.toLowerCase() ===
-                props.name.toLowerCase()
-              ) {
-                try {
-                  const data = await db?.musicbot?.findOne({
-                    guildID: interaction?.guild?.id,
-                  });
-                  if (data?.channels?.length > 0) {
-                    let channel_filter = data?.channels?.filter(
-                      (x) => x.channel === interaction.channel.id
-                    );
-                    if (
-                      !channel_filter?.length > 0 &&
-                      !interaction?.member?.permission?.has(
-                        "0x0000000000000020"
-                      )
-                    ) {
-                      channel_filter = data?.channels
-                        ?.map((x) => `<#${x.channel}>`)
-                        .join(", ");
-                      return interaction
-                        .reply({
-                          content: lang.msg126.replace(
-                            "{channel_filter}",
-                            channel_filter
-                          ),
-                          ephemeral: true,
-                        })
-                        .catch((e) => {});
-                    }
-                  }
-                  if (
-                    interaction?.member?.permissions?.has(
-                      props?.permissions || "0x0000000000000800"
-                    )
-                  ) {
-                    const DJ = client.config.opt.DJ;
-                    if (
-                      props &&
-                      DJ.commands.includes(interaction.commandName)
-                    ) {
-                      let djRole = await db.musicbot
-                        .findOne({ guildID: interaction?.guild?.id })
-                        .catch((e) => {});
-                      if (djRole) {
-                        const roleDJ = interaction.guild.roles.cache.get(
-                          djRole.role
-                        );
-                        if (
-                          !interaction.member.permissions.has(
-                            "0x0000000000000020"
-                          )
-                        ) {
-                          if (roleDJ) {
-                            if (
-                              !interaction.member.roles.cache.has(roleDJ.id)) {
+            let props = require(`.${config.commandsDir}/${f}`);
+            if (interaction.commandName.toLowerCase() === props.name.toLowerCase()) {
+            try {
+            const data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
+            if (data?.channels?.length > 0) {
+            let channel_filter = data?.channels?.filter(x => x.channel === interaction.channel.id)
+            if (!channel_filter?.length > 0 && !interaction?.member?.permission?.has("0x0000000000000020")) {
+            channel_filter = data?.channels?.map(x => `<#${x.channel}>`).join(", ")
+            return interaction.reply({ content: lang.msg126.replace("{channel_filter}", channel_filter), ephemeral: true }).catch(e => { })
+            }
+            }
+            if (interaction?.member?.permissions?.has(props?.permissions || "0x0000000000000800")) {
+            const DJ = client.config.opt.DJ;
+            if (props && DJ.commands.includes(interaction.commandName)) {
+            let djRole = await db.musicbot.findOne({ guildID: interaction?.guild?.id }).catch(e => { });
+            if (djRole) {
+            const roleDJ = interaction.guild.roles.cache.get(djRole.role)
+            if (!interaction.member.permissions.has("0x0000000000000020")) {
+            if (roleDJ) {
+            if (!interaction.member.roles.cache.has(roleDJ.id)) {
             
             const embed = new EmbedBuilder()
             .setColor(client.config.embedColor)
@@ -119,9 +72,10 @@ module.exports = async (client, interaction) => {
             });
             }
     }
-try {
+
     if(config.voteManager.status === true && config.voteManager.api_key){
         if(config.voteManager.vote_commands.includes(interaction?.commandName)){
+            try {
             const topSdk = require("@top-gg/sdk");
             let topApi = new topSdk.Api(config.voteManager.api_key, client);
             await topApi?.hasVoted(interaction?.user?.id).then(async voted => {
@@ -136,15 +90,15 @@ try {
                     cmd_loader()
                 }
             })
-        } else {
+        } catch(e){
             cmd_loader()
         }
         } else {
             cmd_loader()
         }
-    } catch(e){
-        cmd_loader()
-    }
+        } else {
+            cmd_loader()
+        }
 
 
 if (interaction.type === InteractionType.MessageComponent) {
