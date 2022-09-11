@@ -72,6 +72,71 @@ Enter the page of your project that you opened on -replit.com.
 - You will also need to invite the bot using the correct scope and permissions, which you can do here:
 ![image](https://user-images.githubusercontent.com/4060573/181926061-310e817a-97c5-48d8-adce-77a505c36336.png)
 
+## Commands
+### /back
+- Plays the previous track
+### /statistic
+- Show's the bot's statistics:
+    - Owner
+    - Developer
+    - User Count
+    - Channel Count
+    - Connected Voice
+    - Command Count
+    - Discord.js Version
+    - Node.js Version
+    - Operation Time
+    - Ping
+    - Memory Usage
+    - OS
+### /channel
+> /channel add|remove <#channel>
+- Allows you to add or remove the channel or channels where the bot can be used.
+### /clear
+- Clears the music queue.
+### /dj
+> /dj set <@role>
+> /dj reset
+- Allows you to set or reset the DJ role.
+### /filter
+> /filter 3d|bassboost|echo|karaoke|nightcore|vaporwave|flanger|gate|haas|reverse|surround|mcompand|phaser|tremolo|earwax
+- Adds audio filter to ongoing music.
+### /help
+- Helps you to get information about bot and commands.
+### /language
+- Allows you to set the language of the bot. (Türkçe, English, or Nederlands)
+### /loop
+- Turns the music loop mode on or off.
+### /nowplaying
+- Provides information about the music being played.
+### /pause
+- Stops playing the currently playing music.
+### /ping
+- Helps you to get information about the speed of the bot.
+### /play
+> /play normal|playlist <name>
+- Play a track.
+### /playlist
+- Lets you manage playlist commands.
+### /queue
+- Shows you the playlist.
+### /resume
+- Starts paused music.
+### /save
+- Sends and saves the played music to you via dm box.
+### /search
+- Used for your music search.
+### /skip
+- Skips the track being played.
+### /stop
+- Stops playing music
+### /time
+- Indicates which minute of the music you are playing.
+### /volume
+>/volume <#>
+- Allows you to adjust the music volume.
+
+
 ## Support/Contributing
 - [Click here to join the Discord](https://discord.gg/Fy4WmSThRZ)
 
