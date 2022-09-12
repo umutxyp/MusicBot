@@ -26,10 +26,14 @@ module.exports = {
         if (isNaN(number)) return interaction.reply({ content: lang.msg130, ephemeral: true }).catch(e => { })
         if (1 > number) return interaction.reply({ content: lang.msg130, ephemeral: true }).catch(e => { })
 
+        try {
         let old = queue.songs[0];
         await client.player.jump(interaction, number).then(song => {
           return interaction.reply({ content: `**${old.name}**, ${lang.msg83}` }).catch(e => { })
         })
+      } catch(e){
+        return interaction.reply({ content: lang.msg63, ephemeral: true }).catch(e => { })
+      }
       } else {
         try {
           let old = queue.songs[0];
