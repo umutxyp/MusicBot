@@ -44,7 +44,7 @@ msg32: "Het is tijd om naar muziek te luisteren op je discord server met een vol
 msg33: "Bot Commandos",
 msg34: "Je hebt hier al een actief commando. ❌",
 msg35: "Wachtrij",
-msg36: "Nu muziek aan het spelen",
+msg36: "Nu spelende muziek",
 msg37: "Stop herhalen",
 msg38: "Herhaal Systeem",
 msg39: `**Hoe zit het met het maken van een keuze?**
@@ -72,7 +72,7 @@ msg57: `<@{interaction.member.id}>, **{music_filter.length}** muzieknummers toeg
 msg58: `Er is geen afspeellijst met deze naam. ❌`,
 msg59: `Schrijf de naam van het nummer dat u wilt zoeken. ❌`,
 msg60: `Geen resultaten gevonden! ❌`,
-msg61: "Muziek(s) laden... 🎧",
+msg61: "Nummer(s) laden... 🎧",
 msg62: "naamlijst toegevoegd aan de afspeellijst. ✅",
 msg63: `De wachtrij is leeg. ❌`,
 msg64: "Server Muziek Lijst",
