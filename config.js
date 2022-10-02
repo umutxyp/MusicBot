@@ -2,6 +2,7 @@ module.exports = {
 TOKEN: "",
 ownerID: "", //write your discord user id.
 botInvite: "", //write your discord bot invite.
+supportServer: "", //write your discord bot support server invite.
 mongodbURL: "", //write your mongodb url.
 status: '❤️ codeshare.me',
 commandsDir: './commands', //Please don't touch
