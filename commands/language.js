@@ -25,6 +25,10 @@ module.exports = {
           .setLabel("Nederlands")
           .setCustomId('nl')
           .setStyle(ButtonStyle.Secondary),
+          new ButtonBuilder()
+          .setLabel("Français ")
+          .setCustomId('fr')
+          .setStyle(ButtonStyle.Secondary),
       )
 
       let embed = new EmbedBuilder()
@@ -46,7 +50,7 @@ module.exports = {
                   language: 'tr'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `Botun dili başarıyla Türkçe oldu. :flag_tr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await interaction.editReply({ content: `Botun dili başarıyla türkçe oldu. :flag_tr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
@@ -56,7 +60,7 @@ module.exports = {
                   language: 'en'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `Bot language successfully changed to English. :flag_gb:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await interaction.editReply({ content: `Bot language successfully changed to english. :flag_gb:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
@@ -66,7 +70,17 @@ module.exports = {
                   language: 'nl'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `De taal van de bot is succesvol veranderd naar Nederlands. :flag_nl:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await interaction.editReply({ content: `De taal van de bot was nederlands. :flag_nl:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await button.deferUpdate().catch(e => { })
+              await col.stop()
+              break
+              case 'fr':
+              await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+                $set: {
+                  language: 'fr'
+                }
+              }, { upsert: true }).catch(e => { })
+              await interaction.editReply({ content: `La langue du bot a été modifiée avec succès en français. :flag_fr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
