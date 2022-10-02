@@ -18,7 +18,7 @@ module.exports = {
         .setDescription(`**
     • Owner: \`${client.users.cache.get(config.ownerID)?.tag || "Undefined"}\`
     • Developer: \`Umut#6070\`
-    • User Count: \`${client.users.cache.size}\`
+    • User Count: \`${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)}\`
     • Server Count: \`${client.guilds.cache.size}\`
     • Channel Count: \`${client.channels.cache.size}\`
     • Connected Voice: \`${client?.voice?.adapters?.size || 0}\`
@@ -30,6 +30,7 @@ module.exports = {
     • Memory Usage: \`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\`
     • OS: \`${process.platform}\`
     • Invite Bot: [Click](${config.botInvite})
+    • Support Server: [Click](${config.supportServer})
     **`)
         .setColor(client.config.embedColor)
         .setTimestamp()
