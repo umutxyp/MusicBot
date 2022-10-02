@@ -138,6 +138,7 @@ const language = {
     msg129: "joue", 
     msg130: "Veuillez écrire un nombre valide.", 
     msg131: "pour utiliser les commandes de la liste, vous devez voter pour le bot.", 
-    msg132: "Aucune musique déjà mise en pause."
+    msg132: "Aucune musique déjà mise en pause.",
+    msg133: "J'ai foiré l'ordre dans la liste de lecture."
   }
   module.exports = language;
