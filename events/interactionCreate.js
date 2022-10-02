@@ -17,7 +17,7 @@ return interaction?.reply({ content: "This bot is only for servers and can be us
             if (err) throw err;
             files.forEach(async (f) => {
             let props = require(`.${config.commandsDir}/${f}`);
-            if (interaction?.commandName?.toLowerCase() === props?.name?.toLowerCase()) {
+            if (interaction.commandName === props.name) {
             try {
             const data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
             if (data?.channels?.length > 0) {
