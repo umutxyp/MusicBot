@@ -9,6 +9,7 @@
 - Added french language.
 - Filter command has been made manageable with buttons.
 - Minor bug fixes.
+- Shuffle command added.
 
 ## ABOUT V13.5 UPDATE / news: 2022, 4 SEPTEMBER
 - Added top.gg vote manager settings.
