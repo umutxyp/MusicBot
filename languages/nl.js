@@ -44,7 +44,7 @@ msg32: "Het is tijd om naar muziek te luisteren op je discord server met een vol
 msg33: "Bot Commandos",
 msg34: "Je hebt hier al een actief commando. ❌",
 msg35: "Wachtrij",
-msg36: "Nu spelende muziek",
+msg36: "Nu muziek aan het spelen",
 msg37: "Stop herhalen",
 msg38: "Herhaal Systeem",
 msg39: `**Hoe zit het met het maken van een keuze?**
@@ -72,7 +72,7 @@ msg57: `<@{interaction.member.id}>, **{music_filter.length}** muzieknummers toeg
 msg58: `Er is geen afspeellijst met deze naam. ❌`,
 msg59: `Schrijf de naam van het nummer dat u wilt zoeken. ❌`,
 msg60: `Geen resultaten gevonden! ❌`,
-msg61: "Nummer(s) laden... 🎧",
+msg61: "Muziek(s) laden... 🎧",
 msg62: "naamlijst toegevoegd aan de afspeellijst. ✅",
 msg63: `De wachtrij is leeg. ❌`,
 msg64: "Server Muziek Lijst",
@@ -127,10 +127,10 @@ msg112: "Top Openbare Afspeellijsten",
 msg113: `Uw tijd om dit commando te gebruiken is verstreken, u kunt \`/playlist top\` typen om het commando opnieuw te gebruiken.`,
 msg114: `Er is geen publieke afspeellijst. ❌`,
 msg115: "Your Playlists",
-msg116: `Nummers`,
+msg116: `muzieken`,
 msg117: `Je hebt geen afspeellijst. ❌`,
 msg118: "Je tijd om dit commando te gebruiken is verstreken, je kan \`/playlist list {name}\` typen om het commando opnieuw te gebruiken.",
-msg119: "Gebruik het commando **/play playlist <list-name>** om deze afspeellijsten te beluisteren.\nTyp **/playlist list <list-name>** om de nummers in een lijst te zien.",
+msg119: "Gebruik het commando **/play playlist <list-name>** om deze afspeellijsten te beluisteren.\nTyp **/playlist list <list-name>** om de muziek in een lijst te zien.",
 msg120: "Gelieve een tekstkanaal te specificeren.",
 msg121: "<#{channel}> toegevoegd aan de lijst met kanalen voor het gebruik van commando's, nu kan het bot-commando alleen worden gebruikt op de kanalen in de lijst.",
 msg122: "Er zijn nog geen gegevens geregistreerd.",
@@ -144,6 +144,7 @@ msg128: "Je mute me terwijl de muziek speelde. Daarom ben ik gestopt met de muzi
 msg129: "Spelen",
 msg130: "Schrijf A.U.B een geldig nummer.",
 msg131: "om de opdrachten in de lijst te gebruiken, moet je op de bot stemmen.",
-msg132: "Er is nog geen muziek gestopt."
+msg132: "Er is nog geen muziek gestopt.",
+msg133: "Ik heb de volgorde in de afspeellijst verprutst."
 }
 module.exports = language;
