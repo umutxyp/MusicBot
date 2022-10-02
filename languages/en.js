@@ -144,6 +144,7 @@ msg128: "You silenced me while the music was playing. That's why I stopped the m
 msg129: "plays",
 msg130: "Please write a valid number.",
 msg131: "in order to use the commands in the list, you need to vote for the bot.",
-msg132: "No music already paused."
+msg132: "No music already paused.",
+msg133: "I messed up the order in the playlist."
 }
 module.exports = language;
