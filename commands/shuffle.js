@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js")
+const { EmbedBuilder, version } = require("discord.js")
 const config = require("../config.js");
 const db = require("../mongoDB");
 module.exports = {
@@ -15,10 +15,10 @@ module.exports = {
         const queue = client.player.getQueue(interaction.guild.id);
         if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
         try {
-        distube.shuffle(interaction)
+          queue.shuffle(interaction)
         return interaction.reply({ content: `${lang.msg133}` }).catch(e => { })
         } catch(err) {
-            return interaction.reply({ content: `**${err}**` }).catch(e => { })
+        return interaction.reply({ content: `**${err}**` }).catch(e => { })
         }
     } catch (e) {
       if (client.errorLog) {
