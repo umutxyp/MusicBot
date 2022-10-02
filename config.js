@@ -23,7 +23,7 @@ errorLog: "", //write your discord error log channel id.
 
 opt: {
 DJ: {
-commands: ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume'] //Please don't touch
+commands: ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume', 'shuffle'] //Please don't touch
 },
 
 voiceConfig: {
