@@ -96,6 +96,7 @@ module.exports = {
 
       col.on('collect', async (button) => {
         if (button.user.id !== interaction.user.id) return
+        await button.deferUpdate().catch(e => { })
         let filters = ["3d", "bassboost", "echo", "karaoke", "nightcore", "vaporwave", "flanger", "gate", "haas", "reverse", "surround", "mcompand", "phaser", "tremolo", "earwax"]
 if(!filters.includes(button.customId)) return
 
