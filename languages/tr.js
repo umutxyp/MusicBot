@@ -144,6 +144,7 @@ msg128: "Müzik çalarken beni susturdun. Bu yüzden müziği durdurdum. Eğer m
 msg129: "oynatma",
 msg130: "Lütfen geçerli bir sayı yaz.",
 msg131: "listede yer alan komutları kullanabilmek için bota oy vermen gerekli.",
-msg132: "Zaten durdurulmuş müzik yok."
+msg132: "Zaten durdurulmuş müzik yok.",
+msg133: "Çalma listesindeki sırayı karıştırdım."
 }
 module.exports = language;
