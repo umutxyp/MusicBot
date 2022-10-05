@@ -37,7 +37,7 @@ module.exports = {
         .setTitle(lang.msg38)
         .setDescription(lang.msg39)
         .setTimestamp()
-        .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+        .setFooter({ text: `MusicMaker ❤️` })
       interaction.reply({ embeds: [embed], components: [button], fetchReply: true }).then(async Message => {
         await db.loop.updateOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }, {
           $set: {
@@ -52,27 +52,27 @@ module.exports = {
           const queue1 = client.player.getQueue(interaction.guild.id);
           if (!queue1 || !queue1.playing) {
             await interaction.editReply({ content: lang.msg5, ephemeral: true }).catch(e => { })
-            await button.deferUpdate();
+            await button.deferUpdate().catch(e => {})
           }
           switch (button.customId) {
             case 'queue':
               const success = queue.setRepeatMode(2);
               interaction.editReply({ content: `${lang.msg40} ✅` }).catch(e => { })
-              await button.deferUpdate();
+              await button.deferUpdate().catch(e => {})
               break
             case 'nowplaying':
               const success2 = queue.setRepeatMode(1);
               interaction.editReply({ content: `${lang.msg42} ✅` }).catch(e => { })
-              await button.deferUpdate();
+              await button.deferUpdate().catch(e => {})
               break
             case 'close':
               if (queue.repeatMode === 0) {
-                await button.deferUpdate();
+                await button.deferUpdate().catch(e => {})
                 return interaction.editReply({ content: lang.msg43, ephemeral: true }).catch(e => { })
               }
               const success4 = queue.setRepeatMode(0);
               interaction.editReply({ content: lang.msg44 }).catch(e => { })
-              await button.deferUpdate();
+              await button.deferUpdate().catch(e => {})
               break
           }
         })
@@ -89,7 +89,7 @@ module.exports = {
             .setColor(client.config.embedColor)
             .setTitle(lang.msg46)
             .setTimestamp()
-            .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+            .setFooter({ text: `MusicMaker ❤️` })
 
           await interaction.editReply({ content: "", embeds: [embed], components: [button] }).catch(e => { });
         })
