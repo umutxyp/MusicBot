@@ -1,5 +1,5 @@
 echo off
-color 1
+color 2
 cls
 :a
 node index.js
