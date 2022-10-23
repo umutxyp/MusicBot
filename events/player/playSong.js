@@ -26,7 +26,7 @@ module.exports = async (client, queue, song) => {
             new ButtonBuilder()
                 .setLabel(lang.msg134)
                 .setCustomId('skip')
-                .setStyle(ButtonStyle.Success)
+                .setStyle(ButtonStyle.Secondary)
         );
 
         if (queue?.textChannel) {
