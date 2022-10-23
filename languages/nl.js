@@ -146,6 +146,7 @@ const language = {
     msg131: "om de opdrachten in de lijst te gebruiken, moet je op de bot stemmen.",
     msg132: "Er is nog geen muziek gestopt.",
     msg133: "Ik heb de volgorde in de afspeellijst verprutst.",
-    msg134: "Skip"
+    msg134: "Skip",
+    msg135: "Terug"
 }
 module.exports = language;

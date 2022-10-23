@@ -146,6 +146,7 @@ const language = {
     msg131: "listede yer alan komutları kullanabilmek için bota oy vermen gerekli.",
     msg132: "Zaten durdurulmuş müzik yok.",
     msg133: "Çalma listesindeki sırayı karıştırdım.",
-    msg134: "Atla"
+    msg134: "Atla",
+    msg135: "Geri"
 }
 module.exports = language;

@@ -30,14 +30,21 @@ module.exports = {
 > Loop Mode \`${queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Off'}\`
 > Filter: \`${queue.filters.names.join(', ') || 'Off'}\`
 > By: <@${track.user.id}>`);
-            embed.setTimestamp();
 
-            const saveButton = new ButtonBuilder();
-            saveButton.setLabel(lang.msg47);
-            saveButton.setCustomId('saveTrack');
-            saveButton.setStyle(ButtonStyle.Success);
-
-            const row = new ActionRowBuilder().addComponents(saveButton);
+            const row = new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
+                    .setLabel(lang.msg135)
+                    .setCustomId('back')
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
+                    .setLabel(lang.msg47)
+                    .setCustomId('saveTrack')
+                    .setStyle(ButtonStyle.Success),
+                new ButtonBuilder()
+                    .setLabel(lang.msg134)
+                    .setCustomId('skip')
+                    .setStyle(ButtonStyle.Secondary)
+            );
 
             interaction.reply({embeds: [embed], components: [row]}).catch(() => {
             })

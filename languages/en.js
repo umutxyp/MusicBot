@@ -146,6 +146,7 @@ const language = {
     msg131: "in order to use the commands in the list, you need to vote for the bot.",
     msg132: "No music already paused.",
     msg133: "I messed up the order in the playlist.",
-    msg134: "Skip"
+    msg134: "Skip",
+    msg135: "Back"
 }
 module.exports = language;

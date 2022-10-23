@@ -20,6 +20,10 @@ module.exports = async (client, queue, song) => {
 
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
+                .setLabel(lang.msg135)
+                .setCustomId('back')
+                .setStyle(ButtonStyle.Secondary),
+            new ButtonBuilder()
                 .setLabel(lang.msg47)
                 .setCustomId('saveTrack')
                 .setStyle(ButtonStyle.Success),

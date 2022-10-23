@@ -30,8 +30,8 @@ client.player = new DisTube(client, {
         new SpotifyPlugin({
             emitEventsAfterFetching: true,
             api: { // if you want to play Spotify music (https://developer.spotify.com/dashboard/applications)
-                clientId: "", // client id of the Spotify app
-                clientSecret: "", // client secret of the Spotify app
+                clientId: "0d6a687d56ea4a7495dea1af062810ee", // client id of the Spotify app
+                clientSecret: "4f2971bbbf574029ae68396b7531df4c", // client secret of the Spotify app
             },
         }),
         new SoundCloudPlugin(),

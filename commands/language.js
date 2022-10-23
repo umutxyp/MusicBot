@@ -122,7 +122,7 @@ module.exports = {
                         case 'ru':
                             await db?.musicbot?.updateOne({guildID: interaction.guild.id}, {
                                 $set: {
-                                    language: 'fr'
+                                    language: 'ru'
                                 }
                             }, {upsert: true}).catch(e => {
                             })
