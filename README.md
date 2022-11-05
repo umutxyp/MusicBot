@@ -69,8 +69,6 @@
 - You will also need to invite the bot using the correct scope and permissions, which you can do here:
 ![image](https://user-images.githubusercontent.com/4060573/181926061-310e817a-97c5-48d8-adce-77a505c36336.png)
 
-## Support/Contributing
-- [Click here to join the Discord](https://discord.gg/Fy4WmSThRZ)
 
 ### Links
 
