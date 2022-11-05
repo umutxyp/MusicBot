@@ -29,6 +29,10 @@ module.exports = {
           .setLabel("Français ")
           .setCustomId('fr')
           .setStyle(ButtonStyle.Secondary),
+          new ButtonBuilder()
+          .setLabel("Português ")
+          .setCustomId('pt')
+          .setStyle(ButtonStyle.Secondary),
       )
 
       let embed = new EmbedBuilder()
@@ -81,6 +85,15 @@ module.exports = {
                 }
               }, { upsert: true }).catch(e => { })
               await interaction.editReply({ content: `La langue du bot a été modifiée avec succès en français. :flag_fr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await button.deferUpdate().catch(e => { })
+              await col.stop()
+              case 'pt':
+              await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+                $set: {
+                  language: 'pt'
+                }
+              }, { upsert: true }).catch(e => { })
+              await interaction.editReply({ content: `Língua do bot definida para Português - Brasil com sucesso. :flag_br:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
