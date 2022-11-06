@@ -26,11 +26,11 @@ module.exports = {
           .setCustomId('nl')
           .setStyle(ButtonStyle.Secondary),
           new ButtonBuilder()
-          .setLabel("Français ")
+          .setLabel("Français")
           .setCustomId('fr')
           .setStyle(ButtonStyle.Secondary),
           new ButtonBuilder()
-          .setLabel("Português ")
+          .setLabel("Português")
           .setCustomId('pt')
           .setStyle(ButtonStyle.Secondary),
       )
