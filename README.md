@@ -1,10 +1,8 @@
 # Discord.js v14 Slash Commands Music Bot
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
-
-# <a href="https://youtube.com/UmutBayraktarYT">
-<img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"></a> <a href="https://facebook.com/umutxyp"><img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white"></a> <a href="https://instagram.com/umutxyp"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a> <a href="https://blog.umut.live"><img src="https://img.shields.io/badge/Blogger-FF5722?style=for-the-badge&logo=blogger&logoColor=white"></a> <a href="https://twitch.com/umutyzx"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white"></a> 
-
+## ABOUT V14 UPDATE / news: 2022, 10 NOVEMBER
+- Addeed Portuguese and Chinese
 
 ## ABOUT V13.7 UPDATE / news: 2022, 2 OCTOBER
 - Added french language.
@@ -69,8 +67,6 @@
 - You will also need to invite the bot using the correct scope and permissions, which you can do here:
 ![image](https://user-images.githubusercontent.com/4060573/181926061-310e817a-97c5-48d8-adce-77a505c36336.png)
 
-## Support/Contributing
-- [Click here to join the Discord](https://discord.gg/Fy4WmSThRZ)
 
 ### Links
 
