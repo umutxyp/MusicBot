@@ -2,7 +2,7 @@
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
 ## ABOUT V14 UPDATE / news: 2022, 10 NOVEMBER
-- Addeed Portuguese and Chinese
+- Addeed Portuguese and Chinese language.
 
 ## ABOUT V13.7 UPDATE / news: 2022, 2 OCTOBER
 - Added french language.
