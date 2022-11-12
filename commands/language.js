@@ -13,10 +13,6 @@ module.exports = {
     try {
 
       let buttons = new ActionRowBuilder().addComponents(
-	    new ButtonBuilder()
-          .setLabel("正體中文")
-          .setCustomId('zh_TW')
-          .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
           .setLabel("Türkçe")
           .setCustomId('tr')
@@ -40,13 +36,17 @@ module.exports = {
             .setLabel("Português")
             .setCustomId('pt')
             .setStyle(ButtonStyle.Secondary),
+            new ButtonBuilder()
+            .setLabel("正體中文")
+            .setCustomId('zh_TW')
+            .setStyle(ButtonStyle.Secondary)
         )
 
       let embed = new EmbedBuilder()
         .setColor(client.config.embedColor)
         .setTitle("Select a language")
         .setTimestamp()
-        .setFooter({ text: `coderyo.com | DISCORD BOT ❤️` })
+        .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
       interaction.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
 
         const filter = i => i.user.id === interaction.user.id
@@ -55,16 +55,6 @@ module.exports = {
         col.on('collect', async (button) => {
           if (button.user.id !== interaction.user.id) return
           switch (button.customId) {
-			case 'zh_TW':
-              await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
-                $set: {
-                  language: 'zh_TW'
-                }
-              }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `機器人成功設為正體中文 :flag_tw:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-              await button.deferUpdate().catch(e => { })
-              await col.stop()
-              break
             case 'tr':
               await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
                 $set: {
@@ -114,6 +104,17 @@ module.exports = {
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
+              
+			case 'zh_TW':
+        await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+          $set: {
+            language: 'zh_TW'
+          }
+        }, { upsert: true }).catch(e => { })
+        await interaction.editReply({ content: `機器人成功設為正體中文 :flag_tw:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await button.deferUpdate().catch(e => { })
+        await col.stop()
+        break
           }
         })
 
