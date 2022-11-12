@@ -32,19 +32,22 @@ module.exports = {
           new ButtonBuilder()
           .setLabel("Français")
           .setCustomId('fr')
-          .setStyle(ButtonStyle.Secondary),
-          new ButtonBuilder()
-          .setLabel("Português")
-          .setCustomId('pt')
-          .setStyle(ButtonStyle.Secondary),
+          .setStyle(ButtonStyle.Secondary)
       )
+
+      let buttons2 = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+            .setLabel("Português")
+            .setCustomId('pt')
+            .setStyle(ButtonStyle.Secondary),
+        )
 
       let embed = new EmbedBuilder()
         .setColor(client.config.embedColor)
         .setTitle("Select a language")
         .setTimestamp()
         .setFooter({ text: `coderyo.com | DISCORD BOT ❤️` })
-      interaction.reply({ embeds: [embed], components: [buttons] }).then(async Message => {
+      interaction.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
 
         const filter = i => i.user.id === interaction.user.id
         let col = await interaction.channel.createMessageComponentCollector({ filter, time: 30000 });
