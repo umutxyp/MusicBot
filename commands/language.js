@@ -46,7 +46,7 @@ module.exports = {
         .setColor(client.config.embedColor)
         .setTitle("Select a language")
         .setTimestamp()
-        .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+        .setFooter({ text: `MusicMaker ❤️` })
       interaction.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
 
         const filter = i => i.user.id === interaction.user.id
@@ -65,6 +65,7 @@ module.exports = {
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
+              
             case 'en':
               await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
                 $set: {
@@ -75,6 +76,7 @@ module.exports = {
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
+
             case 'nl':
               await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
                 $set: {
@@ -85,6 +87,7 @@ module.exports = {
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
+
               case 'fr':
               await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
                 $set: {
@@ -94,6 +97,8 @@ module.exports = {
               await interaction.editReply({ content: `La langue du bot a été modifiée avec succès en français. :flag_fr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
+              break
+
               case 'pt':
               await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
                 $set: {
@@ -115,6 +120,7 @@ module.exports = {
         await button.deferUpdate().catch(e => { })
         await col.stop()
         break
+
           }
         })
 
@@ -131,7 +137,7 @@ module.exports = {
               .setColor(client.config.embedColor)
               .setTitle("Time ended, please try again.")
               .setTimestamp()
-              .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+              .setFooter({ text: `MusicMaker ❤️` })
 
             await interaction.editReply({ embeds: [embed], components: [buttons] }).catch(e => { })
           }
