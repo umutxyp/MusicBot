@@ -40,7 +40,8 @@ module.exports = {
         .setTitle(client.user.username + lang.msg19)
         .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`**
-    • Developer: \`${client.users.cache.get(config.ownerID)?.tag || "Undefined"}\`
+    • Owner: \`${client.users.cache.get(config.ownerID)?.tag || "Undefined"}\`
+    • Developer: \`Umut#6070\`
     • User Count: \`${totalMembers || 0}\`
     • Server Count: \`${totalGuilds || 0}\`
     • Channel Count: \`${totalChannels || 0}\`
