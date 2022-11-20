@@ -1,6 +1,9 @@
 # Discord.js v14 Slash Commands Music Bot
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
+## ABOUT V14.1 UPDATE / news: 2022, 20 NOVEMBER 
+- The shard feature has been added to the MusicMaker discord bot and now a new shard will be created for every 1000 servers.
+
 ## ABOUT V14 UPDATE / news: 2022, 10 NOVEMBER
 - Addeed Portuguese and Chinese language.
 
