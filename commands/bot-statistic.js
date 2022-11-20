@@ -1,4 +1,4 @@
-const { EmbedBuilder, version } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const config = require("../config.js");
 const db = require("../mongoDB");
 module.exports = {
@@ -7,35 +7,56 @@ module.exports = {
   options: [],
   permissions: "0x0000000000000800",
   run: async (client, interaction) => {
-    let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+    let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id }).catch(e => {})
     lang = lang?.language || client.language
     lang = require(`../languages/${lang}.js`);
     try {
+
+      let totalGuilds
+      let totalMembers
+      let totalChannels
+      let shardSize 
+      if(config.shardManager.shardStatus == true){
+      const promises = [
+        client.shard.fetchClientValues('guilds.cache.size'),
+        client.shard.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)),
+        client.shard.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)),
+      ];
+      return Promise.all(promises)
+			.then(results => {
+				 totalGuilds = results[0].reduce((acc, guildCount) => acc + guildCount, 0);
+				 totalMembers = results[1].reduce((acc, memberCount) => acc + memberCount, 0);
+         totalChannels = results[2].reduce((acc, channelCount) => acc + channelCount, 0);
+         shardSize = client.shard.count;
+      })
+    } else {
+      totalGuilds = client.guilds.cache.size
+      totalMembers = client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0);
+      totalChannels = client.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0);
+      shardSize = 1;
+    }
 
       const embed = new EmbedBuilder()
         .setTitle(client.user.username + lang.msg19)
         .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`**
-    • Owner: \`${client.users.cache.get(config.ownerID)?.tag || "Undefined"}\`
-    • Developer: \`Umut#6070\`
-    • User Count: \`${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)}\`
-    • Server Count: \`${client.guilds.cache.size}\`
-    • Channel Count: \`${client.channels.cache.size}\`
+    • Developer: \`${client.users.cache.get(config.ownerID)?.tag || "Undefined"}\`
+    • User Count: \`${totalMembers || 0}\`
+    • Server Count: \`${totalGuilds || 0}\`
+    • Channel Count: \`${totalChannels || 0}\`
+    • Shard Count: \`${shardSize || 0}\`
     • Connected Voice: \`${client?.voice?.adapters?.size || 0}\`
     • Command Count: \`${client.commands.map(c => c.name).length}\`
-    • Discord.js Version: \`V${version}\`
-    • Node.js Version: \`${process.version}\`
     • Operation Time: <t:${Math.floor(Number(Date.now() - client.uptime) / 1000)}:R>
     • Ping: \`${client.ws.ping} MS\`
     • Memory Usage: \`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\`
-    • OS: \`${process.platform}\`
     • Invite Bot: [Click](${config.botInvite})
     • Support Server: [Click](${config.supportServer})
     **`)
         .setColor(client.config.embedColor)
         .setTimestamp()
       return interaction.reply({ embeds: [embed] }).catch(err => { })
-
+    
     } catch (e) {
       if (client.errorLog) {
         let embed = new EmbedBuilder()
