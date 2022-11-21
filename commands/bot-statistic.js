@@ -22,7 +22,7 @@ module.exports = {
         client.shard.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)),
         client.shard.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)),
       ];
-      return Promise.all(promises)
+      await Promise.all(promises)
 			.then(results => {
 				 totalGuilds = results[0].reduce((acc, guildCount) => acc + guildCount, 0);
 				 totalMembers = results[1].reduce((acc, memberCount) => acc + memberCount, 0);
