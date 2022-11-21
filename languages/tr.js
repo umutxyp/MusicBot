@@ -145,6 +145,8 @@ msg129: "oynatma",
 msg130: "Lütfen geçerli bir sayı yaz.",
 msg131: "listede yer alan komutları kullanabilmek için bota oy vermen gerekli.",
 msg132: "Zaten durdurulmuş müzik yok.",
-msg133: "Çalma listesindeki sırayı karıştırdım."
+msg133: "Çalma listesindeki sırayı karıştırdım.",
+msg134: "Yanlış kullanım. Örnek: `5:50` | `1:12:43`",
+msg135: "Çalma süresi başarıyla {queue.formattedCurrentTime} olarak ayarlandı."
 }
 module.exports = language;
