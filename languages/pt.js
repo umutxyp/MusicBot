@@ -145,6 +145,8 @@ const language = {
    msg130: "Por favor insira um número válido.",
    msg131: "Parar usar os comandos da lista, você tem que votar no bot.",
    msg132: "A música não está pausada.",
-   msg133: "Eu misturei a ordem da playlist."
+   msg133: "Eu misturei a ordem da playlist.",
+   msg134: "Uso incorreto. Exemplo: `5:50` | `1:12:43`",
+   msg135: "O tempo de reprodução foi definido para {queue.formattedCurrentTime} com sucesso."
 }
 module.exports = language;
