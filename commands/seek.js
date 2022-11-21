@@ -16,13 +16,16 @@ module.exports = {
     lang = lang?.language || client.language
     lang = require(`../languages/${lang}.js`);
     try {
+
       const queue = client.player.getQueue(interaction.guild.id);
       if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
-      
+
       let position = getSeconds(interaction.options.getString("position"))
-      if(isNaN(position)) return interaction.reply("Incorrect usage. Example: `5:50` | `1:12:43`")
+      if(isNaN(position)) return interaction.reply({ content: `${lang.msg134}`, ephemeral: true }).catch(e => { })
+
       queue.seek(position)
-      interaction.reply(`Playing time was set to ${queue.formattedCurrentTime} sucessfully`)
+      interaction.reply({ content: `${lang.msg135.replace("{queue.formattedCurrentTime}", queue.formattedCurrentTime)}`}).catch(e => { })
+
     } catch (e) {
       if (client.errorLog) {
         let embed = new EmbedBuilder()
