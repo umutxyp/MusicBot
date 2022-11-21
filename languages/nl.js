@@ -145,6 +145,8 @@ msg129: "Spelen",
 msg130: "Schrijf A.U.B een geldig nummer.",
 msg131: "om de opdrachten in de lijst te gebruiken, moet je op de bot stemmen.",
 msg132: "Er is nog geen muziek gestopt.",
-msg133: "Ik heb de volgorde in de afspeellijst verprutst."
+msg133: "Ik heb de volgorde in de afspeellijst verprutst.",
+msg134: "Onjuist gebruik. Voorbeeld: `5:50` | `1:12:43`",
+msg135: "Speeltijd is succesvol ingesteld op {queue.formattedCurrentTime}"
 }
 module.exports = language;
