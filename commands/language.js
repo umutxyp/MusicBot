@@ -25,7 +25,11 @@ module.exports = {
           .setLabel("Nederlands")
           .setCustomId('nl')
           .setStyle(ButtonStyle.Secondary),
-          new ButtonBuilder()
+        new ButtonBuilder()
+        .setLabel("Arabic")
+        .setCustomId('ar')
+        .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
           .setLabel("Français")
           .setCustomId('fr')
           .setStyle(ButtonStyle.Secondary)
@@ -109,6 +113,17 @@ module.exports = {
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
+
+              case 'ar':
+                await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+                  $set: {
+                    language: 'ar'
+                  }
+                }, { upsert: true }).catch(e => { })
+                await interaction.editReply({ content: `تم تغيير لغة البوت بنجاح إلى اللغة العربية: :flag_ps:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+                await button.deferUpdate().catch(e => { })
+                await col.stop()
+                break
               
 			case 'zh_TW':
         await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
