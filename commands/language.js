@@ -26,9 +26,9 @@ module.exports = {
           .setCustomId('nl')
           .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
-        .setLabel("Arabic")
-        .setCustomId('ar')
-        .setStyle(ButtonStyle.Secondary),
+          .setLabel("Arabic")
+          .setCustomId('ar')
+          .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
           .setLabel("Français")
           .setCustomId('fr')
