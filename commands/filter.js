@@ -88,7 +88,7 @@ module.exports = {
       .setColor(client.config.embedColor)
       .setTitle("Select a filter.")
       .setTimestamp()
-      .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+      .setFooter({ text: `MusicMaker ❤️` })
     interaction.reply({ embeds: [embed], components: [buttons, buttons2, buttons3] }).then(async Message => {
 
       const filter = i => i.user.id === interaction.user.id
@@ -128,7 +128,7 @@ if(!filters.includes(button.customId)) return
           .setColor(client.config.embedColor)
           .setTitle("Time ended.")
           .setTimestamp()
-          .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+          .setFooter({ text: `MusicMaker ❤️` })
 
         await interaction.editReply({ embeds: [embed], components: [] }).catch(e => { })
       }
