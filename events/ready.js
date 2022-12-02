@@ -47,15 +47,6 @@ console.log("\nMongoDB Error: " + err + "\n\n" + lang.error4)
 console.log(lang.error4)
 }
 
-try {
-client.guilds.cache.map(async guild => {
-await guild.members.fetch()
-})
-
-} catch (err) {
-return
-}
-
 
 if(client.config.voteManager.status === true && client.config.voteManager.api_key){
 const { AutoPoster } = require('topgg-autoposter')
