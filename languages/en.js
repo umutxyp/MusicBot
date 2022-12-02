@@ -148,7 +148,7 @@ const language = {
    msg133: "I messed up the order in the playlist.",
    msg134: "Incorrect usage. Example: `5:50` | `1:12:43`",
    msg135: "Playing time was set to {queue.formattedCurrentTime} sucessfully",
-   msg136: "Autoplay is on now.",
+   msg136: "Autoplay is now turned on. I'm going to turn on random music from now on.",
    msg137: "Autoplay is off now.",
    }
    module.exports = language;
