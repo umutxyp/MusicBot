@@ -148,8 +148,8 @@ const language = {
    msg133: "Ik heb de volgorde in de afspeellijst verprutst.",
    msg134: "Onjuist gebruik. Voorbeeld: `5:50` | `1:12:43`",
    msg135: "Speeltijd is succesvol ingesteld op {queue.formattedCurrentTime}",
-   msg136: "TO DO",
-   msg137: "TO DO",
+   msg136: "Automatisch afspelen is nu ingeschakeld. Ik ga vanaf nu willekeurige muziek aanzetten.",
+   msg137: "Automatisch afspelen is momenteel uitgeschakeld.",
    }
    module.exports = language;
    
