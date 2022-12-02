@@ -148,8 +148,8 @@ const language = {
     msg133: "Çalma listesindeki sırayı karıştırdım.",
     msg134: "Yanlış kullanım. Örnek: `5:50` | `1:12:43`",
     msg135: "Çalma süresi başarıyla {queue.formattedCurrentTime} olarak ayarlandı.",
-    msg136: "TO DO",
-    msg137: "TO DO",
+    msg136: "Otomatik oynatma şu anda açık. Artık rastgele müzikler açacağım.",
+    msg137: "Otomatik oynatma şu anda kapalı.",
     }
     module.exports = language;
     
