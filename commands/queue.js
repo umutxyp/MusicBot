@@ -150,7 +150,7 @@ module.exports = {
             .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
             .setColor(client.config.embedColor)
             .setDescription(lang.msg70)
-            .setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+            .setFooter({ text: `MusicMaker ❤️` })
           return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
         })
