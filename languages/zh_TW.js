@@ -148,8 +148,8 @@ const language = {
    msg133: "我準備好隨機播放了。",
    msg134: "用法不正确。示例：`5:50` | `1:12:43`",
    msg135: "播放时间已成功设置为 {queue.formattedCurrentTime}",
-   msg136: "TO DO",
-   msg137: "TO DO",
+   msg136: "自动播放现已开启。",
+   msg137: "自动播放现已关闭。",
    }
    module.exports = language;
    
