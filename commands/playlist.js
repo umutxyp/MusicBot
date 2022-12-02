@@ -400,7 +400,7 @@ const embed = new EmbedBuilder()
 .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
 .setColor(client.config.embedColor)
 .setDescription(lang.msg118.replace("{name}", name))
-.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+.setFooter({ text: `MusicMaker ❤️` })
 return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
 })
@@ -419,7 +419,7 @@ const embed = new EmbedBuilder()
 .setDescription(`${lang.msg119}\n${playlist?.playlist?.map(data =>
 `\n**${number++} |** \`${data.name}\` - **${playlist?.musics?.filter(m => m.playlist_name === data.name)?.length || 0}** ${lang.msg116} (<t:${Math.floor(data.createdTime / 1000)}:R>)`
 )}`)
-.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+.setFooter({ text: `MusicMaker ❤️` })
 return interaction.reply({ embeds: [embed] }).catch(e => { })
 
 }
@@ -567,7 +567,7 @@ const embed = new EmbedBuilder()
 .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
 .setColor(client.config.embedColor)
 .setDescription(lang.msg113)
-.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+.setFooter({ text: `MusicMaker ❤️` })
 return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
 })
