@@ -30,7 +30,7 @@ module.exports = {
 > By: <@${track.user.id}>`);
 
       embed.setTimestamp();
-      embed.setFooter({ text: `codeshare.me | Umut Bayraktar ❤️` })
+      embed.setFooter({ text: `MusicMaker ❤️` })
 
       const saveButton = new ButtonBuilder();
       saveButton.setLabel(lang.msg47);
