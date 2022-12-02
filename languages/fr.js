@@ -148,7 +148,7 @@ const language = {
   msg133: "J'ai foiré l'ordre dans la liste de lecture.",
   msg134: "Utilisation incorrecte. Exemple : `5:50` | `1:12:43`",
   msg135: "Le temps de lecture a été défini avec succès sur {queue.formattedCurrentTime}",
-  msg136: "TO DO",
-  msg137: "TO DO",
+  msg136: "La lecture automatique est activée maintenant.",
+  msg137: "La lecture automatique est désactivée maintenant.",
 }
 module.exports = language;
