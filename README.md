@@ -2,7 +2,7 @@
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
 
-## ABOUT V14.5 UPDATE / news: 2022, 2 DECEMBER
+## ABOUT V14.2 UPDATE / news: 2022, 2 DECEMBER
 - Addeed Arabic language.
 - Added auto play command.
 
