@@ -1,6 +1,9 @@
 # Discord.js v14 Slash Commands Music Bot
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
+## ABOUT V14.3 UPDATE / news: 2022, 2 DECEMBER
+- Addeed Arabic language.
+
 ## ABOUT V14.2 UPDATE / news: 2022, 21 NOVEMBER 
 - Added seek command.
 
