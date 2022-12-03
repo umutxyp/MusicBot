@@ -43,6 +43,10 @@ module.exports = {
             new ButtonBuilder()
             .setLabel("正體中文")
             .setCustomId('zh_TW')
+            .setStyle(ButtonStyle.Secondary),
+	     new ButtonBuilder()
+            .setLabel("Italiano")
+            .setCustomId('it')
             .setStyle(ButtonStyle.Secondary)
         )
 
@@ -125,13 +129,24 @@ module.exports = {
                 await col.stop()
                 break
               
-			case 'zh_TW':
+	case 'zh_TW':
         await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
           $set: {
             language: 'zh_TW'
           }
         }, { upsert: true }).catch(e => { })
         await interaction.editReply({ content: `機器人成功設為正體中文 :flag_tw:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await button.deferUpdate().catch(e => { })
+        await col.stop()
+        break
+			  
+	case 'it':
+        await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+          $set: {
+            language: 'it'
+          }
+        }, { upsert: true }).catch(e => { })
+        await interaction.editReply({ content: `La lingua del bot è stata cambiata in italiano. :flag_it:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
         await button.deferUpdate().catch(e => { })
         await col.stop()
         break
