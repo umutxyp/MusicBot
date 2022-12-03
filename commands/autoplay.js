@@ -1,5 +1,4 @@
 const { EmbedBuilder } = require("discord.js")
-const config = require("../config.js");
 const db = require("../mongoDB");
 module.exports = {
   name: "autoplay",
