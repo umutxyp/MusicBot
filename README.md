@@ -1,6 +1,8 @@
 # Discord.js v14 Slash Commands Music Bot
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
+## ABOUT V14.4 UPDATE / news: 2022, 4 DECEMBER
+- Addeed Italian language.
 
 ## ABOUT V14.3 UPDATE / news: 2022, 2 DECEMBER
 - Addeed Arabic language.
