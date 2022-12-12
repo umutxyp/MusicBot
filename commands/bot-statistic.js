@@ -15,12 +15,14 @@ module.exports = {
       let totalGuilds
       let totalMembers
       let totalChannels
-      let shardSize 
+      let shardSize
+      let voiceConnections
       if(config.shardManager.shardStatus == true){
       const promises = [
         client.shard.fetchClientValues('guilds.cache.size'),
         client.shard.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)),
         client.shard.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)),
+        client.shard.broadcastEval(c => c.voice?.adapters?.size || 0)
       ];
       await Promise.all(promises)
 			.then(results => {
@@ -28,12 +30,14 @@ module.exports = {
 				 totalMembers = results[1].reduce((acc, memberCount) => acc + memberCount, 0);
          totalChannels = results[2].reduce((acc, channelCount) => acc + channelCount, 0);
          shardSize = client.shard.count;
+          voiceConnections = results[3].reduce((acc, voiceCount) => acc + voiceCount, 0);
       })
     } else {
       totalGuilds = client.guilds.cache.size
       totalMembers = client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0);
       totalChannels = client.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0);
       shardSize = 1;
+      voiceConnections = client?.voice?.adapters?.size || 0;
     }
 
       const embed = new EmbedBuilder()
@@ -46,7 +50,7 @@ module.exports = {
     • Server Count: \`${totalGuilds || 0}\`
     • Channel Count: \`${totalChannels || 0}\`
     • Shard Count: \`${shardSize || 0}\`
-    • Connected Voice: \`${client?.voice?.adapters?.size || 0}\`
+    • Connected Voice: \`${voiceConnections}\`
     • Command Count: \`${client.commands.map(c => c.name).length}\`
     • Operation Time: <t:${Math.floor(Number(Date.now() - client.uptime) / 1000)}:R>
     • Ping: \`${client.ws.ping} MS\`
