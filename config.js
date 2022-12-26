@@ -1,12 +1,12 @@
 module.exports = {
-    TOKEN: "MTAzMzAxMDM3ODEyNjQwMTY2Nw.GpMp5C.Jz-ZgCUWdc_SmBp46rEPZ6hNXlO654J5o2xNXo",
+    TOKEN: "",
     ownerID: "", //write your discord user id.
-    botInvite: "https://discord.com/api/oauth2/authorize?client_id=1033010378126401667&permissions=274881170432&scope=bot%20applications.commands", //write your discord bot invite.
+    botInvite: "", //write your discord bot invite.
     supportServer: "", //write your discord bot support server invite.
     mongodbURL: "mongodb://localhost:27017", //write your mongodb url.
     status: "something, i don't know",
     commandsDir: './commands', //Please don't touch
-    language: "en", //en, tr, nl
+    language: "ru", //en, tr, nl
     embedColor: "ffa954", //hex color code
     errorLog: "871452872653537330", //write your discord error log channel id.
 
