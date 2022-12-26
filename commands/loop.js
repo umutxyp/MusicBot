@@ -19,12 +19,12 @@ module.exports = {
                 userID: interaction.user.id,
                 guildID: interaction.guild.id,
                 channelID: interaction.channel.id
-            }).catch(e => {
+            }).catch(() => {
             });
             if (cmds) return interaction.reply({
                 content: `${lang.msg34}\nhttps://discord.com/channels/${interaction.guild.id}/${interaction.channel.id}/${cmds.messageID}`,
                 ephemeral: true
-            }).catch(e => {
+            }).catch(() => {
             })
 
             let button = new ActionRowBuilder().addComponents(
@@ -35,13 +35,12 @@ module.exports = {
                 new ButtonBuilder()
                     .setLabel(lang.msg36)
                     .setStyle(ButtonStyle.Secondary)
-                    .setCustomId("nowplaying"),
+                    .setCustomId("now-playing"),
                 new ButtonBuilder()
                     .setLabel(lang.msg37)
                     .setStyle(ButtonStyle.Danger)
                     .setCustomId("close")
             )
-
             const embed = new EmbedBuilder()
                 .setColor(client.config.embedColor)
                 .setTitle(lang.msg38)
@@ -56,46 +55,46 @@ module.exports = {
                     $set: {
                         messageID: Message.id
                     }
-                }, {upsert: true}).catch(e => {
+                }, {upsert: true}).catch(() => {
                 })
                 const filter = i => i.user.id === interaction.user.id
-                let col = await interaction.channel.createMessageComponentCollector({filter, time: 120000});
+                let col = await interaction.channel.createMessageComponentCollector({filter, time: 60 * 1000});
 
                 col.on('collect', async (button) => {
                     if (button.user.id !== interaction.user.id) return
                     const queue1 = client.player.getQueue(interaction.guild.id);
                     if (!queue1 || !queue1.playing) {
-                        await interaction.editReply({content: lang.msg5, ephemeral: true}).catch(e => {
+                        await interaction.editReply({content: lang.msg5, ephemeral: true}).catch(() => {
                         })
-                        await button.deferUpdate().catch(e => {
+                        await button.deferUpdate().catch(() => {
                         })
                     }
                     switch (button.customId) {
                         case 'queue':
-                            const success = queue.setRepeatMode(2);
-                            interaction.editReply({content: `${lang.msg40} ✅`}).catch(e => {
+                            queue.setRepeatMode(2);
+                            interaction.editReply({content: `${lang.msg40} ✅`}).catch(() => {
                             })
-                            await button.deferUpdate().catch(e => {
+                            await button.deferUpdate().catch(() => {
                             })
                             break
-                        case 'nowplaying':
-                            const success2 = queue.setRepeatMode(1);
-                            interaction.editReply({content: `${lang.msg42} ✅`}).catch(e => {
+                        case 'now-playing':
+                            queue.setRepeatMode(1);
+                            interaction.editReply({content: `${lang.msg42} ✅`}).catch(() => {
                             })
-                            await button.deferUpdate().catch(e => {
+                            await button.deferUpdate().catch(() => {
                             })
                             break
                         case 'close':
                             if (queue.repeatMode === 0) {
-                                await button.deferUpdate().catch(e => {
+                                await button.deferUpdate().catch(() => {
                                 })
-                                return interaction.editReply({content: lang.msg43, ephemeral: true}).catch(e => {
+                                return interaction.editReply({content: lang.msg43, ephemeral: true}).catch(() => {
                                 })
                             }
-                            const success4 = queue.setRepeatMode(0);
-                            interaction.editReply({content: lang.msg44}).catch(e => {
+                            queue.setRepeatMode(0);
+                            interaction.editReply({content: lang.msg44}).catch(() => {
                             })
-                            await button.deferUpdate().catch(e => {
+                            await button.deferUpdate().catch(() => {
                             })
                             break
                     }
@@ -105,24 +104,12 @@ module.exports = {
                         userID: interaction.user.id,
                         guildID: interaction.guild.id,
                         channelID: interaction.channel.id
-                    }).catch(e => {
+                    }).catch(() => {
                     })
-                    button = new ActionRowBuilder().addComponents(
-                        new ButtonBuilder()
-                            .setStyle(ButtonStyle.Secondary)
-                            .setLabel(lang.msg45)
-                            .setCustomId("timeend")
-                            .setDisabled(true))
-
-                    const embed = new EmbedBuilder()
-                        .setColor(client.config.embedColor)
-                        .setTitle(lang.msg46)
-                        .setTimestamp()
-
-                    await interaction.editReply({content: "", embeds: [embed], components: [button]}).catch(e => {
+                    await interaction.deleteReply().catch(() => {
                     });
                 })
-            }).catch(e => {
+            }).catch(() => {
             })
 
         } catch (e) {
@@ -151,7 +138,7 @@ module.exports = {
                             inline: true
                         },
                     ])
-                await client.errorLog.send({embeds: [embed]}).catch(e => {
+                await client.errorLog.send({embeds: [embed]}).catch(() => {
                 })
             } else {
                 console.log(`
@@ -163,7 +150,7 @@ module.exports = {
     User Voice Channel: ${interaction?.member?.voice?.channel?.name} (${interaction?.member?.voice?.channel?.id})
     `)
             }
-            return interaction.reply({content: `${lang.error7}\n\`${e}\``, ephemeral: true}).catch(e => {
+            return interaction.reply({content: `${lang.error7}\n\`${e}\``, ephemeral: true}).catch(() => {
             })
         }
     }

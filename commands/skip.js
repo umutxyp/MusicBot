@@ -19,31 +19,24 @@ module.exports = {
             if (number) {
                 if (!queue.songs.length > number) return interaction.reply({
                     content: lang.msg82, ephemeral: true
-                }).catch(e => {
+                }).catch(() => {
                 })
-                if (isNaN(number)) return interaction.reply({content: lang.msg130, ephemeral: true}).catch(e => {
+                if (isNaN(number)) return interaction.reply({content: lang.msg130, ephemeral: true}).catch(() => {
                 })
-                if (1 > number) return interaction.reply({content: lang.msg130, ephemeral: true}).catch(e => {
+                if (1 > number) return interaction.reply({content: lang.msg130, ephemeral: true}).catch(() => {
                 })
 
                 try {
-                    let old = queue.songs[0];
-                    await client.player.jump(interaction, number).then(song => {
-                        return interaction.reply({content: `**${old.name}**, ${lang.msg83}`}).catch(e => {
-                        })
-                    })
+                    await client.player.jump(interaction, number)
                 } catch (e) {
-                    return interaction.reply({content: lang.msg63, ephemeral: true}).catch(e => {
+                    return interaction.reply({content: lang.msg63, ephemeral: true}).catch(() => {
                     })
                 }
             } else {
                 try {
-                    let old = queue.songs[0];
-                    const success = await queue.skip();
-                    return interaction.reply({content: success ? `**${old.name}**, ${lang.msg83}` : lang.msg41}).catch(e => {
-                    })
+                    await queue.skip();
                 } catch (e) {
-                    return interaction.reply({content: lang.msg63, ephemeral: true}).catch(e => {
+                    return interaction.reply({content: lang.msg63, ephemeral: true}).catch(() => {
                     })
                 }
             }

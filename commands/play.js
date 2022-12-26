@@ -82,8 +82,9 @@ module.exports = {
                                 parallel: true
                             });
 
-                            await interaction.editReply({content: lang.msg57.replace("{interaction.member.id}", interaction.member.id).replace("{music_filter.length}", music_filter.length)}).catch(e => {
+                            await interaction.editReply({content: lang.msg57.replace("{interaction.member.id}", interaction.member.id).replace("{music_filter.length}", music_filter.length)}).catch(() => {
                             })
+                            setTimeout(async () => await interaction.deleteReply(), 60 * 1000)
 
                             try {
                                 await client.player.play(interaction.member.voice.channel, playl, {
@@ -94,6 +95,7 @@ module.exports = {
                             } catch (e) {
                                 await interaction.editReply({content: lang.msg60, ephemeral: true}).catch(e => {
                                 })
+                                setTimeout(async () => await interaction.deleteReply(), 60 * 1000)
                             }
 
                             playlist[i]?.playlist?.filter(p => p.name === playlistw).map(async p => {
@@ -126,6 +128,7 @@ module.exports = {
                         if (arr === playlist.length) {
                             return interaction.reply({content: lang.msg58, ephemeral: true}).catch(() => {
                             })
+                            setTimeout(async () => await interaction.deleteReply(), 60 * 1000)
                         }
                     }
                 }
@@ -138,15 +141,18 @@ module.exports = {
 
                 await interaction.reply({content: lang.msg61}).catch(() => {
                 })
+                setTimeout(async () => await interaction.deleteReply(), 60 * 1000)
                 try {
                     await client.player.play(interaction.member.voice.channel, name, {
                         member: interaction.member,
                         textChannel: interaction.channel,
                         interaction
                     })
+                    await interaction.deleteReply()
                 } catch (e) {
                     await interaction.editReply({content: lang.msg60, ephemeral: true}).catch(() => {
                     })
+                    setTimeout(async () => await interaction.deleteReply(), 60 * 1000)
                 }
             }
         } catch (e) {

@@ -58,7 +58,6 @@ module.exports = async (client, interaction) => {
                                                                 .setThumbnail(client?.user?.displayAvatarURL())
                                                                 .setDescription(lang.embed1.replace("{djRole}", roleDJ?.id).replace("{cmdMAP}", client.config.opt.DJ.commands.map(astra => '`' + astra + '`').join(", ")))
                                                                 .setTimestamp()
-                                                                .setFooter({text: `codeshare.me | Umut Bayraktar ❤️`})
                                                             return interaction?.reply({
                                                                 embeds: [embed],
                                                                 ephemeral: true
@@ -188,14 +187,14 @@ module.exports = async (client, interaction) => {
                                 .setThumbnail(queue?.songs[0]?.thumbnail)
                                 .setTimestamp()
                                 .setDescription(`**${queue?.formattedCurrentTime} / ${queue?.formattedDuration} (${music_percent3}%)**`)
-                            interaction?.message?.edit({embeds: [embed]}).catch(e => {
+                            interaction?.message?.edit({embeds: [embed]}).catch(() => {
                             })
                             interaction?.reply({
                                 content: `${lang.msg9}`,
                                 embeds: [],
                                 components: [],
                                 ephemeral: true
-                            }).catch(e => {
+                            }).catch(() => {
                             })
                         }
                     }
@@ -207,7 +206,7 @@ module.exports = async (client, interaction) => {
                                 embeds: [],
                                 components: [],
                                 ephemeral: true
-                            }).catch(e => {
+                            }).catch(() => {
                             })
                         } else {
                             try {
@@ -215,23 +214,16 @@ module.exports = async (client, interaction) => {
                                 if (!queue || !queue.playing) return interaction.reply({
                                     content: lang.msg5,
                                     ephemeral: true
-                                }).catch(e => {
+                                }).catch(() => {
                                 })
 
                                 try {
-                                    let old = queue.songs[0];
-                                    await client.player.jump(interaction, 1).then(song => {
-                                        return interaction.reply({content: `**${old.name}**, ${lang.msg83}`}).catch(e => {
-                                        })
-                                    })
+                                    await client.player.jump(interaction, 1)
                                 } catch (e) {
                                     try {
-                                        let old = queue.songs[0];
-                                        const success = await queue.skip();
-                                        return interaction.reply({content: success ? `**${old.name}**, ${lang.msg83}` : lang.msg41}).catch(e => {
-                                        })
+                                        await queue.skip();
                                     } catch (e) {
-                                        return interaction.reply({content: lang.msg63, ephemeral: true}).catch(e => {
+                                        return interaction.reply({content: lang.msg63, ephemeral: true}).catch(() => {
                                         })
                                     }
                                 }
@@ -291,14 +283,12 @@ module.exports = async (client, interaction) => {
                             if (!queue || !queue.playing) return interaction.reply({
                                 content: `${lang.msg5}`,
                                 ephemeral: true
-                            }).catch(e => {
+                            }).catch(() => {
                             })
                             try {
-                                let song = await queue.previous()
-                                interaction.reply({content: `${lang.msg18.replace("{queue.previousTracks[1].title}", song.name)}`}).catch(e => {
-                                })
+                                await queue.previous();
                             } catch (e) {
-                                return interaction.reply({content: `${lang.msg17}`, ephemeral: true}).catch(e => {
+                                return interaction.reply({content: `${lang.msg17}`, ephemeral: true}).catch(() => {
                                 })
                             }
                         } catch (e) {

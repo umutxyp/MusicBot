@@ -5,7 +5,7 @@ module.exports = async (client, queue, song) => {
     lang = lang?.language || client.language
     lang = require(`../../languages/${lang}.js`);
     if (queue) {
-        if (!client.config.opt.loopMessage && queue?.repeatMode !== 0) return;
+        // if (!client.config.opt.loopMessage && queue?.repeatMode !== 0) return;
         const embed = new EmbedBuilder();
         embed.setColor(client.config.embedColor);
         embed.setThumbnail(song.thumbnail);
