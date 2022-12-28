@@ -6,6 +6,7 @@
 ## ABOUT V14.6 UPDATE / news: 2022, 28 DECEMBER
 - Added bot servers control command. (admin only)
 - Some bug fixes and optimizations.
+- Added deezer music player.
 
 ## ABOUT V14.4 UPDATE / news: 2022, 4 DECEMBER
 - Addeed Italian language.
