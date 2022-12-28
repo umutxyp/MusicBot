@@ -20,7 +20,7 @@
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^4.4.1",
     "libsodium-wrappers": "^0.7.10",
-    "mongoose": "^6.7.5",
+    "mongoose": "^6.8.2",
     "sapphire": "^0.0.3",
     "topgg-autoposter": "^2.0.1"
   },
