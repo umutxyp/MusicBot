@@ -23,7 +23,14 @@ console.log(lang.error3 + err);
 console.log(client.user.username + lang.ready);
   
 setInterval(() => client.user.setActivity({ name: `${config.status}`, type: ActivityType.Listening }), 60000);
-client.errorLog = await client.shard.broadcastEval(c => c.channels.cache.get(config?.errorLog))
+const getChannel = async (channelID) => {
+    const req = await client.shard.broadcastEval((c, id) => c.channels.cache.get(id), { 
+        context: channelID
+    });
+    return req.find(res => !!res) || null;
+}
+const channel = await getServer(server);
+client.errorLog = channel ? channel : null;
 
 } else {
 console.log(lang.error4)
