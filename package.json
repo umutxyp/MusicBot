@@ -8,6 +8,7 @@
     "@discordjs/opus": "^0.8.0",
     "@discordjs/rest": "^1.4.0",
     "@discordjs/voice": "^0.11.0",
+    "@distube/deezer": "^1.0.0",
     "@distube/soundcloud": "^1.3.0",
     "@distube/spotify": "^1.5.1",
     "@distube/yt-dlp": "^1.1.3",
