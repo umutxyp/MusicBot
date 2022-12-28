@@ -91,9 +91,37 @@ if (config.TOKEN || process.env.TOKEN) {
   }, 2000);
 }
 
-const express = require("express");
-const app = express();
-app.get("/", (request, response) => {
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
+
+if(config.mongodbURL || process.env.MONGO){
+  const mongoose = require("mongoose")
+  mongoose.connect(config.mongodbURL || process.env.MONGO, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  }).then(async () => {
+    console.log(`Connected MongoDB`)
+
+      setTimeout(async () => {
+        const db = require("./mongoDB.js");
+        if(db){
+          if(db?.loop){
+        await db?.loop?.deleteOne()
+          } 
+          if(db?.queue){
+        await db?.queue?.deleteOne()
+          }
+          if(db?.playlist_timer){
+        await db?.playlist_timer?.deleteOne()
+          }
+          if(db?.playlist_timer2){
+        await db?.playlist_timer2?.deleteOne()
+          }
+        }
+        }, 5000)
+        
+
+  }).catch((err) => {
+    console.log("\nMongoDB Error: " + err + "\n\n" + lang.error4)
+    })
+  } else {
+  console.log(lang.error4)
+  }
