@@ -1,5 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
-
+const config = require("config.js")
 module.exports = {
     name: "servers",
     description: "Admin command.",
@@ -17,14 +17,18 @@ module.exports = {
 
         const server = interaction.options.getString('server');
         if (server) {
-
+            let guild
+if(config.shardManager.shardStatus == true){
             const getServer = async (guildID) => {
                 const req = await client.shard.broadcastEval((c, id) => c.guilds.cache.get(id), { 
                     context: guildID
                 });
                 return req.find(res => !!res) || null;
             }
-            const guild = await getServer(server);
+             guild = await getServer(server);
+} else {
+    guild = client.guilds.cache.get(server)
+}
             if (!guild) return interaction.reply({ content: "I'm not in that server.", ephemeral: true }).catch(e => { });
 
             const embed = new EmbedBuilder()
@@ -40,8 +44,10 @@ module.exports = {
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
             
         } else {
+            let guilds
+            if(config.shardManager.shardStatus == true){
             //fetch all guilds
-            let guilds = await client.shard.broadcastEval(c => c.guilds.cache.map(g => {
+             guilds = await client.shard.broadcastEval(c => c.guilds.cache.map(g => {
                 return {
                     name: g.name,
                     id: g.id,
@@ -50,8 +56,18 @@ module.exports = {
             }));
             //sort from largest to smallest
             guilds = guilds.flat().sort((a, b) => b.memberCount - a.memberCount);
-
-
+            } else {
+                guilds = client.guilds.cache.map(g => {
+                return {
+                    name: g.name,
+                    id: g.id,
+                    memberCount: g.memberCount
+                }
+            })
+            //sort from largest to smallest
+            guilds = guilds.flat().sort((a, b) => b.memberCount - a.memberCount);
+            }
+            
             //page system
             let page = 0;
             const maxPage = Math.ceil(guilds.length / 10) - 1;
