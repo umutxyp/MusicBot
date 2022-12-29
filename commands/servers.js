@@ -1,5 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
-const config = require("config.js")
+const config = require("./config.js")
 module.exports = {
     name: "servers",
     description: "Admin command.",
