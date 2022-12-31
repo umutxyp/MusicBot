@@ -16,43 +16,51 @@ module.exports = {
         new ButtonBuilder()
           .setLabel("Türkçe")
           .setCustomId('tr')
-          .setStyle(ButtonStyle.Secondary),
-	  
+          .setStyle(ButtonStyle.Secondary)
+          .setEmoji('🇹🇷'), 
         new ButtonBuilder()
           .setLabel("English")
           .setCustomId('en')
-          .setStyle(ButtonStyle.Secondary),
+          .setStyle(ButtonStyle.Secondary)
+          .setEmoji('🇬🇧'),
         new ButtonBuilder()
           .setLabel("Nederlands")
           .setCustomId('nl')
-          .setStyle(ButtonStyle.Secondary),
+          .setStyle(ButtonStyle.Secondary)
+          .setEmoji('🇳🇱'),
         new ButtonBuilder()
           .setLabel("Arabic")
           .setCustomId('ar')
-          .setStyle(ButtonStyle.Secondary),
+          .setStyle(ButtonStyle.Secondary)
+          .setEmoji('🇸🇦'),
         new ButtonBuilder()
           .setLabel("Français")
           .setCustomId('fr')
           .setStyle(ButtonStyle.Secondary)
+          .setEmoji('🇫🇷'),
       )
 
       let buttons2 = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
             .setLabel("Português")
             .setCustomId('pt')
-            .setStyle(ButtonStyle.Secondary),
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('🇧🇷'),
             new ButtonBuilder()
             .setLabel("正體中文")
             .setCustomId('zh_TW')
-            .setStyle(ButtonStyle.Secondary),
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('🇨🇳'),
 	     new ButtonBuilder()
             .setLabel("Italiano")
             .setCustomId('it')
-            .setStyle(ButtonStyle.Secondary),
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('🇮🇹'),
 	    new ButtonBuilder()
             .setLabel("Indonesia")
             .setCustomId('id')
-            .setStyle(ButtonStyle.Secondary),
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('🇮🇩'),
         )
 
       let embed = new EmbedBuilder()
