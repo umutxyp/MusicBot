@@ -26,23 +26,36 @@ if(config.shardManager.shardStatus == true){
                 return req.find(res => !!res) || null;
             }
              guild = await getServer(server);
+             if (!guild) return interaction.reply({ content: "I'm not in that server.", ephemeral: true }).catch(e => { });
+
+             const embed = new EmbedBuilder()
+                 .setTitle(`Server Info: ${guild.name}`)
+                 .setDescription(`> **ID:** \`${guild.id}\`\n> **Members:** \`${guild.memberCount}\`\n> **Channels:** \`${guild.channels.length}\`\n> **Roles:** \`${guild.roles.length}\`\n> **Emojis:** \`${guild.emojis.length}\`\n> **Boosts:** \`${guild.premiumSubscriptionCount}\`\n> **Boost Level:** \`${guild.premiumTier}\``)
+                 .setColor(client.config.embedColor)
+                 .setThumbnail(guild.iconURL)
+                 //fetch a guild invite url
+                 .addFields([
+                     { name: "Invite", value: guild?.vanityURLCode ? `https://discord.gg/${guild?.vanityURLCode}` : "Not found invite." },
+                 ])
+                 .setTimestamp()
+             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
 } else {
     guild = client.guilds.cache.get(server)
-}
-            if (!guild) return interaction.reply({ content: "I'm not in that server.", ephemeral: true }).catch(e => { });
+    if (!guild) return interaction.reply({ content: "I'm not in that server.", ephemeral: true }).catch(e => { });
 
-            const embed = new EmbedBuilder()
-                .setTitle(`Server Info: ${guild.name}`)
-                .setDescription(`> **ID:** \`${guild.id}\`\n> **Members:** \`${guild.memberCount}\`\n> **Channels:** \`${guild.channels.length}\`\n> **Roles:** \`${guild.roles.length}\`\n> **Emojis:** \`${guild.emojis.length}\`\n> **Boosts:** \`${guild.premiumSubscriptionCount}\`\n> **Boost Level:** \`${guild.premiumTier}\``)
-                .setColor(client.config.embedColor)
-                .setThumbnail(guild.iconURL)
-                //fetch a guild invite url
-                .addFields([
-                    { name: "Invite", value: guild?.vanityURLCode ? `https://discord.gg/${guild?.vanityURLCode}` : "Not found invite." },
-                ])
-                .setTimestamp()
-            return interaction.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
-            
+    const embed = new EmbedBuilder()
+        .setTitle(`Server Info: ${guild.name}`)
+        .setDescription(`> **ID:** \`${guild.id}\`\n> **Members:** \`${guild.memberCount}\`\n> **Channels:** \`${guild.channels.cache.size}\`\n> **Roles:** \`${guild.roles.cache.size}\`\n> **Emojis:** \`${guild.emojis.cache.size}\`\n> **Boosts:** \`${guild.premiumSubscriptionCount}\`\n> **Boost Level:** \`${guild.premiumTier}\``)
+        .setColor(client.config.embedColor)
+        .setThumbnail(guild.iconURL())
+        //fetch a guild invite url
+        .addFields([
+            { name: "Invite", value: guild?.vanityURLCode ? `https://discord.gg/${guild?.vanityURLCode}` : "Not found invite." },
+        ])
+        .setTimestamp()
+    return interaction.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
+}
+          
         } else {
             let guilds
             if(config.shardManager.shardStatus == true){
