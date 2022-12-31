@@ -12,7 +12,7 @@ module.exports = {
     permissions: "0x0000000000000800",
     run: async (client, interaction) => {
 
-        if(interaction?.user?.id !== client.config.ownerID) return interaction.reply({ content: "You don't have permission to use this command.", ephemeral: true }).catch(e => { });
+        if(!client.config.ownerID.includes(interaction?.user?.id)) return interaction.reply({ content: "You don't have permission to use this command.", ephemeral: true }).catch(e => { });
 
 
         const server = interaction.options.getString('server');
