@@ -9,6 +9,7 @@ commandsDir: './commands', //Please don't touch
 language: "en", //en, tr, nl, pt, fr, ar, zh_TW, it
 embedColor: "ffa954", //hex color code
 errorLog: "", //write your discord error log channel id.
+sponsor: "https://awmbilisim.com",  //write your discord sponsor url.
   
     voteManager: { //optional
         status: false, //true or false
