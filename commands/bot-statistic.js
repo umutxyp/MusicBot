@@ -56,9 +56,9 @@ module.exports = {
 • Ping: \`${client.ws.ping} MS\`
 • Memory Usage: \`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\`
 • Invite Bot: [Click](${config.botInvite})
-• Support Server: [${config.supportServer}](${config.supportServer})
-${config.sponsor.status == true ? `• Sponsor: [${config.sponsor.url}](${config.sponsor.url})` : ``}
-${config.voteManager.status == true ? `• Vote: [${config.voteManager.vote_url}](${config.voteManager.vote_url})` : ``}**`)
+• Support Server: [Click](${config.supportServer})
+${config.sponsor.status == true ? `• Sponsor: [Click](${config.sponsor.url})` : ``}
+${config.voteManager.status == true ? `• Vote: [Click](${config.voteManager.vote_url})` : ``}**`)
         .setColor(client.config.embedColor)
         .setTimestamp()
       return interaction.reply({ embeds: [embed] }).catch(err => { })
