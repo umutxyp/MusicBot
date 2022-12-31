@@ -17,6 +17,7 @@ module.exports = {
           .setLabel("Türkçe")
           .setCustomId('tr')
           .setStyle(ButtonStyle.Secondary),
+	  
         new ButtonBuilder()
           .setLabel("English")
           .setCustomId('en')
@@ -47,7 +48,11 @@ module.exports = {
 	     new ButtonBuilder()
             .setLabel("Italiano")
             .setCustomId('it')
-            .setStyle(ButtonStyle.Secondary)
+            .setStyle(ButtonStyle.Secondary),
+	    new ButtonBuilder()
+            .setLabel("Indonesia")
+            .setCustomId('id')
+            .setStyle(ButtonStyle.Secondary),
         )
 
       let embed = new EmbedBuilder()
@@ -147,6 +152,17 @@ module.exports = {
           }
         }, { upsert: true }).catch(e => { })
         await interaction.editReply({ content: `La lingua del bot è stata cambiata in italiano. :flag_it:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await button.deferUpdate().catch(e => { })
+        await col.stop()
+        break
+			  
+        case 'id':
+        await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+          $set: {
+            language: 'id'
+          }
+        }, { upsert: true }).catch(e => { })
+        await interaction.editReply({ content: `Bahasa bot dibuat dalam bahasa indonesia. :flag_it:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
         await button.deferUpdate().catch(e => { })
         await col.stop()
         break
