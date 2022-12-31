@@ -22,7 +22,7 @@ console.log(lang.error3 + err);
 
 console.log(client.user.username + lang.ready);
   
-setInterval(() => client.user.setActivity({ name: `${config.status}`, type: ActivityType.Listening }), 60000);
+setInterval(() => client.user.setActivity({ name: `${config.status} - this shard ${Number(client?.shard?.ids)+1 }`, type: ActivityType.Listening }), 10000);
 client.errorLog = client.channels.cache.get(config?.errorLog);
 
 } else {
