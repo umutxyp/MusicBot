@@ -170,7 +170,7 @@ module.exports = {
             language: 'id'
           }
         }, { upsert: true }).catch(e => { })
-        await interaction.editReply({ content: `Bahasa bot dibuat dalam bahasa indonesia. :flag_it:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await interaction.editReply({ content: `Bahasa bot dibuat dalam bahasa indonesia. :flag_id:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
         await button.deferUpdate().catch(e => { })
         await col.stop()
         break
