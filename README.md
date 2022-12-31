@@ -3,6 +3,13 @@
 
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
+
+## ABOUT V15.0 UPDATE / news: 2022, 31 DECEMBER
+- Indonesian language added to bot.
+- Sponsor, vote section has been added to the statistics command.
+- Added the option to specify more than one bot owner. (config.js)
+- Added emojis to the bot language setting command.
+
 ## ABOUT V14.6 UPDATE / news: 2022, 28 DECEMBER
 - Added bot servers control command. (admin only)
 - Some bug fixes and optimizations.
