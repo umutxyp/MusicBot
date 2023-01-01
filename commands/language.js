@@ -29,7 +29,7 @@ module.exports = {
           .setStyle(ButtonStyle.Secondary)
           .setEmoji('🇳🇱'),
         new ButtonBuilder()
-          .setLabel("Arabic")
+          .setLabel("العربية")
           .setCustomId('ar')
           .setStyle(ButtonStyle.Secondary)
           .setEmoji('🇸🇦'),
@@ -104,7 +104,7 @@ module.exports = {
                   language: 'nl'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `De taal van de bot was nederlands. :flag_nl:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await interaction.editReply({ content: `De taal van de boot werd veranderd in nederlands. :flag_nl:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
               await button.deferUpdate().catch(e => { })
               await col.stop()
               break
