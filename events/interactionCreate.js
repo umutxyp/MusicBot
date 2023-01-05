@@ -19,9 +19,24 @@ return interaction?.reply({ content: "This bot is only for servers and can be us
             let props = require(`.${config.commandsDir}/${f}`);
             if (interaction.commandName === props.name) {
             try {
-            const data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
+            let data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
             if (data?.channels?.length > 0) {
+            let channel_control = await ata?.channels?.filter(x => interaction?.guild?.channels?.cache?.has(x?.channel))
+            if (channel_control?.length > 0) {
+                await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, { 
+                    $pull: { 
+                        channels: { 
+                            channel: {
+                                $nin: channel_control?.map(x => x.channel) 
+                            } 
+                        } 
+                    } 
+                }, { upsert: true }).catch(e => { })
+            }
+            data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
             let channel_filter = data?.channels?.filter(x => x.channel === interaction?.channel?.id)
+
+
             if (!channel_filter?.length > 0 && !interaction?.member?.permission?.has("0x0000000000000020")) {
             channel_filter = data?.channels?.map(x => `<#${x.channel}>`).join(", ")
             return interaction?.reply({ content: lang.msg126.replace("{channel_filter}", channel_filter), ephemeral: true }).catch(e => { })
