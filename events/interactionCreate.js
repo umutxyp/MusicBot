@@ -21,18 +21,21 @@ return interaction?.reply({ content: "This bot is only for servers and can be us
             try {
             let data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
             if (data?.channels?.length > 0) {
-            let channel_control = await ata?.channels?.filter(x => interaction?.guild?.channels?.cache?.has(x?.channel))
+
+            let channel_control = await data?.channels?.filter(x => !interaction?.guild?.channels?.cache?.get(x?.channel))
+          
             if (channel_control?.length > 0) {
+            for (const x of channel_control) {
                 await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, { 
                     $pull: { 
                         channels: { 
-                            channel: {
-                                $nin: channel_control?.map(x => x.channel) 
-                            } 
+                            channel: x?.channel
                         } 
                     } 
                 }, { upsert: true }).catch(e => { })
             }
+           
+            } else {
             data = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
             let channel_filter = data?.channels?.filter(x => x.channel === interaction?.channel?.id)
 
@@ -41,6 +44,7 @@ return interaction?.reply({ content: "This bot is only for servers and can be us
             channel_filter = data?.channels?.map(x => `<#${x.channel}>`).join(", ")
             return interaction?.reply({ content: lang.msg126.replace("{channel_filter}", channel_filter), ephemeral: true }).catch(e => { })
             }
+        }
             }
             if (interaction?.member?.permissions?.has(props?.permissions || "0x0000000000000800")) {
             const DJ = client.config.opt.DJ;
