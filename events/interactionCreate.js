@@ -40,7 +40,7 @@ return interaction?.reply({ content: "This bot is only for servers and can be us
             let channel_filter = data?.channels?.filter(x => x.channel === interaction?.channel?.id)
 
 
-            if (!channel_filter?.length > 0 && !interaction?.member?.permission?.has("0x0000000000000020")) {
+            if (!channel_filter?.length > 0 && !interaction?.member?.permissions?.has("0x0000000000000020")) {
             channel_filter = data?.channels?.map(x => `<#${x.channel}>`).join(", ")
             return interaction?.reply({ content: lang.msg126.replace("{channel_filter}", channel_filter), ephemeral: true }).catch(e => { })
             }
