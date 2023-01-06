@@ -328,22 +328,14 @@ components: canFitOnOnePage
 : [new ActionRowBuilder({ components: [deleteButton, forwardButton] })],
 fetchReply: true
 }).then(async Message => {
-await db.playlist_timer.updateOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }, {
-$set: {
-messageID: Message.id
-}
-}, { upsert: true }).catch(e => { })
-
-
 const filter = i => i.user.id === interaction.user.id
-const collector = interaction.channel.createMessageComponentCollector({ filter, time: 65000 });
+const collector = Message.createMessageComponentCollector({ filter, time: 65000 });
 
 
 let currentIndex = 0
 collector.on("collect", async (button) => {
 if (button.customId === "close") {
 collector.stop()
-await db.playlist_timer.deleteOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { })
 return button.reply({ content: `${lang.msg68}`, ephemeral: true }).catch(e => { })
 } else {
 
@@ -375,9 +367,6 @@ await button.deferUpdate().catch(e => {})
 })
 
 collector.on("end", async (button) => {
-
-await db.playlist_timer.deleteOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { })
-
 button = new ActionRowBuilder().addComponents(
 new ButtonBuilder()
 .setStyle(ButtonStyle.Secondary)
@@ -495,22 +484,14 @@ components: canFitOnOnePage
 : [new ActionRowBuilder({ components: [deleteButton, forwardButton] })],
 fetchReply: true
 }).then(async Message => {
-await db.playlist_timer2.updateOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }, {
-$set: {
-messageID: Message.id
-}
-}, { upsert: true }).catch(e => { })
-
-
 const filter = i => i.user.id === interaction.user.id
-const collector = interaction.channel.createMessageComponentCollector({ filter, time: 120000 });
+const collector = Message.createMessageComponentCollector({ filter, time: 120000 });
 
 
 let currentIndex = 0
 collector.on("collect", async (button) => {
 if (button.customId === "close") {
 collector.stop()
-await db.playlist_timer2.deleteOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { })
 return button.reply({ content: `${lang.msg68}`, ephemeral: true }).catch(e => { })
 } else {
 
@@ -542,9 +523,6 @@ await button.deferUpdate().catch(e => { })
 })
 
 collector.on("end", async (button) => {
-
-await db.playlist_timer2.deleteOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { })
-
 button = new ActionRowBuilder().addComponents(
 new ButtonBuilder()
 .setStyle(ButtonStyle.Secondary)
