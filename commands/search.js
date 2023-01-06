@@ -79,7 +79,7 @@ try {
       }
       interaction.reply(code).then(async Message => {
         const filter = i => i.user.id === interaction.user.id
-        let collector = await interaction.channel.createMessageComponentCollector({ filter, time: 60000 })
+        let collector = await Message.createMessageComponentCollector({ filter, time: 60000 })
 
         collector.on('collect', async (button) => {
           switch (button.customId) {
