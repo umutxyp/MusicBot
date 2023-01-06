@@ -4,7 +4,7 @@ const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
 const { DeezerPlugin } = require("@distube/deezer");
 const { YtDlpPlugin } = require("@distube/yt-dlp");
-const config = require("./config");
+const config = require("./config.js");
 const fs = require("fs");
 const client = new Client({
   partials: [
@@ -99,26 +99,6 @@ if(config.mongodbURL || process.env.MONGO){
   useUnifiedTopology: true,
   }).then(async () => {
     console.log(`Connected MongoDB`)
-
-      setTimeout(async () => {
-        const db = require("./mongoDB.js");
-        if(db){
-          if(db?.loop){
-        await db?.loop?.deleteOne()
-          } 
-          if(db?.queue){
-        await db?.queue?.deleteOne()
-          }
-          if(db?.playlist_timer){
-        await db?.playlist_timer?.deleteOne()
-          }
-          if(db?.playlist_timer2){
-        await db?.playlist_timer2?.deleteOne()
-          }
-        }
-        }, 5000)
-        
-
   }).catch((err) => {
     console.log("\nMongoDB Error: " + err + "\n\n" + lang.error4)
     })
