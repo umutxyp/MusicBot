@@ -7,19 +7,6 @@ const musicbot = Schema({
   channels: Array,
 });
 
-const loop = Schema({
-  userID: String,
-  guildID: String,
-  channelID: String,
-  messageID: String,
-});
-
-const queue = Schema({
-  userID: String,
-  guildID: String,
-  channelID: String,
-  messageID: String,
-});
 
 const playlist = Schema({
   userID: String,
@@ -27,25 +14,8 @@ const playlist = Schema({
   musics: Array,
 });
 
-const playlist_timer = Schema({
-  userID: String,
-  guildID: String,
-  channelID: String,
-  messageID: String,
-});
-
-const playlist_timer2 = Schema({
-  userID: String,
-  guildID: String,
-  channelID: String,
-  messageID: String,
-});
 
 module.exports = {
   musicbot: model("musicbot", musicbot),
-  loop: model("loop", loop),
-  queue: model("queue", queue),
-  playlist: model("playlist", playlist),
-  playlist_timer: model("playlist_timer", playlist_timer),
-  playlist_timer2: model("playlist_timer2", playlist_timer2),
+  playlist: model("playlist", playlist)
 };
