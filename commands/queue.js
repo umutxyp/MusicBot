@@ -11,12 +11,9 @@ module.exports = {
     lang = require(`../languages/${lang}.js`);
     try {
 
-      let cmds = await db.queue.findOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { });
-      const queue = client.player.getQueue(interaction.guild.id);
+     const queue = client.player.getQueue(interaction.guild.id);
       if (!queue || !queue.playing) return interaction.reply({ content: lang.msg5, ephemeral: true }).catch(e => { })
       if (!queue.songs[0]) return interaction.reply({ content: lang.msg63, ephemeral: true }).catch(e => { })
-      if (cmds) return interaction.reply({ content: `${lang.msg34}\nhttps://discord.com/channels/${interaction.guild.id}/${interaction.channel.id}/${cmds.messageID}`, ephemeral: true }).catch(e => { })
-
 
       const trackl = []
       queue.songs.map(async (track, i) => {
@@ -78,23 +75,15 @@ module.exports = {
           : [new ActionRowBuilder({ components: [deleteButton, forwardButton] })],
         fetchReply: true
       }).then(async Message => {
-        await db.queue.updateOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }, {
-          $set: {
-            messageID: Message.id
-          }
-        }, { upsert: true }).catch(e => { })
-
-
         const filter = i => i.user.id === interaction.user.id
-        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 120000 });
+        const collector = Message.createMessageComponentCollector({ filter, time: 120000 });
 
 
         let currentIndex = 0
         collector.on("collect", async (button) => {
-          if (button.customId === "close") {
-            collector.stop()
-            await db.queue.deleteOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { })
-            return button.reply({ content: lang.msg68, ephemeral: true }).catch(e => { })
+          if (button?.customId === "close") {
+            collector?.stop()
+           return button?.reply({ content: lang.msg68, ephemeral: true }).catch(e => { })
           } else {
 
             if (button.customId === backId) {
@@ -120,14 +109,11 @@ module.exports = {
                 }),
               ],
             }).catch(e => { })
-            await button.deferUpdate().catch(e => { })
+            await button?.deferUpdate().catch(e => { })
           }
         })
 
         collector.on("end", async (button) => {
-
-          await db.queue.deleteOne({ userID: interaction?.user?.id, guildID: interaction?.guild?.id, channelID: interaction?.channel?.id }).catch(e => { })
-
           button = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
               .setStyle(ButtonStyle.Secondary)
@@ -147,11 +133,11 @@ module.exports = {
 
           const embed = new EmbedBuilder()
             .setTitle(lang.msg69)
-            .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
+            .setThumbnail(interaction?.guild?.iconURL({ size: 2048, dynamic: true }))
             .setColor(client.config.embedColor)
             .setDescription(lang.msg70)
             .setFooter({ text: `MusicMaker ❤️` })
-          return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
+          return interaction?.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
         })
       }).catch(e => { })
