@@ -7,7 +7,7 @@ module.exports = {
   options: [],
   voiceChannel: false,
   run: async (client, interaction) => {
-    let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+    let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
     lang = lang?.language || client.language
     lang = require(`../languages/${lang}.js`);
     try {
@@ -68,111 +68,111 @@ module.exports = {
         .setTitle("Select a language")
         .setTimestamp()
         .setFooter({ text: `MusicMaker ❤️` })
-      interaction.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
+      interaction?.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
 
-        const filter = i => i.user.id === interaction.user.id
-        let col = await interaction.channel.createMessageComponentCollector({ filter, time: 30000 });
+        const filter = i => i.user.id === interaction?.user?.id
+        let col = await Message.createMessageComponentCollector({ filter, time: 30000 });
 
         col.on('collect', async (button) => {
-          if (button.user.id !== interaction.user.id) return
+          if (button.user.id !== interaction?.user?.id) return
           switch (button.customId) {
             case 'tr':
-              await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+              await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
                 $set: {
                   language: 'tr'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `Botun dili başarıyla türkçe oldu. :flag_tr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-              await button.deferUpdate().catch(e => { })
-              await col.stop()
+              await interaction?.editReply({ content: `Botun dili başarıyla türkçe oldu. :flag_tr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await button?.deferUpdate().catch(e => { })
+              await col?.stop()
               break
               
             case 'en':
-              await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+              await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
                 $set: {
                   language: 'en'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `Bot language successfully changed to english. :flag_gb:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-              await button.deferUpdate().catch(e => { })
-              await col.stop()
+              await interaction?.editReply({ content: `Bot language successfully changed to english. :flag_gb:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await button?.deferUpdate().catch(e => { })
+              await col?.stop()
               break
 
             case 'nl':
-              await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+              await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
                 $set: {
                   language: 'nl'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `De taal van de boot werd veranderd in nederlands. :flag_nl:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-              await button.deferUpdate().catch(e => { })
-              await col.stop()
+              await interaction?.editReply({ content: `De taal van de boot werd veranderd in nederlands. :flag_nl:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await button?.deferUpdate().catch(e => { })
+              await col?.stop()
               break
 
               case 'fr':
-              await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+              await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
                 $set: {
                   language: 'fr'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `La langue du bot a été modifiée avec succès en français. :flag_fr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-              await button.deferUpdate().catch(e => { })
-              await col.stop()
+              await interaction?.editReply({ content: `La langue du bot a été modifiée avec succès en français. :flag_fr:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await button?.deferUpdate().catch(e => { })
+              await col?.stop()
               break
 
               case 'pt':
-              await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+              await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
                 $set: {
                   language: 'pt'
                 }
               }, { upsert: true }).catch(e => { })
-              await interaction.editReply({ content: `Língua do bot definida para Português - Brasil com sucesso. :flag_br:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-              await button.deferUpdate().catch(e => { })
-              await col.stop()
+              await interaction?.editReply({ content: `Língua do bot definida para Português - Brasil com sucesso. :flag_br:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+              await button?.deferUpdate().catch(e => { })
+              await col?.stop()
               break
 
               case 'ar':
-                await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+                await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
                   $set: {
                     language: 'ar'
                   }
                 }, { upsert: true }).catch(e => { })
-                await interaction.editReply({ content: `تم تغيير لغة البوت بنجاح إلى اللغة العربية: :flag_ps:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-                await button.deferUpdate().catch(e => { })
-                await col.stop()
+                await interaction?.editReply({ content: `تم تغيير لغة البوت بنجاح إلى اللغة العربية: :flag_ps:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+                await button?.deferUpdate().catch(e => { })
+                await col?.stop()
                 break
               
 	case 'zh_TW':
-        await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+        await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
           $set: {
             language: 'zh_TW'
           }
         }, { upsert: true }).catch(e => { })
-        await interaction.editReply({ content: `機器人成功設為正體中文 :flag_tw:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-        await button.deferUpdate().catch(e => { })
-        await col.stop()
+        await interaction?.editReply({ content: `機器人成功設為正體中文 :flag_tw:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await button?.deferUpdate().catch(e => { })
+        await col?.stop()
         break
 			  
 	case 'it':
-        await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+        await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
           $set: {
             language: 'it'
           }
         }, { upsert: true }).catch(e => { })
-        await interaction.editReply({ content: `La lingua del bot è stata cambiata in italiano. :flag_it:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-        await button.deferUpdate().catch(e => { })
-        await col.stop()
+        await interaction?.editReply({ content: `La lingua del bot è stata cambiata in italiano. :flag_it:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await button?.deferUpdate().catch(e => { })
+        await col?.stop()
         break
 			  
         case 'id':
-        await db?.musicbot?.updateOne({ guildID: interaction.guild.id }, {
+        await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
           $set: {
             language: 'id'
           }
         }, { upsert: true }).catch(e => { })
-        await interaction.editReply({ content: `Bahasa bot dibuat dalam bahasa indonesia. :flag_id:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
-        await button.deferUpdate().catch(e => { })
-        await col.stop()
+        await interaction?.editReply({ content: `Bahasa bot dibuat dalam bahasa indonesia. :flag_id:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await button?.deferUpdate().catch(e => { })
+        await col?.stop()
         break
 
           }
@@ -193,7 +193,7 @@ module.exports = {
               .setTimestamp()
               .setFooter({ text: `MusicMaker ❤️` })
 
-            await interaction.editReply({ embeds: [embed], components: [buttons] }).catch(e => { })
+            await interaction?.editReply({ embeds: [embed], components: [buttons] }).catch(e => { })
           }
         })
       }).catch(e => { })
