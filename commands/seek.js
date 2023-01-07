@@ -40,7 +40,18 @@ module.exports = {
             { name: "Command Usage Channel", value: `${interaction?.channel?.name} \`(${interaction?.channel?.id})\``, inline: true },
             { name: "User Voice Channel", value: `${interaction?.member?.voice?.channel?.name} \`(${interaction?.member?.voice?.channel?.id})\``, inline: true },
           ])
-        await client.errorLog.send({ embeds: [embed] }).catch(e => { })
+          if(client.shard){
+            return client.shard.broadcastEval(async (c, { channelId }) => {
+              const channel = c.channels.cache.get(channelId);
+              if (channel) {
+                  await channel?.send({ embeds: [embed] }).catch(e => { })
+                  return true;
+              }
+              return false;
+          }, { context: { channelId: client?.errorLog } })
+        } else {
+          client.channels.cache.get(client?.errorLog)?.send({ embeds: [embed] }).catch(e => { })
+        }
       } else {
         console.log(`
     Command: ${interaction?.commandName}
