@@ -10,7 +10,7 @@ if(client.errorLog){
             { name: "Command", value: `${interaction?.commandName}` },
             { name: "Error", value: `${e.stack}` },
             { name: "User", value: `${interaction?.user?.tag} \`(${interaction?.user?.id})\``, inline: true },
-            { name: "Guild", value: `${interaction?.guild?.name} \`(${interaction?.guild?.id})\``, inline: true },
+            { name: "Guild", value: `${interaction?.guild?.name} \`(${interaction?.guild?.id})\` - \`${interaction?.guild?.memberCount} members\``, inline: true },
             { name: "Time", value: `<t:${Math.floor(Date.now()/1000)}:R>`, inline: true },
             { name: "Command Usage Channel", value: `${interaction?.channel?.name} \`(${interaction?.channel?.id})\``, inline: true },
             { name: "User Voice Channel", value: `${interaction?.member?.voice?.channel?.name} \`(${interaction?.member?.voice?.channel?.id})\``, inline: true },
