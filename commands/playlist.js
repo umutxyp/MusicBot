@@ -248,9 +248,6 @@ if (stp === "list") {
 let name = interaction.options.getString('name')
 if (!name) return interaction.reply({ content: lang.msg110, ephemeral: true }).catch(e => { })
 
-let cmds = await db.playlist_timer.findOne({ userID: interaction.user.id, guildID: interaction.guild.id, channelID: interaction.channel.id }).catch(e => { });
-if (cmds) return interaction.reply({ content: `${lang.msg34}\nhttps://discord.com/channels/${interaction.guild.id}/${interaction.channel.id}/${cmds.messageID}`, ephemeral: true }).catch(e => { })
-
 let trackl
 
 const playlist = await db.playlist.find().catch(e => { })
