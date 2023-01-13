@@ -1,54 +1,54 @@
 module.exports = {
 TOKEN: "",
-ownerID: [""], //write your discord user id. example: ["id"] or ["id1","id2"]
-botInvite: "", //write your discord bot invite.
-supportServer: "", //write your discord bot support server invite.
-mongodbURL: "", //write your mongodb url.
-status: '❤️ codeshare.me',
-commandsDir: './commands', //Please don't touch
-language: "en", //en, tr, nl, pt, fr, ar, zh_TW, it
-embedColor: "ffa954", //hex color code
-errorLog: "", //write your discord error log channel id.
+ownerID: ["1059099611471564820"], 
+botInvite: "", 
+supportServer: "",
+mongodbURL: "mongodb://Markus:8911@ac-an9wjux-shard-00-00.rgbt0yp.mongodb.net:27017,ac-an9wjux-shard-00-01.rgbt0yp.mongodb.net:27017,ac-an9wjux-shard-00-02.rgbt0yp.mongodb.net:27017/?ssl=true&replicaSet=atlas-es6llo-shard-0&authSource=admin&retryWrites=true&w=majority", 
+status: "FINNOLANO BOT",
+commandsDir: './commands', 
+language: "ru", //en, tr, nl, pt, fr, ar, zh_TW, it, ru
+embedColor: "296D98", 
+errorLog: "", 
 
 
 sponsor: {
-status: true, //true or false
-url: "https://awmbilisim.com", //write your discord sponsor url.
+status: true, 
+url: "https://finovskoy.tk", 
 },
 
-voteManager: { //optional
-status: false, //true or false
-api_key: "", //write your top.gg api key. 
-vote_commands: ["back","channel","clear","dj","filter","loop","nowplaying","pause","play","playlist","queue","resume","save","search","skip","stop","time","volume"], //write your use by vote commands.
-vote_url: "", //write your top.gg vote url.
+voteManager: { 
+status: false, 
+api_key: "", 
+vote_commands: ["back","channel","clear","dj","filter","loop","nowplaying","pause","play","playlist","queue","resume","save","search","skip","stop","time","volume"], 
+vote_url: "", 
 },
 
 shardManager:{
-shardStatus: false //If your bot exists on more than 1000 servers, change this part to true.
+shardStatus: false 
 },
 
 playlistSettings:{
-maxPlaylist: 10, //max playlist count
-maxMusic: 75, //max music count
+maxPlaylist: 10, 
+maxMusic: 75, 
 },
 
 opt: {
 DJ: {
-commands: ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume', 'shuffle'] //Please don't touch
+commands: ['back', 'clear', 'filter', 'loop', 'pause', 'resume', 'skip', 'stop', 'volume', 'shuffle'] 
 },
 
 voiceConfig: {
-leaveOnFinish: false, //If this variable is "true", the bot will leave the channel the music ends.
-leaveOnStop: false, //If this variable is "true", the bot will leave the channel when the music is stopped.
-
-leaveOnEmpty: { //The leaveOnEnd variable must be "false" to use this system.
-status: true, //If this variable is "true", the bot will leave the channel when the bot is offline.
-cooldown: 10000000, //1000 = 1 second
+leaveOnFinish: false,
+leaveOnStop: false, 
+  
+leaveOnEmpty: { 
+status: true, 
+cooldown: 10000000, 
 },
 
 },
 
-maxVol: 150, //You can specify the maximum volume level.
+maxVol: 200, 
 
 }
 }

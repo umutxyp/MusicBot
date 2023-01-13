@@ -1,0 +1,59 @@
+{
+  "name": "ffmpeg-static",
+  "version": "4.4.1",
+  "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "install.js",
+    "example.js"
+  ],
+  "scripts": {
+    "install": "node install.js",
+    "test": "node test.js",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run lint && npm run install && npm test"
+  },
+  "ffmpeg-static": {
+    "binary-release-tag": "b4.4.1",
+    "binary-release-name": "4.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneware/ffmpeg-static"
+  },
+  "keywords": [
+    "ffmpeg",
+    "static",
+    "library",
+    "binary",
+    "binaries",
+    "mac",
+    "linux",
+    "windows"
+  ],
+  "authors": [
+    "Eugene Ware <eugene@noblesamurai.com>",
+    "Jannis R <mail@jannisr.de>"
+  ],
+  "contributors": [
+    "Thefrank (https://github.com/Thefrank)"
+  ],
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/eugeneware/ffmpeg-static/issues"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "@derhuerst/http-basic": "^8.2.0",
+    "env-paths": "^2.2.0",
+    "https-proxy-agent": "^5.0.0",
+    "progress": "^2.0.3"
+  },
+  "devDependencies": {
+    "any-shell-escape": "^0.1.1",
+    "eslint": "^7.30.0"
+  }
+}

@@ -40,7 +40,7 @@ const language = {
   msg29: `Veuillez entrer un nom de filtre valide. ❌\n{filters}`, 
   msg30: `Je n'ai pas trouvé de filtre portant ce nom. ❌\n{filters}`, 
   msg31 : `Applied : **{filter}**, État du filtre: **{status}**\n **N'oubliez pas que si la musique est longue, le temps d'application du filtre peut être plus long en conséquence.**`, 
-  msg32 : "Il est temps d'écouter de la musique sur votre serveur Discord avec une interface entièrement gratuite et avancée. Un bot musical qui prend en charge la lecture de musique sur de nombreuses plates-formes, ce qui rendra votre serveur spécial.\nhttps://discord.gg/ZcDprCrFTn", 
+  msg32 : "Il est temps d'écouter de la musique sur votre serveur discord avec une interface complètement gratuite et avancée. Music bot qui prend en charge la lecture de musique sur de nombreuses plates-formes qui rendront votre serveur spécial.", 
   msg33 : "Commandes du robot", 
   msg34: "Vous avez déjà une commande active ici. ❌", 
   msg35 : "File d'attente", 

@@ -12,3 +12,4 @@ manager.spawn();
 require("./bot.js")
 
 }
+

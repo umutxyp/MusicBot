@@ -1,0 +1,39 @@
+{
+  "name": "cache-swap",
+  "version": "0.2.3",
+  "description": "A simple temp file based swap for speeding up operations",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json index.js test.js",
+    "test": "mocha test.js",
+    "test-dot": "mocha test.js --reporter dot",
+    "coverage": "istanbul cover _mocha"
+  },
+  "repository": "jgable/cache-swap",
+  "keywords": [
+    "cache",
+    "swap",
+    "temp",
+    "file"
+  ],
+  "author": "Jacob Gable <jacob.gable@gmail.com>",
+  "contributors": [
+    "Shinnosuke Watanabe <snnskwtnb@gmail.com> (https://github.com/shinnn)"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "graceful-fs": "^4.1.2",
+    "mkdirp": "^0.5.1",
+    "object-assign": "^4.0.1",
+    "rimraf": "^2.4.0"
+  },
+  "devDependencies": {
+    "@shinnn/eslintrc-node": "^1.0.2",
+    "eslint": "^0.24.1",
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
+  }
+}

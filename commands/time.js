@@ -33,7 +33,7 @@ module.exports = {
         .setThumbnail(queue.songs[0].thumbnail)
         .setTimestamp()
         .setDescription(`**${queue.formattedCurrentTime} / ${queue.formattedDuration} (${music_percent3}%)**`)
-        .setFooter({ text: `MusicMaker ❤️` })
+        .setFooter({ text: `FINNOLANO` })
       interaction.reply({ embeds: [embed], components: [row] }).catch(e => { })
 
     } catch (e) {

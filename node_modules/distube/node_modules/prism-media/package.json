@@ -1,0 +1,63 @@
+{
+  "name": "prism-media",
+  "version": "1.3.3",
+  "description": "Easy-to-use stream-based media transcoding",
+  "main": "src/index.js",
+  "types": "typings/index.d.ts",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "npm run lint && jest && npm run docs",
+    "docs": "docma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hydrabolt/prism-media.git"
+  },
+  "keywords": [
+    "audio",
+    "media",
+    "ffmpeg",
+    "opus",
+    "pcm",
+    "webm",
+    "ogg"
+  ],
+  "author": "Amish Shah <amish@shah.gg>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hydrabolt/prism-media/issues"
+  },
+  "homepage": "https://github.com/hydrabolt/prism-media#readme",
+  "devDependencies": {
+    "docma": "^3.2.2",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6"
+  },
+  "jest": {
+    "testURL": "http://localhost/"
+  },
+  "peerDependencies": {
+    "@discordjs/opus": "*",
+    "ffmpeg-static": "^4.2.7 || ^3.0.0 || ^2.4.0",
+    "node-opus": "^0.3.3",
+    "opusscript": "^0.0.8"
+  },
+  "peerDependenciesMeta": {
+    "@discordjs/opus": {
+      "optional": true
+    },
+    "node-opus": {
+      "optional": true
+    },
+    "opusscript": {
+      "optional": true
+    },
+    "ffmpeg-static": {
+      "optional": true
+    }
+  },
+  "files": [
+    "src/",
+    "typings/"
+  ]
+}

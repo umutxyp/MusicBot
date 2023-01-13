@@ -1,0 +1,24 @@
+{
+  "name": "try-json-parse",
+  "version": "0.1.1",
+  "description": "Doesn't throw an error when JSON.parse() fails, just returns undefined",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alessioalex/try-json-parse"
+  },
+  "keywords": [
+    "err",
+    "custom",
+    "custom-error",
+    "customerror"
+  ],
+  "author": "Alexandru Vladutu <alexandru.vladutu@gmail.com> (http://careers.stackoverflow.com/alessioalex)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alessioalex/try-json-parse/issues"
+  }
+}

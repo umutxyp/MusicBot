@@ -1,0 +1,57 @@
+{
+  "name": "has-ansi",
+  "version": "0.1.0",
+  "description": "Check if a string has ANSI escape codes",
+  "license": "MIT",
+  "repository": "sindresorhus/has-ansi",
+  "bin": {
+    "has-ansi": "cli.js"
+  },
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli",
+    "bin",
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+  ],
+  "dependencies": {
+    "ansi-regex": "^0.2.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

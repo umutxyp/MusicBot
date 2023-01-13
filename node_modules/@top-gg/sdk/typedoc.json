@@ -1,0 +1,10 @@
+{
+    "out": "./docs/",
+    "entryPoints": ["src/index.ts"],
+    "readme": "./README.md",
+    "name": "@top-gg/sdk",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "excludeInternal": true,
+    "theme": "minimal"
+  }

@@ -60,13 +60,19 @@ module.exports = {
             .setCustomId('id')
             .setStyle(ButtonStyle.Secondary)
             .setEmoji('🇮🇩'),
+
+      new ButtonBuilder()
+            .setLabel("Русский")
+            .setCustomId('ru')
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('🇷🇺'),
         )
 
       let embed = new EmbedBuilder()
         .setColor(client.config.embedColor)
-        .setTitle("Select a language")
+        .setTitle("Выберите язык (Select a language)")
         .setTimestamp()
-        .setFooter({ text: `MusicMaker ❤️` })
+        .setFooter({ text: `FINNOLANO` })
       interaction?.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
 
         const filter = i => i.user.id === interaction?.user?.id
@@ -174,6 +180,24 @@ module.exports = {
         await col?.stop()
         break
 
+        case 'ru':
+        await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
+          $set: {
+            language: 'ru'
+          }
+        }, { upsert: true }).catch(e => { })
+        await interaction?.editReply({ content: `Язык изменён на русский. :flag_ru:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await button?.deferUpdate().catch(e => { })
+        await col?.stop()
+        break
+
+        
+
+
+
+
+
+              
           }
         })
 
@@ -190,7 +214,7 @@ module.exports = {
               .setColor(client.config.embedColor)
               .setTitle("Time ended, please try again.")
               .setTimestamp()
-              .setFooter({ text: `MusicMaker ❤️` })
+              .setFooter({ text: `FINNOLANO` })
 
             await interaction?.editReply({ embeds: [embed], components: [buttons] }).catch(e => { })
           }

@@ -136,7 +136,7 @@ module.exports = {
             .setThumbnail(interaction?.guild?.iconURL({ size: 2048, dynamic: true }))
             .setColor(client.config.embedColor)
             .setDescription(lang.msg70)
-            .setFooter({ text: `MusicMaker ❤️` })
+            .setFooter({ text: `FINNOLANO` })
           return interaction?.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
         })

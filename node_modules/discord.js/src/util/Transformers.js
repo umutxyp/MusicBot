@@ -1,0 +1,19 @@
+'use strict';
+
+const { isJSONEncodable } = require('@discordjs/util');
+const snakeCase = require('lodash.snakecase');
+
+/**
+ * Transforms camel-cased keys into snake cased keys
+ * @param {*} obj The object to transform
+ * @returns {*}
+ */
+function toSnakeCase(obj) {
+  if (typeof obj !== 'object' || !obj) return obj;
+  if (obj instanceof Date) return obj;
+  if (isJSONEncodable(obj)) return toSnakeCase(obj.toJSON());
+  if (Array.isArray(obj)) return obj.map(toSnakeCase);
+  return Object.fromEntries(Object.entries(obj).map(([key, value]) => [snakeCase(key), toSnakeCase(value)]));
+}
+
+module.exports = { toSnakeCase };

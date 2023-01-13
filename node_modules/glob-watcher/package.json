@@ -1,0 +1,35 @@
+{
+  "name": "glob-watcher",
+  "description": "Watch globs",
+  "version": "0.0.6",
+  "homepage": "http://github.com/wearefractal/glob-watcher",
+  "repository": "git://github.com/wearefractal/glob-watcher.git",
+  "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "main": "./index.js",
+  "dependencies": {
+    "gaze": "^0.5.1"
+  },
+  "devDependencies": {
+    "mocha": "^1.17.0",
+    "should": "^2.1.1",
+    "mocha-lcov-reporter": "0.0.1",
+    "coveralls": "^2.6.1",
+    "istanbul": "^0.2.3",
+    "rimraf": "^2.2.5",
+    "jshint": "^2.4.1",
+    "mkdirp": "^0.3.5"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec && jshint",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+  },
+  "engines": {
+    "node": ">= 0.9"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/wearefractal/glob-watcher/raw/master/LICENSE"
+    }
+  ]
+}

@@ -40,7 +40,7 @@ const language = {
     msg29: `Lütfen geçerli bir filtre adı girin. ❌\n{filters}`,
     msg30: `Lütfen geçerli bir filtre adı girin. ❌\n{filters}`,
     msg31: `Uygulandı: **{filter}**, Filtre Durumu: **{status}**\n **Unutmayın, müzik uzunsa filtre uygulama süresi buna göre daha uzun olabilir.**`,
-    msg32: "Tamamen ücretsiz ve gelişmiş bir arayüz ile discord sunucunuzda müzik dinlemenin tam zamanı. Sunucunuzu özel hissettirecek birçok platformda müzik çalmayı destekleyen müzik botu. Kendi müzik botunuzu oluşturun: https://github.com/umutxyp/MusicBot",
+    msg32: "Tamamen ücretsiz ve gelişmiş bir arayüz ile discord sunucunuzda müzik dinlemenin tam zamanı. Sunucunuzu özel hissettirecek birçok platformda müzik çalmayı destekleyen müzik botu.",
     msg33: "Bot Komutları",
     msg34: "Burada zaten aktif bir komutunuz var. ❌",
     msg35: "Kuyruk",

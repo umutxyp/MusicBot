@@ -1,0 +1,206 @@
+{
+	"name": "discord-api-types",
+	"version": "0.36.3",
+	"description": "Discord API typings that are kept up to date for use in bot library creation.",
+	"homepage": "https://discord-api-types.dev",
+	"exports": {
+		"./globals": {
+			"require": "./globals.js",
+			"import": "./globals.mjs",
+			"types": "./globals.d.ts"
+		},
+		"./v6": {
+			"require": "./v6.js",
+			"import": "./v6.mjs",
+			"types": "./v6.d.ts"
+		},
+		"./v8": {
+			"require": "./v8.js",
+			"import": "./v8.mjs",
+			"types": "./v8.d.ts"
+		},
+		"./v9": {
+			"require": "./v9.js",
+			"import": "./v9.mjs",
+			"types": "./v9.d.ts"
+		},
+		"./v10": {
+			"require": "./v10.js",
+			"import": "./v10.mjs",
+			"types": "./v10.d.ts"
+		},
+		"./gateway": {
+			"require": "./gateway/index.js",
+			"import": "./gateway/index.mjs",
+			"types": "./gateway/index.d.ts"
+		},
+		"./gateway/v*": {
+			"require": "./gateway/v*.js",
+			"import": "./gateway/v*.mjs",
+			"types": "./gateway/v*.d.ts"
+		},
+		"./payloads": {
+			"require": "./payloads/index.js",
+			"import": "./payloads/index.mjs",
+			"types": "./payloads/index.d.ts"
+		},
+		"./payloads/v*": {
+			"require": "./payloads/v*/index.js",
+			"import": "./payloads/v*/index.mjs",
+			"types": "./payloads/v*/index.d.ts"
+		},
+		"./rest": {
+			"require": "./rest/index.js",
+			"import": "./rest/index.mjs",
+			"types": "./rest/index.d.ts"
+		},
+		"./rest/v*": {
+			"require": "./rest/v*/index.js",
+			"import": "./rest/v*/index.mjs",
+			"types": "./rest/v*/index.d.ts"
+		},
+		"./rpc": {
+			"require": "./rpc/index.js",
+			"import": "./rpc/index.mjs",
+			"types": "./rpc/index.d.ts"
+		},
+		"./rpc/v*": {
+			"require": "./rpc/v*.js",
+			"import": "./rpc/v*.mjs",
+			"types": "./rpc/v*.d.ts"
+		},
+		"./voice": {
+			"require": "./voice/index.js",
+			"import": "./voice/index.mjs",
+			"types": "./voice/index.d.ts"
+		},
+		"./voice/v*": {
+			"require": "./voice/v*.js",
+			"import": "./voice/v*.mjs",
+			"types": "./voice/v*.d.ts"
+		},
+		"./utils": {
+			"require": "./utils/index.js",
+			"import": "./utils/index.mjs",
+			"types": "./utils/index.d.ts"
+		},
+		"./utils/v*": {
+			"require": "./utils/v*.js",
+			"import": "./utils/v*.mjs",
+			"types": "./utils/v*.d.ts"
+		}
+	},
+	"scripts": {
+		"build:ci": "tsc --noEmit --incremental false",
+		"build:deno": "node ./scripts/deno.mjs",
+		"build:node": "tsc && run-p esm:*",
+		"changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+		"ci:pr": "run-s changelog lint build:deno && node ./scripts/bump-website-version.mjs",
+		"clean:deno": "rimraf deno/",
+		"clean:node": "rimraf {gateway,payloads,rest,rpc,voice,utils}/**/*.{js,mjs,d.ts,*map} {globals,v*}.{js,mjs,d.ts,*map}",
+		"clean": "run-p clean:*",
+		"esm:gateway": "gen-esm-wrapper ./gateway/index.js ./gateway/index.mjs",
+		"esm:globals": "gen-esm-wrapper ./globals.js ./globals.mjs",
+		"esm:payloads": "gen-esm-wrapper ./payloads/index.js ./payloads/index.mjs",
+		"esm:rest": "gen-esm-wrapper ./rest/index.js ./rest/index.mjs",
+		"esm:rpc": "gen-esm-wrapper ./rpc/index.js ./rpc/index.mjs",
+		"esm:utils": "gen-esm-wrapper ./utils/index.js ./utils/index.mjs",
+		"esm:versions": "node ./scripts/versions.mjs",
+		"esm:voice": "gen-esm-wrapper ./voice/index.js ./voice/index.mjs",
+		"lint": "prettier --write . && eslint --fix --ext mjs,ts {gateway,payloads,rest,rpc,voice,utils}/**/*.ts {globals,v*}.ts scripts/**/*.mjs",
+		"postpublish": "run-s clean:node build:deno",
+		"prepare": "is-ci || husky install",
+		"prepublishOnly": "run-s clean test:lint build:node",
+		"test:lint": "prettier --check . && eslint --ext mjs,ts {gateway,payloads,rest,rpc,voice,utils}/**/*.ts {globals,v*}.ts scripts/**/*.mjs",
+		"pretest:types": "tsc",
+		"test:types": "node ./scripts/run-tsd.mjs",
+		"posttest:types": "npm run clean:node"
+	},
+	"keywords": [
+		"discord",
+		"discord api",
+		"types",
+		"discordjs"
+	],
+	"author": "Vlad Frangu <kingdgrizzle@gmail.com>",
+	"license": "MIT",
+	"files": [
+		"{gateway,payloads,rest,rpc,voice,utils}/**/*.{js,js.map,d.ts,d.ts.map,mjs}",
+		"{globals,v*}.{js,js.map,d.ts,d.ts.map,mjs}"
+	],
+	"devDependencies": {
+		"@babel/runtime-corejs3": "^7.18.0",
+		"@commitlint/cli": "^17.0.0",
+		"@commitlint/config-angular": "^17.0.0",
+		"@favware/npm-deprecate": "^1.0.4",
+		"@octokit/action": "^3.18.1",
+		"@octokit/webhooks-types": "^5.6.0",
+		"@sapphire/prettier-config": "^1.4.3",
+		"@types/conventional-recommended-bump": "^6.1.0",
+		"@types/node": "^17.0.35",
+		"@typescript-eslint/eslint-plugin": "^5.26.0",
+		"@typescript-eslint/parser": "^5.26.0",
+		"conventional-changelog-cli": "^2.2.2",
+		"conventional-recommended-bump": "^6.1.0",
+		"eslint": "^8.16.0",
+		"eslint-config-marine": "^9.4.1",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-import-resolver-typescript": "^2.7.1",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jsx-a11y": "^6.5.1",
+		"eslint-plugin-react": "^7.30.0",
+		"eslint-plugin-react-hooks": "^4.5.0",
+		"gen-esm-wrapper": "^1.1.3",
+		"husky": "^8.0.1",
+		"is-ci": "^3.0.1",
+		"lint-staged": "^12.4.1",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^2.6.2",
+		"pretty-quick": "^3.1.3",
+		"rimraf": "^3.0.2",
+		"tsd": "^0.20.0",
+		"typescript": "^4.6.4"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/discordjs/discord-api-types"
+	},
+	"lint-staged": {
+		"{gateway,payloads,rest,rpc,voice,utils}/**/*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts",
+		"{globals,v*}.ts": "eslint --fix --ext mjs,js,ts"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-angular"
+		],
+		"rules": {
+			"type-enum": [
+				2,
+				"always",
+				[
+					"chore",
+					"build",
+					"ci",
+					"docs",
+					"feat",
+					"fix",
+					"perf",
+					"refactor",
+					"revert",
+					"style",
+					"test",
+					"types",
+					"wip"
+				]
+			],
+			"scope-case": [
+				1,
+				"always",
+				"pascal-case"
+			]
+		}
+	},
+	"tsd": {
+		"directory": "tests"
+	}
+}

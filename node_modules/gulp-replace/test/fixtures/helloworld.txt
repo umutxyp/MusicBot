@@ -1,0 +1,4 @@
+Hello old world!
+Hello new world!
+Hello kind world!
+Hello cruel world!

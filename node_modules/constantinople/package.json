@@ -1,0 +1,21 @@
+{
+  "name": "constantinople",
+  "version": "2.0.1",
+  "description": "Determine whether a JavaScript expression evaluates to a constant (using UglifyJS)",
+  "keywords": [],
+  "dependencies": {
+    "uglify-js": "~2.4.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ForbesLindesay/constantinople.git"
+  },
+  "author": "ForbesLindesay",
+  "license": "MIT"
+}

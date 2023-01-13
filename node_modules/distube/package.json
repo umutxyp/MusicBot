@@ -1,0 +1,125 @@
+{
+  "name": "distube",
+  "version": "4.0.4",
+  "description": "A Discord.js module to simplify your music commands and play songs with audio filters on Discord without any API key.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "directories": {
+    "lib": "src",
+    "test": "tests"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest",
+    "docs": "docgen -s src/**/*.ts -o docs.json -c pages/index.yml -g -j jsdoc.config.json",
+    "lint": "prettier --check . && eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --write \"**/*.{ts,json,yml,yaml,md}\"",
+    "build": "tsup",
+    "build:check": "tsc --noEmit",
+    "update": "ncu -u && yarn up '**' -R",
+    "_postinstall": "husky install",
+    "prepublishOnly": "yarn lint && yarn test",
+    "prepack": "yarn build && pinst --disable",
+    "postpack": "pinst --enable"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skick1234/DisTube.git"
+  },
+  "keywords": [
+    "youtube",
+    "music",
+    "discord",
+    "discordjs",
+    "bot",
+    "distube",
+    "queue",
+    "musicbot",
+    "discord-music-bot",
+    "music-bot",
+    "discord-js"
+  ],
+  "author": "Skick (https://github.com/skick1234)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skick1234/DisTube/issues"
+  },
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://paypal.me/Skickkk"
+    },
+    {
+      "type": "patreon",
+      "url": "https://patreon.com/DisTube"
+    }
+  ],
+  "homepage": "https://distube.js.org/",
+  "dependencies": {
+    "@distube/ytdl-core": "^4.11.3",
+    "@distube/ytpl": "^1.1.1",
+    "@distube/ytsr": "^1.1.8",
+    "prism-media": "https://codeload.github.com/distubejs/prism-media/tar.gz/main#workaround.tar.gz",
+    "tiny-typed-emitter": "^2.1.0",
+    "tslib": "^2.4.0",
+    "undici": "^5.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/preset-typescript": "^7.18.6",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@discordjs/voice": "^0.11.0",
+    "@distubejs/docgen": "distubejs/docgen",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "babel-jest": "^28.1.3",
+    "discord.js": "^14.0.3",
+    "eslint": "^8.20.0",
+    "eslint-config-distube": "^1.6.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-deprecation": "^1.3.2",
+    "eslint-plugin-jsdoc": "^39.3.3",
+    "husky": "^8.0.1",
+    "jest": "^28.1.3",
+    "jsdoc-babel": "^0.5.0",
+    "nano-staged": "^0.8.0",
+    "npm-check-updates": "^16.0.0",
+    "pinst": "^3.0.0",
+    "prettier": "^2.7.1",
+    "tsup": "^6.2.0",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "@discordjs/opus": "*",
+    "@discordjs/voice": "*",
+    "discord.js": "14"
+  },
+  "peerDependenciesMeta": {
+    "@discordjs/opus": {
+      "optional": true
+    }
+  },
+  "nano-staged": {
+    "*.ts": [
+      "prettier --write",
+      "eslint"
+    ],
+    "*.{json,yml,yaml,md}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=16.9.0"
+  },
+  "packageManager": "yarn@3.2.0"
+}

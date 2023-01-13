@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- node
+- '6'
+- '4'
+script: npm run test-ci
+deploy:
+  provider: npm
+  email: christopher.andrejewski@gmail.com
+  api_key:
+    secure: KZoNT1zVg7ChM1YUXJi1RfFFJe4ZuJVzUYTb/pJau76G8CLieEMn+sJ1ONjnTGy67mwyJEp7mvkdxs0ugRfA+ojla8ISTTEEPX8uuLEbnbq0Ap/lAYOaxztxcUskG9N2QgFP0A45jMJFQkypRVR0o6Y28tRSUK8u1Snk29v6oYTYHMoRJrjozb4fsxRKEz93cvSgJNDxycEF6a2rxUflfJYXMaJ9QVGJ678rZKIr3zC74wibzc699xCu+44UVGgBGNaT+f6poXGuSa03th56rr0JzB3R2Re7tkkzyKCJtNqzhk/UumiNiwvZtIYQq8oD8LfzFqLayDaYhNoHO2v5JX5eQP72zAlmumpAdBBzJmbPGMLWFWYvVkNJXn8ntGDNNF1MQ4qgBFkw5yypkR/QrfeI48FziW67xGXGcChBOxsuzES8qQGrWebyaHYcs0DHpjdmu/aajBLsXlo6/gZkU4XH39y4ySXXJlpQRWYwjRcWoy5AJpicOXE+IM1dToNPLHszxk5+WkAn9mXHk/WbVBO6vjTAa07Raw5vwKC71oTbajao+9f5/CrBBACY/SQgC0bOSm2E8x6/lakEzgv/zgc5BS+OCBcqcutPN7/HAdlLXLyjU8p7AcPizheqjrl3+9el2bzoL/Sn1CvLavjfsF5nOdgR1NIKx12is5OiIII=
+  on:
+    tags: true
+    repo: andrejewski/himalaya
+  skip_cleanup: true
+after_success:
+  - npm run coveralls

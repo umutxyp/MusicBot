@@ -1,0 +1,47 @@
+{
+  "name": "memoizee",
+  "version": "0.3.10",
+  "description": "Memoize/cache function results",
+  "author": "Mariusz Nowak <medikoo@medikoo.com> (http://www.medikoo.com/)",
+  "keywords": [
+    "memoize",
+    "memoizer",
+    "cache",
+    "memoization",
+    "memo",
+    "memcached",
+    "hashing.",
+    "storage",
+    "caching",
+    "memory",
+    "gc",
+    "weak",
+    "garbage",
+    "collector",
+    "async"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/medikoo/memoizee.git"
+  },
+  "dependencies": {
+    "d": "~0.1.1",
+    "es5-ext": "~0.10.11",
+    "es6-weak-map": "~0.1.4",
+    "event-emitter": "~0.3.4",
+    "lru-queue": "0.1",
+    "next-tick": "~0.2.2",
+    "timers-ext": "0.1"
+  },
+  "devDependencies": {
+    "tad": "~0.2.4",
+    "xlint": "~0.2.2",
+    "xlint-jslint-medikoo": "~0.1.4"
+  },
+  "scripts": {
+    "lint": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --no-cache --no-stream",
+    "lint-console": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --watch",
+    "test": "node node_modules/tad/bin/tad"
+  },
+  "license": "MIT"
+}

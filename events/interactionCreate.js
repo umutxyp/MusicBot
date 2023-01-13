@@ -62,7 +62,7 @@ return interaction?.reply({ content: "This bot is only for servers and can be us
             .setThumbnail(client?.user?.displayAvatarURL())
             .setDescription(lang.embed1.replace("{djRole}", roleDJ?.id).replace("{cmdMAP}", client.config.opt.DJ.commands.map(astra => '`' + astra + '`').join(", ")))
             .setTimestamp()
-            .setFooter({ text: `MusicMaker ❤️` })
+            .setFooter({ text: `FINNOLANO` })
             return interaction?.reply({ embeds: [embed], ephemeral: true }).catch(e => { })
             }
             }
@@ -161,7 +161,7 @@ return interaction?.reply({ content: `${lang.msg5}`, embeds: [], components: [],
     .setThumbnail(queue?.songs[0]?.thumbnail)
     .setTimestamp()
     .setDescription(`**${queue?.formattedCurrentTime} / ${queue?.formattedDuration} (${music_percent3}%)**`)
-    .setFooter({ text: `MusicMaker ❤️` })
+    .setFooter({ text: `FINNOLANO` })
     interaction?.message?.edit({ embeds: [embed] }).catch(e => { })
     interaction?.reply({ content: `${lang.msg9}`, embeds: [], components: [], ephemeral: true }).catch(e => { })
 }

@@ -1,0 +1,15 @@
+{
+  "name": "multipipe",
+  "version": "0.0.2",
+  "description": "pipe streams with centralized error handling",
+  "repository": "segmentio/multipipe",
+  "dependencies": {
+    "duplexer2": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.0"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}

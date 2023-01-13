@@ -25,7 +25,7 @@ module.exports = {
             { name: lang.msg51, value: `\`${Math.round(client.ws.ping)}ms\` 🛰️` }
           ])
           .setTimestamp()
-          .setFooter({ text: `MusicMaker ❤️` })
+          .setFooter({ text: `FINNOLANO` })
         return interaction.editReply({ embeds: [embed] }).catch(e => { });
       }).catch(err => { })
 

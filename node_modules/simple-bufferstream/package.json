@@ -1,0 +1,30 @@
+{
+    "name"            : "simple-bufferstream"
+  , "description"     : "Turn a Buffer into a Stream (simplistic version)"
+  , "version"         : "0.0.4"
+  , "homepage"        : "https://github.com/rvagg/node-simple-bufferstream"
+  , "authors"         : [
+        "Rod Vagg <rod@vagg.org> (https://github.com/rvagg)"
+    ]
+  , "contributors"    : [
+        "Julian Gruber <julian@juliangruber.com> (https://github.com/juliangruber)"
+    ]
+  , "keywords"        : [ "buffer", "stream", "bufferstream" ]
+  , "main"            : "./index.js"
+  , "repository"      : {
+        "type"            : "git"
+      , "url"             : "https://github.com/rvagg/node-simple-bufferstream.git"
+    }
+  , "dependencies" : {
+    }
+  , "devDependencies" : {
+        "tape"            : "*"
+      , "bl"              : "*"
+      , "boganipsum"      : "*"
+      , "rimraf"          : "*"
+    }
+  , "scripts": {
+        "test"            : "node ./test.js"
+    }
+  , "license"             : "MIT"
+}

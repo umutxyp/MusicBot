@@ -1,0 +1,39 @@
+{
+  "name": "each-async",
+  "version": "0.1.3",
+  "description": "Async concurrent iterator",
+  "license": "MIT",
+  "main": "each-async.js",
+  "repository": "sindresorhus/each-async",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "each-async.js"
+  ],
+  "keywords": [
+    "each",
+    "async",
+    "asynchronous",
+    "iteration",
+    "iterate",
+    "loop",
+    "foreach",
+    "parallel",
+    "concurrent",
+    "array",
+    "flow",
+    "control flow"
+  ],
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

@@ -40,7 +40,7 @@ const language = {
    msg29: `Por favor entre um nome de filtro válido. ❌\n{filters}`,
    msg30: `Não consegui achar um filtro com esse nome. ❌\n{filters}`,
    msg31: `Aplicado: **{filter}**, Status do filtro: **{status}**\n **Lembre-se, se a música é grande, o tempo de aplicação do filtro também  poderá ser.**`,
-   msg32: "Está na fora de ouvir músic no seu servidor do Discord com uma interface complenta grátis e avançada. Bot de músca que suporta tocar música em várias plataformas que vai fazer seu servidor se sentir especial. Crie seu próprio bot de música: https://github.com/umutxyp/MusicBot",
+   msg32: "Está na fora de ouvir músic no seu servidor do Discord com uma interface complenta grátis e avançada. Bot de músca que suporta tocar música em várias plataformas que vai fazer seu servidor se sentir especial.",
    msg33: "Comandos do bot",
    msg34: "Você já tem um comando ativo aqui. ❌",
    msg35: "Lista de músicas",

@@ -1,0 +1,163 @@
+name: Build
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*.*'
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  build_x86_64:
+    name: Build x86_64
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-10.15, macos-11, macos-12, ubuntu-18.04, ubuntu-20.04, ubuntu-22.04, windows-2019]
+        node: [12, 13, 14, 15, 16, 17]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Node v${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm install --build-from-source
+
+      - name: Package prebuild
+        run: npm run build
+
+  build_x86_64_node_ge_18:
+    name: Build x86_64 node >= 18
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-10.15, macos-11, macos-12, ubuntu-20.04, ubuntu-22.04, windows-2019]
+        node: [18]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Node v${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm install --build-from-source
+
+      - name: Package prebuild
+        run: npm run build
+
+  build_musl_x86_64:
+    name: Build x86_64(musl)
+    runs-on: ubuntu-latest
+    container:
+      image: node:${{ matrix.node }}-alpine
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [12, 13, 14, 15, 16, 17, 18]
+    steps:
+      - name: Setup env with Node v${{ matrix.node }}
+        run: |
+          apk add --update
+          apk add --no-cache ca-certificates git curl build-base python3 g++ make
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install --unsafe-perm --build-from-source
+
+      - name: Package prebuild
+        run: npm run build
+
+  build_aarch64:
+    name: Prebuild aarch64
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04, ubuntu-22.04]
+        node: [12, 13, 14, 15, 16, 17]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Node v${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm install --build-from-source
+
+      - name: Package prebuild
+        run: |
+          sudo apt install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+          CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ npx node-pre-gyp --target_arch=arm64 configure build package
+
+  build_aarch64_node_ge_18:
+    name: Prebuild aarch64 node >= 18
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04]
+        node: [18]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Node v${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm install --build-from-source
+
+      - name: Package prebuild
+        run: |
+          sudo apt install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+          CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ npx node-pre-gyp --target_arch=arm64 configure build package
+
+  build_musl_aarch64:
+    name: Prebuild aarch64(musl)
+    runs-on: ubuntu-latest
+    container:
+      image: node:${{ matrix.node }}-alpine
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [12, 13, 14, 15, 16, 17, 18]
+    steps:
+      - name: Setup env with Node v${{ matrix.node }}
+        run: |
+          apk add --update
+          apk add --no-cache ca-certificates git curl build-base python3 g++ make
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup musl cross compiler
+        run: |
+          curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
+          tar -xzvf aarch64-linux-musl-cross.tgz
+          $(pwd)/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc --version
+
+      - name: Install dependencies
+        run: npm install --unsafe-perm --build-from-source
+
+      - name: Package prebuild
+        run: |
+          CC=$(pwd)/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc \
+          CXX=$(pwd)/aarch64-linux-musl-cross/bin/aarch64-linux-musl-g++ \
+          npx node-pre-gyp --target_arch=arm64 configure build package

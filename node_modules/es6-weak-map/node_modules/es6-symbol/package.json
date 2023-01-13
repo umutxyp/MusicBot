@@ -1,0 +1,33 @@
+{
+  "name": "es6-symbol",
+  "version": "2.0.1",
+  "description": "ECMAScript6 Symbol polyfill",
+  "author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
+  "keywords": [
+    "symbol",
+    "private",
+    "property",
+    "es6",
+    "ecmascript",
+    "harmony"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/medikoo/es6-symbol.git"
+  },
+  "dependencies": {
+    "d": "~0.1.1",
+    "es5-ext": "~0.10.5"
+  },
+  "devDependencies": {
+    "tad": "~0.2.1",
+    "xlint": "~0.2.2",
+    "xlint-jslint-medikoo": "~0.1.2"
+  },
+  "scripts": {
+    "lint": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --no-cache --no-stream",
+    "lint-console": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --watch",
+    "test": "node ./node_modules/tad/bin/tad"
+  },
+  "license": "MIT"
+}

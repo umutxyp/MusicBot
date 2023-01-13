@@ -1,0 +1,33 @@
+{
+  "name": "kuler",
+  "version": "0.0.0",
+  "description": "Color your terminal using CSS/hex color codes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3rd-Eden/kuler"
+  },
+  "keywords": [
+    "kuler",
+    "ansi",
+    "color",
+    "colour",
+    "chalk",
+    "css",
+    "hex",
+    "rgb",
+    "rgv"
+  ],
+  "author": "Arnout Kazemier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/3rd-Eden/kuler/issues"
+  },
+  "homepage": "https://github.com/3rd-Eden/kuler",
+  "dependencies": {
+    "colornames": "0.0.2"
+  }
+}

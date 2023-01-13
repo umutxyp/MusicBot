@@ -1,0 +1,98 @@
+{
+  "name": "himalaya",
+  "description": "HTML to JSON parser",
+  "version": "1.1.0",
+  "author": "Chris Andrejewski <christopher.andrejewski@gmail.com>",
+  "ava": {
+    "require": [
+      "babel-register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ],
+    "plugins": [],
+    "env": {
+      "nyc": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/andrejewski/himalaya/issues"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "babel-core": "^6.24.0",
+    "babel-plugin-istanbul": "^4.0.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babelify": "^8.0.0",
+    "browserify": "^16.0.0",
+    "coveralls": "^3.0.0",
+    "del": "^3.0.0",
+    "fixpack": "^2.3.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-sourcemaps": "^2.1.1",
+    "nyc": "^11.0.2",
+    "pre-commit": "^1.2.2",
+    "pre-push": "^0.1.1",
+    "source-map-support": "^0.5.0",
+    "standard": "^11.0.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "homepage": "https://github.com/andrejewski/himalaya",
+  "keywords": [
+    "ast",
+    "html",
+    "json",
+    "parser"
+  ],
+  "license": "ISC",
+  "main": "lib/index.js",
+  "nyc": {
+    "include": [
+      "src/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false,
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "pre-commit": [
+    "prepublish"
+  ],
+  "pre-push": [
+    "prepublish"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrejewski/himalaya.git"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "coveralls": "npm run report && nyc report --reporter=text-lcov | coveralls",
+    "himalaya": "./bin/himalaya.js",
+    "prepublish": "npm test && npm run build",
+    "report": "NODE_ENV=nyc nyc npm test",
+    "test": "fixpack && standard --fix && gulp --silent && ava",
+    "test-ci": "npm run prepublish"
+  },
+  "standard": {
+    "ignore": [
+      "/docs/dist/**"
+    ]
+  }
+}

@@ -40,7 +40,7 @@ const language = {
    msg29: `Voer een geldige filternaam in.❌\n{filters}`,
    msg30: `Ik kon geen filter vinden met die naam. ❌\n{filters}`,
    msg31: `Toegepast: **{filter}**, Filterstatus: **{status}** **Opgelet, als de muziek lang is, kan de filtertoepassingstijd dienovereenkomstig langer zijn.**`,
-   msg32: "Het is tijd om naar muziek te luisteren op je discord server met een volledig gratis en geavanceerde interface. Muziek bot die het afspelen van muziek op vele platformen ondersteunt die je server een speciaal gevoel zal geven. Maak je eigen muziek bot: https://github.com/umutxyp/MusicBot",
+   msg32: "Het is tijd om naar muziek te luisteren op je discord server met een volledig gratis en geavanceerde interface. Muziek bot die het afspelen van muziek op vele platformen ondersteunt die je server een speciaal gevoel zal geven.",
    msg33: "Bot Commandos",
    msg34: "Je hebt hier al een actief commando. ❌",
    msg35: "Wachtrij",

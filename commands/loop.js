@@ -34,7 +34,7 @@ module.exports = {
         .setTitle(lang.msg38)
         .setDescription(lang.msg39)
         .setTimestamp()
-        .setFooter({ text: `MusicMaker ❤️` })
+        .setFooter({ text: `FINNOLANO` })
       interaction?.reply({ embeds: [embed], components: [button], fetchReply: true }).then(async Message => {
 
         const filter = i => i.user.id === interaction.user.id
@@ -81,7 +81,7 @@ module.exports = {
             .setColor(client.config.embedColor)
             .setTitle(lang.msg46)
             .setTimestamp()
-            .setFooter({ text: `MusicMaker ❤️` })
+            .setFooter({ text: `FINNOLANO` })
 
           await interaction?.editReply({ content: "", embeds: [embed], components: [button] }).catch(e => { });
         })

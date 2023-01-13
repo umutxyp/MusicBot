@@ -1,0 +1,33 @@
+{
+  "name": "emits",
+  "version": "3.0.0",
+  "description": "returns a function which will emit and parse the specified event",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js",
+    "coverage": "istanbul cover node_modules/.bin/_mocha -- test.js",
+    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/primus/emits"
+  },
+  "keywords": [
+    "emits",
+    "event",
+    "parser",
+    "eventemitter"
+  ],
+  "author": "Arnout Kazemier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/primus/emits/issues"
+  },
+  "homepage": "https://github.com/primus/emits",
+  "devDependencies": {
+    "assume": "0.0.x",
+    "istanbul": "0.3.x",
+    "mocha": "2.1.x",
+    "pre-commit": "0.0.x"
+  }
+}

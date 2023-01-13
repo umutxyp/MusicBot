@@ -1,0 +1,43 @@
+{
+	"name": "@discordjs/node-pre-gyp",
+	"version": "0.4.5",
+	"description": "Node.js native addon binary install tool",
+	"main": "./lib/node-pre-gyp.js",
+	"bin": "./bin/node-pre-gyp",
+	"author": "Dane Springmeyer <dane@mapbox.com>",
+	"license": "BSD-3-Clause",
+	"scripts": {
+		"update-crosswalk": "node scripts/abi_crosswalk.js"
+	},
+	"keywords": [
+		"native",
+		"addon",
+		"module",
+		"c",
+		"c++",
+		"bindings",
+		"binary"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/discordjs/node-pre-gyp.git"
+	},
+	"dependencies": {
+		"detect-libc": "^2.0.0",
+		"https-proxy-agent": "^5.0.0",
+		"make-dir": "^3.1.0",
+		"node-fetch": "^2.6.7",
+		"nopt": "^5.0.0",
+		"npmlog": "^5.0.1",
+		"rimraf": "^3.0.2",
+		"semver": "^7.3.5",
+		"tar": "^6.1.11"
+	},
+	"devDependencies": {
+		"eslint": "^8.2.0",
+		"eslint-config-aqua": "^9.0.2",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"prettier": "^2.4.1"
+	}
+}

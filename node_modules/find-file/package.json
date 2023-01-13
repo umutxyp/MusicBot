@@ -1,0 +1,33 @@
+{
+  "name": "find-file",
+  "version": "0.1.4",
+  "description": "Search for a file in an array of paths",
+  "keywords": [
+    "find",
+    "file",
+    "path",
+    "search"
+  ],
+  "homepage": "https://github.com/kevva/find-file",
+  "bugs": "https://github.com/kevva/find-file/issues",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "license": "MIT",
+  "repository": "git://github.com/kevva/find-file.git",
+  "scripts": {
+    "test": "mocha --reporter list"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "mocha": "~1.17.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

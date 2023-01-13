@@ -40,7 +40,7 @@ const language = {
    msg29: `Silakan masukkan nama filter yang valid. ❌\n{filter}`,
    msg30: `Saya tidak dapat menemukan filter dengan nama itu. ❌\n{filter}`,
    msg31: `Diterapkan: **{filter}**, Status Filter: **{status}**\n **Ingat, jika musiknya panjang, waktu aplikasi filter mungkin lebih lama.**`,
-   msg32: "Saatnya mendengarkan musik di server perselisihan Anda dengan antarmuka yang benar-benar gratis dan canggih. Bot musik yang mendukung pemutaran musik di banyak platform yang akan membuat server Anda terasa istimewa. Buat bot musik Anda sendiri: https://github.com/umutxyp/MusicBot",
+   msg32: "Saatnya mendengarkan musik di server perselisihan Anda dengan antarmuka yang benar-benar gratis dan canggih. Bot musik yang mendukung pemutaran musik di banyak platform yang akan membuat server Anda terasa istimewa.",
    msg33: "Perintah Bot",
    msg34: "Anda sudah memiliki perintah aktif di sini. ❌",
    msg35: "Antrian",
