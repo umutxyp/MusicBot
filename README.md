@@ -5,7 +5,7 @@
 
 
 ## ABOUT V15.1 UPDATE / news: 2023, 22 JANUARY
-- Espanol language added to bot.
+- Spanish language added to bot.
 
 ## ABOUT V15.0 UPDATE / news: 2022, 31 DECEMBER
 - Indonesian language added to bot.
