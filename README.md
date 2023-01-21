@@ -4,6 +4,9 @@
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
 
+## ABOUT V15.1 UPDATE / news: 2023, 22 JANUARY
+- Espanol language added to bot.
+
 ## ABOUT V15.0 UPDATE / news: 2022, 31 DECEMBER
 - Indonesian language added to bot.
 - Sponsor, vote section has been added to the statistics command.
