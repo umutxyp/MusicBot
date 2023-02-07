@@ -1,5 +1,5 @@
 const language = {
-    loadevent: "Loaded player event",
+    loadevent: "Загружено событие плеера",
     loadcmd: "Команда загружена.",
     ready: " успешно подключено.",
     loadslash: "Перезагрузка [/] команд прошла успешно.",
