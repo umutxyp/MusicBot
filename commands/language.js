@@ -67,12 +67,21 @@ module.exports = {
             .setEmoji('🇪🇸'),
         )
 
+        let buttons3 = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+            .setLabel("Русский")
+            .setCustomId('ru')
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('🇷🇺')
+        )
+        
+
       let embed = new EmbedBuilder()
         .setColor(client.config.embedColor)
         .setTitle("Select a language")
         .setTimestamp()
         .setFooter({ text: `MusicMaker ❤️` })
-      interaction?.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
+      interaction?.reply({ embeds: [embed], components: [buttons, buttons2, buttons3] }).then(async Message => {
 
         const filter = i => i.user.id === interaction?.user?.id
         let col = await Message.createMessageComponentCollector({ filter, time: 30000 });
@@ -186,6 +195,17 @@ module.exports = {
           }
         }, { upsert: true }).catch(e => { })
         await interaction?.editReply({ content: `El idioma del bot se cambió con éxito al español. :flag_es:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+        await button?.deferUpdate().catch(e => { })
+        await col?.stop()
+        break
+
+        case 'ru':
+        await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
+          $set: {
+            language: 'ru'
+          }
+        }, { upsert: true }).catch(e => { })
+        await interaction?.editReply({ content: `Язык бота успешно изменен на русский. :flag_ru:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
         await button?.deferUpdate().catch(e => { })
         await col?.stop()
         break
