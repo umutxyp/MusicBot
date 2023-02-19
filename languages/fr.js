@@ -1,7 +1,7 @@
 const language = {
   loadevent : "Événement de joueur chargé", 
   loadcmd : "Commande chargée", 
-  prêt : " connecté avec succès.", 
+  ready : " connecté avec succès.", 
   loadslash: "Les commandes d'application [/] ont été rechargées avec succès.", 
   error1 : "Le jeton de bot que vous avez entré dans votre projet est incorrect ou les intentions de votre bot sont désactivées!", 
   error2 : "Veuillez définir le jeton du bot dans token.js ou dans votre fichier .env dans votre projet!", 
