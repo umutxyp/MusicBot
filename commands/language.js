@@ -72,7 +72,12 @@ module.exports = {
             .setLabel("Русский")
             .setCustomId('ru')
             .setStyle(ButtonStyle.Secondary)
-            .setEmoji('🇷🇺')
+            .setEmoji('🇷🇺'),
+            new ButtonBuilder()
+            .setLabel("Deutsch")
+            .setCustomId('de')
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('🇩🇪'),
         )
         
 
@@ -209,6 +214,17 @@ module.exports = {
         await button?.deferUpdate().catch(e => { })
         await col?.stop()
         break
+
+        case 'de':
+          await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
+            $set: {
+              language: 'de'
+            }
+          }, { upsert: true }).catch(e => { })
+          await interaction?.editReply({ content: `Die Sprache des Bots wurde erfolgreich auf Deutsch geändert. :flag_de:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+          await button?.deferUpdate().catch(e => { })
+          await col?.stop()
+          break
 
           }
         })
