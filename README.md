@@ -1,6 +1,6 @@
 # Discord.js v14 Slash Commands Music Bot
 <h1>Add MusicMaker: https://bit.ly/3R4uTSf</h1><br>
-
+<h1>Setup Video 13+ Language: https://youtu.be/k3HuFdCcUmA</h1>
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
 ## ABOUT V15.2 UPDATE / news: 2023, 15 MARCH
@@ -85,7 +85,7 @@
 3d, bassboost, echo, karaoke, nightcore, vaporwave, flanger, gate, haas, reverse, surround, mcompand, phaser, tremolo, earwax
 
 ## Bot Setup
-[Click here for a setup video](https://youtu.be/mDKQJeWWvss), but these instructions are up to date so make sure to follow them if the video is different.
+[Click here for a setup video](https://youtu.be/k3HuFdCcUmA), but these instructions are up to date so make sure to follow them if the video is different.
 
 - [Install node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-version-manager-to-install-nodejs-and-npm)
 - Clone this repository or download as a zip and extract the contents.
