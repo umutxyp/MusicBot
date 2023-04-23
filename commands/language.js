@@ -237,7 +237,7 @@ module.exports = {
               language: 'ja'
             }
           }, { upsert: true }).catch(e => { })
-          await interaction?.editReply({ content: `Die Sprache des Bots wurde erfolgreich auf Deutsch geändert. :flag_de:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+          await interaction?.editReply({ content: `言語を日本語に設定しました。 :flag_jp:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
           await button?.deferUpdate().catch(e => { })
           await col?.stop()
           break
