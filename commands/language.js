@@ -78,6 +78,11 @@ module.exports = {
             .setCustomId('de')
             .setStyle(ButtonStyle.Secondary)
             .setEmoji('🇩🇪'),
+            new ButtonBuilder()
+            .setLabel("日本語")
+            .setCustomId('ja')
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('JP'),
         )
         
 
@@ -222,6 +227,17 @@ module.exports = {
             }
           }, { upsert: true }).catch(e => { })
           await interaction?.editReply({ content: `Die Sprache des Bots wurde erfolgreich auf Deutsch geändert. :flag_de:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
+          await button?.deferUpdate().catch(e => { })
+          await col?.stop()
+          break
+
+        case 'ja':
+          await db?.musicbot?.updateOne({ guildID: interaction?.guild?.id }, {
+            $set: {
+              language: 'ja'
+            }
+          }, { upsert: true }).catch(e => { })
+          await interaction?.editReply({ content: `言語を日本語に設定しました。 :flag_jp:`, embeds: [], components: [], ephemeral: true }).catch(e => { })
           await button?.deferUpdate().catch(e => { })
           await col?.stop()
           break
