@@ -4,6 +4,9 @@
 
 ![](https://komarev.com/ghpvc/?username=umutxyp&color=blue)
 
+## ABOUT V15.3 UPDATE / news: 2023, 25 APRIL
+- Japanese language added to bot.
+
 ## ABOUT V15.2 UPDATE / news: 2023, 15 MARCH
 - German language added to bot.
 
