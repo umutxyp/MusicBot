@@ -78,11 +78,11 @@ module.exports = {
             .setCustomId('de')
             .setStyle(ButtonStyle.Secondary)
             .setEmoji('🇩🇪'),
-            new ButtonBuilder()
-            .setLabel("日本語")
-            .setCustomId('ja')
-            .setStyle(ButtonStyle.Secondary)
-            .setEmoji('JP'),
+        new ButtonBuilder()
+          .setLabel("日本語")
+          .setCustomId('ja')
+          .setStyle(ButtonStyle.Secondary)
+          .setEmoji('🇯🇵'),
         )
         
 
