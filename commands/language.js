@@ -82,7 +82,7 @@ module.exports = {
             .setLabel("日本語")
             .setCustomId('ja')
             .setStyle(ButtonStyle.Secondary)
-            .setEmoji('JP'),
+            .setEmoji('🇯🇵'),
         )
         
 
