@@ -1,5 +1,5 @@
 const language = {
-    loadevent: "事件讀取中...",
+    loadevent: "事件讀取中 - - 由 notlin4、KageRyo 和 umutxyp 翻译...",
     loadcmd: "指令讀取中...",
     ready: "連線成功！",
     loadslash: "成功載入機器人 [/] 指令",
