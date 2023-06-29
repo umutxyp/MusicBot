@@ -1,5 +1,5 @@
    const language = {
-    loadevent: "Wiedergabeevent geladen",
+    loadevent: "Wiedergabeevent geladen - Übersetzt von Momixxxxxxx",
     loadcmd: "Befehl geladen",
     ready: "erfolgreich verbunden.",
     loadslash: "Erfolgreich die Anwendungs-[/]-Befehle neugeladen.",
