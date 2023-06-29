@@ -1,5 +1,5 @@
 const language = {
-    loadevent: "Yüklenen player eventi",
+    loadevent: "Yüklenen player eventi - Umutxyp ve hctaskiran tarafından çevrildi",
     loadcmd: "Yüklenen komut",
     ready: " başarıyla bağlandı.",
     loadslash: "Uygulama [/] komutları başarıyla yeniden yüklendi.",
