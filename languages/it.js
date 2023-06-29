@@ -1,5 +1,5 @@
 const language = {
-    loadevent: "Evento giocatore caricato",
+    loadevent: "Evento giocatore caricato - Tradotto da MrDick004",
     loadcmd: "Comando caricato",
     ready: " Connesso con successo",
     loadslash: "Ricaricata con successo l'applicazione [/] comandi",

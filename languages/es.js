@@ -1,5 +1,5 @@
 const language = {
-  loadevent: "Evento de reproductor cargado",
+  loadevent: "Evento de reproductor cargado - Traducido por priv4cy",
   loadcmd: "Comando cargado",
   ready: " conectado correctamente.",
   loadslash: "Recarga exitosa de comandos de aplicación [/].",

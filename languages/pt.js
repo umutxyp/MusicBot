@@ -1,5 +1,6 @@
 const language = {
-    loadevent: "Player de evento carregado",
+    loadevent: "Player de evento carregado - Vertaald door imwezz en
+umutxyp",
     loadcmd: "Comando carregado",
     ready: "conectado com sucesso.",
     loadslash: "comandos [/] recarregados com sucesso.",

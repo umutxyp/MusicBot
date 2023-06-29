@@ -1,5 +1,5 @@
 const language = {
-    loadevent: "Memuat acara pemain",
+    loadevent: "Memuat acara pemain - Diterjemahkan oleh bimantaraz",
     loadcmd: "Perintah dimuat",
     siap: "berhasil terhubung.",
     loadlash: "Perintah aplikasi [/] berhasil dimuat ulang.",
