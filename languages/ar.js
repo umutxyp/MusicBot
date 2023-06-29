@@ -1,5 +1,5 @@
 const language = {
- loadevent: "Loaded player event",
+ loadevent: "Loaded player event - Translated by riobits and umutxyp",
  loadcmd: "Loaded command",
  ready: " successfully connected.",
  loadslash: "Successfully reloaded application [/] commands.",
