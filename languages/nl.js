@@ -1,5 +1,6 @@
 const language = {
-    loadevent: "Speler event geladen",
+    loadevent: "Speler event geladen - Vertaald door Raadsl en
+umutxyp",
     loadcmd: "Command geladen",
     ready: " successvol verbonden.",
     loadslash: "Applicatie [/] commando's succesvol herladen .",
