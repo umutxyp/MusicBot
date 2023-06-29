@@ -1,5 +1,5 @@
 const language = {
-  loadevent : "Événement de joueur chargé", 
+  loadevent : "Événement de joueur chargé - Traduit par MrCerise", 
   loadcmd : "Commande chargée", 
   ready : " connecté avec succès.", 
   loadslash: "Les commandes d'application [/] ont été rechargées avec succès.", 
