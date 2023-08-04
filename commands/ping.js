@@ -13,7 +13,7 @@ module.exports = {
     try {
 
       const start = Date.now();
-      interaction.reply("Pong!").then(msg => {
+      interaction.reply("0").then(msg => {
         const end = Date.now();
         const embed = new EmbedBuilder()
           .setColor(client.config.embedColor)
