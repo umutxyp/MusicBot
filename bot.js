@@ -24,6 +24,7 @@ client.config = config;
 client.player = new DisTube(client, {
   leaveOnStop: config.opt.voiceConfig.leaveOnStop,
   leaveOnFinish: config.opt.voiceConfig.leaveOnFinish,
+  leaveOnEmpty: config.opt.voiceConfig.leaveOnEmpty.status,
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
@@ -31,7 +32,7 @@ client.player = new DisTube(client, {
     new SpotifyPlugin(),
     new SoundCloudPlugin(),
     new YtDlpPlugin(),
-    new DeezerPlugin()
+    new DeezerPlugin(),
   ],
 });
 
