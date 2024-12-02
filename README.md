@@ -12,7 +12,7 @@ A professional and completely free music bot for Discord, based on **DisTube** a
 
 ## Links 🔗
 
-- [Invite the Bot](https://discord.com/oauth2/authorize?client_id=774043716797071371&permissions=277028620608&scope=applications.commands%20bot)  
+- [Invite MusicMaker](https://discord.com/oauth2/authorize?client_id=774043716797071371&permissions=277028620608&scope=applications.commands%20bot)  
 - [Support Server](https://discord.gg/SnH6fVk8hJ)  
 - [Code Share](https://codeshare.me)
 - [MongoDB](https://mongodb.com)  
