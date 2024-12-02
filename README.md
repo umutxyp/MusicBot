@@ -10,6 +10,17 @@ A professional and completely free music bot for Discord, based on **DisTube** a
 
 ---
 
+## Links 🔗
+
+- [Invite the Bot](https://discord.com/oauth2/authorize?client_id=774043716797071371&permissions=277028620608&scope=applications.commands%20bot)  
+- [Support Server](https://discord.gg/SnH6fVk8hJ)  
+- [Code Share](https://codeshare.me)
+- [MongoDB](https://mongodb.com)  
+- [Discord Developers](https://discord.dev)  
+- [Download Node.js](https://nodejs.org/)  
+
+---
+
 ## Key Features 🌟
 
 - **24/7 Playback**: Continuous music playback, even when idle.  
@@ -23,7 +34,7 @@ A professional and completely free music bot for Discord, based on **DisTube** a
 
 ## Supported Languages 🌍
 
-**ar**, **de**, **en**, **es**, **fr**, **id**, **it**, **ja**, **nl**, **pt**, **ru**, **tr**, **zh_TW**
+**Arabic**, **German**, **English**, **Spanish**, **French**, **Indonesian**, **Italian**, **Japanese**, **Dutch**, **Portuguese**, **Russian**, **Turkish**, **Traditional Chinese**
 
 ---
 
@@ -128,16 +139,6 @@ This bot uses the following NPM packages:
 ## Contributing 🤝
 
 Feel free to contribute to the project by submitting a pull request or reporting issues. Contributions are always welcome!
-
----
-
-## Links 🔗
-
-- [Invite the Bot](#)  
-- [Support Server](#)  
-- [MongoDB](https://mongodb.com)  
-- [Discord Developers](https://discord.dev)  
-- [Download Node.js](https://nodejs.org/)  
 
 ---
 
