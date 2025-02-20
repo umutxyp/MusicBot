@@ -4,24 +4,23 @@
   "description": "A professional and completely free distube based music bot for your Discord server, compatible with the highly modernized discord.js v14.16 version.",
   "main": "index.js",
   "dependencies": {
-    "@discordjs/builders": "^1.9.0",
-    "@discordjs/opus": "^0.9.0",
-    "@discordjs/rest": "^2.4.0",
+    "@discordjs/builders": "^1.10.1",
+    "@discordjs/opus": "^0.10.0",
+    "@discordjs/rest": "^2.4.3",
     "@discordjs/voice": "^0.18.0",
-    "@distube/deezer": "^1.0.0",
     "@distube/soundcloud": "^1.3.3",
     "@distube/spotify": "^1.5.1",
     "@distube/yt-dlp": "^1.1.3",
     "@distube/ytdl": "^2.0.6",
     "@distube/ytdl-core": "^4.15.1",
     "@top-gg/sdk": "^3.1.6",
-    "discord.js": "^14.16.3",
+    "discord.js": "^14.18.0",
     "distube": "^4.0.4",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^5.2.0",
     "libsodium-wrappers": "^0.7.15",
-    "mongoose": "^8.8.3",
+    "mongoose": "^8.10.1",
     "sapphire": "^0.0.3",
     "topgg-autoposter": "^2.0.2",
     "ytdl-core": "^4.11.5"
@@ -33,6 +32,6 @@
   "author": "Umut Bayraktar (umutxyp)",
   "license": "MIT",
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   }
 }
