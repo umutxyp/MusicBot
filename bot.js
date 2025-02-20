@@ -2,7 +2,6 @@ const { Client, GatewayIntentBits, Partials } = require("discord.js");
 const { DisTube } = require("distube");
 const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
-const { DeezerPlugin } = require("@distube/deezer");
 const { YtDlpPlugin } = require("@distube/yt-dlp");
 const config = require("./config.js");
 const fs = require("fs");
@@ -31,8 +30,7 @@ client.player = new DisTube(client, {
   plugins: [
     new SpotifyPlugin(),
     new SoundCloudPlugin(),
-    new YtDlpPlugin(),
-    new DeezerPlugin(),
+    new YtDlpPlugin()
   ],
 });
 
