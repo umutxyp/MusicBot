@@ -2,7 +2,7 @@ const config = require("../config.js");
 const { EmbedBuilder, InteractionType, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
 const db = require("../mongoDB");
 const fs = require("fs")
-module.exports = async (client, interaction) => {
+module.exports = async (client, token, interaction) => {
     let lang = await db?.musicbot?.findOne({ guildID: interaction?.guild?.id })
     lang = lang?.language || client.language
     lang = require(`../languages/${lang}.js`);
