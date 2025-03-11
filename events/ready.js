@@ -1,6 +1,6 @@
 const config = require("../config.js");
 const { ActivityType  } = require("discord.js")
-module.exports = async (client) => {
+module.exports = async (client, token) => {
 let lang = client.language
 lang = require(`../languages/${lang}.js`);
 
@@ -8,7 +8,7 @@ if (config.mongodbURL || process.env.MONGO) {
 
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v10");
-const rest = new REST({ version: "10" }).setToken(config.TOKEN || process.env.TOKEN);
+const rest = new REST({ version: "10" }).setToken(token);
 (async () => {
 try {
 await rest.put(Routes.applicationCommands(client.user.id), {
