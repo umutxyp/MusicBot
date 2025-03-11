@@ -44,7 +44,7 @@ Update the `config.js` file with your details:
 
 ```javascript
 module.exports = {
-  TOKEN: "", // Discord bot token
+  TOKENS: [""], // Discord bot token's / you can run one or more bots at the same time.
   ownerID: [""], // Discord user ID(s) of the owner(s)
   botInvite: "", // Bot invite link
   supportServer: "", // Support server invite link
@@ -103,7 +103,7 @@ module.exports = {
 2. Clone this repository or download the zip.  
 3. Install dependencies:  
    ```bash
-   npm install
+   setup.bat
    ```  
 4. Configure your bot:  
    - Replace placeholders in `config.js` with your bot credentials.  
