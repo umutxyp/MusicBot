@@ -1,5 +1,5 @@
 const db = require("../mongoDB");
-module.exports = async (client, oldState, newState) => {
+module.exports = async (client, token, oldState, newState) => {
 const queue = client.player.getQueue(oldState.guild.id);
 if(queue || queue?.playing){
 if(client?.config?.opt?.voiceConfig?.leaveOnEmpty?.status === true){
