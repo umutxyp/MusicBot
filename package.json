@@ -1,0 +1,47 @@
+{
+  "name": "musicbot",
+  "version": "16.0.0",
+  "description": "Advanced Discord v14.22 Music Bot with YouTube, Spotify, SoundCloud, and Direct Link support",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "shard": "node shard.js",
+    "test": "node --check index.js"
+  },
+  "keywords": [
+    "discord",
+    "music",
+    "bot",
+    "youtube",
+    "spotify",
+    "soundcloud",
+    "audio",
+    "umutxyp"
+  ],
+  "author": "umutxyp",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/opus": "^0.10.0",
+    "@discordjs/voice": "^0.19.0",
+    "@snazzah/davey": "^0.1.7",
+    "axios": "^1.12.0",
+    "chalk": "^4.1.2",
+    "discord.js": "^14.22.1",
+    "dotenv": "^16.4.5",
+    "ffmpeg-static": "^5.2.0",
+    "fs-extra": "^11.2.0",
+    "genius-lyrics": "^4.4.7",
+    "moment": "^2.30.1",
+    "node-fetch": "^3.3.2",
+    "node-json-db": "^2.3.1",
+    "opusscript": "^0.0.8",
+    "prism-media": "^1.3.5",
+    "spotify-web-api-node": "^5.0.2",
+    "youtube-dl-exec": "^3.0.25",
+    "ytdl-core": "^4.11.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
