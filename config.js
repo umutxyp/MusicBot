@@ -26,10 +26,10 @@ module.exports = {
         defaultVolume: 100,
         maxQueueSize: 100,
         maxPlaylistSize: 50,
-        status: process.env.STATUS || '🎵 MusicMaker | /play',
+        status: process.env.STATUS || '🎵 Beatra | /play',
         embedColor: process.env.EMBED_COLOR || '#FF6B6B',
         supportServer: process.env.SUPPORT_SERVER || 'https://discord.gg/ACJQzJuckW',
-        website: process.env.WEBSITE || 'https://musicmaker.vercel.app',
+        website: process.env.WEBSITE || 'https://beatra.app',
         invite: 'https://discord.com/oauth2/authorize?client_id=' + process.env.CLIENT_ID + '&permissions=8&scope=bot%20applications.commands',
     },
 
