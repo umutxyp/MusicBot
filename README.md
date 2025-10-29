@@ -1,13 +1,13 @@
 <div align="center">
 
-# MusicMaker v16.0 🎶
+# Beatra v16.0 🎶
 
 ![GitHub Stars](https://img.shields.io/github/stars/umutxyp/musicbot?style=social)
 ![GitHub Forks](https://img.shields.io/github/forks/umutxyp/musicbot?style=social)
 ![GitHub Issues](https://img.shields.io/github/issues/umutxyp/musicbot)
 ![GitHub License](https://img.shields.io/github/license/umutxyp/musicbot)
 
-[Invite the public MusicMaker bot](https://discord.com/oauth2/authorize?client_id=774043716797071371&permissions=277028620608&scope=applications.commands%20bot) • [Support Server](https://discord.gg/ACJQzJuckW) • [MusicMaker Web Dashboard](https://music-maker.app) • [CodeShare](https://codeshare.me)
+[Invite the public Beatra bot](https://discord.com/oauth2/authorize?client_id=774043716797071371&permissions=277028620608&scope=applications.commands%20bot) • [Support Server](https://discord.gg/ACJQzJuckW) • [Beatra Web Dashboard](https://beatra.app) • [CodeShare](https://codeshare.me)
 
 ## Project Highlights
 | Capability | Details |
@@ -26,7 +26,7 @@
 
 ---
 
-## ✨ Why MusicMaker?
+## ✨ Why Beatra?
 
 - **Slash-first UX** – `/play`, `/search`, `/language`, `/nowplaying`, and `/help` respond instantly with localized embeds and live-updating buttons.
 - **Platform polyglot** – Streams from YouTube, Spotify, SoundCloud, or a direct MP3/WAV/OGG link. Spotify albums, playlists, and artist radios turn into fully hydrated queues.
@@ -125,7 +125,7 @@ Slash commands register automatically when the bot starts. Guild-scoped deployme
 
 ## Configuration
 
-MusicMaker reads from both `config.js` defaults and environment variables via `.env`. Update whichever approach fits your hosting workflow.
+Beatra reads from both `config.js` defaults and environment variables via `.env`. Update whichever approach fits your hosting workflow.
 
 ### `.env` Cheat Sheet
 
@@ -137,10 +137,10 @@ SPOTIFY_CLIENT_ID=spotify_client_id
 SPOTIFY_CLIENT_SECRET=spotify_client_secret
 GENIUS_CLIENT_ID=optional_genius_client_id
 GENIUS_CLIENT_SECRET=optional_genius_client_secret
-STATUS=🎵 MusicMaker | /play
+STATUS=🎵 Beatra | /play
 EMBED_COLOR=#FF6B6B
 SUPPORT_SERVER=https://discord.gg/ACJQzJuckW
-WEBSITE=https://musicmaker.vercel.app
+WEBSITE=https://beatra.app
 COOKIES_FROM_BROWSER=chrome
 COOKIES_FILE=./cookies.txt
 ```
@@ -166,7 +166,7 @@ COOKIES_FILE=./cookies.txt
 ## Spotify API Setup
 
 1. Visit the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/), sign in, and click **Create an App**.
-2. Name your integration (e.g., `MusicMaker Bot`) and enable **Web API**.
+2. Name your integration (e.g., `Beatra Bot`) and enable **Web API**.
 3. Reveal and copy the **Client ID** and **Client Secret**.
 4. Add a redirect URI (any valid URL, e.g., `https://localhost/callback`) – although client credentials flow is used, Spotify requires at least one placeholder.
 5. Paste both values into your `.env` (`SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`).
@@ -178,7 +178,7 @@ Without these credentials Spotify requests fall back to zero results.
 
 ## Genius API Setup (Optional)
 
-MusicMaker uses **web scraping** by default to fetch lyrics from Genius—no API key required! However, if you want **higher rate limits** and **faster responses**, you can optionally add Genius API credentials.
+Beatra uses **web scraping** by default to fetch lyrics from Genius—no API key required! However, if you want **higher rate limits** and **faster responses**, you can optionally add Genius API credentials.
 
 ### Why Use Genius API?
 
@@ -192,7 +192,7 @@ MusicMaker uses **web scraping** by default to fetch lyrics from Genius—no API
 
 1. Visit the [Genius API Clients Page](https://genius.com/api-clients), sign in with your Genius account (or create one).
 2. Click **New API Client** and fill in:
-   - **App Name:** `MusicMaker Bot` (or any name)
+   - **App Name:** `Beatra Bot` (or any name)
    - **App Website URL:** `https://localhost` (placeholder is fine)
    - **Redirect URI:** `https://localhost/callback` (not used, but required)
 3. Click **Save** and reveal your **Client ID** and **Client Secret**.
@@ -277,7 +277,7 @@ If you still see bot detection errors:
 
 ## Sharding for Large Bots (1000+ Servers)
 
-When your bot reaches **1,000+ servers**, Discord **requires** you to use sharding to distribute the load across multiple processes. MusicMaker includes a fully automated sharding system powered by Discord.js's `ShardingManager`.
+When your bot reaches **1,000+ servers**, Discord **requires** you to use sharding to distribute the load across multiple processes. Beatra includes a fully automated sharding system powered by Discord.js's `ShardingManager`.
 
 > 📚 **[Read the complete Sharding Guide](./SHARDING.md)** for detailed documentation, troubleshooting, and best practices.
 
@@ -429,7 +429,7 @@ All button sessions carry a short-lived signature, preventing stale interactions
 
 ## 🎲 Autoplay System
 
-MusicMaker features an intelligent autoplay engine that keeps the music flowing when your queue runs out.
+Beatra features an intelligent autoplay engine that keeps the music flowing when your queue runs out.
 
 ### How It Works
 
@@ -515,7 +515,7 @@ Watch the autoplay engine work in real-time:
 
 ## 💾 Local Audio Cache System
 
-MusicMaker eliminates playback interruptions by pre-downloading and caching all audio locally before streaming to Discord.
+Beatra eliminates playback interruptions by pre-downloading and caching all audio locally before streaming to Discord.
 
 ### Why Local Caching?
 
@@ -525,7 +525,7 @@ Traditional Discord bots stream directly from YouTube/Spotify/SoundCloud URLs, w
 - ❌ Stream failures during Discord voice server load spikes
 - ❌ Quality drops when network conditions fluctuate
 
-**MusicMaker's solution:**
+**Beatra's solution:**
 - ✅ Downloads entire tracks to `audio_cache/` before playback
 - ✅ Streams from local disk at consistent quality
 - ✅ Zero dependency on external stream stability during playback
