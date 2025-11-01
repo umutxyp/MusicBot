@@ -2,7 +2,7 @@
 
 _Last updated: October 2, 2025_
 
-These Terms of Service ("Terms") govern your use of the MusicMaker Discord bot ("the Bot") created by **umutxyp**. By inviting, installing, or using the Bot on your Discord server, you agree to these Terms. If you do not agree, please remove the Bot from your server.
+These Terms of Service ("Terms") govern your use of the Beatra Discord bot ("the Bot") created by **umutxyp**. By inviting, installing, or using the Bot on your Discord server, you agree to these Terms. If you do not agree, please remove the Bot from your server.
 
 ## 1. Eligibility and Acceptance
 - You must comply with Discord's Terms of Service and Community Guidelines to use the Bot.
