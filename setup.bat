@@ -1,11 +1,11 @@
 @echo off
 color 0A
-title MusicMaker - Setup
+title Beatra - Setup
 cd /d "%~dp0"
 
 echo.
 echo ==========================================
-echo    MUSICMAKER SETUP
+echo    BEATRA SETUP
 echo ==========================================
 echo.
 echo Installing dependencies...
