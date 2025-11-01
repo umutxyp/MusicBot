@@ -2,7 +2,7 @@
 
 _Last updated: October 2, 2025_
 
-This Privacy Policy explains how the MusicMaker Discord bot ("the Bot") created by **umutxyp** collects, uses, and protects information when you invite and interact with the Bot on your Discord server.
+This Privacy Policy explains how the Beatra Discord bot ("the Bot") created by **umutxyp** collects, uses, and protects information when you invite and interact with the Bot on your Discord server.
 
 By adding the Bot to your server or interacting with it, you agree to the practices outlined below. If you do not agree with this Privacy Policy, please remove the Bot from your server.
 
