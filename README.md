@@ -7,7 +7,7 @@
 ![GitHub Issues](https://img.shields.io/github/issues/umutxyp/musicbot)
 ![GitHub License](https://img.shields.io/github/license/umutxyp/musicbot)
 
-[Invite the public Beatra bot](https://discord.com/oauth2/authorize?client_id=774043716797071371&permissions=277028620608&scope=applications.commands%20bot) • [Support Server](https://discord.gg/ACJQzJuckW) • [Beatra Web Dashboard](https://beatra.app) • [CodeShare](https://codeshare.me)
+[Invite the public Beatra bot](https://discord.com/oauth2/authorize?client_id=774043716797071371&permissions=277028620608&scope=applications.commands%20bot) • [Beatra Bot Support Server](https://discord.gg/ACJQzJuckW) • [Beatra Web Dashboard](https://beatra.app) • [CodeShare](https://codeshare.me)
 
 ## Project Highlights
 | Capability | Details |
