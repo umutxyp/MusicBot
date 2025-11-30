@@ -639,7 +639,6 @@ Add your own by copying `languages/en.json`, translating strings, and restarting
 3. Add or refine features (translation packs, UI tweaks, new providers).
 4. Open a pull request with a clear description and screenshots/console logs where relevant.
 
-Bug reports, feature ideas, and localization pull requests are all welcome. Swing by the [Support Server](https://discord.gg/ACJQzJuckW) to chat with the community.
 
 ---
 
