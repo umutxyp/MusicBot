@@ -77,7 +77,7 @@ discord-musicbot/
 
 ## Prerequisites
 
-- **Node.js** ≥ 18 (LTS recommended) and npm.
+- **Node.js** ≥ 24+ (LTS recommended) and npm.
 - **Git** for cloning the repository.
 - **Discord application** with a bot user created in the [Discord Developer Portal](https://discord.com/developers/applications).
 - *(Optional but recommended)* A VPS or host with stable bandwidth and low latency to Discord voice regions.
