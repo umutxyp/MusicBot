@@ -58,6 +58,7 @@ module.exports = {
         highWaterMark: 1 << 25,
         cookiesFromBrowser: process.env.COOKIES_FROM_BROWSER || null, // 'chrome', 'firefox', 'edge', 'safari'
         cookiesFile: process.env.COOKIES_FILE || null, // './cookies.txt'
+        poToken: process.env.YOUTUBE_PO_TOKEN || null, // YouTube PO Token (sunucu IP'leri için)
     },
 
     // Sharding Settings (for bots in 1000+ servers)

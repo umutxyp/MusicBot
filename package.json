@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node index.js",
     "shard": "node shard.js",
-    "test": "node --check index.js"
+    "test": "node --check index.js",
+    "postinstall": "node scripts/update-ytdlp.js"
   },
   "keywords": [
     "discord",
@@ -22,7 +23,6 @@
   "author": "umutxyp",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/opus": "^0.10.0",
     "@discordjs/voice": "^0.19.0",
     "@snazzah/davey": "^0.1.7",
     "axios": "^1.12.0",
