@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Permissions de contrôle",
     "music_control_requirement": "Pour gérer la musique, vous devez être la personne qui l’a lancée, avoir l’autorisation Gérer le serveur ou posséder un rôle nommé DJ."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube a bloqué cette requête (détection de bot)**\nYouTube refuse les requêtes depuis l'adresse IP de ce serveur.\n\n**Solution:** Ajoutez `COOKIES_FROM_BROWSER=chrome` (ou firefox/edge) ou `YOUTUBE_PO_TOKEN` dans le fichier `.env`. Consultez `YOUTUBE_FIX.md` pour les instructions détaillées.",
+    "youtube_age_restricted": "❌ **Vidéo à accès restreint par l'âge**\nCette vidéo nécessite un compte YouTube connecté.\n\n**Solution:** Définissez `COOKIES_FROM_BROWSER=chrome` dans `.env` pour que le bot utilise votre session YouTube du navigateur.",
+    "youtube_unavailable": "❌ **Vidéo non disponible**\nCette vidéo est privée, supprimée ou non disponible dans cette région. Essayez un autre lien ou une autre chanson.",
+    "youtube_geo_blocked": "❌ **Contenu géo-bloqué**\nCette vidéo est restreinte dans la région où ce bot est hébergé.\n\n**Solution:** Essayez un lien différent.",
+    "rate_limited": "❌ **Trop de requêtes (limite de débit)**\nYouTube ou une autre plateforme bloque temporairement les requêtes.\n\n**Solution:** Attendez quelques minutes et réessayez. Si cela arrive souvent, ajoutez `COOKIES_FROM_BROWSER` dans `.env`.",
+    "spotify_no_match": "❌ **Titre Spotify introuvable sur YouTube**\nImpossible de trouver une vidéo YouTube correspondante pour ce titre.\n\n**Solution:** Recherchez directement le nom de la chanson ou collez un lien YouTube.",
+    "no_results": "❌ **Aucun résultat**\nAucune chanson correspondant à votre recherche n'a été trouvée.\n\n**Solution:** Essayez un autre terme de recherche ou collez une URL directe.",
+    "network_error": "❌ **Erreur réseau**\nLe bot n'a pas pu se connecter à la plateforme musicale. Il s'agit généralement d'un problème temporaire.\n\n**Solution:** Attendez un moment et réessayez.",
+    "stream_failed": "❌ **Échec du flux audio**\nLe bot a trouvé le titre mais n'a pas pu démarrer le flux audio.\n\n**Solution:** Réessayez ou tentez une version différente de la chanson.",
+    "voice_no_permission": "❌ **Permissions du salon vocal manquantes**\nLe bot n'a pas la permission de rejoindre ou de parler dans votre salon vocal.\n\n**Solution:** Paramètres du salon vocal → Permissions → accordez au bot les permissions **Se connecter** et **Parler**.",
+    "unknown": "❌ **Une erreur inattendue s'est produite**\nQuelque chose s'est mal passé lors du traitement de votre requête.\n\n**Solution:** Réessayez dans un moment. Si le problème persiste, consultez les logs de la console du bot."
   }
 }

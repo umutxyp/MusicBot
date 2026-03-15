@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ 控制權限",
     "music_control_requirement": "若要管理音樂，你必須是啟動音樂的人，擁有管理伺服器權限，或擁有名稱為 DJ 的身分組。"
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube 封鎖了此請求（機器人偵測）**\nYouTube 正在拒絕來自此伺服器 IP 位址的請求。\n\n**解決方案：** 在 `.env` 檔案中新增 `COOKIES_FROM_BROWSER=chrome`（或 firefox/edge）或 `YOUTUBE_PO_TOKEN`。詳細步驟請參閱 `YOUTUBE_FIX.md`。",
+    "youtube_age_restricted": "❌ **年齡限制影片**\n此影片需要登入 YouTube 帳號才能存取。\n\n**解決方案：** 在 `.env` 中設定 `COOKIES_FROM_BROWSER=chrome`，讓機器人使用你瀏覽器的 YouTube 工作階段。",
+    "youtube_unavailable": "❌ **影片無法使用**\n此影片為私人影片、已被刪除或在此地區無法使用。請嘗試其他連結或歌曲。",
+    "youtube_geo_blocked": "❌ **地區限制內容**\n此影片在機器人所在地區受到限制。\n\n**解決方案：** 請嘗試其他連結。",
+    "rate_limited": "❌ **請求過多（速率限制）**\nYouTube 或其他平台正在暫時封鎖請求。\n\n**解決方案：** 等待幾分鐘後重試。如果經常發生，請在 `.env` 中新增 `COOKIES_FROM_BROWSER`。",
+    "spotify_no_match": "❌ **在 YouTube 上未找到 Spotify 曲目**\n未能找到與此 Spotify 歌曲相符的 YouTube 影片。\n\n**解決方案：** 直接搜尋歌曲名稱，或貼上 YouTube 連結。",
+    "no_results": "❌ **無結果**\n未找到與你的搜尋相符的歌曲。\n\n**解決方案：** 嘗試不同的搜尋詞，或貼上直接 URL。",
+    "network_error": "❌ **網路錯誤**\n機器人無法連線至音樂平台。這通常是暫時性問題。\n\n**解決方案：** 稍後重試。",
+    "stream_failed": "❌ **音訊串流失敗**\n機器人找到了曲目，但無法啟動音訊串流。\n\n**解決方案：** 重試，或嘗試歌曲的不同版本。",
+    "voice_no_permission": "❌ **缺少語音頻道權限**\n機器人沒有權限加入或在你的語音頻道中說話。\n\n**解決方案：** 語音頻道設定 → 權限 → 授予機器人**連線**和**說話**權限。",
+    "unknown": "❌ **發生意外錯誤**\n處理你的請求時出現了問題。\n\n**解決方案：** 稍後重試。如果問題持續存在，請檢查機器人主控台日誌。"
   }
 }

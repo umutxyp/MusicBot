@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Kontrol Yetkileri",
     "music_control_requirement": "Müziği yönetmek için müziği başlatan kişi siz olmalısınız veya Sunucuyu Yönet yetkisine sahip olmalısınız veya DJ isimli bir role sahip olmalısınız."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube bu isteği engelledi (bot tespiti)**\nYouTube, bu sunucunun IP adresinden gelen istekleri reddediyor.\n\n**Çözüm:** `.env` dosyasına `COOKIES_FROM_BROWSER=chrome` (veya firefox/edge) ya da `YOUTUBE_PO_TOKEN` ekleyin. Adım adım talimatlar için `YOUTUBE_FIX.md` dosyasına bakın.",
+    "youtube_age_restricted": "❌ **Yaşa kısıtlı video**\nBu videoya erişmek için YouTube hesabıyla giriş yapılması gerekiyor.\n\n**Çözüm:** `.env` dosyasına `COOKIES_FROM_BROWSER=chrome` ekleyin. Bot, tarayıcınızın YouTube oturumunu kullanır.",
+    "youtube_unavailable": "❌ **Video kullanılamıyor**\nBu video gizli, silinmiş veya bu bölgede kullanılamıyor. Farklı bir şarkı veya link deneyin.",
+    "youtube_geo_blocked": "❌ **Bölge kısıtlaması**\nBu video, botun barındırıldığı bölgede erişime kısıtlı.\n\n**Çözüm:** Farklı bir link deneyin.",
+    "rate_limited": "❌ **Çok fazla istek (rate limit)**\nYouTube veya başka bir platform, bu sunucudan gelen istekleri geçici olarak engelliyor.\n\n**Çözüm:** Birkaç dakika bekleyip tekrar deneyin. Sık yaşanıyorsa `.env` dosyasına `COOKIES_FROM_BROWSER` ekleyin.",
+    "spotify_no_match": "❌ **Spotify şarkısı YouTube'da bulunamadı**\nBu Spotify şarkısı için eşleşen bir YouTube videosu bulunamadı. Şarkı çok yeni veya bölge kısıtlı olabilir.\n\n**Çözüm:** Spotify linki yerine şarkı adıyla arama yapın ya da direkt YouTube linki yapıştırın.",
+    "no_results": "❌ **Sonuç bulunamadı**\nAramanız için eşleşen şarkı bulunamadı.\n\n**Çözüm:** Farklı bir arama terimi deneyin veya direkt URL yapıştırın (YouTube, Spotify veya SoundCloud).",
+    "network_error": "❌ **Ağ hatası**\nBot, müzik platformuna bağlanamadı. Bu genellikle geçici bir sorundur.\n\n**Çözüm:** Bir süre bekleyip tekrar deneyin. Sorun devam ederse sunucunun internet bağlantısını kontrol edin.",
+    "stream_failed": "❌ **Ses akışı başarısız**\nBot şarkı bilgisini buldu ancak ses akışını başlatamadı.\n\n**Çözüm:** Tekrar deneyin. Sorun devam ederse şarkının farklı bir versiyonunu deneyin.",
+    "voice_no_permission": "❌ **Ses kanalı izni eksik**\nBotun ses kanalınıza katılma veya konuşma izni yok.\n\n**Çözüm:** Ses kanalı ayarları → İzinler → Bota **Bağlan** ve **Konuş** izinleri verin.",
+    "unknown": "❌ **Beklenmeyen bir hata oluştu**\nİsteğiniz işlenirken bir şeyler ters gitti.\n\n**Çözüm:** Bir an sonra tekrar deneyin. Sorun devam ederse bot konsolundaki tam hata günlüğünü kontrol edin."
   }
 }

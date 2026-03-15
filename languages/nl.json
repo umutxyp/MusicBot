@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Bedieningstoestemmingen",
     "music_control_requirement": "Om de muziek te beheren moet je degene zijn die deze is gestart, de machtiging Server beheren hebben of een rol met de naam DJ hebben."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube heeft dit verzoek geblokkeerd (botdetectie)**\nYouTube weigert verzoeken van het IP-adres van deze server.\n\n**Oplossing:** Voeg `COOKIES_FROM_BROWSER=chrome` (of firefox/edge) of `YOUTUBE_PO_TOKEN` toe aan het `.env`-bestand. Zie `YOUTUBE_FIX.md` voor stapsgewijze instructies.",
+    "youtube_age_restricted": "❌ **Leeftijdsbeperkt video**\nDeze video vereist een ingelogd YouTube-account.\n\n**Oplossing:** Stel `COOKIES_FROM_BROWSER=chrome` in `.env` in zodat de bot je YouTube-sessie in de browser kan gebruiken.",
+    "youtube_unavailable": "❌ **Video niet beschikbaar**\nDeze video is privé, verwijderd of niet beschikbaar in deze regio. Probeer een andere link of nummer.",
+    "youtube_geo_blocked": "❌ **Geografisch geblokkeerde inhoud**\nDeze video is beperkt in de regio waar deze bot wordt gehost.\n\n**Oplossing:** Probeer een andere link.",
+    "rate_limited": "❌ **Te veel verzoeken (snelheidslimiet)**\nYouTube of een ander platform blokkeert tijdelijk verzoeken.\n\n**Oplossing:** Wacht een paar minuten en probeer het opnieuw. Als dit vaak voorkomt, voeg dan `COOKIES_FROM_BROWSER` toe aan `.env`.",
+    "spotify_no_match": "❌ **Spotify-nummer niet gevonden op YouTube**\nEr kon geen overeenkomend YouTube-video worden gevonden voor dit nummer.\n\n**Oplossing:** Zoek direct op de naam van het nummer of plak een YouTube-link.",
+    "no_results": "❌ **Geen resultaten**\nEr zijn geen nummers gevonden die overeenkomen met je zoekopdracht.\n\n**Oplossing:** Probeer een ander zoekwoord of plak een directe URL.",
+    "network_error": "❌ **Netwerkfout**\nDe bot kon geen verbinding maken met het muziekplatform. Dit is meestal een tijdelijk probleem.\n\n**Oplossing:** Wacht even en probeer het opnieuw.",
+    "stream_failed": "❌ **Audiostream mislukt**\nDe bot vond het nummer maar kon de audiostream niet starten.\n\n**Oplossing:** Probeer het opnieuw of probeer een andere versie van het nummer.",
+    "voice_no_permission": "❌ **Ontbrekende spraakmachtigingen**\nDe bot heeft geen toestemming om deel te nemen aan of te spreken in je spraakkanaal.\n\n**Oplossing:** Spraakkanaalinstellingen → Machtigingen → geef de bot de machtigingen **Verbinden** en **Spreken**.",
+    "unknown": "❌ **Er is een onverwachte fout opgetreden**\nEr is iets misgegaan bij het verwerken van je verzoek.\n\n**Oplossing:** Probeer het over een moment opnieuw. Controleer het foutlogboek van de bot als het probleem aanhoudt."
   }
 }

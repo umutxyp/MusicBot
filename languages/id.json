@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Izin kontrol",
     "music_control_requirement": "Untuk mengelola musik kamu harus menjadi orang yang memulainya, memiliki izin Kelola Server, atau memiliki peran bernama DJ."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube memblokir permintaan ini (deteksi bot)**\nYouTube menolak permintaan dari alamat IP server ini.\n\n**Solusi:** Tambahkan `COOKIES_FROM_BROWSER=chrome` (atau firefox/edge) atau `YOUTUBE_PO_TOKEN` di file `.env`. Lihat `YOUTUBE_FIX.md` untuk panduan langkah demi langkah.",
+    "youtube_age_restricted": "❌ **Video dibatasi usia**\nVideo ini memerlukan akun YouTube yang sudah masuk.\n\n**Solusi:** Atur `COOKIES_FROM_BROWSER=chrome` di `.env` agar bot dapat menggunakan sesi YouTube browser Anda.",
+    "youtube_unavailable": "❌ **Video tidak tersedia**\nVideo ini bersifat privat, telah dihapus, atau tidak tersedia di wilayah ini. Coba link atau lagu lain.",
+    "youtube_geo_blocked": "❌ **Konten diblokir secara geografis**\nVideo ini dibatasi di wilayah tempat bot ini di-hosting.\n\n**Solusi:** Coba link yang berbeda.",
+    "rate_limited": "❌ **Terlalu banyak permintaan (rate limit)**\nYouTube atau platform lain sementara memblokir permintaan.\n\n**Solusi:** Tunggu beberapa menit dan coba lagi. Jika sering terjadi, tambahkan `COOKIES_FROM_BROWSER` di `.env`.",
+    "spotify_no_match": "❌ **Lagu Spotify tidak ditemukan di YouTube**\nTidak dapat menemukan video YouTube yang cocok untuk lagu ini.\n\n**Solusi:** Cari langsung dengan nama lagu atau tempelkan link YouTube.",
+    "no_results": "❌ **Tidak ada hasil**\nTidak ditemukan lagu yang cocok dengan pencarian Anda.\n\n**Solusi:** Coba kata kunci lain atau tempelkan URL langsung.",
+    "network_error": "❌ **Kesalahan jaringan**\nBot tidak dapat terhubung ke platform musik. Ini biasanya masalah sementara.\n\n**Solusi:** Tunggu sebentar dan coba lagi.",
+    "stream_failed": "❌ **Stream audio gagal**\nBot menemukan lagu tetapi tidak dapat memulai stream audio.\n\n**Solusi:** Coba lagi atau coba versi lain dari lagu tersebut.",
+    "voice_no_permission": "❌ **Izin saluran suara tidak ada**\nBot tidak memiliki izin untuk bergabung atau berbicara di saluran suara Anda.\n\n**Solusi:** Pengaturan saluran suara → Izin → berikan bot izin **Sambungkan** dan **Bicara**.",
+    "unknown": "❌ **Terjadi kesalahan tak terduga**\nSesuatu yang salah terjadi saat memproses permintaan Anda.\n\n**Solusi:** Coba lagi sebentar lagi. Jika masalah berlanjut, periksa log konsol bot."
   }
 }

@@ -8,6 +8,8 @@ class YouTube {
         const baseOptions = {
             noCheckCertificates: true,
             noWarnings: true,
+            retries: 3,
+            fragmentRetries: 3,
             // User-Agent header ekle
             addHeader: [
                 'referer:youtube.com',
@@ -16,11 +18,18 @@ class YouTube {
             ...extraOptions
         };
 
-        // Cookie ayarlarını ekle (eğer varsa)
-        if (config.ytdl.cookiesFromBrowser) {
+        // Auth öncelik sırası: PO Token > Browser Cookie > Cookie Dosyası > iOS client (fallback)
+        if (config.ytdl.poToken) {
+            // PO Token varsa web client'ı ile yüksek kaliteli stream
+            baseOptions.extractorArgs = `youtube:po_token=web+${config.ytdl.poToken};player_client=web`;
+        } else if (config.ytdl.cookiesFromBrowser) {
             baseOptions.cookiesFromBrowser = config.ytdl.cookiesFromBrowser;
         } else if (config.ytdl.cookiesFile) {
             baseOptions.cookies = config.ytdl.cookiesFile;
+        } else {
+            // Auth yapılandırılmamışsa iOS client kullan.
+            // Bu, VPS/sunucu IP'lerinde YouTube'un bot tespitini cookie veya token gerektirmeden atlar.
+            baseOptions.extractorArgs = 'youtube:player_client=ios';
         }
 
         return baseOptions;
@@ -92,6 +101,7 @@ class YouTube {
             return tracks;
 
         } catch (error) {
+            console.error('[YouTube] search() failed:', error.message || error);
             return [];
         }
     }
@@ -132,6 +142,7 @@ class YouTube {
             return track;
 
         } catch (error) {
+            console.error('[YouTube] getInfo() failed:', error.message || error);
             return null;
         }
     }
@@ -245,6 +256,7 @@ class YouTube {
             };
 
         } catch (error) {
+            console.error('[YouTube] getPlaylist() failed:', error.message || error);
             return null;
         }
     }
