@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Kontroltilladelser",
     "music_control_requirement": "For at administrere musik skal du være den person, der startede den, eller have Administrer Server-tilladelse, eller have en rolle ved navn DJ."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube blokerede denne anmodning (bot-detektion)**\nYouTube afviser anmodninger fra denne servers IP-adresse.\n\n**Løsning:** Tilføj `COOKIES_FROM_BROWSER=chrome` (eller firefox/edge) eller `YOUTUBE_PO_TOKEN` i `.env`-filen. Se `YOUTUBE_FIX.md` for trin-for-trin vejledning.",
+    "youtube_age_restricted": "❌ **Aldersbegrænset video**\nDenne video kræver en YouTube-konto for at få adgang.\n\n**Løsning:** Indstil `COOKIES_FROM_BROWSER=chrome` i `.env`, så botten kan bruge din browsers YouTube-session.",
+    "youtube_unavailable": "❌ **Video utilgængeligt**\nDenne video er privat, slettet eller ikke tilgængelig i dette område. Prøv et andet link eller en anden sang.",
+    "youtube_geo_blocked": "❌ **Geoblokeret indhold**\nDenne video er begrænset i det område, hvor denne bot hostes.\n\n**Løsning:** Prøv et andet link.",
+    "rate_limited": "❌ **For mange anmodninger (hastighedsbegrænsning)**\nYouTube eller en anden platform blokerer midlertidigt anmodninger.\n\n**Løsning:** Vent et par minutter og prøv igen. Hvis det sker ofte, tilføj `COOKIES_FROM_BROWSER` i `.env`.",
+    "spotify_no_match": "❌ **Spotify-sang ikke fundet på YouTube**\nKunne ikke finde en matchende YouTube-video til denne sang.\n\n**Løsning:** Søg direkte på sangens navn eller indsæt et YouTube-link.",
+    "no_results": "❌ **Ingen resultater**\nIngen matchende sange blev fundet for din søgning.\n\n**Løsning:** Prøv et andet søgeord eller indsæt et direkte link.",
+    "network_error": "❌ **Netværksfejl**\nBotten kunne ikke oprette forbindelse til musikplatformen. Dette er normalt et midlertidigt problem.\n\n**Løsning:** Vent et øjeblik og prøv igen.",
+    "stream_failed": "❌ **Lydstream mislykkedes**\nBotten fandt sangen, men kunne ikke starte lydstreamen.\n\n**Løsning:** Prøv igen eller prøv en anden version af sangen.",
+    "voice_no_permission": "❌ **Manglende tilladelser til stemmekanal**\nBotten har ikke tilladelse til at deltage eller tale i din stemmekanal.\n\n**Løsning:** Stemmekanals indstillinger → Tilladelser → giv botten **Forbind** og **Tal**.",
+    "unknown": "❌ **En uventet fejl opstod**\nNoget gik galt under behandlingen af din anmodning.\n\n**Løsning:** Prøv igen om et øjeblik. Tjek bottens konsol for hele fejlloggen, hvis problemet fortsætter."
   }
 }

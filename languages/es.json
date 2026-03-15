@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Permisos de control",
     "music_control_requirement": "Para gestionar la música debes ser quien la inició, tener el permiso Administrar servidor o tener un rol llamado DJ."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube bloqueó esta solicitud (detección de bot)**\nYouTube rechaza solicitudes desde la IP de este servidor.\n\n**Solución:** Añade `COOKIES_FROM_BROWSER=chrome` (o firefox/edge) o `YOUTUBE_PO_TOKEN` en el archivo `.env`. Consulta `YOUTUBE_FIX.md` para instrucciones paso a paso.",
+    "youtube_age_restricted": "❌ **Video con restricción de edad**\nEste video requiere una cuenta de YouTube para acceder.\n\n**Solución:** Establece `COOKIES_FROM_BROWSER=chrome` en `.env` para que el bot use tu sesión de YouTube del navegador.",
+    "youtube_unavailable": "❌ **Video no disponible**\nEste video es privado, fue eliminado o no está disponible en esta región. Prueba con otro enlace o canción.",
+    "youtube_geo_blocked": "❌ **Contenido bloqueado geográficamente**\nEste video está restringido en la región donde está alojado el bot.\n\n**Solución:** Prueba con un enlace diferente.",
+    "rate_limited": "❌ **Demasiadas solicitudes (rate limit)**\nYouTube u otra plataforma está bloqueando solicitudes temporalmente.\n\n**Solución:** Espera unos minutos e intenta de nuevo. Si ocurre seguido, añade `COOKIES_FROM_BROWSER` en `.env`.",
+    "spotify_no_match": "❌ **Canción de Spotify no encontrada en YouTube**\nNo se encontró un video de YouTube coincidente para esta canción.\n\n**Solución:** Busca directamente por el nombre de la canción o pega un enlace de YouTube.",
+    "no_results": "❌ **Sin resultados**\nNo se encontraron canciones que coincidan con tu búsqueda.\n\n**Solución:** Prueba con un término de búsqueda diferente o pega una URL directa.",
+    "network_error": "❌ **Error de red**\nEl bot no pudo conectarse a la plataforma de música. Suele ser un problema temporal.\n\n**Solución:** Espera un momento e intenta de nuevo.",
+    "stream_failed": "❌ **Fallo en el stream de audio**\nEl bot encontró la canción pero no pudo iniciar el stream de audio.\n\n**Solución:** Inténtalo de nuevo o prueba una versión diferente de la canción.",
+    "voice_no_permission": "❌ **Faltan permisos de canal de voz**\nEl bot no tiene permiso para unirse o hablar en tu canal de voz.\n\n**Solución:** Configuración del canal de voz → Permisos → otorga al bot los permisos **Conectar** y **Hablar**.",
+    "unknown": "❌ **Ocurrió un error inesperado**\nAlgo salió mal al procesar tu solicitud.\n\n**Solución:** Inténtalo de nuevo en un momento. Si el problema persiste, revisa la consola del bot."
   }
 }

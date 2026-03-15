@@ -52,8 +52,15 @@ const rest = new REST().setToken(config.discord.token);
         });
 
     } catch (error) {
-        console.error('❌ Error deploying commands:', error);
-        process.exit(1);
+        if (error.code === 50001) {
+            console.error('❌ Command deployment failed: Bot has no access to the target guild.');
+            console.error('   → Make sure the bot is in the server and was invited with the "applications.commands" scope.');
+            console.error('   → Use this invite URL format: https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands');
+            console.error('   → Or remove GUILD_ID from .env to deploy commands globally instead.');
+        } else {
+            console.error('❌ Error deploying commands:', error);
+        }
+        // Don't call process.exit() here — let the bot client continue starting up
     }
 })();
 

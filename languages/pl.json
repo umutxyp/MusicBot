@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Uprawnienia kontroli",
     "music_control_requirement": "Aby zarządzać muzyką, musisz być osobą, która ją uruchomiła, mieć uprawnienie Zarządzanie serwerem lub posiadać rolę o nazwie DJ."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube zablokował to żądanie (wykrycie bota)**\nYouTube odrzuca żądania z adresu IP tego serwera.\n\n**Rozwiązanie:** Dodaj `COOKIES_FROM_BROWSER=chrome` (lub firefox/edge) lub `YOUTUBE_PO_TOKEN` do pliku `.env`. Zobacz `YOUTUBE_FIX.md` po instrukcje krok po kroku.",
+    "youtube_age_restricted": "❌ **Film z ograniczeniem wiekowym**\nTen film wymaga zalogowanego konta YouTube.\n\n**Rozwiązanie:** Ustaw `COOKIES_FROM_BROWSER=chrome` w `.env`, aby bot mógł korzystać z sesji YouTube w przeglądarce.",
+    "youtube_unavailable": "❌ **Film niedostępny**\nTen film jest prywatny, usunięty lub niedostępny w tym regionie. Spróbuj innego linku lub piosenki.",
+    "youtube_geo_blocked": "❌ **Treść zablokowana geograficznie**\nTen film jest ograniczony w regionie, w którym działa ten bot.\n\n**Rozwiązanie:** Spróbuj innego linku.",
+    "rate_limited": "❌ **Zbyt wiele żądań (limit szybkości)**\nYouTube lub inna platforma tymczasowo blokuje żądania.\n\n**Rozwiązanie:** Poczekaj kilka minut i spróbuj ponownie. Jeśli to się powtarza, dodaj `COOKIES_FROM_BROWSER` do `.env`.",
+    "spotify_no_match": "❌ **Utwór Spotify nie znaleziony na YouTube**\nNie znaleziono pasującego wideo YouTube dla tego utworu.\n\n**Rozwiązanie:** Wyszukaj bezpośrednio po nazwie piosenki lub wklej link YouTube.",
+    "no_results": "❌ **Brak wyników**\nNie znaleziono piosenek pasujących do Twojego wyszukiwania.\n\n**Rozwiązanie:** Spróbuj innego słowa kluczowego lub wklej bezpośredni URL.",
+    "network_error": "❌ **Błąd sieci**\nBot nie mógł połączyć się z platformą muzyczną. Zwykle jest to tymczasowy problem.\n\n**Rozwiązanie:** Poczekaj chwilę i spróbuj ponownie.",
+    "stream_failed": "❌ **Strumień audio nie powiódł się**\nBot znalazł utwór, ale nie mógł uruchomić strumienia audio.\n\n**Rozwiązanie:** Spróbuj ponownie lub wypróbuj inną wersję piosenki.",
+    "voice_no_permission": "❌ **Brak uprawnień kanału głosowego**\nBot nie ma uprawnień do dołączenia lub mówienia na Twoim kanale głosowym.\n\n**Rozwiązanie:** Ustawienia kanału głosowego → Uprawnienia → przyznaj botowi uprawnienia **Połącz** i **Mów**.",
+    "unknown": "❌ **Wystąpił nieoczekiwany błąd**\nCoś poszło nie tak podczas przetwarzania Twojego żądania.\n\n**Rozwiązanie:** Spróbuj ponownie za chwilę. Jeśli problem nadal występuje, sprawdź log konsoli bota."
   }
 }

@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ 控制权限",
     "music_control_requirement": "要管理音乐，你必须是启动音乐的人，拥有管理服务器权限，或者拥有名为 DJ 的身份组。"
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube 屏蔽了此请求（机器人检测）**\nYouTube 正在拒绝来自此服务器 IP 地址的请求。\n\n**解决方案：** 在 `.env` 文件中添加 `COOKIES_FROM_BROWSER=chrome`（或 firefox/edge）或 `YOUTUBE_PO_TOKEN`。详细步骤请参阅 `YOUTUBE_FIX.md`。",
+    "youtube_age_restricted": "❌ **年龄限制视频**\n此视频需要登录 YouTube 账号才能访问。\n\n**解决方案：** 在 `.env` 中设置 `COOKIES_FROM_BROWSER=chrome`，让机器人使用你浏览器的 YouTube 会话。",
+    "youtube_unavailable": "❌ **视频不可用**\n此视频为私密视频、已被删除或在此地区无法使用。请尝试其他链接或歌曲。",
+    "youtube_geo_blocked": "❌ **地区限制内容**\n此视频在机器人所在地区受到限制。\n\n**解决方案：** 请尝试其他链接。",
+    "rate_limited": "❌ **请求过多（速率限制）**\nYouTube 或其他平台正在临时屏蔽请求。\n\n**解决方案：** 等待几分钟后重试。如果经常发生，请在 `.env` 中添加 `COOKIES_FROM_BROWSER`。",
+    "spotify_no_match": "❌ **在 YouTube 上未找到 Spotify 曲目**\n未能找到与此 Spotify 歌曲匹配的 YouTube 视频。\n\n**解决方案：** 直接搜索歌曲名称，或粘贴 YouTube 链接。",
+    "no_results": "❌ **无结果**\n未找到与你的搜索匹配的歌曲。\n\n**解决方案：** 尝试不同的搜索词，或粘贴直接 URL。",
+    "network_error": "❌ **网络错误**\n机器人无法连接到音乐平台。这通常是临时问题。\n\n**解决方案：** 稍等片刻后重试。",
+    "stream_failed": "❌ **音频流失败**\n机器人找到了曲目，但无法启动音频流。\n\n**解决方案：** 重试，或尝试歌曲的不同版本。",
+    "voice_no_permission": "❌ **缺少语音频道权限**\n机器人没有权限加入或在你的语音频道中说话。\n\n**解决方案：** 语音频道设置 → 权限 → 授予机器人**连接**和**说话**权限。",
+    "unknown": "❌ **发生意外错误**\n处理你的请求时出现了问题。\n\n**解决方案：** 稍后重试。如果问题持续存在，请检查机器人控制台日志。"
   }
 }

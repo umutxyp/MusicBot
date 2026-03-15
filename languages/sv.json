@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Kontrollbehörigheter",
     "music_control_requirement": "För att hantera musiken måste du vara den som startade den, ha behörigheten Hantera server eller ha en roll som heter DJ."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube blockerade denna begäran (botdetektering)**\nYouTube avvisar begäranden från den här serverns IP-adress.\n\n**Lösning:** Lägg till `COOKIES_FROM_BROWSER=chrome` (eller firefox/edge) eller `YOUTUBE_PO_TOKEN` i `.env`-filen. Se `YOUTUBE_FIX.md` för steg-för-steg-instruktioner.",
+    "youtube_age_restricted": "❌ **Åldersbegränsat video**\nDetta video kräver ett inloggat YouTube-konto.\n\n**Lösning:** Ange `COOKIES_FROM_BROWSER=chrome` i `.env` så att boten kan använda din webbläsares YouTube-session.",
+    "youtube_unavailable": "❌ **Video ej tillgängligt**\nDetta video är privat, raderat eller inte tillgängligt i denna region. Försök med en annan länk eller låt.",
+    "youtube_geo_blocked": "❌ **Geoblockerat innehåll**\nDetta video är begränsat i regionen där denna bot är värd.\n\n**Lösning:** Prova en annan länk.",
+    "rate_limited": "❌ **För många begäranden (hastighetsbegränsning)**\nYouTube eller en annan plattform blockerar tillfälligt begäranden.\n\n**Lösning:** Vänta några minuter och försök igen. Om det händer ofta, lägg till `COOKIES_FROM_BROWSER` i `.env`.",
+    "spotify_no_match": "❌ **Spotify-spår hittades inte på YouTube**\nKunde inte hitta ett matchande YouTube-video för den här låten.\n\n**Lösning:** Sök direkt på låtnamnet eller klistra in en YouTube-länk.",
+    "no_results": "❌ **Inga resultat**\nInga låtar som matchade din sökning hittades.\n\n**Lösning:** Försök med ett annat sökord eller klistra in en direkt URL.",
+    "network_error": "❌ **Nätverksfel**\nBoten kunde inte ansluta till musikplattformen. Det är vanligtvis ett tillfälligt problem.\n\n**Lösning:** Vänta ett ögonblick och försök igen.",
+    "stream_failed": "❌ **Ljudströmmen misslyckades**\nBoten hittade spåret men kunde inte starta ljudströmmen.\n\n**Lösning:** Försök igen eller prova en annan version av låten.",
+    "voice_no_permission": "❌ **Saknade röstkanalbehörigheter**\nBoten har inte behörighet att gå med i eller tala i din röstkanal.\n\n**Lösning:** Röstkanalinställningar → Behörigheter → ge boten behörigheterna **Anslut** och **Tala**.",
+    "unknown": "❌ **Ett oväntat fel inträffade**\nNågot gick fel vid behandlingen av din begäran.\n\n**Lösning:** Försök igen om ett ögonblick. Kontrollera botens konsollogg om problemet kvarstår."
   }
 }

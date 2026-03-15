@@ -2,6 +2,7 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const MusicPlayer = require('../src/MusicPlayer');
 const MusicEmbedManager = require('../src/MusicEmbedManager');
 const LanguageManager = require('../src/LanguageManager');
+const ErrorHandler = require('../src/ErrorHandler');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -78,7 +79,7 @@ module.exports = {
             }
 
         } catch (error) {
-            const errorMsg = await LanguageManager.getTranslation(interaction.guild.id, 'commands.play.error_playing');
+            const errorMsg = await ErrorHandler.handle(error, interaction.guild?.id, 'play.execute');
 
             try {
                 if (interaction.deferred && !interaction.replied) {
@@ -188,7 +189,7 @@ module.exports = {
             };
 
         } catch (error) {
-            const errorMsg = await LanguageManager.getTranslation(guildId, 'commands.play.error_searching');
+            const errorMsg = await ErrorHandler.handle(error, guildId, 'play.getTrackData');
             return { success: false, message: errorMsg };
         }
     },
