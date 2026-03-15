@@ -14,6 +14,7 @@ const Spotify = require('./Spotify');
 const SoundCloud = require('./SoundCloud');
 const DirectLink = require('./DirectLink');
 const LanguageManager = require('./LanguageManager');
+const ErrorHandler = require('./ErrorHandler');
 const PlayerStateManager = require('./PlayerStateManager');
 const LyricsManager = require('./LyricsManager');
 const prism = require('prism-media');
@@ -1073,8 +1074,8 @@ class MusicPlayer {
                 this.currentDownloadedFile = null;
             }
 
-            await this.handleError(error);
-            const errorMsg = await LanguageManager.getTranslation(this.guild.id, 'musicplayer.track_could_not_play');
+            const errorMsg = await ErrorHandler.handle(error, this.guild.id, 'MusicPlayer.play');
+            await this.handleError(error, errorMsg);
             return { success: false, message: errorMsg };
         }
     }
@@ -1726,16 +1727,26 @@ class MusicPlayer {
         }
     }
 
-    async handleError(error) {
+    async handleError(error, userMessage = null) {
 
         // Try to skip to next track on error
         if (this.queue.length > 0) {
+            // Send error to text channel before skipping
+            if (userMessage && this.textChannel) {
+                try {
+                    await this.textChannel.send(userMessage);
+                } catch (_) {}
+            }
             this.currentTrack = this.queue.shift();
             await this.play(null, 0);
         } else {
             this.currentTrack = null;
-            const errorMsg = await LanguageManager.getTranslation(this.guild.id, 'musicplayer.error_playlist_stopped');
-            await this.textChannel.send(errorMsg);
+            const msg = userMessage || await LanguageManager.getTranslation(this.guild.id, 'musicplayer.error_playlist_stopped');
+            if (this.textChannel) {
+                try {
+                    await this.textChannel.send(msg);
+                } catch (_) {}
+            }
         }
     }
 

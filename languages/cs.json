@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Oprávnění k ovládání",
     "music_control_requirement": "Pro ovládání hudby musíte být osoba, která ji spustila, nebo mít oprávnění Spravovat server, případně mít roli DJ."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube zablokoval tento požadavek (detekce bota)**\nYouTube odmítá požadavky z IP adresy tohoto serveru.\n\n**Řešení:** Přidejte `COOKIES_FROM_BROWSER=chrome` (nebo firefox/edge) nebo `YOUTUBE_PO_TOKEN` do souboru `.env`. Viz `YOUTUBE_FIX.md` pro podrobné pokyny.",
+    "youtube_age_restricted": "❌ **Video omezené věkem**\nK tomuto videu je vyžadováno přihlášení k účtu YouTube.\n\n**Řešení:** Nastavte `COOKIES_FROM_BROWSER=chrome` v `.env`, aby bot mohl využít vaši relaci YouTube v prohlížeči.",
+    "youtube_unavailable": "❌ **Video není dostupné**\nToto video je soukromé, smazané nebo není dostupné v této oblasti. Zkuste jiný odkaz nebo píseň.",
+    "youtube_geo_blocked": "❌ **Geograficky blokovaný obsah**\nToto video je omezeno v oblasti, kde tento bot běží.\n\n**Řešení:** Zkuste jiný odkaz.",
+    "rate_limited": "❌ **Příliš mnoho požadavků (rate limit)**\nYouTube nebo jiná platforma dočasně blokuje požadavky.\n\n**Řešení:** Počkejte pár minut a zkuste to znovu. Pokud se to opakuje, přidejte `COOKIES_FROM_BROWSER` do `.env`.",
+    "spotify_no_match": "❌ **Spotify skladba nenalezena na YouTube**\nPro tuto skladbu nebylo nalezeno odpovídající YouTube video.\n\n**Řešení:** Vyhledejte přímo název skladby nebo vložte odkaz na YouTube.",
+    "no_results": "❌ **Žádné výsledky**\nPro vaše hledání nebyly nalezeny žádné odpovídající skladby.\n\n**Řešení:** Zkuste jiné hledané slovo nebo vložte přímý odkaz.",
+    "network_error": "❌ **Chyba sítě**\nBot se nemohl připojit k hudební platformě. Obvykle jde o dočasný problém.\n\n**Řešení:** Chvíli počkejte a zkuste to znovu.",
+    "stream_failed": "❌ **Selhání zvukového streamu**\nBot skladbu našel, ale nemohl spustit zvukový stream.\n\n**Řešení:** Zkuste to znovu nebo vyzkoušejte jinou verzi skladby.",
+    "voice_no_permission": "❌ **Chybí oprávnění pro hlasový kanál**\nBot nemá oprávnění připojit se nebo mluvit ve vašem hlasovém kanálu.\n\n**Řešení:** Nastavení hlasového kanálu → Oprávnění → udělte botovi oprávnění **Připojit** a **Mluvit**.",
+    "unknown": "❌ **Došlo k neočekávané chybě**\nPři zpracování vašeho požadavku se něco pokazilo.\n\n**Řešení:** Zkuste to za chvíli znovu. Pokud problém přetrvává, zkontrolujte konzoli bota."
   }
 }

@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Steuerungsberechtigungen",
     "music_control_requirement": "Um die Musik zu verwalten, musst du sie gestartet haben, die Berechtigung Server verwalten besitzen oder eine Rolle namens DJ haben."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube hat diese Anfrage blockiert (Bot-Erkennung)**\nYouTube lehnt Anfragen von der IP-Adresse dieses Servers ab.\n\n**Lösung:** Füge `COOKIES_FROM_BROWSER=chrome` (oder firefox/edge) oder `YOUTUBE_PO_TOKEN` in die `.env`-Datei ein. Siehe `YOUTUBE_FIX.md` für Schritt-für-Schritt-Anleitung.",
+    "youtube_age_restricted": "❌ **Altersbeschränktes Video**\nDieses Video erfordert einen eingeloggten YouTube-Account.\n\n**Lösung:** Setze `COOKIES_FROM_BROWSER=chrome` in `.env`, damit der Bot deine Browser-YouTube-Sitzung nutzen kann.",
+    "youtube_unavailable": "❌ **Video nicht verfügbar**\nDieses Video ist privat, gelöscht oder in dieser Region nicht verfügbar. Versuche einen anderen Link oder Song.",
+    "youtube_geo_blocked": "❌ **Geoblockierter Inhalt**\nDieses Video ist in der Region, wo der Bot gehostet wird, eingeschränkt.\n\n**Lösung:** Probiere einen anderen Link aus.",
+    "rate_limited": "❌ **Zu viele Anfragen (Rate-Limit)**\nYouTube oder eine andere Plattform blockiert Anfragen vorübergehend.\n\n**Lösung:** Warte ein paar Minuten und versuche es erneut. Falls das häufig passiert, füge `COOKIES_FROM_BROWSER` in `.env` hinzu.",
+    "spotify_no_match": "❌ **Spotify-Song auf YouTube nicht gefunden**\nEs konnte kein passendes YouTube-Video für diesen Song gefunden werden.\n\n**Lösung:** Suche direkt nach dem Songnamen oder füge einen YouTube-Link ein.",
+    "no_results": "❌ **Keine Ergebnisse gefunden**\nEs wurden keine Treffer für deine Suche gefunden.\n\n**Lösung:** Versuche einen anderen Suchbegriff oder füge eine direkte URL ein.",
+    "network_error": "❌ **Netzwerkfehler**\nDer Bot konnte sich nicht mit der Musikplattform verbinden. Dies ist meist ein vorübergehendes Problem.\n\n**Lösung:** Warte kurz und versuche es erneut.",
+    "stream_failed": "❌ **Audio-Stream fehlgeschlagen**\nDer Bot hat den Song gefunden, konnte den Audio-Stream jedoch nicht starten.\n\n**Lösung:** Versuche es erneut oder probiere eine andere Version des Songs.",
+    "voice_no_permission": "❌ **Fehlende Sprachkanal-Berechtigungen**\nDer Bot hat keine Berechtigung, deinem Sprachkanal beizutreten oder darin zu sprechen.\n\n**Lösung:** Sprachkanal-Einstellungen → Berechtigungen → gib dem Bot **Verbinden** und **Sprechen**.",
+    "unknown": "❌ **Ein unerwarteter Fehler ist aufgetreten**\nBei der Verarbeitung deiner Anfrage ist etwas schiefgelaufen.\n\n**Lösung:** Versuche es in Kürze erneut. Falls das Problem anhält, prüfe die Bot-Konsole für das vollständige Fehlerprotokoll."
   }
 }

@@ -321,5 +321,18 @@
   "permissions": {
     "music_control_title": "🎛️ Hallintaoikeudet",
     "music_control_requirement": "Voit hallita musiikkia vain, jos aloitit sen, sinulla on Hallinnoi palvelinta -oikeus tai sinulla on DJ-niminen rooli."
+  },
+  "errors": {
+    "youtube_bot_detection": "❌ **YouTube esti tämän pyynnön (bottitunnistus)**\nYouTube hylkää pyynnöt tämän palvelimen IP-osoitteesta.\n\n**Ratkaisu:** Lisää `COOKIES_FROM_BROWSER=chrome` (tai firefox/edge) tai `YOUTUBE_PO_TOKEN` `.env`-tiedostoon. Katso `YOUTUBE_FIX.md` vaihe vaiheelta.",
+    "youtube_age_restricted": "❌ **Ikärajoitettu video**\nTämä video vaatii kirjautumisen YouTube-tilille.\n\n**Ratkaisu:** Aseta `COOKIES_FROM_BROWSER=chrome` `.env`-tiedostoon, jotta botti voi käyttää selaimesi YouTube-istuntoa.",
+    "youtube_unavailable": "❌ **Video ei saatavilla**\nTämä video on yksityinen, poistettu tai ei saatavilla tällä alueella. Kokeile toista linkkiä tai kappaletta.",
+    "youtube_geo_blocked": "❌ **Maantieteellisesti estetty sisältö**\nTämä video on rajoitettu alueella, jossa botti toimii.\n\n**Ratkaisu:** Kokeile eri linkkiä.",
+    "rate_limited": "❌ **Liian monta pyyntöä (nopeusrajoitus)**\nYouTube tai muu alusta estää pyyntöjä väliaikaisesti.\n\n**Ratkaisu:** Odota hetki ja yritä uudelleen. Jos tämä toistuu usein, lisää `COOKIES_FROM_BROWSER` `.env`-tiedostoon.",
+    "spotify_no_match": "❌ **Spotify-kappaletta ei löydy YouTubesta**\nTälle kappaleelle ei löydy vastaavaa YouTube-videota.\n\n**Ratkaisu:** Hae suoraan kappaleen nimellä tai liitä YouTube-linkki.",
+    "no_results": "❌ **Ei tuloksia**\nHakuasi vastaavia kappaleita ei löydetty.\n\n**Ratkaisu:** Kokeile eri hakusanaa tai liitä suora URL.",
+    "network_error": "❌ **Verkkovirhe**\nBotti ei voinut muodostaa yhteyttä musiikkialustaan. Tämä on yleensä väliaikainen ongelma.\n\n**Ratkaisu:** Odota hetki ja yritä uudelleen.",
+    "stream_failed": "❌ **Äänivirta epäonnistui**\nBotti löysi kappaleen, mutta ei voinut aloittaa äänen toistoa.\n\n**Ratkaisu:** Yritä uudelleen tai kokeile eri versiota kappaleesta.",
+    "voice_no_permission": "❌ **Puuttuvat äänikanavan oikeudet**\nBotilla ei ole oikeutta liittyä tai puhua äänikanavallasi.\n\n**Ratkaisu:** Äänikanavan asetukset → Oikeudet → anna botille **Yhdistä** ja **Puhu**.",
+    "unknown": "❌ **Odottamaton virhe tapahtui**\nPyyntöäsi käsiteltäessä tapahtui jotain odottamatonta.\n\n**Ratkaisu:** Yritä uudelleen hetken kuluttua. Jos ongelma jatkuu, tarkista botin konsolin virheloki."
   }
 }
