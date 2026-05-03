@@ -2,6 +2,8 @@
 
 # Beatra v16.0 🎶
 
+##WE DO NOT PROVIDE ANY SUPPORT FOR THIS OPEN-SOURCE PROJECT, WHETHER IT INVOLVES SOFTWARE ISSUES OR BUG-RELATED PROBLEMS. PLEASE DO NOT CONTACT US FOR ASSISTANCE WITH ANY ISSUES OR ERRORS YOU ENCOUNTER IN THIS PROJECT!
+
 ![GitHub Stars](https://img.shields.io/github/stars/umutxyp/musicbot?style=social)
 ![GitHub Forks](https://img.shields.io/github/forks/umutxyp/musicbot?style=social)
 ![GitHub Issues](https://img.shields.io/github/issues/umutxyp/musicbot)
