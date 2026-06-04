@@ -9,8 +9,9 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm install --ignore-scripts
 
 COPY . .
+RUN npm run postinstall
 
 CMD ["npm", "start"]
