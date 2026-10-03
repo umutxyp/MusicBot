@@ -104,7 +104,7 @@ test('error messages point to existing docs and the cookies setting', () => {
         assert.ok(data.errors.youtube_bot_detection.includes('COOKIES_FILE'), code);
         assert.ok(data.errors.youtube_bot_detection.includes('README.md'), code);
     }
-    assert.match(fs.readFileSync(path.join(root, 'README.md'), 'utf8'), /### YouTube: Sign in to confirm you're not a bot/);
+    assert.match(fs.readFileSync(path.join(root, 'README.md'), 'utf8'), /^#{2,3} YouTube: Sign in to confirm you're not a bot$/m);
 });
 
 test('every language translates every key used by the bot (no English fallback)', () => {
