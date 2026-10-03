@@ -60,7 +60,7 @@ const config = {
         supportServer: env('SUPPORT_SERVER'),
         website: env('WEBSITE'),
         defaultLanguage: env('DEFAULT_LANGUAGE', 'en'),
-        defaultVolume: int('DEFAULT_VOLUME', 80, { min: 1, max: 100 }),
+        defaultVolume: int('DEFAULT_VOLUME', 100, { min: 1, max: 100 }),
         maxVolume: 100,
         maxQueueSize: int('MAX_QUEUE_SIZE', 500, { min: 1 }),
         maxPlaylistSize: int('MAX_PLAYLIST_SIZE', 200, { min: 1 }),
