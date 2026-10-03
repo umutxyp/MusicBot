@@ -117,5 +117,32 @@
     "stream_failed": "**Strumień audio nie powiódł się**\nBot znalazł utwór, ale nie mógł uruchomić strumienia audio.\n\n**Rozwiązanie:** Spróbuj ponownie lub wypróbuj inną wersję piosenki.",
     "voice_no_permission": "**Brak uprawnień kanału głosowego**\nBot nie ma uprawnień do dołączenia lub mówienia na Twoim kanale głosowym.\n\n**Rozwiązanie:** Ustawienia kanału głosowego → Uprawnienia → przyznaj botowi uprawnienia **Połącz** i **Mów**.",
     "unknown": "**Wystąpił nieoczekiwany błąd**\nCoś poszło nie tak podczas przetwarzania Twojego żądania.\n\n**Rozwiązanie:** Spróbuj ponownie za chwilę. Jeśli problem nadal występuje, sprawdź log konsoli bota."
+  },
+  "ui": {
+    "voice_full": "Ten kanał głosowy jest pełny.",
+    "live": "Na żywo",
+    "playlist_truncated": "Dodano tylko pierwsze {max} piosenek.",
+    "unsupported": "Ten link nie jest obsługiwany.",
+    "queue_full": "Kolejka jest pełna ({max} piosenek).",
+    "autoplay_added": "Dodane przez autoodtwarzanie",
+    "filter": "Filtr: {filter}",
+    "filter_none": "Bez filtra",
+    "filter_placeholder": "Filtr dźwięku",
+    "left_empty": "Opuściłem kanał głosowy, bo nikt nie słuchał.",
+    "no_related": "Autoodtwarzanie nie znalazło podobnej piosenki.",
+    "previous": "Poprzednia",
+    "back": "Wstecz",
+    "next": "Dalej",
+    "page": "Strona {page}/{pages}",
+    "already_paused": "Muzyka jest już wstrzymana.",
+    "not_paused": "Muzyka nie jest wstrzymana.",
+    "jumped": "Przeskoczono do **{title}**.",
+    "seeked": "Przewinięto do {time}.",
+    "seek_invalid": "Podaj czas, np. 1:30 lub 90, mieszczący się w długości piosenki.",
+    "seek_live": "Nie możesz przewijać transmisji na żywo.",
+    "removed": "Usunięto **{title}** z kolejki.",
+    "moved": "Przeniesiono **{title}** na pozycję {position}.",
+    "invalid_position": "Na pozycji {position} nie ma piosenki.",
+    "invite": "Zaproś"
   }
 }

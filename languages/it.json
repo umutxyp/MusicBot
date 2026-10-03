@@ -117,5 +117,32 @@
     "stream_failed": "**Stream audio fallito**\nIl bot ha trovato il brano ma non è riuscito ad avviare lo stream audio.\n\n**Soluzione:** Riprova o prova una versione diversa del brano.",
     "voice_no_permission": "**Permessi canale vocale mancanti**\nIl bot non ha il permesso di unirsi o parlare nel tuo canale vocale.\n\n**Soluzione:** Impostazioni canale vocale → Permessi → dai al bot i permessi **Connetti** e **Parla**.",
     "unknown": "**Si è verificato un errore inaspettato**\nQualcosa è andato storto durante l'elaborazione della richiesta.\n\n**Soluzione:** Riprova tra un momento. Se il problema persiste, controlla il log della console del bot."
+  },
+  "ui": {
+    "voice_full": "Quel canale vocale è pieno.",
+    "live": "Dal vivo",
+    "playlist_truncated": "Sono state aggiunte solo le prime {max} canzoni.",
+    "unsupported": "Questo link non è supportato.",
+    "queue_full": "La coda è piena ({max} canzoni).",
+    "autoplay_added": "Aggiunta dalla riproduzione automatica",
+    "filter": "Filtro: {filter}",
+    "filter_none": "Nessun filtro",
+    "filter_placeholder": "Filtro audio",
+    "left_empty": "Ho lasciato il canale vocale perché nessuno stava ascoltando.",
+    "no_related": "La riproduzione automatica non ha trovato canzoni simili.",
+    "previous": "Precedente",
+    "back": "Indietro",
+    "next": "Avanti",
+    "page": "Pagina {page}/{pages}",
+    "already_paused": "La musica è già in pausa.",
+    "not_paused": "La musica non è in pausa.",
+    "jumped": "Passato a **{title}**.",
+    "seeked": "Spostato a {time}.",
+    "seek_invalid": "Usa un tempo come 1:30 o 90 entro la durata della canzone.",
+    "seek_live": "Non puoi andare avanti o indietro in una diretta.",
+    "removed": "**{title}** è stata rimossa dalla coda.",
+    "moved": "**{title}** è stata spostata alla posizione {position}.",
+    "invalid_position": "Non c’è nessuna canzone alla posizione {position}.",
+    "invite": "Invita"
   }
 }

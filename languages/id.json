@@ -117,5 +117,32 @@
     "stream_failed": "**Stream audio gagal**\nBot menemukan lagu tetapi tidak dapat memulai stream audio.\n\n**Solusi:** Coba lagi atau coba versi lain dari lagu tersebut.",
     "voice_no_permission": "**Izin saluran suara tidak ada**\nBot tidak memiliki izin untuk bergabung atau berbicara di saluran suara Anda.\n\n**Solusi:** Pengaturan saluran suara → Izin → berikan bot izin **Sambungkan** dan **Bicara**.",
     "unknown": "**Terjadi kesalahan tak terduga**\nSesuatu yang salah terjadi saat memproses permintaan Anda.\n\n**Solusi:** Coba lagi sebentar lagi. Jika masalah berlanjut, periksa log konsol bot."
+  },
+  "ui": {
+    "voice_full": "Channel suara tersebut penuh.",
+    "live": "Langsung",
+    "playlist_truncated": "Hanya {max} lagu pertama yang ditambahkan.",
+    "unsupported": "Tautan tersebut tidak didukung.",
+    "queue_full": "Antrian penuh ({max} lagu).",
+    "autoplay_added": "Ditambahkan oleh putar otomatis",
+    "filter": "Filter: {filter}",
+    "filter_none": "Tanpa filter",
+    "filter_placeholder": "Filter audio",
+    "left_empty": "Saya keluar dari channel suara karena tidak ada yang mendengarkan.",
+    "no_related": "Putar otomatis tidak menemukan lagu yang mirip.",
+    "previous": "Sebelumnya",
+    "back": "Kembali",
+    "next": "Berikutnya",
+    "page": "Halaman {page}/{pages}",
+    "already_paused": "Musik sudah dijeda.",
+    "not_paused": "Musik tidak sedang dijeda.",
+    "jumped": "Melompat ke **{title}**.",
+    "seeked": "Melompat ke {time}.",
+    "seek_invalid": "Gunakan waktu seperti 1:30 atau 90 yang masih dalam durasi lagu.",
+    "seek_live": "Anda tidak dapat memajukan atau memundurkan siaran langsung.",
+    "removed": "**{title}** dihapus dari antrian.",
+    "moved": "**{title}** dipindahkan ke posisi {position}.",
+    "invalid_position": "Tidak ada lagu di posisi {position}.",
+    "invite": "Undang"
   }
 }
