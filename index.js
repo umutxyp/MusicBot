@@ -6,6 +6,7 @@ const { ShardingManager } = require('discord.js');
 const config = require('./src/config');
 const logger = require('./src/core/logger');
 const { deployCommands } = require('./src/deploy');
+const binaries = require('./src/core/binaries');
 
 const log = logger.createLogger('manager');
 logger.setDebug(config.debug);
@@ -40,6 +41,9 @@ async function main() {
     }
 
     removeLegacyCache();
+    // yt-dlp and ffmpeg are installed here rather than relying on npm install scripts,
+    // which newer npm versions skip unless approved.
+    await Promise.all([binaries.ensureYtDlp(), binaries.ensureFfmpeg()]);
 
     try {
         await deployCommands();
@@ -84,6 +88,7 @@ async function main() {
         timeout: config.sharding.spawnTimeout,
     });
     log.ok(`${manager.shards.size} shard(s) running`);
+    binaries.updateYtDlp().catch((error) => log.warn('yt-dlp update check failed:', error.message));
 }
 
 main().catch((error) => {

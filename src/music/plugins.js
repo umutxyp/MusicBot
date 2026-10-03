@@ -165,22 +165,24 @@ class YouTubePlugin extends ExtractorPlugin {
 
     /**
      * Used by DisTube for text queries and for Spotify tracks (which are played from YouTube).
-     * Returning null lets DisTube fall back to the next extractor (SoundCloud).
+     * Errors are thrown, never swallowed: silently switching to another source would hide why
+     * YouTube failed and play a different recording than the user asked for.
      */
     async searchSong(query, options = {}) {
         const guildId = guildIdOf(options);
+        let info;
         try {
-            const info = await this.searchInfo(query, guildId);
-            if (!info) return null;
-            const song = new Song({ ...youtubeInfo(info), plugin: this }, options);
-            this.base.rememberStream(guildId, song.url, info);
-            return song;
+            info = await this.searchInfo(query, guildId);
         } catch (error) {
             this.lastSearchError = error;
             this.lastSearchErrorAt = Date.now();
             log.warn(`Search failed for "${query}": ${error.message}`);
-            return null;
+            throw error;
         }
+        if (!info) return null;
+        const song = new Song({ ...youtubeInfo(info), plugin: this }, options);
+        this.base.rememberStream(guildId, song.url, info);
+        return song;
     }
 
     searchInfo(query, guildId, { priority = 'high' } = {}) {

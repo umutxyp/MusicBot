@@ -12,18 +12,12 @@ const isWindows = process.platform === 'win32';
 const binaryName = isWindows ? 'yt-dlp.exe' : 'yt-dlp';
 
 /**
- * Locate yt-dlp: YTDLP_PATH > binary downloaded by youtube-dl-exec > yt-dlp on PATH.
+ * Locate yt-dlp: YTDLP_PATH > the self-contained build in bin/ (installed by src/core/binaries.js) > yt-dlp on PATH.
  */
 function resolveBinary() {
     if (config.ytdlp.path) return config.ytdlp.path;
-    try {
-        const pkgDir = path.dirname(require.resolve('youtube-dl-exec/package.json'));
-        const bundled = path.join(pkgDir, 'bin', binaryName);
-        if (fs.existsSync(bundled)) return bundled;
-    } catch {
-        // youtube-dl-exec not installed
-    }
-    return binaryName;
+    const local = path.join(config.binDir, isWindows ? 'yt-dlp.exe' : 'yt-dlp');
+    return fs.existsSync(local) ? local : binaryName;
 }
 
 const binary = resolveBinary();
@@ -134,13 +128,20 @@ function runJson(target, extraArgs = [], { proxy = null, priority = 'high', time
     }), { priority });
 }
 
+/**
+ * { version } when yt-dlp runs, { error } with the reason otherwise.
+ */
 async function version() {
     return new Promise((resolve) => {
         const child = spawn(binary, ['--version'], { windowsHide: true });
         let out = '';
+        let err = '';
         child.stdout.on('data', (data) => (out += data));
-        child.on('error', () => resolve(null));
-        child.on('close', (code) => resolve(code === 0 ? out.trim() : null));
+        child.stderr.on('data', (data) => (err += data));
+        child.on('error', (error) => resolve({ error: error.code === 'ENOENT' ? 'not found' : error.message }));
+        child.on('close', (code) => resolve(code === 0
+            ? { version: out.trim() }
+            : { error: (err || out).trim().split(/\r?\n/).pop() || `exit code ${code}` }));
     });
 }
 
