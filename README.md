@@ -254,6 +254,7 @@ The player panel has buttons for the same things. Only people in the bot's voice
 | The bot joins but there is no sound | Give the bot the **Speak** permission in that channel, make sure it is not server-muted, and check the volume with `/volume`. |
 | "YouTube blocked this request (bot detection)" | See [YouTube: Sign in to confirm you're not a bot](#youtube-sign-in-to-confirm-youre-not-a-bot). |
 | A song is skipped with "Audio stream failed" | The console shows the real reason next to it. `HTTP Error 403` or "Sign in to confirm" means YouTube is blocking this IP: see [the cookies fix](#youtube-sign-in-to-confirm-youre-not-a-bot). Meanwhile songs are played from SoundCloud automatically (`YOUTUBE_FALLBACK`). |
+| Songs take long to start | The console prints one line per song: `Playing "..." from youtube: found in 3.4s, audio after 4.6s`. Finding a YouTube song takes 2-4 seconds; if it is much slower, check the server's connection or use `PROXY_URL`. The very first start also downloads yt-dlp and ffmpeg once. |
 | Songs play from SoundCloud instead of YouTube | YouTube refused them; the console says why (usually the IP is blocked). Use [the cookies fix](#youtube-sign-in-to-confirm-youre-not-a-bot). |
 | `Your local changes to .env would be overwritten` on `git pull` | See "Updating from v16" in [Updating](#updating). |
 | "Voice libraries do not load" | `node_modules` was copied from another computer. Delete the `node_modules` folder and start again. |
@@ -299,7 +300,7 @@ src/
   core/                Logger, i18n, cache, JSON store, formatting, yt-dlp/ffmpeg download
 languages/             Translations
 test/                  Tests
-bin/                   yt-dlp (downloaded automatically, git-ignored)
+bin/                   yt-dlp program folder (downloaded and updated automatically, git-ignored)
 data/                  Settings and saved queues (created automatically, git-ignored)
 ```
 

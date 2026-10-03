@@ -7,7 +7,6 @@ const config = require('../config');
 const logger = require('../core/logger');
 const { deployCommands } = require('../deploy');
 const preflight = require('./preflight');
-const binaries = require('../core/binaries');
 const { StreamRelay } = require('../music/relay');
 
 const log = logger.createLogger('manager');
@@ -85,7 +84,6 @@ async function main() {
         timeout: config.sharding.spawnTimeout,
     });
     log.ok(`${manager.shards.size} shard(s) running`);
-    binaries.updateYtDlp().catch((error) => log.warn('yt-dlp update check failed:', error.message));
 }
 
 module.exports = {
