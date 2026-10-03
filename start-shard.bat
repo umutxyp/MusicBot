@@ -1,22 +1,15 @@
 @echo off
-color 1F
-title Beatra - Sharding Mode
+title Beatra
 cd /d "%~dp0"
 
-echo.
-echo ==========================================
-echo    BEATRA BOT - SHARDING MODE
-echo ==========================================
-echo.
-echo Starting bot with automatic sharding...
-echo This mode is recommended for bots in 1000+ servers
-echo.
+if not exist ".env" (
+    echo .env not found. Copy .env.example to .env and fill in DISCORD_TOKEN and CLIENT_ID.
+    pause
+    exit /b 1
+)
 
-node shard.js
+node index.js
 
 echo.
-echo ==========================================
-echo    BOT STOPPED
-echo ==========================================
-echo.
+echo Bot stopped.
 pause

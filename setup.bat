@@ -1,23 +1,12 @@
 @echo off
-color 0A
 title Beatra - Setup
 cd /d "%~dp0"
 
-echo.
-echo ==========================================
-echo    BEATRA SETUP
-echo ==========================================
-echo.
 echo Installing dependencies...
-echo.
+call npm install
 
-npm install
+if not exist ".env" copy ".env.example" ".env" >nul
 
 echo.
-echo ==========================================
-echo    SETUP COMPLETE!
-echo ==========================================
-echo.
-echo Next: Edit .env file and run start.bat
-echo.
+echo Setup complete. Edit .env and run start.bat
 pause

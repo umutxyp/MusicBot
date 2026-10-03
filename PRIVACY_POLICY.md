@@ -12,8 +12,9 @@ The Bot aims to collect the minimum amount of data necessary to provide its musi
 
 | Data Category | Purpose | Storage | Retention |
 | ------------- | ------- | ------- | --------- |
-| Discord **Guild (Server) ID** | Identifies the server to store language preferences. | Stored locally in `database/languages.json`. | Retained until you request deletion or remove the Bot for 30+ days. |
+| Discord **Guild (Server) ID** | Identifies the server to store language preferences. | Stored locally in `data/guilds/<server id>.json`. | Retained until you request deletion or remove the Bot for 30+ days. |
 | **Language preference** per server | Delivers responses in the preferred language. | Stored locally alongside the server ID. | Retained until you request deletion or remove the Bot. |
+| **Active music queue** (song titles/links, requesting user ID, voice and text channel IDs, playback position) | Resumes playback after a bot restart. | Stored locally in `data/sessions/<server id>.json` while music is playing. | Deleted when playback stops; ignored after 30 minutes. |
 | **Command metadata** (ephemeral) | Processes your `/play`, `/help`, and other commands. | Handled in memory only; not saved after the command completes. | Not retained. |
 
 The Bot **does not** collect personal messages, media, or any other personal data. Voice channel audio is streamed directly from the requested source and is not recorded or stored.
@@ -44,7 +45,7 @@ When you request content from these services, their respective privacy policies 
 ## 5. Data Security
 
 - Configuration secrets (Discord token, Spotify credentials) are stored using environment variables and are not persisted in the code repository.
-- The language preference database is stored on the host machine running the Bot. Access is restricted to the Bot operator.
+- Language preferences and active queue snapshots are stored on the host machine running the Bot. Access is restricted to the Bot operator.
 - No end-user personal data is intentionally stored.
 
 Despite taking reasonable precautions, no system is completely secure. If you believe your data has been compromised, please contact us immediately (see Section 8).
