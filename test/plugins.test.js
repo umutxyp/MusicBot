@@ -108,12 +108,13 @@ test('searchSong caches results and the stream URL; concurrent calls share one p
     assert.equal(runner.calls[0].target, 'ytsearch1:never gonna');
 });
 
-test('searchSong returns null on failure so DisTube can fall back to SoundCloud', async () => {
+test('searchSong reports YouTube failures instead of silently switching source', async () => {
     const plugin = new YouTubePlugin({ runner: fakeRunner(() => { throw new Error('Sign in to confirm'); }) });
-    assert.equal(await plugin.searchSong('x', {}), null);
+    await assert.rejects(plugin.searchSong('x', {}), /Sign in/);
     assert.match(plugin.lastSearchError.message, /Sign in/);
+    assert.ok(plugin.lastSearchErrorAt > 0);
     const empty = new YouTubePlugin({ runner: fakeRunner(() => ({ entries: [] })) });
-    assert.equal(await empty.searchSong('nothing', {}), null);
+    assert.equal(await empty.searchSong('nothing', {}), null, 'no results at all may still try the next source');
 });
 
 test('getStreamURL fetches once per song and per proxy key, with low priority for prefetch', async () => {

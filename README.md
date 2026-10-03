@@ -33,9 +33,11 @@ A fast, shard-ready Discord music bot built on **discord.js 14**, **DisTube 5** 
 
 ## Requirements
 
-- **Node.js 22.12 or newer**
-- **FFmpeg**: installed automatically through `ffmpeg-static`, or set `FFMPEG_PATH`, or install it on your system
-- **yt-dlp**: downloaded automatically on `npm install` and updated on every install. You can also point `YTDLP_PATH` to your own binary.
+- **Node.js 22.12 or newer**. Nothing else: no Python, no manual downloads.
+- **yt-dlp** is downloaded automatically on first start as the official self-contained build for your system (macOS, Linux, Windows), and updated once a day. Set `YTDLP_PATH` to use your own.
+- **ffmpeg** is downloaded automatically through `ffmpeg-static`. Set `FFMPEG_PATH` to use your own, or install it on your system.
+
+Both are installed when the bot starts, so it does not matter if your npm version skips package install scripts.
 
 ## Quick start
 
@@ -95,7 +97,7 @@ YouTube blocks many server IP addresses. Use one of these:
 3. **PO token:** set `YOUTUBE_PO_TOKEN` (see the yt-dlp PO Token Guide).
 4. **Proxy:** set `PROXY_URL` to a residential HTTP(S) proxy.
 
-Keeping yt-dlp up to date fixes most other YouTube errors: run `npm install` again.
+yt-dlp updates itself once a day, which fixes most other YouTube errors.
 
 ### Proxy
 
@@ -145,9 +147,10 @@ src/
     session.js         Saves and restores queues across restarts
     lyrics.js          LRCLIB lyrics
   ui/views.js          Components V2 layouts
-  core/                Logger, i18n, cache, JSON store, formatting
+  core/                Logger, i18n, cache, JSON store, formatting, yt-dlp/ffmpeg setup
 languages/             Translations
 test/                  Tests (npm test)
+bin/                   yt-dlp (downloaded automatically, git-ignored)
 data/                  Runtime data (created automatically, git-ignored)
 ```
 
