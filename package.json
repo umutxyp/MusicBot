@@ -32,11 +32,10 @@
     "discord.js": "^14.27.0",
     "distube": "^5.2.3",
     "dotenv": "^16.4.7",
-    "opusscript": "^0.1.1",
+    "opusscript": "^0.0.8",
     "youtube-dl-exec": "^3.1.17"
   },
   "optionalDependencies": {
-    "@discordjs/opus": "^0.10.0",
     "ffmpeg-static": "^5.3.0"
   },
   "engines": {
