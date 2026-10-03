@@ -118,7 +118,7 @@ class StreamRelay {
             : ['--', entry.url];
         return [
             ...ytdlp.baseArgs({ proxy: entry.proxy }),
-            '--quiet', '--no-part', '--no-cache-dir', '--no-playlist',
+            '--quiet', '--no-part', '--no-playlist',
             '-o', '-',
             ...source,
         ];
