@@ -108,11 +108,11 @@
     "lyrics": "가사"
   },
   "errors": {
-    "youtube_bot_detection": "**YouTube가 이 요청을 차단했습니다 (봇 감지)**\nYouTube가 이 서버의 IP 주소에서 오는 요청을 거부하고 있습니다.\n\n**해결 방법:** `.env` 파일에 `COOKIES_FROM_BROWSER=chrome` (또는 firefox/edge) 또는 `YOUTUBE_PO_TOKEN`을 추가하세요. 단계별 안내는 `YOUTUBE_FIX.md`를 참조하세요.",
-    "youtube_age_restricted": "**연령 제한 동영상**\n이 동영상은 YouTube 계정 로그인이 필요합니다.\n\n**해결 방법:** `.env`에 `COOKIES_FROM_BROWSER=chrome`을 설정하여 봇이 브라우저의 YouTube 세션을 사용할 수 있도록 하세요.",
+    "youtube_bot_detection": "**YouTube가 이 요청을 차단했습니다 (봇 감지)**\nYouTube가 이 서버의 IP 주소에서 오는 요청을 거부하고 있습니다.\n\n**해결 방법:** `.env` 파일에 `COOKIES_FILE=./cookies.txt` / `COOKIES_FROM_BROWSER=chrome` (또는 firefox/edge) 또는 `YOUTUBE_PO_TOKEN`을 추가하세요. 단계별 안내는 `README.md`를 참조하세요.",
+    "youtube_age_restricted": "**연령 제한 동영상**\n이 동영상은 YouTube 계정 로그인이 필요합니다.\n\n**해결 방법:** `.env`에 `COOKIES_FILE=./cookies.txt` / `COOKIES_FROM_BROWSER=chrome`을 설정하여 봇이 브라우저의 YouTube 세션을 사용할 수 있도록 하세요.",
     "youtube_unavailable": "**동영상을 사용할 수 없습니다**\n이 동영상은 비공개이거나, 삭제되었거나, 이 지역에서 이용할 수 없습니다. 다른 링크나 곡을 시도해 보세요.",
     "youtube_geo_blocked": "**지역 차단 콘텐츠**\n이 동영상은 봇이 호스팅된 지역에서 제한되어 있습니다.\n\n**해결 방법:** 다른 링크를 시도해 보세요.",
-    "rate_limited": "**요청이 너무 많습니다 (속도 제한)**\nYouTube 또는 다른 플랫폼이 일시적으로 요청을 차단하고 있습니다.\n\n**해결 방법:** 몇 분 기다렸다가 다시 시도하세요. 자주 발생하면 `.env`에 `COOKIES_FROM_BROWSER`를 추가하세요.",
+    "rate_limited": "**요청이 너무 많습니다 (속도 제한)**\nYouTube 또는 다른 플랫폼이 일시적으로 요청을 차단하고 있습니다.\n\n**해결 방법:** 몇 분 기다렸다가 다시 시도하세요. 자주 발생하면 `.env`에 `COOKIES_FILE` / `COOKIES_FROM_BROWSER`를 추가하세요.",
     "network_error": "**네트워크 오류**\n봇이 음악 플랫폼에 연결할 수 없었습니다. 보통 일시적인 문제입니다.\n\n**해결 방법:** 잠시 기다렸다가 다시 시도하세요.",
     "stream_failed": "**오디오 스트림 실패**\n봇이 트랙을 찾았지만 오디오 스트림을 시작할 수 없었습니다.\n\n**해결 방법:** 다시 시도하거나 다른 버전의 곡을 시도해 보세요.",
     "voice_no_permission": "**음성 채널 권한 없음**\n봇이 음성 채널에 참여하거나 말할 권한이 없습니다.\n\n**해결 방법:** 음성 채널 설정 → 권한 → 봇에게 **연결** 및 **말하기** 권한을 부여하세요.",

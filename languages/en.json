@@ -108,11 +108,11 @@
     "lyrics": "Lyrics"
   },
   "errors": {
-    "youtube_bot_detection": "**YouTube blocked this request (bot detection)**\nYouTube is rejecting requests from this server's IP address.\n\n**Fix:** Add a `COOKIES_FROM_BROWSER` value (e.g. `chrome`) or a `YOUTUBE_PO_TOKEN` in the `.env` file. See `YOUTUBE_FIX.md` for step-by-step instructions.",
-    "youtube_age_restricted": "**Age-restricted video**\nThis video requires a logged-in YouTube account to access.\n\n**Fix:** Set `COOKIES_FROM_BROWSER=chrome` (or firefox/edge) in `.env` so the bot can use your browser's YouTube session.",
+    "youtube_bot_detection": "**YouTube blocked this request (bot detection)**\nYouTube is rejecting requests from this server's IP address.\n\n**Fix (bot owner):** export YouTube cookies to a `cookies.txt` file and set `COOKIES_FILE=./cookies.txt` in `.env`, or set `YOUTUBE_PO_TOKEN` / `PROXY_URL`. Step by step guide: README.md, section \"YouTube: Sign in to confirm you're not a bot\".",
+    "youtube_age_restricted": "**Age-restricted video**\nThis video requires a logged-in YouTube account.\n\n**Fix (bot owner):** set `COOKIES_FILE=./cookies.txt` in `.env` with cookies from a YouTube account. Guide: README.md.",
     "youtube_unavailable": "**Video unavailable**\nThis video is private, deleted, or not available in this region. Try a different song or link.",
     "youtube_geo_blocked": "**Geo-blocked content**\nThis video is restricted in the region where this bot is hosted.\n\n**Fix:** Try a different link, or use a VPN/proxy on the server.",
-    "rate_limited": "**Too many requests (rate limited)**\nYouTube or another platform is temporarily blocking requests from this server.\n\n**Fix:** Wait a few minutes and try again. If this happens often, add browser cookies via `COOKIES_FROM_BROWSER` in `.env`.",
+    "rate_limited": "**Too many requests (rate limited)**\nYouTube or another platform is temporarily blocking requests from this server.\n\n**Fix:** wait a few minutes and try again. If it happens often, the bot owner should set `COOKIES_FILE` or `PROXY_URL` in `.env` (see README.md).",
     "network_error": "**Network error**\nThe bot could not connect to the music platform. This is usually a temporary issue.\n\n**Fix:** Wait a moment and try again. If the problem persists, check the server's internet connection.",
     "stream_failed": "**Audio stream failed**\nThe bot found the track but could not start the audio stream.\n\n**Fix:** Try the song again. If it keeps failing, try a different version of the song.",
     "voice_no_permission": "**Missing voice channel permissions**\nThe bot doesn't have permission to join or speak in your voice channel.\n\n**Fix:** Go to your voice channel settings → Permissions → give the bot **Connect** and **Speak** permissions.",

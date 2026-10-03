@@ -77,13 +77,32 @@ test('guild language setting persists and wins over the guild locale', async () 
     await assert.rejects(i18n.setGuildLanguage('999999999999999999', 'xx'));
 });
 
-test('legacy database/languages.json is imported once', () => {
+test('v16 language settings (database/languages.json) keep working without migration', async () => {
     const legacyRoot = fs.mkdtempSync(path.join(process.env.DATA_DIR, 'legacy-'));
     fs.mkdirSync(path.join(legacyRoot, 'database'));
     fs.writeFileSync(path.join(legacyRoot, 'database', 'languages.json'), JSON.stringify({
-        servers: { '888888888888888888': { language: 'fr' }, bad: { language: 'tr' }, '777777777777777777': { language: 'xx' } },
+        servers: { '888888888888888888': { language: 'fr' }, '777777777777777777': { language: 'xx' } },
     }));
-    assert.equal(i18n.migrateLegacy(legacyRoot), 1);
-    assert.equal(i18n.guildLanguage('888888888888888888'), 'fr');
-    assert.equal(i18n.migrateLegacy(legacyRoot), 0);
+    i18n.resetLegacyCache();
+    assert.equal(i18n.legacyLanguage('888888888888888888', legacyRoot), 'fr');
+    assert.equal(i18n.guildLanguage('888888888888888888', 'de'), 'fr', 'v16 setting wins over the guild locale');
+    assert.equal(i18n.guildLanguage('777777777777777777', 'de'), 'de', 'unknown v16 language falls back');
+    await i18n.setGuildLanguage('888888888888888888', 'tr');
+    assert.equal(i18n.guildLanguage('888888888888888888'), 'tr', 'a new choice overrides the v16 setting');
+    i18n.resetLegacyCache();
+});
+
+test('the repository database/languages.json is valid', () => {
+    i18n.resetLegacyCache();
+    assert.equal(i18n.legacyLanguage('000000000000000000'), null);
+});
+
+test('error messages point to existing docs and the cookies setting', () => {
+    for (const [code, data] of i18n.languages) {
+        const text = JSON.stringify(data.errors);
+        assert.equal(text.includes('YOUTUBE_FIX'), false, code);
+        assert.ok(data.errors.youtube_bot_detection.includes('COOKIES_FILE'), code);
+        assert.ok(data.errors.youtube_bot_detection.includes('README.md'), code);
+    }
+    assert.match(fs.readFileSync(path.join(root, 'README.md'), 'utf8'), /### YouTube: Sign in to confirm you're not a bot/);
 });
