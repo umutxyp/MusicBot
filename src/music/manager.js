@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('node:fs');
-const { DisTube, DisTubeError, Events: DisTubeEvents, Playlist, RepeatMode } = require('distube');
+const { DisTube, DisTubeError, Events: DisTubeEvents, Playlist, RepeatMode, isNsfwChannel } = require('distube');
 const { SpotifyPlugin } = require('@distube/spotify');
 const { RESTJSONErrorCodes } = require('discord.js');
 const config = require('../config');
@@ -139,10 +139,11 @@ class MusicManager {
      * Resolve a query/URL and add it to the queue. Joining the voice channel and resolving the
      * song run in parallel, so the first song starts as early as possible.
      */
-    async play({ voiceChannel, textChannel, member, query, position = 0 }) {
+    async play({ voiceChannel, textChannel, member, query, position = 0, onQueued = null }) {
         const guildId = voiceChannel.guild.id;
         if (this.#remaining(guildId) <= 0) throw this.#queueFull();
 
+        const requestedAt = Date.now();
         const metadata = { requesterId: member.id, guildId };
         const existing = this.getQueue(guildId);
         const joining = existing ? null : this.distube.voices.join(voiceChannel).then(() => null, (error) => error);
@@ -154,6 +155,7 @@ class MusicManager {
             if (joining && !(await joining) && !this.getQueue(guildId)) this.#scheduleLeave(guildId);
             throw error;
         }
+        const resolvedAt = Date.now();
         if (joining) {
             const joinError = await joining;
             if (joinError) throw joinError;
@@ -169,13 +171,32 @@ class MusicManager {
                 resolved.songs = resolved.songs.slice(0, capacity);
                 truncated = true;
             }
-            const started = !this.getQueue(guildId);
+            const queue = this.getQueue(guildId);
+            const started = !queue;
+            const nsfwAllowed = isNsfwChannel(queue?.textChannel || textChannel);
+            // Same rules DisTube applies, checked here so the user is answered before the stream starts.
+            if (resolved instanceof Playlist) {
+                if (!nsfwAllowed && resolved.songs.every((song) => song.ageRestricted)) throw new DisTubeError('EMPTY_FILTERED_PLAYLIST');
+            } else if (!nsfwAllowed && resolved.ageRestricted) {
+                throw new DisTubeError('NON_NSFW');
+            }
+
+            const first = resolved instanceof Playlist ? resolved.songs[0] : resolved;
+            first.timing = { requestedAt, resolvedAt };
+            const outcome = {
+                resolved,
+                truncated,
+                started,
+                position: started ? 0 : position > 0 ? position : queue.songs.length,
+            };
+            // Answer the user now: starting the audio stream can take a moment more.
+            if (onQueued) await Promise.resolve(onQueued(outcome)).catch((error) => log.debug(`Reply failed: ${error.message}`));
 
             await this.distube.play(voiceChannel, resolved, { member, textChannel, metadata, position });
-            const queue = this.getQueue(guildId);
-            if (queue && !queue.textChannel && textChannel) queue.textChannel = textChannel;
-            const first = resolved instanceof Playlist ? resolved.songs[0] : resolved;
-            return { resolved, truncated, started, position: queue ? queue.songs.indexOf(first) : 0 };
+            const current = this.getQueue(guildId);
+            if (current && !current.textChannel && textChannel) current.textChannel = textChannel;
+            if (current) outcome.position = current.songs.indexOf(first);
+            return outcome;
         });
     }
 
@@ -505,7 +526,13 @@ class MusicManager {
             this.#clearLeave(this.state(queue.id));
         });
 
-        d.on(DisTubeEvents.PLAY_SONG, (queue) => {
+        d.on(DisTubeEvents.PLAY_SONG, (queue, song) => {
+            if (song?.timing) {
+                const { requestedAt, resolvedAt } = song.timing;
+                delete song.timing;
+                const source = song.fallbackFrom ? 'soundcloud (youtube failed)' : song.source;
+                log.info(`Playing "${song.name}" from ${source}: found in ${((resolvedAt - requestedAt) / 1000).toFixed(1)}s, audio after ${((Date.now() - requestedAt) / 1000).toFixed(1)}s`);
+            }
             const state = this.state(queue.id);
             this.#clearLeave(state);
             this.sendPanel(queue);

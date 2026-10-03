@@ -228,3 +228,20 @@ test('a SoundCloud fallback song is streamed by its own plugin', async () => {
     const scSong = new Song({ plugin: scPlugin, source: 'soundcloud', playFromSource: true, id: 'sc', name: 'SC', url: 'https://soundcloud.com/a/b' });
     assert.equal(await yt.getStreamURL(scSong), 'http://127.0.0.1:1/sc');
 });
+
+test('after 3 refused YouTube streams, SoundCloud is used directly for a while', async () => {
+    const scSong = new Song({ source: 'soundcloud', playFromSource: true, id: 'sc1', name: 'SC', url: 'https://soundcloud.com/a/b' });
+    const fallback = { searchSong: async () => scSong, getStreamURL: async () => 'http://127.0.0.1:1/sc' };
+    const relay = fakeRelay({ failWarm: new Error('HTTP Error 403: Forbidden') });
+    const runner = fakeRunner(() => fullInfo(VIDEO, { format_id: '251' }));
+    const plugin = new YouTubePlugin({ runner, relay, fallback });
+    const song = () => new Song({ plugin, source: 'youtube', playFromSource: true, id: VIDEO, name: 'S', url: `https://www.youtube.com/watch?v=${VIDEO}` });
+    for (let i = 0; i < 3; i++) assert.equal(await plugin.getStreamURL(song()), 'http://127.0.0.1:1/sc');
+    assert.equal(relay.registered.length, 3);
+    assert.ok(plugin.skipYouTubeUntil > Date.now());
+    assert.equal(await plugin.getStreamURL(song()), 'http://127.0.0.1:1/sc');
+    assert.equal(relay.registered.length, 3, 'YouTube is not tried while paused');
+    plugin.skipYouTubeUntil = Date.now() - 1;
+    await plugin.getStreamURL(song());
+    assert.equal(relay.registered.length, 4, 'YouTube is tried again after the pause');
+});
