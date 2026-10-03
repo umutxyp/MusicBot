@@ -1,8 +1,6 @@
 <div align="center">
 
-# Beatra v17
-
-## WE DO NOT PROVIDE ANY SUPPORT FOR THIS OPEN-SOURCE PROJECT, WHETHER IT INVOLVES SOFTWARE ISSUES OR BUG-RELATED PROBLEMS. PLEASE DO NOT CONTACT US FOR ASSISTANCE WITH ANY ISSUES OR ERRORS YOU ENCOUNTER IN THIS PROJECT!
+# Beatra Discord Music Bot - Public Version
 
 ![GitHub Stars](https://img.shields.io/github/stars/umutxyp/musicbot?style=social)
 ![GitHub Forks](https://img.shields.io/github/forks/umutxyp/musicbot?style=social)
