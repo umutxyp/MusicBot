@@ -117,5 +117,32 @@
     "stream_failed": "**Audio-Stream fehlgeschlagen**\nDer Bot hat den Song gefunden, konnte den Audio-Stream jedoch nicht starten.\n\n**Lösung:** Versuche es erneut oder probiere eine andere Version des Songs.",
     "voice_no_permission": "**Fehlende Sprachkanal-Berechtigungen**\nDer Bot hat keine Berechtigung, deinem Sprachkanal beizutreten oder darin zu sprechen.\n\n**Lösung:** Sprachkanal-Einstellungen → Berechtigungen → gib dem Bot **Verbinden** und **Sprechen**.",
     "unknown": "**Ein unerwarteter Fehler ist aufgetreten**\nBei der Verarbeitung deiner Anfrage ist etwas schiefgelaufen.\n\n**Lösung:** Versuche es in Kürze erneut. Falls das Problem anhält, prüfe die Bot-Konsole für das vollständige Fehlerprotokoll."
+  },
+  "ui": {
+    "voice_full": "Dieser Sprachkanal ist voll.",
+    "live": "Live",
+    "playlist_truncated": "Nur die ersten {max} Songs wurden hinzugefügt.",
+    "unsupported": "Dieser Link wird nicht unterstützt.",
+    "queue_full": "Die Warteschlange ist voll ({max} Songs).",
+    "autoplay_added": "Von Autoplay hinzugefügt",
+    "filter": "Filter: {filter}",
+    "filter_none": "Kein Filter",
+    "filter_placeholder": "Audiofilter",
+    "left_empty": "Ich habe den Sprachkanal verlassen, weil niemand zugehört hat.",
+    "no_related": "Autoplay konnte keinen ähnlichen Song finden.",
+    "previous": "Vorheriger",
+    "back": "Zurück",
+    "next": "Weiter",
+    "page": "Seite {page}/{pages}",
+    "already_paused": "Die Musik ist bereits pausiert.",
+    "not_paused": "Die Musik ist nicht pausiert.",
+    "jumped": "Zu **{title}** gesprungen.",
+    "seeked": "Zu {time} gesprungen.",
+    "seek_invalid": "Geben Sie eine Zeit wie 1:30 oder 90 innerhalb der Songlänge an.",
+    "seek_live": "In einem Livestream kann nicht gespult werden.",
+    "removed": "**{title}** wurde aus der Warteschlange entfernt.",
+    "moved": "**{title}** wurde auf Position {position} verschoben.",
+    "invalid_position": "Auf Position {position} gibt es keinen Song.",
+    "invite": "Einladen"
   }
 }

@@ -117,5 +117,32 @@
     "stream_failed": "**音訊串流失敗**\n機器人找到了曲目，但無法啟動音訊串流。\n\n**解決方案：** 重試，或嘗試歌曲的不同版本。",
     "voice_no_permission": "**缺少語音頻道權限**\n機器人沒有權限加入或在你的語音頻道中說話。\n\n**解決方案：** 語音頻道設定 → 權限 → 授予機器人**連線**和**說話**權限。",
     "unknown": "**發生意外錯誤**\n處理你的請求時出現了問題。\n\n**解決方案：** 稍後重試。如果問題持續存在，請檢查機器人主控台日誌。"
+  },
+  "ui": {
+    "voice_full": "該語音頻道已滿。",
+    "live": "直播",
+    "playlist_truncated": "僅加入了前 {max} 首歌曲。",
+    "unsupported": "不支援此連結。",
+    "queue_full": "佇列已滿（{max} 首歌曲）。",
+    "autoplay_added": "由自動播放加入",
+    "filter": "音效：{filter}",
+    "filter_none": "無音效",
+    "filter_placeholder": "音訊音效",
+    "left_empty": "由於沒有人在聆聽，已離開語音頻道。",
+    "no_related": "自動播放找不到相似的歌曲。",
+    "previous": "上一首",
+    "back": "上一頁",
+    "next": "下一頁",
+    "page": "第 {page}/{pages} 頁",
+    "already_paused": "音樂已經暫停。",
+    "not_paused": "音樂沒有暫停。",
+    "jumped": "已跳至 **{title}**。",
+    "seeked": "已跳至 {time}。",
+    "seek_invalid": "請輸入歌曲長度範圍內的時間，例如 1:30 或 90。",
+    "seek_live": "直播無法快轉或倒轉。",
+    "removed": "已將 **{title}** 從佇列中移除。",
+    "moved": "已將 **{title}** 移至第 {position} 位。",
+    "invalid_position": "第 {position} 位沒有歌曲。",
+    "invite": "邀請"
   }
 }
