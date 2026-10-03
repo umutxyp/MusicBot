@@ -117,5 +117,32 @@
     "stream_failed": "**Ljudströmmen misslyckades**\nBoten hittade spåret men kunde inte starta ljudströmmen.\n\n**Lösning:** Försök igen eller prova en annan version av låten.",
     "voice_no_permission": "**Saknade röstkanalbehörigheter**\nBoten har inte behörighet att gå med i eller tala i din röstkanal.\n\n**Lösning:** Röstkanalinställningar → Behörigheter → ge boten behörigheterna **Anslut** och **Tala**.",
     "unknown": "**Ett oväntat fel inträffade**\nNågot gick fel vid behandlingen av din begäran.\n\n**Lösning:** Försök igen om ett ögonblick. Kontrollera botens konsollogg om problemet kvarstår."
+  },
+  "ui": {
+    "voice_full": "Den röstkanalen är full.",
+    "live": "Live",
+    "playlist_truncated": "Bara de första {max} låtarna lades till.",
+    "unsupported": "Den länken stöds inte.",
+    "queue_full": "Kön är full ({max} låtar).",
+    "autoplay_added": "Tillagd av autouppspelning",
+    "filter": "Filter: {filter}",
+    "filter_none": "Inget filter",
+    "filter_placeholder": "Ljudfilter",
+    "left_empty": "Lämnade röstkanalen eftersom ingen lyssnade.",
+    "no_related": "Autouppspelningen hittade ingen liknande låt.",
+    "previous": "Föregående",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "page": "Sida {page}/{pages}",
+    "already_paused": "Musiken är redan pausad.",
+    "not_paused": "Musiken är inte pausad.",
+    "jumped": "Hoppade till **{title}**.",
+    "seeked": "Hoppade till {time}.",
+    "seek_invalid": "Ange en tid som 1:30 eller 90 inom låtens längd.",
+    "seek_live": "Du kan inte spola i en livesändning.",
+    "removed": "**{title}** togs bort från kön.",
+    "moved": "**{title}** flyttades till plats {position}.",
+    "invalid_position": "Det finns ingen låt på plats {position}.",
+    "invite": "Bjud in"
   }
 }

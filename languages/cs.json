@@ -117,5 +117,32 @@
     "stream_failed": "**Selhání zvukového streamu**\nBot skladbu našel, ale nemohl spustit zvukový stream.\n\n**Řešení:** Zkuste to znovu nebo vyzkoušejte jinou verzi skladby.",
     "voice_no_permission": "**Chybí oprávnění pro hlasový kanál**\nBot nemá oprávnění připojit se nebo mluvit ve vašem hlasovém kanálu.\n\n**Řešení:** Nastavení hlasového kanálu → Oprávnění → udělte botovi oprávnění **Připojit** a **Mluvit**.",
     "unknown": "**Došlo k neočekávané chybě**\nPři zpracování vašeho požadavku se něco pokazilo.\n\n**Řešení:** Zkuste to za chvíli znovu. Pokud problém přetrvává, zkontrolujte konzoli bota."
+  },
+  "ui": {
+    "voice_full": "Tento hlasový kanál je plný.",
+    "live": "Živě",
+    "playlist_truncated": "Bylo přidáno pouze prvních {max} skladeb.",
+    "unsupported": "Tento odkaz není podporován.",
+    "queue_full": "Fronta je plná ({max} skladeb).",
+    "autoplay_added": "Přidáno automatickým přehráváním",
+    "filter": "Filtr: {filter}",
+    "filter_none": "Bez filtru",
+    "filter_placeholder": "Zvukový filtr",
+    "left_empty": "Opustil jsem hlasový kanál, protože nikdo neposlouchal.",
+    "no_related": "Automatické přehrávání nenašlo žádnou podobnou skladbu.",
+    "previous": "Předchozí",
+    "back": "Zpět",
+    "next": "Další",
+    "page": "Strana {page}/{pages}",
+    "already_paused": "Hudba je již pozastavena.",
+    "not_paused": "Hudba není pozastavena.",
+    "jumped": "Přeskočeno na **{title}**.",
+    "seeked": "Přetočeno na {time}.",
+    "seek_invalid": "Zadejte čas jako 1:30 nebo 90, který je v rámci délky skladby.",
+    "seek_live": "V živém vysílání nelze přetáčet.",
+    "removed": "**{title}** byla odebrána z fronty.",
+    "moved": "**{title}** byla přesunuta na pozici {position}.",
+    "invalid_position": "Na pozici {position} není žádná skladba.",
+    "invite": "Pozvat"
   }
 }
