@@ -15,6 +15,8 @@ const YOUTUBE_HOSTS = new Set([
     'youtube-nocookie.com', 'www.youtube-nocookie.com',
 ]);
 const VIDEO_ID = /^[\w-]{11}$/;
+const BLOCKED_AFTER_FAILURES = 3;
+const BLOCKED_PAUSE_MS = 10 * 60_000;
 
 // Every song carries its guild id in metadata so proxy selection never depends on a cached member.
 const guildIdOf = (holder) => holder?.metadata?.guildId || holder?.member?.guild?.id || null;
@@ -144,6 +146,10 @@ class YouTubePlugin extends ExtractorPlugin {
         super();
         this.base = new YtDlpBase(runner, relay);
         this.fallback = fallback;
+        // When YouTube refuses streams again and again (blocked server IP), stop trying it first
+        // for a while so every song does not pay for a failed attempt.
+        this.streamFailures = 0;
+        this.skipYouTubeUntil = 0;
         this.searches = new TTLCache({ ttlMs: 30 * 60_000, maxSize: 1000 });
         this.lastSearchError = null;
         this.lastSearchErrorAt = 0;
@@ -251,9 +257,19 @@ class YouTubePlugin extends ExtractorPlugin {
         // DisTube asks the plugin that answered the search; a SoundCloud fallback song plays through its own plugin.
         if (song.plugin && song.plugin !== this) return song.plugin.getStreamURL(song);
         try {
-            return await this.base.streamUrl(song);
+            if (this.fallback && Date.now() < this.skipYouTubeUntil) {
+                throw new Error('YouTube streams are paused after repeated failures');
+            }
+            const url = await this.base.streamUrl(song);
+            this.streamFailures = 0;
+            return url;
         } catch (error) {
             if (!this.fallback) throw error;
+            if (Date.now() >= this.skipYouTubeUntil && ++this.streamFailures >= BLOCKED_AFTER_FAILURES) {
+                this.streamFailures = 0;
+                this.skipYouTubeUntil = Date.now() + BLOCKED_PAUSE_MS;
+                log.warn(`YouTube refused ${BLOCKED_AFTER_FAILURES} streams in a row: using SoundCloud directly for ${BLOCKED_PAUSE_MS / 60_000} minutes. Fix: COOKIES_FILE (see README).`);
+            }
             log.warn(`YouTube stream failed for "${song.name}": ${error.message}`);
             const query = [song.name, song.uploader?.name].filter(Boolean).join(' ');
             const alternative = await this.#fallbackSearch(query, { metadata: song.metadata, member: song.member });

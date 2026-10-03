@@ -16,7 +16,7 @@ const binaryName = isWindows ? 'yt-dlp.exe' : 'yt-dlp';
  */
 function resolveBinary() {
     if (config.ytdlp.path) return config.ytdlp.path;
-    const local = path.join(config.binDir, isWindows ? 'yt-dlp.exe' : 'yt-dlp');
+    const local = path.join(config.binDir, 'yt-dlp-dist', isWindows ? 'yt-dlp.exe' : 'yt-dlp');
     return fs.existsSync(local) ? local : binaryName;
 }
 
