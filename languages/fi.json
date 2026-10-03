@@ -117,5 +117,32 @@
     "stream_failed": "**Äänivirta epäonnistui**\nBotti löysi kappaleen, mutta ei voinut aloittaa äänen toistoa.\n\n**Ratkaisu:** Yritä uudelleen tai kokeile eri versiota kappaleesta.",
     "voice_no_permission": "**Puuttuvat äänikanavan oikeudet**\nBotilla ei ole oikeutta liittyä tai puhua äänikanavallasi.\n\n**Ratkaisu:** Äänikanavan asetukset → Oikeudet → anna botille **Yhdistä** ja **Puhu**.",
     "unknown": "**Odottamaton virhe tapahtui**\nPyyntöäsi käsiteltäessä tapahtui jotain odottamatonta.\n\n**Ratkaisu:** Yritä uudelleen hetken kuluttua. Jos ongelma jatkuu, tarkista botin konsolin virheloki."
+  },
+  "ui": {
+    "voice_full": "Tämä äänikanava on täynnä.",
+    "live": "Suora",
+    "playlist_truncated": "Vain ensimmäiset {max} kappaletta lisättiin.",
+    "unsupported": "Tätä linkkiä ei tueta.",
+    "queue_full": "Jono on täynnä ({max} kappaletta).",
+    "autoplay_added": "Automaattitoiston lisäämä",
+    "filter": "Suodatin: {filter}",
+    "filter_none": "Ei suodatinta",
+    "filter_placeholder": "Äänisuodatin",
+    "left_empty": "Poistuin äänikanavalta, koska kukaan ei kuunnellut.",
+    "no_related": "Automaattitoisto ei löytänyt samankaltaista kappaletta.",
+    "previous": "Edellinen",
+    "back": "Takaisin",
+    "next": "Seuraava",
+    "page": "Sivu {page}/{pages}",
+    "already_paused": "Musiikki on jo tauolla.",
+    "not_paused": "Musiikki ei ole tauolla.",
+    "jumped": "Siirryttiin kappaleeseen **{title}**.",
+    "seeked": "Siirryttiin kohtaan {time}.",
+    "seek_invalid": "Käytä aikaa kuten 1:30 tai 90, joka on kappaleen keston sisällä.",
+    "seek_live": "Suorassa lähetyksessä ei voi kelata.",
+    "removed": "**{title}** poistettiin jonosta.",
+    "moved": "**{title}** siirrettiin sijalle {position}.",
+    "invalid_position": "Sijalla {position} ei ole kappaletta.",
+    "invite": "Kutsu"
   }
 }

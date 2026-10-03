@@ -117,5 +117,32 @@
     "stream_failed": "**Audiostream mislukt**\nDe bot vond het nummer maar kon de audiostream niet starten.\n\n**Oplossing:** Probeer het opnieuw of probeer een andere versie van het nummer.",
     "voice_no_permission": "**Ontbrekende spraakmachtigingen**\nDe bot heeft geen toestemming om deel te nemen aan of te spreken in je spraakkanaal.\n\n**Oplossing:** Spraakkanaalinstellingen → Machtigingen → geef de bot de machtigingen **Verbinden** en **Spreken**.",
     "unknown": "**Er is een onverwachte fout opgetreden**\nEr is iets misgegaan bij het verwerken van je verzoek.\n\n**Oplossing:** Probeer het over een moment opnieuw. Controleer het foutlogboek van de bot als het probleem aanhoudt."
+  },
+  "ui": {
+    "voice_full": "Dat spraakkanaal is vol.",
+    "live": "Live",
+    "playlist_truncated": "Alleen de eerste {max} nummers zijn toegevoegd.",
+    "unsupported": "Deze link wordt niet ondersteund.",
+    "queue_full": "De wachtrij is vol ({max} nummers).",
+    "autoplay_added": "Toegevoegd door automatisch afspelen",
+    "filter": "Filter: {filter}",
+    "filter_none": "Geen filter",
+    "filter_placeholder": "Audiofilter",
+    "left_empty": "Ik heb het spraakkanaal verlaten omdat niemand luisterde.",
+    "no_related": "Automatisch afspelen kon geen vergelijkbaar nummer vinden.",
+    "previous": "Vorige",
+    "back": "Terug",
+    "next": "Volgende",
+    "page": "Pagina {page}/{pages}",
+    "already_paused": "De muziek is al gepauzeerd.",
+    "not_paused": "De muziek is niet gepauzeerd.",
+    "jumped": "Gesprongen naar **{title}**.",
+    "seeked": "Gesprongen naar {time}.",
+    "seek_invalid": "Gebruik een tijd zoals 1:30 of 90 binnen de lengte van het nummer.",
+    "seek_live": "Je kunt niet spoelen in een livestream.",
+    "removed": "**{title}** is uit de wachtrij verwijderd.",
+    "moved": "**{title}** is verplaatst naar positie {position}.",
+    "invalid_position": "Er staat geen nummer op positie {position}.",
+    "invite": "Uitnodigen"
   }
 }

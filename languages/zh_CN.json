@@ -117,5 +117,32 @@
     "stream_failed": "**音频流失败**\n机器人找到了曲目，但无法启动音频流。\n\n**解决方案：** 重试，或尝试歌曲的不同版本。",
     "voice_no_permission": "**缺少语音频道权限**\n机器人没有权限加入或在你的语音频道中说话。\n\n**解决方案：** 语音频道设置 → 权限 → 授予机器人**连接**和**说话**权限。",
     "unknown": "**发生意外错误**\n处理你的请求时出现了问题。\n\n**解决方案：** 稍后重试。如果问题持续存在，请检查机器人控制台日志。"
+  },
+  "ui": {
+    "voice_full": "该语音频道已满。",
+    "live": "直播",
+    "playlist_truncated": "仅添加了前 {max} 首歌曲。",
+    "unsupported": "不支持该链接。",
+    "queue_full": "队列已满（{max} 首歌曲）。",
+    "autoplay_added": "由自动播放添加",
+    "filter": "音效：{filter}",
+    "filter_none": "无音效",
+    "filter_placeholder": "音频音效",
+    "left_empty": "由于没有人在收听，已离开语音频道。",
+    "no_related": "自动播放未找到相似的歌曲。",
+    "previous": "上一首",
+    "back": "上一页",
+    "next": "下一页",
+    "page": "第 {page}/{pages} 页",
+    "already_paused": "音乐已经暂停。",
+    "not_paused": "音乐没有暂停。",
+    "jumped": "已跳转到 **{title}**。",
+    "seeked": "已跳转到 {time}。",
+    "seek_invalid": "请输入歌曲时长范围内的时间，例如 1:30 或 90。",
+    "seek_live": "直播无法快进或快退。",
+    "removed": "已将 **{title}** 从队列中移除。",
+    "moved": "已将 **{title}** 移动到第 {position} 位。",
+    "invalid_position": "第 {position} 位没有歌曲。",
+    "invite": "邀请"
   }
 }

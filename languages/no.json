@@ -117,5 +117,32 @@
     "stream_failed": "**Lydstrøm mislyktes**\nBoten fant sangen, men kunne ikke starte lydstrømmen.\n\n**Løsning:** Prøv igjen eller prøv en annen versjon av sangen.",
     "voice_no_permission": "**Manglende talekanaltillatelser**\nBoten har ikke tillatelse til å bli med eller snakke i talekanalen din.\n\n**Løsning:** Talekanal-innstillinger → Tillatelser → gi boten tillatelsene **Koble til** og **Tal**.",
     "unknown": "**En uventet feil oppstod**\nNoe gikk galt under behandlingen av forespørselen din.\n\n**Løsning:** Prøv igjen om litt. Sjekk botens konsolllogg hvis problemet vedvarer."
+  },
+  "ui": {
+    "voice_full": "Den talekanalen er full.",
+    "live": "Direkte",
+    "playlist_truncated": "Bare de første {max} sangene ble lagt til.",
+    "unsupported": "Den lenken støttes ikke.",
+    "queue_full": "Køen er full ({max} sanger).",
+    "autoplay_added": "Lagt til av autoavspilling",
+    "filter": "Filter: {filter}",
+    "filter_none": "Ingen filter",
+    "filter_placeholder": "Lydfilter",
+    "left_empty": "Forlot talekanalen fordi ingen hørte på.",
+    "no_related": "Autoavspilling fant ingen lignende sang.",
+    "previous": "Forrige",
+    "back": "Tilbake",
+    "next": "Neste",
+    "page": "Side {page}/{pages}",
+    "already_paused": "Musikken er allerede satt på pause.",
+    "not_paused": "Musikken er ikke satt på pause.",
+    "jumped": "Hoppet til **{title}**.",
+    "seeked": "Hoppet til {time}.",
+    "seek_invalid": "Bruk et tidspunkt som 1:30 eller 90 innenfor sangens lengde.",
+    "seek_live": "Du kan ikke spole i en direktesending.",
+    "removed": "**{title}** ble fjernet fra køen.",
+    "moved": "**{title}** ble flyttet til plass {position}.",
+    "invalid_position": "Det er ingen sang på plass {position}.",
+    "invite": "Inviter"
   }
 }
