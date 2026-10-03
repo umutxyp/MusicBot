@@ -4,7 +4,6 @@ const { randomBytes } = require('node:crypto');
 const { command } = require('./_shared');
 const { checkVoice, say, respond } = require('../handlers/guards');
 const { TTLCache } = require('../core/cache');
-const { errorKey } = require('../music/errors');
 const views = require('../ui/views');
 
 const RESULTS = 10;
@@ -28,7 +27,7 @@ module.exports = {
         try {
             results = await manager.youtube.search(query, RESULTS, interaction.guildId);
         } catch (error) {
-            return say(interaction, t(errorKey(error)));
+            return say(interaction, t(manager.explainError(error)));
         }
         if (!results.length) return say(interaction, t('commands.search.no_results'));
 

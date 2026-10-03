@@ -5,7 +5,6 @@ const config = require('../config');
 const i18n = require('../core/i18n');
 const { command } = require('./_shared');
 const { checkVoice, panelChannel, say } = require('../handlers/guards');
-const { errorKey } = require('../music/errors');
 const { choices } = require('../music/suggest');
 const log = require('../core/logger').createLogger('play');
 
@@ -17,6 +16,7 @@ async function playFromInteraction(interaction, ctx, query, { next = false } = {
     const check = checkVoice(interaction, manager, t, { requireQueue: false, join: true });
     if (check.error) return say(interaction, check.error);
 
+    const startedAt = Date.now();
     try {
         const outcome = await manager.play({
             voiceChannel: check.channel,
@@ -38,7 +38,7 @@ async function playFromInteraction(interaction, ctx, query, { next = false } = {
         return say(interaction, message);
     } catch (error) {
         if (error?.errorCode === 'QUEUE_FULL') return say(interaction, t('ui.queue_full', { max: config.bot.maxQueueSize }));
-        const key = errorKey(error);
+        const key = manager.explainError(error, startedAt);
         if (key === 'errors.unknown') log.error(`Failed to play "${query}":`, error);
         else log.warn(`Failed to play "${query}": ${error.message}`);
         return say(interaction, t(key));

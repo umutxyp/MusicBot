@@ -3,7 +3,6 @@
 const { ActivityType, Client, Events, GatewayIntentBits } = require('discord.js');
 const config = require('./config');
 const logger = require('./core/logger');
-const i18n = require('./core/i18n');
 const { loadCommands } = require('./commands');
 const { MusicManager } = require('./music/manager');
 const { onInteraction } = require('./handlers/interactions');
@@ -64,7 +63,6 @@ async function start() {
         process.exit(1);
     }
 
-    i18n.migrateLegacy();
     const version = await ytdlp.version();
     if (version) log.info(`yt-dlp ${version} (${ytdlp.binary})`);
     else log.warn(`yt-dlp not found at "${ytdlp.binary}". YouTube playback will fail until it is installed (npm install, or set YTDLP_PATH).`);

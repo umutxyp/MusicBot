@@ -121,6 +121,7 @@ class YouTubePlugin extends ExtractorPlugin {
         this.base = new YtDlpBase(runner);
         this.searches = new TTLCache({ ttlMs: 30 * 60_000, maxSize: 1000 });
         this.lastSearchError = null;
+        this.lastSearchErrorAt = 0;
     }
 
     get run() {
@@ -176,6 +177,7 @@ class YouTubePlugin extends ExtractorPlugin {
             return song;
         } catch (error) {
             this.lastSearchError = error;
+            this.lastSearchErrorAt = Date.now();
             log.warn(`Search failed for "${query}": ${error.message}`);
             return null;
         }
