@@ -160,7 +160,19 @@ npm run check    # syntax check for every file and language
 
 ## Upgrading from v16
 
-Pull the new version and run `npm install` (the dependencies changed). Everything else carries over:
+`.env` is no longer stored in the repository (so your token can never be committed by accident). Back it up once while pulling:
+
+```bash
+# Linux / macOS
+cp .env .env.backup && git checkout -- .env && git pull && cp .env.backup .env && npm install
+```
+
+```bat
+:: Windows (cmd)
+copy .env .env.backup && git checkout -- .env && git pull && copy /Y .env.backup .env && npm install
+```
+
+Everything else carries over:
 
 - Your existing `.env` keeps working; all old variable names are still read. New optional settings are listed in `.env.example`.
 - Server languages chosen with v16 (`database/languages.json`) are still used.
