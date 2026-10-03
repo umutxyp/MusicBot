@@ -2,12 +2,15 @@
 title Beatra
 cd /d "%~dp0"
 
-if not exist ".env" (
-    echo .env not found. Copy .env.example to .env and fill in DISCORD_TOKEN and CLIENT_ID.
+where node >nul 2>nul
+if errorlevel 1 (
+    echo Node.js is not installed.
+    echo Download the LTS version from https://nodejs.org, install it, then run this file again.
     pause
     exit /b 1
 )
 
+rem Checks everything, installs what is missing, then starts the bot.
 node index.js
 
 echo.
