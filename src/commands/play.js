@@ -17,14 +17,9 @@ async function playFromInteraction(interaction, ctx, query, { next = false } = {
     if (check.error) return say(interaction, check.error);
 
     const startedAt = Date.now();
-    try {
-        const outcome = await manager.play({
-            voiceChannel: check.channel,
-            textChannel: panelChannel(interaction),
-            member: interaction.member,
-            query,
-            position: next ? 1 : 0,
-        });
+    let answered = false;
+    const answer = async (outcome) => {
+        answered = true;
         const { resolved } = outcome;
         let message;
         if (resolved instanceof Playlist) {
@@ -35,9 +30,21 @@ async function playFromInteraction(interaction, ctx, query, { next = false } = {
         } else {
             message = t('commands.play.track_queued', { title: resolved.name, position: outcome.position });
         }
-        const first = resolved instanceof Playlist ? null : resolved;
-        if (first?.fallbackFrom) message += `\n-# ${t('ui.fallback_soundcloud')}`;
-        return say(interaction, message);
+        if (!(resolved instanceof Playlist) && resolved.fallbackFrom) message += `\n-# ${t('ui.fallback_soundcloud')}`;
+        await say(interaction, message);
+    };
+
+    try {
+        const outcome = await manager.play({
+            voiceChannel: check.channel,
+            textChannel: panelChannel(interaction),
+            member: interaction.member,
+            query,
+            position: next ? 1 : 0,
+            onQueued: answer,
+        });
+        if (!answered) await answer(outcome);
+        return null;
     } catch (error) {
         if (error?.errorCode === 'QUEUE_FULL') return say(interaction, t('ui.queue_full', { max: config.bot.maxQueueSize }));
         const key = manager.explainError(error, startedAt);

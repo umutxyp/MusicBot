@@ -169,7 +169,14 @@ async function run({ fetchImpl = fetch } = {}) {
     }
 
     // ─── Audio tools ───────────────────────────────────────────────────
-    const [ytdlpPath, ffmpegPath] = await Promise.all([binaries.ensureYtDlp(), binaries.ensureFfmpeg()]);
+    const [ytdlpPath, ffmpegPath] = await Promise.all([
+        // A daily update check runs here, before the shards start using yt-dlp.
+        binaries.ensureYtDlp().then(async (found) => {
+            if (found) await binaries.updateYtDlp();
+            return found;
+        }),
+        binaries.ensureFfmpeg(),
+    ]);
     if (ytdlpPath) {
         report.ok('yt-dlp', (await binaries.probe(ytdlpPath)).output);
     } else {
