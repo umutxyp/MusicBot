@@ -69,7 +69,7 @@ Every option lives in `.env` (see `.env.example`). You can also set them as envi
 | `STATUS` | `/play` | "Listening to ..." status |
 | `EMBED_COLOR` | `#5865F2` | Accent color of the panels |
 | `DEFAULT_LANGUAGE` | `en` | Language when a server has none set and its Discord language is not available |
-| `DEFAULT_VOLUME` | `80` | Starting volume (0-100) |
+| `DEFAULT_VOLUME` | `100` | Starting volume (0-100) |
 | `MAX_QUEUE_SIZE` | `500` | Maximum songs in a queue |
 | `MAX_PLAYLIST_SIZE` | `200` | Maximum songs loaded from one playlist |
 | `LEAVE_ON_EMPTY` | `60` | Seconds to wait before leaving when nobody is listening (0 = stay) |
@@ -86,7 +86,7 @@ Every option lives in `.env` (see `.env.example`). You can also set them as envi
 | `SHARD_MODE` | `process` | `process` or `worker` |
 | `DEBUG` | `false` | Verbose DisTube and ffmpeg logs |
 
-### YouTube "Sign in to confirm you're not a bot"
+### YouTube: Sign in to confirm you're not a bot
 
 YouTube blocks many server IP addresses. Use one of these:
 
@@ -160,10 +160,24 @@ npm run check    # syntax check for every file and language
 
 ## Upgrading from v16
 
-- `npm install` again, the dependencies changed completely.
-- Copy your values into the new `.env` layout (`.env.example`). Old variable names still work.
-- Server languages from `database/languages.json` are imported automatically on first start.
-- `npm start` and `npm run shard` now both start the sharding manager.
+`.env` is no longer stored in the repository (so your token can never be committed by accident). Back it up once while pulling:
+
+```bash
+# Linux / macOS
+cp .env .env.backup && git checkout -- .env && git pull && cp .env.backup .env && npm install
+```
+
+```bat
+:: Windows (cmd)
+copy .env .env.backup && git checkout -- .env && git pull && copy /Y .env.backup .env && npm install
+```
+
+Everything else carries over:
+
+- Your existing `.env` keeps working; all old variable names are still read. New optional settings are listed in `.env.example`.
+- Server languages chosen with v16 (`database/languages.json`) are still used.
+- Volume range (0-100) and default (100) are the same as before.
+- The old `audio_cache` folder is no longer needed and is deleted automatically on the first start.
 
 ## Privacy and legal
 

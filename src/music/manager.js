@@ -10,7 +10,7 @@ const config = require('../config');
 const i18n = require('../core/i18n');
 const { YouTubePlugin, GenericPlugin } = require('./plugins');
 const { SessionStore } = require('./session');
-const { errorKey } = require('./errors');
+const { describeError, hostHint } = require('./errors');
 const ytdlp = require('./ytdlp');
 const views = require('../ui/views');
 const log = require('../core/logger').createLogger('music');
@@ -117,6 +117,18 @@ class MusicManager {
 
     panelPayload(queue) {
         return views.playerPanel(this.translator(queue.id), this.snapshot(queue));
+    }
+
+    // ─── Errors ────────────────────────────────────────────────────────
+
+    /**
+     * Translation key for an error shown to users; logs setup instructions for the bot owner when needed.
+     */
+    explainError(error, since = 0) {
+        const key = describeError(error, { youtube: this.youtube, since });
+        const hint = hostHint(key);
+        if (hint) log.warn(hint);
+        return key;
     }
 
     // ─── Playing ───────────────────────────────────────────────────────
@@ -534,7 +546,8 @@ class MusicManager {
             if (!queue?.textChannel || this.shuttingDown) return;
             const t = this.translator(queue.id);
             const header = song ? `${t('musicplayer.track_could_not_play')} **${song.name}**\n` : '';
-            queue.textChannel.send(views.notice(`${header}${t(errorKey(error))}`, { ephemeral: false })).catch(() => undefined);
+            const key = this.explainError(error, Date.now() - 60_000);
+            queue.textChannel.send(views.notice(`${header}${t(key)}`, { ephemeral: false })).catch(() => undefined);
         });
 
         if (config.debug) {
