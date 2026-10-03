@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
+const { createHash } = require('node:crypto');
 const config = require('../config');
 const { Semaphore } = require('../core/cache');
 const log = require('../core/logger').createLogger('yt-dlp');
@@ -35,8 +36,7 @@ const limiter = new Semaphore(config.ytdlp.concurrency);
 function proxyFor(key, proxies = config.proxies) {
     if (!proxies.length) return null;
     if (proxies.length === 1 || !key) return proxies[0];
-    let hash = 0;
-    for (const char of String(key)) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+    const hash = createHash('sha1').update(String(key)).digest().readUInt32BE(0);
     return proxies[hash % proxies.length];
 }
 
