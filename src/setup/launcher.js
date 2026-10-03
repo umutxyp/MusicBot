@@ -8,6 +8,7 @@ const logger = require('../core/logger');
 const { deployCommands } = require('../deploy');
 const preflight = require('./preflight');
 const binaries = require('../core/binaries');
+const { StreamRelay } = require('../music/relay');
 
 const log = logger.createLogger('manager');
 logger.setDebug(config.debug);
@@ -32,6 +33,7 @@ function removeLegacyCache() {
  */
 async function main() {
     removeLegacyCache();
+    StreamRelay.cleanAll();
     // Checks the configuration, downloads yt-dlp/ffmpeg when needed and stops with
     // instructions when something must be fixed by hand.
     await preflight.run();

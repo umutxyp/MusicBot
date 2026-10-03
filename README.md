@@ -183,7 +183,8 @@ Only `DISCORD_TOKEN` is required. See `.env.example` for the full list with comm
 | `COOKIES_FILE` | | YouTube cookies file, see the next section |
 | `COOKIES_FROM_BROWSER` | | Read YouTube cookies from a browser on this machine (`chrome`, `firefox`, `edge`, `safari`...) |
 | `YOUTUBE_PO_TOKEN` | | YouTube PO token (advanced) |
-| `PROXY_URL` | | Proxy for YouTube, several separated by commas |
+| `YOUTUBE_FALLBACK` | `soundcloud` | When YouTube fails for a song, play it from SoundCloud (the user is told). `off` shows the error instead |
+| `PROXY_URL` | | Proxy for YouTube and audio downloads, several separated by commas |
 | `YTDLP_PATH` / `FFMPEG_PATH` | downloaded | Use your own yt-dlp / ffmpeg |
 | `YTDLP_EXTRACTOR_ARGS` | | Extra yt-dlp `--extractor-args` (advanced) |
 | `YTDLP_CONCURRENCY` | `4` | yt-dlp processes at the same time per shard |
@@ -198,7 +199,7 @@ PROXY_URL=http://user:password@host:port
 PROXY_URL=http://proxy-a:8080,http://proxy-b:8080
 ```
 
-HTTP(S) proxies are used for finding songs (yt-dlp) and for streaming them (ffmpeg). YouTube locks a stream to the IP that requested it, so each server always uses the same proxy from the list. SOCKS proxies only work for finding songs, because ffmpeg cannot stream through SOCKS.
+HTTP(S) and SOCKS proxies both work: songs are found and downloaded by yt-dlp, which uses the proxy. YouTube locks a stream to the IP that requested it, so each server always uses the same proxy from the list.
 
 ---
 
@@ -254,7 +255,8 @@ The player panel has buttons for the same things. Only people in the bot's voice
 | Commands do not show up in Discord | Wait a minute and press **Ctrl + R** in Discord. Check that the bot was invited with `applications.commands`. If `GUILD_ID` is set, the bot must be in that server. |
 | The bot joins but there is no sound | Give the bot the **Speak** permission in that channel, make sure it is not server-muted, and check the volume with `/volume`. |
 | "YouTube blocked this request (bot detection)" | See [YouTube: Sign in to confirm you're not a bot](#youtube-sign-in-to-confirm-youre-not-a-bot). |
-| A song is skipped with "Audio stream failed" | Try another version of the song. If it happens for every song, restart the bot (yt-dlp is checked and updated on start). |
+| A song is skipped with "Audio stream failed" | The console shows the real reason next to it. `HTTP Error 403` or "Sign in to confirm" means YouTube is blocking this IP: see [the cookies fix](#youtube-sign-in-to-confirm-youre-not-a-bot). Meanwhile songs are played from SoundCloud automatically (`YOUTUBE_FALLBACK`). |
+| Songs play from SoundCloud instead of YouTube | YouTube refused them; the console says why (usually the IP is blocked). Use [the cookies fix](#youtube-sign-in-to-confirm-youre-not-a-bot). |
 | `Your local changes to .env would be overwritten` on `git pull` | See "Updating from v16" in [Updating](#updating). |
 | "Voice libraries do not load" | `node_modules` was copied from another computer. Delete the `node_modules` folder and start again. |
 | Anything else | Start with `DEBUG=true` in `.env` and read the log. |
@@ -265,7 +267,8 @@ The player panel has buttons for the same things. Only people in the bot's voice
 
 | | |
 | --- | --- |
-| **Fast start** | Songs are streamed, never downloaded. One yt-dlp call returns the song and its stream, joining the voice channel happens at the same time, and the next song is prepared while the current one plays. |
+| **Fast start** | Songs are streamed, never saved to disk. One yt-dlp call finds the song and its audio, joining the voice channel happens at the same time, and the next song is prepared while the current one plays. |
+| **Reliable audio** | yt-dlp downloads the audio the way YouTube expects and passes it to ffmpeg through a local relay, so YouTube's "403 Forbidden" on direct links does not happen. If YouTube still refuses a song, it is played from SoundCloud. |
 | **Sources** | YouTube (videos, Shorts, Music, playlists), Spotify (tracks, albums, playlists, artists), SoundCloud, direct audio links and every other site yt-dlp supports. |
 | **Player panel** | One panel with cover art, progress, queue preview, text buttons and an audio filter menu (Discord Components V2). |
 | **Sharding** | Always on, crashed shards restart automatically. |
@@ -293,7 +296,7 @@ src/
   deploy.js            Slash command registration (only when commands changed)
   commands/            Slash commands
   handlers/            Interaction router and permission checks
-  music/               DisTube setup, YouTube extractor, yt-dlp runner, sessions, lyrics
+  music/               DisTube setup, YouTube extractor, yt-dlp runner, audio relay, sessions, lyrics
   ui/views.js          Components V2 layouts
   core/                Logger, i18n, cache, JSON store, formatting, yt-dlp/ffmpeg download
 languages/             Translations

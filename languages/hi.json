@@ -143,6 +143,7 @@
     "removed": "**{title}** को कतार से हटा दिया गया।",
     "moved": "**{title}** को स्थान {position} पर ले जाया गया।",
     "invalid_position": "स्थान {position} पर कोई गाना नहीं है।",
-    "invite": "आमंत्रित करें"
+    "invite": "आमंत्रित करें",
+    "fallback_soundcloud": "इस गाने के लिए YouTube काम नहीं किया, इसलिए यह SoundCloud से चल रहा है।"
   }
 }

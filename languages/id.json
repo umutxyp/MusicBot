@@ -143,6 +143,7 @@
     "removed": "**{title}** dihapus dari antrian.",
     "moved": "**{title}** dipindahkan ke posisi {position}.",
     "invalid_position": "Tidak ada lagu di posisi {position}.",
-    "invite": "Undang"
+    "invite": "Undang",
+    "fallback_soundcloud": "YouTube tidak berfungsi untuk lagu ini, jadi lagu diputar dari SoundCloud."
   }
 }

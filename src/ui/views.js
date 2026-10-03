@@ -130,6 +130,7 @@ function playerPanel(t, state) {
         filter ? t('ui.filter', { filter: filterLabel(t, filter) }) : null,
     ].filter(Boolean);
     c.addTextDisplayComponents(text(`-# ${details.join(' · ')}`));
+    if (song.fallbackFrom) c.addTextDisplayComponents(text(`-# ${t('ui.fallback_soundcloud')}`));
 
     const next = upcoming[0];
     const queueLine = next

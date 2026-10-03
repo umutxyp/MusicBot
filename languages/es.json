@@ -143,6 +143,7 @@
     "removed": "Se eliminó **{title}** de la cola.",
     "moved": "Se movió **{title}** a la posición {position}.",
     "invalid_position": "No hay ninguna canción en la posición {position}.",
-    "invite": "Invitar"
+    "invite": "Invitar",
+    "fallback_soundcloud": "YouTube no funcionó con esta canción, así que se está reproduciendo desde SoundCloud."
   }
 }

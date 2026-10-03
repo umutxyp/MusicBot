@@ -143,6 +143,7 @@
     "removed": "**{title}** wurde aus der Warteschlange entfernt.",
     "moved": "**{title}** wurde auf Position {position} verschoben.",
     "invalid_position": "Auf Position {position} gibt es keinen Song.",
-    "invite": "Einladen"
+    "invite": "Einladen",
+    "fallback_soundcloud": "YouTube hat für diesen Song nicht funktioniert, daher wird er von SoundCloud abgespielt."
   }
 }

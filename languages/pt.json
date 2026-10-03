@@ -143,6 +143,7 @@
     "removed": "**{title}** foi removida da fila.",
     "moved": "**{title}** foi movida para a posição {position}.",
     "invalid_position": "Não há nenhuma música na posição {position}.",
-    "invite": "Convidar"
+    "invite": "Convidar",
+    "fallback_soundcloud": "O YouTube não funcionou para esta música, por isso está a ser reproduzida a partir do SoundCloud."
   }
 }
