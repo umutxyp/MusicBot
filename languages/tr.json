@@ -143,6 +143,7 @@
     "removed": "**{title}** kuyruktan kaldırıldı.",
     "moved": "**{title}** {position}. sıraya taşındı.",
     "invalid_position": "{position}. sırada şarkı yok.",
-    "invite": "Davet Et"
+    "invite": "Davet Et",
+    "fallback_soundcloud": "YouTube bu şarkı için çalışmadı, bu yüzden SoundCloud üzerinden çalınıyor."
   }
 }

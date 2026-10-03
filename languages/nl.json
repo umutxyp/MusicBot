@@ -143,6 +143,7 @@
     "removed": "**{title}** is uit de wachtrij verwijderd.",
     "moved": "**{title}** is verplaatst naar positie {position}.",
     "invalid_position": "Er staat geen nummer op positie {position}.",
-    "invite": "Uitnodigen"
+    "invite": "Uitnodigen",
+    "fallback_soundcloud": "YouTube werkte niet voor dit nummer, dus het wordt afgespeeld via SoundCloud."
   }
 }

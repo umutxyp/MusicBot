@@ -143,6 +143,7 @@
     "removed": "Usunięto **{title}** z kolejki.",
     "moved": "Przeniesiono **{title}** na pozycję {position}.",
     "invalid_position": "Na pozycji {position} nie ma piosenki.",
-    "invite": "Zaproś"
+    "invite": "Zaproś",
+    "fallback_soundcloud": "YouTube nie zadziałał dla tej piosenki, więc jest odtwarzana z SoundCloud."
   }
 }
