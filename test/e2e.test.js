@@ -19,7 +19,7 @@ const { execFileSync } = require('node:child_process');
 
 const skip = real ? false : 'set YTDLP_E2E to a real yt-dlp binary to run';
 
-test('real yt-dlp + ffmpeg produce playable Opus audio through the DisTube stream', { skip, timeout: 60_000 }, async () => {
+test('real yt-dlp -> relay -> ffmpeg -> Opus: playable audio through the DisTube stream', { skip, timeout: 60_000 }, async () => {
     const { DisTubeStream } = require('distube');
     const { GenericPlugin } = require('../src/music/plugins');
     const { resolveFfmpeg } = require('../src/music/manager');
@@ -39,10 +39,14 @@ test('real yt-dlp + ffmpeg produce playable Opus audio through the DisTube strea
         const plugin = new GenericPlugin();
         const song = await plugin.resolve(url, { metadata: { guildId: '111111111111111111' } });
         assert.equal(song.name, 'tone');
+        // yt-dlp downloads the audio; ffmpeg only ever reads from the local relay.
         const streamUrl = await plugin.getStreamURL(song);
-        assert.match(streamUrl, /^http:\/\/127\.0\.0\.1/);
+        assert.match(streamUrl, /^http:\/\/127\.0\.0\.1:\d+\/[0-9a-f]{24}$/);
 
-        const stream = new DisTubeStream(streamUrl, { ffmpeg: { path: ffmpeg, args: { global: {}, input: {}, output: {} } }, seek: 1 });
+        const stream = new DisTubeStream(streamUrl, {
+            ffmpeg: { path: ffmpeg, args: { global: {}, input: { reconnect: 0, reconnect_streamed: 0, reconnect_delay_max: null }, output: {} } },
+            seek: 1,
+        });
         // Drain the Opus packets exactly like Discord's AudioPlayer would.
         let packets = 0;
         const done = new Promise((resolve, reject) => {

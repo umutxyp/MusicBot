@@ -143,6 +143,7 @@
     "removed": "**{title}** をキューから削除しました。",
     "moved": "**{title}** を {position} 番目に移動しました。",
     "invalid_position": "{position} 番目に曲はありません。",
-    "invite": "招待"
+    "invite": "招待",
+    "fallback_soundcloud": "この曲では YouTube が利用できなかったため、SoundCloud から再生しています。"
   }
 }

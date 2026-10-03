@@ -143,6 +143,7 @@
     "removed": "**{title}** a été retirée de la file.",
     "moved": "**{title}** a été déplacée en position {position}.",
     "invalid_position": "Il n'y a aucune chanson en position {position}.",
-    "invite": "Inviter"
+    "invite": "Inviter",
+    "fallback_soundcloud": "YouTube n’a pas fonctionné pour cette chanson, elle est donc lue depuis SoundCloud."
   }
 }
