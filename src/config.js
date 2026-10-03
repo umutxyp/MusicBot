@@ -46,6 +46,7 @@ const shardList = () => {
 const config = {
     root: path.join(__dirname, '..'),
     dataDir: path.resolve(path.join(__dirname, '..'), env('DATA_DIR', 'data')),
+    binDir: path.resolve(path.join(__dirname, '..'), env('BIN_DIR', 'bin')),
     debug: bool('DEBUG'),
 
     discord: {
