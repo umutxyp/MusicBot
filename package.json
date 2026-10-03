@@ -10,7 +10,7 @@
     "deploy": "node scripts/deploy-commands.js",
     "test": "node --test \"test/*.test.js\"",
     "check": "node scripts/check-syntax.js",
-    "postinstall": "node scripts/update-ytdlp.js"
+    "postinstall": "node scripts/install-binaries.js"
   },
   "keywords": [
     "discord",
@@ -32,8 +32,7 @@
     "discord.js": "^14.27.0",
     "distube": "^5.2.3",
     "dotenv": "^16.4.7",
-    "opusscript": "^0.0.8",
-    "youtube-dl-exec": "^3.1.17"
+    "opusscript": "^0.0.8"
   },
   "optionalDependencies": {
     "ffmpeg-static": "^5.3.0"
