@@ -9,6 +9,20 @@ const log = require('./logger').createLogger('i18n');
 const LANG_DIR = path.join(__dirname, '..', '..', 'languages');
 const FALLBACK = 'en';
 
+// Discord locale -> language file code
+const DISCORD_LOCALES = {
+    'en-US': 'en', 'en-GB': 'en', tr: 'tr', de: 'de', 'es-ES': 'es', 'es-419': 'es', fr: 'fr', it: 'it',
+    nl: 'nl', pl: 'pl', 'pt-BR': 'pt', ru: 'ru', 'sv-SE': 'sv', no: 'no', da: 'da', fi: 'fi', cs: 'cs',
+    ja: 'ja', ko: 'ko', 'zh-CN': 'zh_CN', 'zh-TW': 'zh_TW', hi: 'hi', th: 'th', id: 'id',
+};
+
+// Emoji, flags, keycaps and variation selectors are stripped from translations for a clean UI.
+const EMOJI = /(?:\p{Extended_Pictographic}|[\u{1F1E6}-\u{1F1FF}]|[\u{FE0E}\u{FE0F}\u{20E3}\u{200D}])/gu;
+
+function clean(text) {
+    return text.replace(EMOJI, '').replace(/[ \t]{2,}/g, ' ').replace(/^[ \t]+/gm, '').trim();
+}
+
 const languages = new Map();
 const discordLocaleMap = new Map();
 
@@ -24,7 +38,9 @@ function load() {
         try {
             const data = JSON.parse(fs.readFileSync(path.join(LANG_DIR, file), 'utf8'));
             languages.set(code, data);
-            for (const locale of data.meta?.discordLocales || []) discordLocaleMap.set(locale, code);
+            for (const [locale, target] of Object.entries(DISCORD_LOCALES)) {
+                if (target === code) discordLocaleMap.set(locale, code);
+            }
         } catch (error) {
             log.error(`Invalid language file ${file}:`, error.message);
         }
@@ -45,7 +61,7 @@ function t(lang, key, vars = {}) {
     let text = lookup(languages.get(lang), key);
     if (typeof text !== 'string') text = lookup(languages.get(FALLBACK), key);
     if (typeof text !== 'string') return key;
-    return text.replace(/\{(\w+)\}/g, (match, name) => (vars[name] !== undefined ? String(vars[name]) : match));
+    return clean(text).replace(/\{(\w+)\}/g, (match, name) => (vars[name] !== undefined ? String(vars[name]) : match));
 }
 
 function fromDiscordLocale(locale) {
@@ -79,7 +95,7 @@ function forGuild(guild) {
 }
 
 function list() {
-    return [...languages.entries()].map(([code, data]) => ({ code, name: data.meta?.name || code }));
+    return [...languages.entries()].map(([code, data]) => ({ code, name: data.language?.name || code }));
 }
 
 /**
@@ -90,7 +106,9 @@ function localizations(key) {
     for (const [code, data] of languages) {
         const text = lookup(data, key);
         if (typeof text !== 'string' || code === FALLBACK) continue;
-        for (const locale of data.meta?.discordLocales || []) out[locale] = text;
+        for (const [locale, target] of discordLocaleMap) {
+            if (target === code) out[locale] = clean(text).slice(0, 100);
+        }
     }
     return out;
 }
@@ -123,6 +141,7 @@ function migrateLegacy(rootDir = config.root) {
 
 module.exports = {
     t,
+    clean,
     forGuild,
     guildLanguage,
     setGuildLanguage,

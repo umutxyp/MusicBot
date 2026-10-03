@@ -8,7 +8,7 @@
     "start": "node index.js",
     "shard": "node shard.js",
     "deploy": "node scripts/deploy-commands.js",
-    "test": "node --test test/",
+    "test": "node --test \"test/*.test.js\"",
     "check": "node scripts/check-syntax.js",
     "postinstall": "node scripts/update-ytdlp.js"
   },
