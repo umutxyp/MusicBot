@@ -4,7 +4,7 @@ require('./helpers');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { DisTubeError } = require('distube');
-const { errorKey } = require('../src/music/errors');
+const { errorKey, describeError, hostHint } = require('../src/music/errors');
 const { cleanTitle, pickBest } = require('../src/music/lyrics');
 const suggest = require('../src/music/suggest');
 
@@ -24,6 +24,22 @@ test('errors map to helpful translation keys', () => {
         [undefined, 'errors.unknown'],
     ];
     for (const [error, key] of cases) assert.equal(errorKey(error), key, String(error?.message));
+});
+
+test('a YouTube block is reported instead of a misleading "no results"', () => {
+    const youtube = { lastSearchError: new Error('ERROR: [youtube] x: Sign in to confirm you’re not a bot'), lastSearchErrorAt: 1000 };
+    const noResult = new DisTubeError('NO_RESULT', 'query');
+    assert.equal(describeError(noResult, { youtube, since: 500 }), 'errors.youtube_bot_detection');
+    assert.equal(describeError(noResult, { youtube, since: 2000 }), 'musicplayer.no_results_found', 'old errors are ignored');
+    assert.equal(describeError(noResult, {}), 'musicplayer.no_results_found');
+    assert.equal(describeError(new DisTubeError('VOICE_FULL'), { youtube, since: 0 }), 'ui.voice_full');
+});
+
+test('bot owner hints are logged at most every 10 minutes per kind', () => {
+    assert.match(hostHint('errors.youtube_bot_detection', 1_000_000), /COOKIES_FILE=\.\/cookies\.txt/);
+    assert.equal(hostHint('errors.youtube_bot_detection', 1_000_000 + 60_000), null);
+    assert.ok(hostHint('errors.youtube_bot_detection', 1_000_000 + 11 * 60_000));
+    assert.equal(hostHint('errors.unknown'), null);
 });
 
 test('lyrics: video titles are cleaned before searching', () => {

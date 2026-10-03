@@ -108,11 +108,11 @@
     "lyrics": "Şarkı Sözleri"
   },
   "errors": {
-    "youtube_bot_detection": "**YouTube bu isteği engelledi (bot tespiti)**\nYouTube, bu sunucunun IP adresinden gelen istekleri reddediyor.\n\n**Çözüm:** `.env` dosyasına `COOKIES_FROM_BROWSER=chrome` (veya firefox/edge) ya da `YOUTUBE_PO_TOKEN` ekleyin. Adım adım talimatlar için `YOUTUBE_FIX.md` dosyasına bakın.",
-    "youtube_age_restricted": "**Yaşa kısıtlı video**\nBu videoya erişmek için YouTube hesabıyla giriş yapılması gerekiyor.\n\n**Çözüm:** `.env` dosyasına `COOKIES_FROM_BROWSER=chrome` ekleyin. Bot, tarayıcınızın YouTube oturumunu kullanır.",
+    "youtube_bot_detection": "**YouTube bu isteği engelledi (bot tespiti)**\nYouTube, bu sunucunun IP adresinden gelen istekleri reddediyor.\n\n**Çözüm (bot sahibi):** YouTube çerezlerini `cookies.txt` dosyasına aktarın ve `.env` dosyasına `COOKIES_FILE=./cookies.txt` ekleyin; alternatif olarak `YOUTUBE_PO_TOKEN` veya `PROXY_URL` kullanın. Adım adım rehber: README.md, \"YouTube: Sign in to confirm you're not a bot\" bölümü.",
+    "youtube_age_restricted": "**Yaşa kısıtlı video**\nBu video için YouTube hesabıyla giriş yapılmış olması gerekiyor.\n\n**Çözüm (bot sahibi):** `.env` dosyasına bir YouTube hesabının çerezleriyle `COOKIES_FILE=./cookies.txt` ekleyin. Rehber: README.md.",
     "youtube_unavailable": "**Video kullanılamıyor**\nBu video gizli, silinmiş veya bu bölgede kullanılamıyor. Farklı bir şarkı veya link deneyin.",
     "youtube_geo_blocked": "**Bölge kısıtlaması**\nBu video, botun barındırıldığı bölgede erişime kısıtlı.\n\n**Çözüm:** Farklı bir link deneyin.",
-    "rate_limited": "**Çok fazla istek (rate limit)**\nYouTube veya başka bir platform, bu sunucudan gelen istekleri geçici olarak engelliyor.\n\n**Çözüm:** Birkaç dakika bekleyip tekrar deneyin. Sık yaşanıyorsa `.env` dosyasına `COOKIES_FROM_BROWSER` ekleyin.",
+    "rate_limited": "**Çok fazla istek (rate limit)**\nYouTube veya başka bir platform bu sunucudan gelen istekleri geçici olarak engelliyor.\n\n**Çözüm:** Birkaç dakika bekleyip tekrar deneyin. Sık yaşanıyorsa bot sahibi `.env` dosyasına `COOKIES_FILE` veya `PROXY_URL` eklemeli (README.md).",
     "network_error": "**Ağ hatası**\nBot, müzik platformuna bağlanamadı. Bu genellikle geçici bir sorundur.\n\n**Çözüm:** Bir süre bekleyip tekrar deneyin. Sorun devam ederse sunucunun internet bağlantısını kontrol edin.",
     "stream_failed": "**Ses akışı başarısız**\nBot şarkı bilgisini buldu ancak ses akışını başlatamadı.\n\n**Çözüm:** Tekrar deneyin. Sorun devam ederse şarkının farklı bir versiyonunu deneyin.",
     "voice_no_permission": "**Ses kanalı izni eksik**\nBotun ses kanalınıza katılma veya konuşma izni yok.\n\n**Çözüm:** Ses kanalı ayarları → İzinler → Bota **Bağlan** ve **Konuş** izinleri verin.",

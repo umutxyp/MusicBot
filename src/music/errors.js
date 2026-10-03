@@ -29,4 +29,37 @@ function errorKey(error) {
     return 'errors.unknown';
 }
 
-module.exports = { errorKey };
+const NOT_FOUND = new Set(['musicplayer.no_results_found', 'errors.unknown']);
+
+/**
+ * Translation key for an error. When a text search ended in "no results" only because YouTube
+ * refused the request (and the SoundCloud fallback found nothing either), report YouTube's error.
+ */
+function describeError(error, { youtube, since = 0 } = {}) {
+    const key = errorKey(error);
+    if (NOT_FOUND.has(key) && youtube?.lastSearchError && youtube.lastSearchErrorAt >= since) {
+        const cause = errorKey(youtube.lastSearchError);
+        if (cause !== 'errors.unknown') return cause;
+    }
+    return key;
+}
+
+const HOST_HINTS = {
+    'errors.youtube_bot_detection': 'YouTube is blocking this server ("Sign in to confirm you\'re not a bot"). Export YouTube cookies to cookies.txt and set COOKIES_FILE=./cookies.txt in .env (or YOUTUBE_PO_TOKEN / PROXY_URL). See README.md, section "YouTube: Sign in to confirm you\'re not a bot".',
+    'errors.youtube_age_restricted': 'Age-restricted videos need a logged-in YouTube account. Set COOKIES_FILE=./cookies.txt in .env. See README.md.',
+    'errors.rate_limited': 'A platform is rate limiting this server. If it keeps happening set COOKIES_FILE or PROXY_URL in .env. See README.md.',
+};
+
+/**
+ * Instructions for the bot owner's console when an error needs a configuration change
+ * (logged at most once every 10 minutes per kind).
+ */
+const lastHint = new Map();
+function hostHint(key, now = Date.now()) {
+    const hint = HOST_HINTS[key];
+    if (!hint || now - (lastHint.get(key) || 0) < 10 * 60_000) return null;
+    lastHint.set(key, now);
+    return hint;
+}
+
+module.exports = { errorKey, describeError, hostHint };
