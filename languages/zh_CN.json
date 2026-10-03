@@ -143,6 +143,7 @@
     "removed": "已将 **{title}** 从队列中移除。",
     "moved": "已将 **{title}** 移动到第 {position} 位。",
     "invalid_position": "第 {position} 位没有歌曲。",
-    "invite": "邀请"
+    "invite": "邀请",
+    "fallback_soundcloud": "此歌曲无法通过 YouTube 播放，已改为从 SoundCloud 播放。"
   }
 }

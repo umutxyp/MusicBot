@@ -66,9 +66,6 @@ async function start() {
     const ytdlpStatus = await ytdlp.version();
     if (ytdlpStatus.version) log.info(`yt-dlp ${ytdlpStatus.version} (${ytdlp.binary})`);
     else log.error(`yt-dlp at "${ytdlp.binary}" does not work: ${ytdlpStatus.error}. YouTube will not play until this is fixed.`);
-    if (config.proxies.some((proxy) => !/^https?:\/\//i.test(proxy))) {
-        log.warn('SOCKS proxies are used for extraction only; audio streams connect directly.');
-    }
 
     const client = createClient();
     const managed = Boolean(process.env.SHARDING_MANAGER);

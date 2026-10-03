@@ -35,6 +35,8 @@ async function playFromInteraction(interaction, ctx, query, { next = false } = {
         } else {
             message = t('commands.play.track_queued', { title: resolved.name, position: outcome.position });
         }
+        const first = resolved instanceof Playlist ? null : resolved;
+        if (first?.fallbackFrom) message += `\n-# ${t('ui.fallback_soundcloud')}`;
         return say(interaction, message);
     } catch (error) {
         if (error?.errorCode === 'QUEUE_FULL') return say(interaction, t('ui.queue_full', { max: config.bot.maxQueueSize }));

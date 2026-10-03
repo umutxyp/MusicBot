@@ -143,6 +143,7 @@
     "removed": "تمت إزالة **{title}** من قائمة الانتظار.",
     "moved": "تم نقل **{title}** إلى الموضع {position}.",
     "invalid_position": "لا توجد أغنية في الموضع {position}.",
-    "invite": "دعوة"
+    "invite": "دعوة",
+    "fallback_soundcloud": "لم يعمل YouTube مع هذه الأغنية، لذلك يتم تشغيلها من SoundCloud."
   }
 }

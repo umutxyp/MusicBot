@@ -143,6 +143,7 @@
     "removed": "Removed **{title}** from the queue.",
     "moved": "Moved **{title}** to position {position}.",
     "invalid_position": "There is no song at position {position}.",
-    "invite": "Invite"
+    "invite": "Invite",
+    "fallback_soundcloud": "YouTube did not work for this song, so it is playing from SoundCloud."
   }
 }

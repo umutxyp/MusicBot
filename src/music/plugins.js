@@ -1,8 +1,11 @@
 'use strict';
 
 const { ExtractorPlugin, PlayableExtractorPlugin, Playlist, Song, DisTubeError } = require('distube');
+const { SoundCloudPlugin } = require('@distube/soundcloud');
+const { DirectLinkPlugin } = require('@distube/direct-link');
 const config = require('../config');
 const ytdlp = require('./ytdlp');
+const { getRelay } = require('./relay');
 const { TTLCache } = require('../core/cache');
 const log = require('../core/logger').createLogger('extractor');
 
@@ -84,41 +87,63 @@ function youtubeInfo(info) {
 }
 
 /**
- * Shared yt-dlp plumbing: stream URL cache keyed per proxy (stream URLs are IP-locked).
+ * Hand a stream to ffmpeg through the local relay, after checking that audio really arrives.
+ */
+async function relayStream(relay, source) {
+    const url = await relay.register(source);
+    return relay.warm(url);
+}
+
+/**
+ * Shared yt-dlp plumbing: caches the extracted info (with its chosen audio format) per proxy,
+ * because YouTube locks stream URLs to the IP address that requested them.
  */
 class YtDlpBase {
-    constructor(runner) {
+    constructor(runner, relay) {
         this.run = runner;
-        this.streams = new TTLCache({ ttlMs: 3600_000, maxSize: 2000 });
+        this.relay = relay;
+        this.infos = new TTLCache({ ttlMs: 3600_000, maxSize: 500 });
     }
 
-    streamKey(guildId, url) {
+    infoKey(guildId, url) {
         return `${ytdlp.proxyFor(guildId) || 'direct'}|${url}`;
     }
 
-    rememberStream(guildId, pageUrl, info) {
-        if (info?.url && !info.entries) this.streams.set(this.streamKey(guildId, pageUrl), info.url, streamTtl(info.url));
+    rememberInfo(guildId, pageUrl, info) {
+        if (info?.url && info.format_id && !info.entries) this.infos.set(this.infoKey(guildId, pageUrl), info, streamTtl(info.url));
     }
 
-    async streamUrl(song, { priority = 'high' } = {}) {
-        if (!song?.url) throw new DisTubeError('INVALID_SONG', 'Cannot get a stream URL without a song URL.');
+    /**
+     * Full info of a song with its audio format chosen (cached, or extracted now).
+     */
+    async streamInfo(song, { priority = 'high' } = {}) {
+        if (!song?.url) throw new DisTubeError('INVALID_SONG', 'Cannot get a stream without a song URL.');
         const guildId = guildIdOf(song);
-        const key = this.streamKey(guildId, song.url);
-        return this.streams.wrap(key, async () => {
-            const info = await this.run(song.url, ['--no-playlist', '-f', AUDIO_FORMAT], { proxy: ytdlp.proxyFor(guildId), priority });
-            if (!info?.url) throw new DisTubeError('NO_STREAM_URL', song.name || song.url);
-            return info.url;
-        }).then((url) => {
-            this.streams.set(key, url, streamTtl(url));
-            return url;
+        const key = this.infoKey(guildId, song.url);
+        const info = await this.infos.wrap(key, async () => {
+            const result = await this.run(song.url, ['--no-playlist', '-f', AUDIO_FORMAT], { proxy: ytdlp.proxyFor(guildId), priority });
+            if (!result?.url) throw new DisTubeError('NO_STREAM_URL', song.name || song.url);
+            return result;
         });
+        this.infos.set(key, info, streamTtl(info.url));
+        return info;
+    }
+
+    async streamUrl(song) {
+        const info = await this.streamInfo(song);
+        return relayStream(this.relay, { info, proxy: ytdlp.proxyFor(guildIdOf(song)) });
     }
 }
 
 class YouTubePlugin extends ExtractorPlugin {
-    constructor({ runner = ytdlp.runJson } = {}) {
+    /**
+     * @param {object} [options]
+     * @param {object} [options.fallback] SoundCloud plugin used when YouTube fails (null to disable).
+     */
+    constructor({ runner = ytdlp.runJson, relay = getRelay(), fallback = null } = {}) {
         super();
-        this.base = new YtDlpBase(runner);
+        this.base = new YtDlpBase(runner, relay);
+        this.fallback = fallback;
         this.searches = new TTLCache({ ttlMs: 30 * 60_000, maxSize: 1000 });
         this.lastSearchError = null;
         this.lastSearchErrorAt = 0;
@@ -159,14 +184,14 @@ class YouTubePlugin extends ExtractorPlugin {
         // One call returns metadata *and* the stream URL, so playback can start right away.
         const info = await this.run(watchUrl(parsed.id), ['--no-playlist', '-f', AUDIO_FORMAT], { proxy });
         const song = new Song({ ...youtubeInfo(info), plugin: this }, options);
-        this.base.rememberStream(guildId, song.url, info);
+        this.base.rememberInfo(guildId, song.url, info);
         return song;
     }
 
     /**
      * Used by DisTube for text queries and for Spotify tracks (which are played from YouTube).
-     * Errors are thrown, never swallowed: silently switching to another source would hide why
-     * YouTube failed and play a different recording than the user asked for.
+     * When YouTube fails, the same search runs on SoundCloud; the song is marked so the user is
+     * told, and the reason is logged for the bot owner.
      */
     async searchSong(query, options = {}) {
         const guildId = guildIdOf(options);
@@ -176,13 +201,29 @@ class YouTubePlugin extends ExtractorPlugin {
         } catch (error) {
             this.lastSearchError = error;
             this.lastSearchErrorAt = Date.now();
-            log.warn(`Search failed for "${query}": ${error.message}`);
+            log.warn(`YouTube search failed for "${query}": ${error.message}`);
+            const alternative = await this.#fallbackSearch(query, options);
+            if (alternative) return alternative;
             throw error;
         }
         if (!info) return null;
         const song = new Song({ ...youtubeInfo(info), plugin: this }, options);
-        this.base.rememberStream(guildId, song.url, info);
+        this.base.rememberInfo(guildId, song.url, info);
         return song;
+    }
+
+    async #fallbackSearch(query, options) {
+        if (!this.fallback) return null;
+        try {
+            const song = await this.fallback.searchSong(query, options);
+            if (!song) return null;
+            song.fallbackFrom = 'youtube';
+            log.warn(`Playing "${query}" from SoundCloud instead of YouTube`);
+            return song;
+        } catch (error) {
+            log.warn(`SoundCloud fallback found nothing for "${query}": ${error.message}`);
+            return null;
+        }
     }
 
     searchInfo(query, guildId, { priority = 'high' } = {}) {
@@ -202,20 +243,37 @@ class YouTubePlugin extends ExtractorPlugin {
         return (result?.entries || []).filter((entry) => entry?.id && VIDEO_ID.test(entry.id)).map(youtubeInfo);
     }
 
-    getStreamURL(song) {
-        return this.base.streamUrl(song);
+    /**
+     * Stream of a YouTube song through the relay. If YouTube refuses it (403, bot check, removed),
+     * the same song is played from SoundCloud when possible.
+     */
+    async getStreamURL(song) {
+        // DisTube asks the plugin that answered the search; a SoundCloud fallback song plays through its own plugin.
+        if (song.plugin && song.plugin !== this) return song.plugin.getStreamURL(song);
+        try {
+            return await this.base.streamUrl(song);
+        } catch (error) {
+            if (!this.fallback) throw error;
+            log.warn(`YouTube stream failed for "${song.name}": ${error.message}`);
+            const query = [song.name, song.uploader?.name].filter(Boolean).join(' ');
+            const alternative = await this.#fallbackSearch(query, { metadata: song.metadata, member: song.member });
+            if (!alternative) throw error;
+            const url = await this.fallback.getStreamURL(alternative);
+            song.fallbackFrom = 'youtube';
+            return url;
+        }
     }
 
     /**
-     * Warm the caches for an upcoming song so it starts instantly.
+     * Resolve an upcoming song ahead of time so it starts instantly (no download yet).
      */
     async prefetch(song) {
-        await this.base.streamUrl(song, { priority: 'low' });
+        await this.base.streamInfo(song, { priority: 'low' });
     }
 
     async prefetchQuery(query, guildId) {
         const info = await this.searchInfo(query, guildId, { priority: 'low' });
-        if (info) this.base.rememberStream(guildId, watchUrl(info.id), info);
+        if (info) this.base.rememberInfo(guildId, watchUrl(info.id), info);
     }
 
     async getRelatedSongs(song) {
@@ -235,9 +293,9 @@ class YouTubePlugin extends ExtractorPlugin {
  * Fallback for every other site yt-dlp supports (Bandcamp, Vimeo, Twitch, ...). Must be the last plugin.
  */
 class GenericPlugin extends PlayableExtractorPlugin {
-    constructor({ runner = ytdlp.runJson } = {}) {
+    constructor({ runner = ytdlp.runJson, relay = getRelay() } = {}) {
         super();
-        this.base = new YtDlpBase(runner);
+        this.base = new YtDlpBase(runner, relay);
     }
 
     validate(url) {
@@ -282,7 +340,7 @@ class GenericPlugin extends PlayableExtractorPlugin {
         }
 
         const song = toSong(info);
-        this.base.rememberStream(guildId, song.url, info);
+        this.base.rememberInfo(guildId, song.url, info);
         return song;
     }
 
@@ -291,7 +349,7 @@ class GenericPlugin extends PlayableExtractorPlugin {
     }
 
     async prefetch(song) {
-        await this.base.streamUrl(song, { priority: 'low' });
+        await this.base.streamInfo(song, { priority: 'low' });
     }
 
     getRelatedSongs() {
@@ -299,4 +357,35 @@ class GenericPlugin extends PlayableExtractorPlugin {
     }
 }
 
-module.exports = { YouTubePlugin, GenericPlugin, parseYouTubeUrl, youtubeInfo, streamTtl, AUDIO_FORMAT };
+/**
+ * SoundCloud and direct links also play through the relay, so ffmpeg never opens network
+ * connections itself (proxies apply and static ffmpeg builds work on Linux).
+ */
+class RelayedSoundCloudPlugin extends SoundCloudPlugin {
+    constructor({ relay = getRelay(), ...options } = {}) {
+        super(options);
+        this.relay = relay;
+    }
+
+    async getStreamURL(song) {
+        const url = await super.getStreamURL(song);
+        return relayStream(this.relay, { url, proxy: ytdlp.proxyFor(guildIdOf(song)) });
+    }
+}
+
+class RelayedDirectLinkPlugin extends DirectLinkPlugin {
+    constructor({ relay = getRelay() } = {}) {
+        super();
+        this.relay = relay;
+    }
+
+    async getStreamURL(song) {
+        const url = super.getStreamURL(song);
+        return relayStream(this.relay, { url, proxy: ytdlp.proxyFor(guildIdOf(song)) });
+    }
+}
+
+module.exports = {
+    YouTubePlugin, GenericPlugin, RelayedSoundCloudPlugin, RelayedDirectLinkPlugin,
+    parseYouTubeUrl, youtubeInfo, streamTtl, relayStream, AUDIO_FORMAT,
+};
