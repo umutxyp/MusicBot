@@ -3,15 +3,13 @@
 const fs = require('node:fs');
 const { DisTube, DisTubeError, Events: DisTubeEvents, Playlist, RepeatMode } = require('distube');
 const { SpotifyPlugin } = require('@distube/spotify');
-const { SoundCloudPlugin } = require('@distube/soundcloud');
-const { DirectLinkPlugin } = require('@distube/direct-link');
 const { RESTJSONErrorCodes } = require('discord.js');
 const config = require('../config');
 const i18n = require('../core/i18n');
-const { YouTubePlugin, GenericPlugin } = require('./plugins');
+const { YouTubePlugin, GenericPlugin, RelayedSoundCloudPlugin, RelayedDirectLinkPlugin } = require('./plugins');
+const { getRelay } = require('./relay');
 const { SessionStore } = require('./session');
 const { describeError, hostHint } = require('./errors');
-const ytdlp = require('./ytdlp');
 const views = require('../ui/views');
 const log = require('../core/logger').createLogger('music');
 
@@ -32,7 +30,6 @@ function resolveFfmpeg() {
     return 'ffmpeg';
 }
 
-const isHttpProxy = (url) => /^https?:\/\//i.test(url || '');
 
 const DISCORD_GONE = new Set([
     RESTJSONErrorCodes.UnknownMessage,
@@ -47,13 +44,14 @@ class MusicManager {
         this.shuttingDown = false;
         this.guilds = new Map();
 
-        this.youtube = new YouTubePlugin();
+        this.relay = getRelay();
+        this.soundcloud = new RelayedSoundCloudPlugin({ relay: this.relay });
+        this.youtube = new YouTubePlugin({ relay: this.relay, fallback: config.youtubeFallback ? this.soundcloud : null });
         this.spotify = new SpotifyPlugin(config.spotify.clientId && config.spotify.clientSecret
             ? { api: { clientId: config.spotify.clientId, clientSecret: config.spotify.clientSecret } }
             : {});
-        this.soundcloud = new SoundCloudPlugin();
-        this.direct = new DirectLinkPlugin();
-        this.generic = new GenericPlugin();
+        this.direct = new RelayedDirectLinkPlugin({ relay: this.relay });
+        this.generic = new GenericPlugin({ relay: this.relay });
 
         this.distube = new DisTube(client, {
             // Order matters: the first extractor handles text searches (YouTube); the generic yt-dlp plugin must be last.
@@ -62,7 +60,11 @@ class MusicManager {
             emitAddSongWhenCreatingQueue: false,
             emitAddListWhenCreatingQueue: false,
             joinNewVoiceChannel: false,
-            ffmpeg: { path: resolveFfmpeg() },
+            ffmpeg: {
+                path: resolveFfmpeg(),
+                // ffmpeg only reads from the local relay; reconnecting would restart the song.
+                args: { input: { reconnect: 0, reconnect_streamed: 0, reconnect_delay_max: null } },
+            },
         });
 
         this.sessions = new SessionStore({
@@ -500,8 +502,6 @@ class MusicManager {
 
         d.on(DisTubeEvents.INIT_QUEUE, (queue) => {
             queue.volume = config.bot.defaultVolume;
-            const proxy = ytdlp.proxyFor(queue.id);
-            if (isHttpProxy(proxy)) queue.ffmpegArgs.input.http_proxy = proxy;
             this.#clearLeave(this.state(queue.id));
         });
 
@@ -542,11 +542,14 @@ class MusicManager {
         });
 
         d.on(DisTubeEvents.ERROR, (error, queue, song) => {
-            log.warn(`[${queue?.id ?? '?'}] ${song ? `${song.name}: ` : ''}${error.message}`);
+            // ffmpeg only reports "exited with code 1"; the relay knows what yt-dlp said.
+            const played = song?.stream?.playFromSource ? song : song?.stream?.song;
+            const cause = this.relay.errorFor(played?.stream?.url);
+            log.warn(`[${queue?.id ?? '?'}] ${song ? `${song.name}: ` : ''}${error.message}${cause ? ` (cause: ${cause.message})` : ''}`);
             if (!queue?.textChannel || this.shuttingDown) return;
             const t = this.translator(queue.id);
             const header = song ? `${t('musicplayer.track_could_not_play')} **${song.name}**\n` : '';
-            const key = this.explainError(error, Date.now() - 60_000);
+            const key = this.explainError(cause || error, Date.now() - 60_000);
             queue.textChannel.send(views.notice(`${header}${t(key)}`, { ephemeral: false })).catch(() => undefined);
         });
 

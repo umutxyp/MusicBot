@@ -143,6 +143,7 @@
     "removed": "**{title}** è stata rimossa dalla coda.",
     "moved": "**{title}** è stata spostata alla posizione {position}.",
     "invalid_position": "Non c’è nessuna canzone alla posizione {position}.",
-    "invite": "Invita"
+    "invite": "Invita",
+    "fallback_soundcloud": "YouTube non ha funzionato per questa canzone, quindi viene riprodotta da SoundCloud."
   }
 }

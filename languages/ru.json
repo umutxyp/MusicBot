@@ -143,6 +143,7 @@
     "removed": "**{title}** удалена из очереди.",
     "moved": "**{title}** перемещена на позицию {position}.",
     "invalid_position": "На позиции {position} нет песни.",
-    "invite": "Пригласить"
+    "invite": "Пригласить",
+    "fallback_soundcloud": "YouTube не сработал для этой песни, поэтому она воспроизводится из SoundCloud."
   }
 }

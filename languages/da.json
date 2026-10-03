@@ -143,6 +143,7 @@
     "removed": "**{title}** blev fjernet fra køen.",
     "moved": "**{title}** blev flyttet til plads {position}.",
     "invalid_position": "Der er ingen sang på plads {position}.",
-    "invite": "Inviter"
+    "invite": "Inviter",
+    "fallback_soundcloud": "YouTube virkede ikke for denne sang, så den afspilles fra SoundCloud."
   }
 }

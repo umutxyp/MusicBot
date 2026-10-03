@@ -143,6 +143,7 @@
     "removed": "**{title}** byla odebrána z fronty.",
     "moved": "**{title}** byla přesunuta na pozici {position}.",
     "invalid_position": "Na pozici {position} není žádná skladba.",
-    "invite": "Pozvat"
+    "invite": "Pozvat",
+    "fallback_soundcloud": "YouTube u této skladby nefungoval, proto se přehrává ze SoundCloudu."
   }
 }
