@@ -3,6 +3,7 @@ node_modules/
 .env.backup
 data/
 audio_cache/
+bin/
 cookies.txt
 *.log
 .DS_Store

@@ -67,5 +67,5 @@ test('runJson kills the process on timeout', { skip }, async () => {
 });
 
 test('version() reports the binary version', { skip }, async () => {
-    assert.equal(await ytdlp.version(), '2026.09.01');
+    assert.deepEqual(await ytdlp.version(), { version: '2026.09.01' });
 });
