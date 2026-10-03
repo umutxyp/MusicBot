@@ -117,5 +117,32 @@
     "stream_failed": "**Lydstream mislykkedes**\nBotten fandt sangen, men kunne ikke starte lydstreamen.\n\n**Løsning:** Prøv igen eller prøv en anden version af sangen.",
     "voice_no_permission": "**Manglende tilladelser til stemmekanal**\nBotten har ikke tilladelse til at deltage eller tale i din stemmekanal.\n\n**Løsning:** Stemmekanals indstillinger → Tilladelser → giv botten **Forbind** og **Tal**.",
     "unknown": "**En uventet fejl opstod**\nNoget gik galt under behandlingen af din anmodning.\n\n**Løsning:** Prøv igen om et øjeblik. Tjek bottens konsol for hele fejlloggen, hvis problemet fortsætter."
+  },
+  "ui": {
+    "voice_full": "Den stemmekanal er fuld.",
+    "live": "Live",
+    "playlist_truncated": "Kun de første {max} sange blev tilføjet.",
+    "unsupported": "Det link understøttes ikke.",
+    "queue_full": "Køen er fuld ({max} sange).",
+    "autoplay_added": "Tilføjet af autoplay",
+    "filter": "Filter: {filter}",
+    "filter_none": "Intet filter",
+    "filter_placeholder": "Lydfilter",
+    "left_empty": "Forlod stemmekanalen, fordi ingen lyttede med.",
+    "no_related": "Autoplay kunne ikke finde en lignende sang.",
+    "previous": "Forrige",
+    "back": "Tilbage",
+    "next": "Næste",
+    "page": "Side {page}/{pages}",
+    "already_paused": "Musikken er allerede sat på pause.",
+    "not_paused": "Musikken er ikke sat på pause.",
+    "jumped": "Sprang til **{title}**.",
+    "seeked": "Sprang til {time}.",
+    "seek_invalid": "Brug et tidspunkt som 1:30 eller 90 inden for sangens længde.",
+    "seek_live": "Du kan ikke spole i en livestream.",
+    "removed": "**{title}** blev fjernet fra køen.",
+    "moved": "**{title}** blev flyttet til plads {position}.",
+    "invalid_position": "Der er ingen sang på plads {position}.",
+    "invite": "Inviter"
   }
 }

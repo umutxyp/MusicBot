@@ -117,5 +117,32 @@
     "stream_failed": "**Échec du flux audio**\nLe bot a trouvé le titre mais n'a pas pu démarrer le flux audio.\n\n**Solution:** Réessayez ou tentez une version différente de la chanson.",
     "voice_no_permission": "**Permissions du salon vocal manquantes**\nLe bot n'a pas la permission de rejoindre ou de parler dans votre salon vocal.\n\n**Solution:** Paramètres du salon vocal → Permissions → accordez au bot les permissions **Se connecter** et **Parler**.",
     "unknown": "**Une erreur inattendue s'est produite**\nQuelque chose s'est mal passé lors du traitement de votre requête.\n\n**Solution:** Réessayez dans un moment. Si le problème persiste, consultez les logs de la console du bot."
+  },
+  "ui": {
+    "voice_full": "Ce canal vocal est plein.",
+    "live": "En direct",
+    "playlist_truncated": "Seules les {max} premières chansons ont été ajoutées.",
+    "unsupported": "Ce lien n'est pas pris en charge.",
+    "queue_full": "La file est pleine ({max} chansons).",
+    "autoplay_added": "Ajoutée par la lecture automatique",
+    "filter": "Filtre : {filter}",
+    "filter_none": "Aucun filtre",
+    "filter_placeholder": "Filtre audio",
+    "left_empty": "J'ai quitté le canal vocal car personne n'écoutait.",
+    "no_related": "La lecture automatique n'a trouvé aucune chanson similaire.",
+    "previous": "Précédent",
+    "back": "Retour",
+    "next": "Suivant",
+    "page": "Page {page}/{pages}",
+    "already_paused": "La musique est déjà en pause.",
+    "not_paused": "La musique n'est pas en pause.",
+    "jumped": "Passage à **{title}**.",
+    "seeked": "Avance à {time}.",
+    "seek_invalid": "Utilisez un temps comme 1:30 ou 90 compris dans la durée de la chanson.",
+    "seek_live": "Vous ne pouvez pas avancer ou reculer dans un direct.",
+    "removed": "**{title}** a été retirée de la file.",
+    "moved": "**{title}** a été déplacée en position {position}.",
+    "invalid_position": "Il n'y a aucune chanson en position {position}.",
+    "invite": "Inviter"
   }
 }

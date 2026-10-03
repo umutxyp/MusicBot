@@ -106,3 +106,13 @@ test('error messages point to existing docs and the cookies setting', () => {
     }
     assert.match(fs.readFileSync(path.join(root, 'README.md'), 'utf8'), /### YouTube: Sign in to confirm you're not a bot/);
 });
+
+test('every language translates every key used by the bot (no English fallback)', () => {
+    const en = i18n.languages.get('en');
+    const keys = [...usedKeys].filter((key) => typeof lookup(en, key) === 'string');
+    const missing = [];
+    for (const [code, data] of i18n.languages) {
+        for (const key of keys) if (typeof lookup(data, key) !== 'string') missing.push(`${code}:${key}`);
+    }
+    assert.deepEqual(missing, []);
+});
