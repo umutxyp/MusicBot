@@ -1,0 +1,7 @@
+node_modules/
+.env
+data/
+audio_cache/
+cookies.txt
+*.log
+.DS_Store
