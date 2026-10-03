@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('node:fs');
 const path = require('node:path');
 const { ShardingManager } = require('discord.js');
 const config = require('./src/config');
@@ -8,6 +9,20 @@ const { deployCommands } = require('./src/deploy');
 
 const log = logger.createLogger('manager');
 logger.setDebug(config.debug);
+
+/**
+ * v16 and older downloaded every song into audio_cache/. Nothing uses it any more, so free the disk space.
+ */
+function removeLegacyCache() {
+    const dir = path.join(__dirname, 'audio_cache');
+    if (!fs.existsSync(dir)) return;
+    try {
+        fs.rmSync(dir, { recursive: true, force: true });
+        log.info('Removed the old audio_cache folder (no longer used).');
+    } catch (error) {
+        log.warn('Could not remove the old audio_cache folder:', error.message);
+    }
+}
 
 /**
  * Entry point. The bot always runs under the ShardingManager: small bots get one shard,
@@ -23,6 +38,8 @@ async function main() {
         log.error('DISCORD_TOKEN and CLIENT_ID are required. Copy .env.example to .env and fill them in.');
         process.exit(1);
     }
+
+    removeLegacyCache();
 
     try {
         await deployCommands();

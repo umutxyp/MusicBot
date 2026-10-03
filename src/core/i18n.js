@@ -70,11 +70,30 @@ function fromDiscordLocale(locale) {
 }
 
 /**
- * Language for a guild: explicit setting > guild's Discord locale > default.
+ * Language settings written by v16 and older (database/languages.json). Read-only: they keep
+ * working after an upgrade without any migration step, and new choices are saved per guild.
+ */
+let legacy = null;
+function legacyLanguage(guildId, rootDir = config.root) {
+    if (legacy === null) {
+        legacy = {};
+        try {
+            legacy = JSON.parse(fs.readFileSync(path.join(rootDir, 'database', 'languages.json'), 'utf8'))?.servers || {};
+        } catch (error) {
+            if (error.code !== 'ENOENT') log.warn('Could not read database/languages.json:', error.message);
+        }
+    }
+    return legacy[guildId]?.language || null;
+}
+
+/**
+ * Language for a guild: saved setting > v16 setting > guild's Discord locale > default.
  */
 function guildLanguage(guildId, guildLocale) {
     const stored = guildId ? getSettings().get(guildId)?.language : null;
     if (stored && languages.has(stored)) return stored;
+    const old = guildId ? legacyLanguage(guildId) : null;
+    if (old && languages.has(old)) return old;
     return fromDiscordLocale(guildLocale) || defaultLanguage;
 }
 
@@ -113,32 +132,6 @@ function localizations(key) {
     return out;
 }
 
-/**
- * One-time import of the language settings written by older versions (database/languages.json).
- */
-function migrateLegacy(rootDir = config.root) {
-    const legacyFile = path.join(rootDir, 'database', 'languages.json');
-    const marker = path.join(config.dataDir, '.languages-migrated');
-    if (!fs.existsSync(legacyFile) || fs.existsSync(marker)) return 0;
-    let count = 0;
-    try {
-        const servers = JSON.parse(fs.readFileSync(legacyFile, 'utf8'))?.servers || {};
-        const store = getSettings();
-        for (const [guildId, value] of Object.entries(servers)) {
-            if (/^\d{15,25}$/.test(guildId) && languages.has(value?.language) && !store.get(guildId)) {
-                store.set(guildId, { language: value.language });
-                count++;
-            }
-        }
-        fs.mkdirSync(config.dataDir, { recursive: true });
-        fs.writeFileSync(marker, new Date().toISOString());
-        if (count) log.ok(`Imported ${count} legacy language setting(s)`);
-    } catch (error) {
-        log.warn('Could not import legacy language settings:', error.message);
-    }
-    return count;
-}
-
 module.exports = {
     t,
     clean,
@@ -148,7 +141,10 @@ module.exports = {
     fromDiscordLocale,
     list,
     localizations,
-    migrateLegacy,
+    resetLegacyCache: () => {
+        legacy = null;
+    },
+    legacyLanguage,
     languages,
     FALLBACK,
     get defaultLanguage() {

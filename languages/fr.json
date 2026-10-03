@@ -108,11 +108,11 @@
     "lyrics": "Paroles"
   },
   "errors": {
-    "youtube_bot_detection": "**YouTube a bloqué cette requête (détection de bot)**\nYouTube refuse les requêtes depuis l'adresse IP de ce serveur.\n\n**Solution:** Ajoutez `COOKIES_FROM_BROWSER=chrome` (ou firefox/edge) ou `YOUTUBE_PO_TOKEN` dans le fichier `.env`. Consultez `YOUTUBE_FIX.md` pour les instructions détaillées.",
-    "youtube_age_restricted": "**Vidéo à accès restreint par l'âge**\nCette vidéo nécessite un compte YouTube connecté.\n\n**Solution:** Définissez `COOKIES_FROM_BROWSER=chrome` dans `.env` pour que le bot utilise votre session YouTube du navigateur.",
+    "youtube_bot_detection": "**YouTube a bloqué cette requête (détection de bot)**\nYouTube refuse les requêtes depuis l'adresse IP de ce serveur.\n\n**Solution:** Ajoutez `COOKIES_FILE=./cookies.txt` / `COOKIES_FROM_BROWSER=chrome` (ou firefox/edge) ou `YOUTUBE_PO_TOKEN` dans le fichier `.env`. Consultez `README.md` pour les instructions détaillées.",
+    "youtube_age_restricted": "**Vidéo à accès restreint par l'âge**\nCette vidéo nécessite un compte YouTube connecté.\n\n**Solution:** Définissez `COOKIES_FILE=./cookies.txt` / `COOKIES_FROM_BROWSER=chrome` dans `.env` pour que le bot utilise votre session YouTube du navigateur.",
     "youtube_unavailable": "**Vidéo non disponible**\nCette vidéo est privée, supprimée ou non disponible dans cette région. Essayez un autre lien ou une autre chanson.",
     "youtube_geo_blocked": "**Contenu géo-bloqué**\nCette vidéo est restreinte dans la région où ce bot est hébergé.\n\n**Solution:** Essayez un lien différent.",
-    "rate_limited": "**Trop de requêtes (limite de débit)**\nYouTube ou une autre plateforme bloque temporairement les requêtes.\n\n**Solution:** Attendez quelques minutes et réessayez. Si cela arrive souvent, ajoutez `COOKIES_FROM_BROWSER` dans `.env`.",
+    "rate_limited": "**Trop de requêtes (limite de débit)**\nYouTube ou une autre plateforme bloque temporairement les requêtes.\n\n**Solution:** Attendez quelques minutes et réessayez. Si cela arrive souvent, ajoutez `COOKIES_FILE` / `COOKIES_FROM_BROWSER` dans `.env`.",
     "network_error": "**Erreur réseau**\nLe bot n'a pas pu se connecter à la plateforme musicale. Il s'agit généralement d'un problème temporaire.\n\n**Solution:** Attendez un moment et réessayez.",
     "stream_failed": "**Échec du flux audio**\nLe bot a trouvé le titre mais n'a pas pu démarrer le flux audio.\n\n**Solution:** Réessayez ou tentez une version différente de la chanson.",
     "voice_no_permission": "**Permissions du salon vocal manquantes**\nLe bot n'a pas la permission de rejoindre ou de parler dans votre salon vocal.\n\n**Solution:** Paramètres du salon vocal → Permissions → accordez au bot les permissions **Se connecter** et **Parler**.",
