@@ -143,6 +143,7 @@
     "removed": "**{title}** poistettiin jonosta.",
     "moved": "**{title}** siirrettiin sijalle {position}.",
     "invalid_position": "Sijalla {position} ei ole kappaletta.",
-    "invite": "Kutsu"
+    "invite": "Kutsu",
+    "fallback_soundcloud": "YouTube ei toiminut tälle kappaleelle, joten se toistetaan SoundCloudista."
   }
 }

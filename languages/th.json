@@ -143,6 +143,7 @@
     "removed": "ลบ **{title}** ออกจากคิวแล้ว",
     "moved": "ย้าย **{title}** ไปที่ตำแหน่ง {position} แล้ว",
     "invalid_position": "ไม่มีเพลงที่ตำแหน่ง {position}",
-    "invite": "เชิญ"
+    "invite": "เชิญ",
+    "fallback_soundcloud": "YouTube ใช้งานไม่ได้กับเพลงนี้ จึงเล่นจาก SoundCloud แทน"
   }
 }

@@ -143,6 +143,7 @@
     "removed": "**{title}** togs bort från kön.",
     "moved": "**{title}** flyttades till plats {position}.",
     "invalid_position": "Det finns ingen låt på plats {position}.",
-    "invite": "Bjud in"
+    "invite": "Bjud in",
+    "fallback_soundcloud": "YouTube fungerade inte för den här låten, så den spelas från SoundCloud."
   }
 }

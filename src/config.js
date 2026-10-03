@@ -86,6 +86,8 @@ const config = {
     },
 
     ffmpegPath: env('FFMPEG_PATH'),
+    // When YouTube fails (blocked, 403, removed video), play the same song from SoundCloud.
+    youtubeFallback: env('YOUTUBE_FALLBACK', 'soundcloud').toLowerCase() !== 'off',
     proxies: list('PROXY_URL'),
 
     sharding: {

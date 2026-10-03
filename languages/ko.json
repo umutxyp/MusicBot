@@ -143,6 +143,7 @@
     "removed": "**{title}**을(를) 대기열에서 제거했습니다.",
     "moved": "**{title}**을(를) {position}번으로 옮겼습니다.",
     "invalid_position": "{position}번에 노래가 없습니다.",
-    "invite": "초대하기"
+    "invite": "초대하기",
+    "fallback_soundcloud": "이 노래는 YouTube에서 재생되지 않아 SoundCloud에서 재생합니다."
   }
 }
