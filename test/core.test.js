@@ -42,6 +42,16 @@ test('truncate / escapeMarkdown / link / safeUrl', () => {
     assert.equal(escapeMarkdown('a*b_[c](d)'), 'a\\*b\\_\\[c\\]\\(d\\)');
     assert.equal(link('Title', 'https://x.y/a)b'), '[Title](https://x.y/a%29b)');
     assert.equal(link('Title', 'javascript:alert(1)'), 'Title');
+    const u = 'https://www.youtube.com/watch?v=rFZHOHl-L8A';
+    // Discord drops masked links whose label holds emoji, brackets, line breaks, urls or nothing.
+    assert.equal(link('lofi hip hop radio 📚 beats to relax/study to 2026-10-09 05:36', u),
+        `[lofi hip hop radio beats to relax/study to 2026-10-09 05:36](${u})`);
+    assert.equal(link('[MV] Song (Live)', u), `[\\(MV\\) Song \\(Live\\)](${u})`);
+    assert.equal(link('a\nb\u200bc', u), `[a b c](${u})`);
+    assert.equal(link('👨‍👩‍👧 🇹🇷 Türkçe şarkı', u), `[Türkçe şarkı](${u})`);
+    assert.equal(link('see https://example.com', u), `[see example\u2024com](${u})`);
+    assert.equal(link('🔥🔥', u), `[Untitled](${u})`);
+    assert.equal(link(null, u), `[Untitled](${u})`);
     assert.equal(safeUrl('ftp://x'), null);
 });
 
