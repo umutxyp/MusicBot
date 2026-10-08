@@ -52,13 +52,41 @@ function safeUrl(url) {
     }
 }
 
+// Emoji (with their joiners, variation selectors, skin tones and keycaps) and flags.
+const EMOJI = /[\p{Extended_Pictographic}\p{Regional_Indicator}\u{1F3FB}-\u{1F3FF}\u20E3\uFE0E\uFE0F\u200D]/gu;
+// Control, format (zero-width, bidi), separator and private-use characters.
+const INVISIBLE = /[\p{Cc}\p{Cf}\p{Zl}\p{Zp}\p{Co}]/gu;
+// Url schemes and dots between letters/digits, which Discord reads as a url or domain in a label.
+const SCHEME = /[a-z0-9+.-]*:\/\//gi;
+const INNER_DOT = /(?<=[\p{L}\p{N}])\.(?=[\p{L}\p{N}])/gu;
+
+/**
+ * Turn any title into text Discord accepts as a masked-link label. Discord silently
+ * drops the link (and shows the raw "[...](...)") when the label holds emoji, brackets,
+ * line breaks, invisible characters, a url, or nothing at all.
+ */
+function linkLabel(title, max = 80) {
+    let label = String(title ?? '')
+        .normalize('NFC')
+        .replace(EMOJI, ' ')
+        .replace(INVISIBLE, ' ')
+        .replace(/\[/g, '(')
+        .replace(/\]/g, ')')
+        .replace(SCHEME, ' ')
+        .replace(INNER_DOT, '\u2024')
+        .replace(/\s+/g, ' ')
+        .trim();
+    if (!label || !/[\p{L}\p{N}]/u.test(label)) label = 'Untitled';
+    return escapeMarkdown(truncate(label, max));
+}
+
 /**
  * "[Title](url)" when the url is valid, plain escaped title otherwise.
  */
 function link(title, url, max = 80) {
-    const label = escapeMarkdown(truncate(title, max));
     const href = safeUrl(url);
-    return href ? `[${label}](${href})` : label;
+    if (!href) return escapeMarkdown(truncate(String(title ?? '').replace(/\s+/g, ' ').trim(), max));
+    return `[${linkLabel(title, max)}](${href})`;
 }
 
 function chunk(items, size) {
@@ -67,4 +95,4 @@ function chunk(items, size) {
     return out;
 }
 
-module.exports = { formatDuration, parseTime, progressBar, truncate, escapeMarkdown, safeUrl, link, chunk };
+module.exports = { formatDuration, parseTime, progressBar, truncate, escapeMarkdown, safeUrl, link, linkLabel, chunk };
