@@ -73,9 +73,15 @@ function fromDiscordLocale(locale) {
  * Language for a guild: saved setting (data/guilds/<id>.json) > guild's Discord locale > default.
  */
 function guildLanguage(guildId, guildLocale) {
+    return savedLanguage(guildId) || fromDiscordLocale(guildLocale) || defaultLanguage;
+}
+
+/**
+ * Language chosen with /language for a guild, or null when none is saved.
+ */
+function savedLanguage(guildId) {
     const stored = guildId ? getSettings().get(guildId)?.language : null;
-    if (stored && languages.has(stored)) return stored;
-    return fromDiscordLocale(guildLocale) || defaultLanguage;
+    return stored && languages.has(stored) ? stored : null;
 }
 
 async function setGuildLanguage(guildId, code) {
@@ -98,11 +104,11 @@ function forGuild(guild) {
 }
 
 /**
- * Translator for replying to one user: their Discord language when the bot has it,
- * otherwise the guild language.
+ * Translator for replying to one user: the guild language when one is saved with /language,
+ * otherwise the user's Discord language when the bot has it, otherwise the default (English).
  */
 function forInteraction(interaction) {
-    return translator(fromDiscordLocale(interaction?.locale) || guildLanguage(interaction?.guild?.id, interaction?.guild?.preferredLocale));
+    return translator(savedLanguage(interaction?.guild?.id) || fromDiscordLocale(interaction?.locale) || defaultLanguage);
 }
 
 function list() {
@@ -130,6 +136,7 @@ module.exports = {
     forGuild,
     forInteraction,
     guildLanguage,
+    savedLanguage,
     setGuildLanguage,
     fromDiscordLocale,
     list,
