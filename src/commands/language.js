@@ -11,6 +11,6 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
     async execute(interaction, { t }) {
-        return interaction.reply(views.languageView(t, { languages: i18n.list(), current: t.lang }));
+        return interaction.reply(views.languageView(t, { languages: i18n.list(), current: i18n.guildLanguage(interaction.guildId, interaction.guild?.preferredLocale) }));
     },
 };

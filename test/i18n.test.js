@@ -77,24 +77,18 @@ test('guild language setting persists and wins over the guild locale', async () 
     await assert.rejects(i18n.setGuildLanguage('999999999999999999', 'xx'));
 });
 
-test('v16 language settings (database/languages.json) keep working without migration', async () => {
-    const legacyRoot = fs.mkdtempSync(path.join(process.env.DATA_DIR, 'legacy-'));
-    fs.mkdirSync(path.join(legacyRoot, 'database'));
-    fs.writeFileSync(path.join(legacyRoot, 'database', 'languages.json'), JSON.stringify({
-        servers: { '888888888888888888': { language: 'fr' }, '777777777777777777': { language: 'xx' } },
-    }));
-    i18n.resetLegacyCache();
-    assert.equal(i18n.legacyLanguage('888888888888888888', legacyRoot), 'fr');
-    assert.equal(i18n.guildLanguage('888888888888888888', 'de'), 'fr', 'v16 setting wins over the guild locale');
-    assert.equal(i18n.guildLanguage('777777777777777777', 'de'), 'de', 'unknown v16 language falls back');
-    await i18n.setGuildLanguage('888888888888888888', 'tr');
-    assert.equal(i18n.guildLanguage('888888888888888888'), 'tr', 'a new choice overrides the v16 setting');
-    i18n.resetLegacyCache();
+test('slash command replies use the user language when supported, otherwise the guild language', async () => {
+    await i18n.setGuildLanguage('666666666666666666', 'tr');
+    const guild = { id: '666666666666666666', preferredLocale: 'de' };
+    assert.equal(i18n.forInteraction({ locale: 'fr', guild }).lang, 'fr');
+    assert.equal(i18n.forInteraction({ locale: 'en-US', guild }).lang, 'en');
+    assert.equal(i18n.forInteraction({ locale: 'uk', guild }).lang, 'tr', 'unsupported user language falls back to the guild');
+    assert.equal(i18n.forInteraction({ locale: 'fr', guild })('buttons.skip'), i18n.t('fr', 'buttons.skip'));
+    assert.equal(i18n.forGuild(guild).lang, 'tr', 'shared messages stay in the guild language');
 });
 
-test('the repository database/languages.json is valid', () => {
-    i18n.resetLegacyCache();
-    assert.equal(i18n.legacyLanguage('000000000000000000'), null);
+test('there is no legacy database folder', () => {
+    assert.equal(fs.existsSync(path.join(root, 'database')), false);
 });
 
 test('error messages point to existing docs and the cookies setting', () => {

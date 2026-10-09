@@ -70,30 +70,11 @@ function fromDiscordLocale(locale) {
 }
 
 /**
- * Language settings written by v16 and older (database/languages.json). Read-only: they keep
- * working after an upgrade without any migration step, and new choices are saved per guild.
- */
-let legacy = null;
-function legacyLanguage(guildId, rootDir = config.root) {
-    if (legacy === null) {
-        legacy = {};
-        try {
-            legacy = JSON.parse(fs.readFileSync(path.join(rootDir, 'database', 'languages.json'), 'utf8'))?.servers || {};
-        } catch (error) {
-            if (error.code !== 'ENOENT') log.warn('Could not read database/languages.json:', error.message);
-        }
-    }
-    return legacy[guildId]?.language || null;
-}
-
-/**
- * Language for a guild: saved setting > v16 setting > guild's Discord locale > default.
+ * Language for a guild: saved setting (data/guilds/<id>.json) > guild's Discord locale > default.
  */
 function guildLanguage(guildId, guildLocale) {
     const stored = guildId ? getSettings().get(guildId)?.language : null;
     if (stored && languages.has(stored)) return stored;
-    const old = guildId ? legacyLanguage(guildId) : null;
-    if (old && languages.has(old)) return old;
     return fromDiscordLocale(guildLocale) || defaultLanguage;
 }
 
@@ -103,14 +84,25 @@ async function setGuildLanguage(guildId, code) {
     await store.set(guildId, { ...(store.get(guildId) || {}), language: code });
 }
 
-/**
- * Translator bound to a guild.
- */
-function forGuild(guild) {
-    const lang = guildLanguage(guild?.id, guild?.preferredLocale);
+function translator(lang) {
     const translate = (key, vars) => t(lang, key, vars);
     translate.lang = lang;
     return translate;
+}
+
+/**
+ * Translator bound to a guild. Used for messages everyone sees (the player panel, announcements).
+ */
+function forGuild(guild) {
+    return translator(guildLanguage(guild?.id, guild?.preferredLocale));
+}
+
+/**
+ * Translator for replying to one user: their Discord language when the bot has it,
+ * otherwise the guild language.
+ */
+function forInteraction(interaction) {
+    return translator(fromDiscordLocale(interaction?.locale) || guildLanguage(interaction?.guild?.id, interaction?.guild?.preferredLocale));
 }
 
 function list() {
@@ -136,15 +128,12 @@ module.exports = {
     t,
     clean,
     forGuild,
+    forInteraction,
     guildLanguage,
     setGuildLanguage,
     fromDiscordLocale,
     list,
     localizations,
-    resetLegacyCache: () => {
-        legacy = null;
-    },
-    legacyLanguage,
     languages,
     FALLBACK,
     get defaultLanguage() {
