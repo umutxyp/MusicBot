@@ -77,14 +77,17 @@ test('guild language setting persists and wins over the guild locale', async () 
     await assert.rejects(i18n.setGuildLanguage('999999999999999999', 'xx'));
 });
 
-test('slash command replies use the user language when supported, otherwise the guild language', async () => {
+test('replies use the saved guild language, else the user language, else English', async () => {
+    const unset = { id: '555555555555555555', preferredLocale: 'de' };
+    assert.equal(i18n.forInteraction({ locale: 'fr', guild: unset }).lang, 'fr', 'no saved language: user language');
+    assert.equal(i18n.forInteraction({ locale: 'uk', guild: unset }).lang, 'en', 'unsupported user language: English');
+    assert.equal(i18n.forInteraction({ locale: 'fr', guild: unset })('buttons.skip'), i18n.t('fr', 'buttons.skip'));
+
     await i18n.setGuildLanguage('666666666666666666', 'tr');
-    const guild = { id: '666666666666666666', preferredLocale: 'de' };
-    assert.equal(i18n.forInteraction({ locale: 'fr', guild }).lang, 'fr');
-    assert.equal(i18n.forInteraction({ locale: 'en-US', guild }).lang, 'en');
-    assert.equal(i18n.forInteraction({ locale: 'uk', guild }).lang, 'tr', 'unsupported user language falls back to the guild');
-    assert.equal(i18n.forInteraction({ locale: 'fr', guild })('buttons.skip'), i18n.t('fr', 'buttons.skip'));
-    assert.equal(i18n.forGuild(guild).lang, 'tr', 'shared messages stay in the guild language');
+    const saved = { id: '666666666666666666', preferredLocale: 'de' };
+    assert.equal(i18n.forInteraction({ locale: 'fr', guild: saved }).lang, 'tr', 'saved guild language wins');
+    assert.equal(i18n.forInteraction({ locale: 'uk', guild: saved }).lang, 'tr');
+    assert.equal(i18n.forGuild(saved).lang, 'tr');
 });
 
 test('there is no legacy database folder', () => {
