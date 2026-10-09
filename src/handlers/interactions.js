@@ -25,7 +25,7 @@ const { ID } = views;
 const asUpdate = (payload) => ({ ...payload, flags: payload.flags & ~MessageFlags.Ephemeral });
 
 function context(interaction) {
-    return { client: interaction.client, manager: interaction.client.music, t: i18n.forGuild(interaction.guild) };
+    return { client: interaction.client, manager: interaction.client.music, t: i18n.forInteraction(interaction) };
 }
 
 // ─── Panel controls ────────────────────────────────────────────────────
@@ -146,13 +146,12 @@ async function handleSearchPick(interaction, ctx) {
     return playFromInteraction(interaction, ctx, song.url);
 }
 
-async function handleLanguage(interaction, { manager }) {
+async function handleLanguage(interaction, { t, manager }) {
     if (!interaction.memberPermissions?.has(PermissionFlagsBits.ManageGuild)) {
-        return say(interaction, i18n.forGuild(interaction.guild)('commands.language.permission_required_button'));
+        return say(interaction, t('commands.language.permission_required_button'));
     }
     const code = interaction.values[0];
     await i18n.setGuildLanguage(interaction.guildId, code);
-    const t = i18n.forGuild(interaction.guild);
     const name = i18n.list().find((lang) => lang.code === code)?.name || code;
     manager.refreshPanel(interaction.guildId);
     return interaction.update(asUpdate(views.notice(t('commands.language.changed_desc', { language: name }))));
@@ -197,7 +196,7 @@ async function onInteraction(interaction) {
             await interaction.respond([]).catch(() => undefined);
             return;
         }
-        const t = i18n.forGuild(interaction.guild);
+        const t = i18n.forInteraction(interaction);
         await say(interaction, t('buttonhandler.processing_error')).catch(() => undefined);
     }
 }

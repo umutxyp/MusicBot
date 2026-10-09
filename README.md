@@ -153,7 +153,7 @@ cp .env .env.backup && git checkout -- .env && git pull && cp .env.backup .env
 copy .env .env.backup && git checkout -- .env && git pull && copy /Y .env.backup .env
 ```
 
-Everything else carries over: all old `.env` names still work, server languages from v16 are kept, the volume range (0-100, default 100) is unchanged, and the old `audio_cache` folder is deleted automatically (v17 streams music and never downloads songs).
+Server languages from v16 (`database/languages.json`) are not carried over: pick them again with `/language`. Everything else carries over: all old `.env` names still work, the volume range (0-100, default 100) is unchanged, and the old `audio_cache` folder is deleted automatically (v17 streams music and never downloads songs).
 
 </details>
 
@@ -236,7 +236,7 @@ yt-dlp updates itself once a day, which fixes most other YouTube errors.
 | `/queue [page]` | Show the queue |
 | `/remove` `/move` `/jump` `/clear` `/shuffle` | Edit the queue |
 | `/lyrics [song]` | Lyrics |
-| `/language` | Change the bot language for the server (needs Manage Server) |
+| `/language` | Change the bot language for the server (needs Manage Server). Command replies use each user's Discord language when it is supported |
 | `/help` | All commands and bot statistics |
 
 The player panel has buttons for the same things. Only people in the bot's voice channel can control the music. When everyone leaves, the music pauses; it continues when someone comes back.
@@ -273,7 +273,7 @@ The player panel has buttons for the same things. Only people in the bot's voice
 | **Sharding** | Always on, crashed shards restart automatically. |
 | **Resume after restart** | Queue and position are saved and restored. |
 | **Proxy, cookies, PO token** | For hosts that YouTube blocks. |
-| **23 languages** | Per server, or the server's Discord language automatically. |
+| **23 languages** | Command replies follow each user's Discord language; the player panel uses the server language (`/language`, or the server's Discord language automatically). Saved as local JSON in `data/guilds/`, no database needed. |
 | **No privileged intents** | Only `Guilds` and `GuildVoiceStates`. |
 
 ---
