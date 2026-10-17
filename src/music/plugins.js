@@ -396,7 +396,7 @@ class RelayedDirectLinkPlugin extends DirectLinkPlugin {
     }
 
     async getStreamURL(song) {
-        const url = super.getStreamURL(song);
+        const url = await super.getStreamURL(song);
         return relayStream(this.relay, { url, proxy: ytdlp.proxyFor(guildIdOf(song)) });
     }
 }
